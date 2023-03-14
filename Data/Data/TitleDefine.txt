@@ -1,0 +1,14 @@
+{
+  "1": {
+    "ID": 1,
+    "Name": "杀手的本能",
+    "ATKratio": 0.1,
+    "DEFratio": 0.0
+  },
+  "2": {
+    "ID": 2,
+    "Name": "防御姿态",
+    "ATKratio": 0.0,
+    "DEFratio": 0.05
+  }
+}

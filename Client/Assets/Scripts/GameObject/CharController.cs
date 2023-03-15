@@ -15,9 +15,11 @@ public class CharController : MonoBehaviour
     public CharBase charBase;
     public AtkStyle atkStyle;
 
-    public GameObject rifleBltPre;
-    public GameObject shotgunBltPre;
-    public GameObject meleeEffectPre;
+    [HideInInspector] public GameObject rifleBltPre;
+    [HideInInspector] public GameObject shotgunBltPre;
+    [HideInInspector] public GameObject meleeEffectPre;
+    [HideInInspector] public PolygonCollider2D cldr2D;
+    [HideInInspector] public Cinemachine.CinemachineConfiner2D confiner;
 
     public Transform effectRoot;
     private void Awake()
@@ -25,12 +27,15 @@ public class CharController : MonoBehaviour
         rifleBltPre = Resloader.Load<GameObject>("Prefab/GameObject/rifleBlt");
         shotgunBltPre = Resloader.Load<GameObject>("Prefab/GameObject/shotgunBlt");
         meleeEffectPre = Resloader.Load<GameObject>("Prefab/GameObject/meleeEffect");
+        cldr2D = GameObject.Find("Map/bg").GetComponent<PolygonCollider2D>();
+        confiner = GetComponentInChildren<Cinemachine.CinemachineConfiner2D>();
         atkStyle = AtkStyle.Rifle;
         mainCamera = Camera.main;
     }
     private void Start()
     {
         InputManager.Instance.charc = this;
+        confiner.m_BoundingShape2D = cldr2D;
     }
     public void MeleeAtk()
     {
@@ -41,13 +46,13 @@ public class CharController : MonoBehaviour
     }
     IEnumerator InitMeleeEffect(Vector3 dir)
     {
-        GameObject obj = Instantiate(meleeEffectPre, transform.position, Quaternion.identity, effectRoot);
+        GameObject obj = Instantiate(meleeEffectPre, transform.position, Quaternion.identity);
         obj.transform.up = dir;
         SpriteRenderer renderer = obj.GetComponent<SpriteRenderer>();
         while(renderer.color.a > 0)
         {
             Color color= renderer.color;
-            color.a -= 50/225f * Time.fixedDeltaTime;
+            color.a -= 225/225f * Time.fixedDeltaTime;
             renderer.color = color; 
             yield return null;
         }

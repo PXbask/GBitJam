@@ -1,3 +1,4 @@
+using Define;
 using Model;
 using Newtonsoft.Json;
 using System;
@@ -19,6 +20,7 @@ public class DataManager : Singleton<DataManager>
     public SaveData SaveData = new SaveData();
 
     public Dictionary<int, TitleDefine> Titles= new Dictionary<int, TitleDefine>();
+    public Dictionary<int, ItemDefine> Items= new Dictionary<int, ItemDefine>();
     public DataManager()
     {
         Debug.Log("<color=#FF00FF>DataManager Init</color>");
@@ -28,11 +30,18 @@ public class DataManager : Singleton<DataManager>
         string json = File.ReadAllText(dataPath + "TitleDefine.txt");
         this.Titles = JsonConvert.DeserializeObject<Dictionary<int, TitleDefine>>(json);
         yield return null;
+
+        json = File.ReadAllText(dataPath + "ItemDefine.txt");
+        this.Items = JsonConvert.DeserializeObject<Dictionary<int, ItemDefine>>(json);
+        yield return null;
     }
     public void LoadConfigData()
     {
         string json = File.ReadAllText(dataPath + "TitleDefine.txt");
         this.Titles = JsonConvert.DeserializeObject<Dictionary<int, TitleDefine>>(json);
+
+        json = File.ReadAllText(dataPath + "ItemDefine.txt");
+        this.Items = JsonConvert.DeserializeObject<Dictionary<int, ItemDefine>>(json);
     }
     public void SaveUserData()
     {
@@ -42,6 +51,7 @@ public class DataManager : Singleton<DataManager>
         saveData.sceneIndex = GetSceneIndex();
         saveData.playerPos = GetPlayerPos();
         saveData.equipedTitle = GetEquipedTitle();
+        saveData.gainedItemData = GetGainedItemData();
 #if UNITY_EDITOR
         string filePath = dataPath + "Save.json";
 #endif
@@ -88,6 +98,17 @@ public class DataManager : Singleton<DataManager>
         foreach (var item in TitleManager.Instance.EquipedTitle)
         {
             data.Add(item.ID);
+        }
+        return data;
+    }
+    private List<int[]> GetGainedItemData()
+    {
+        List<int[]> data = new List<int[]>();
+        foreach (var item in ItemManager.Instance.gainedItems)
+        {
+            int[] arr = new int[] { item.Key, item.Value.Count };
+            if (arr != null)
+                data.Add(arr);
         }
         return data;
     }

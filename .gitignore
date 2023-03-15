@@ -16,6 +16,7 @@
 
 # User-specific files
 
+*.log
 *.suo
 *.user
 *.sln.docstates

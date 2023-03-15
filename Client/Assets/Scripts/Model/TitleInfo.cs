@@ -9,12 +9,13 @@ namespace Model
     public class TitleInfo
     {
         public TitleDefine define;
-        public int ID => define.ID;
+        public int ID;
         public int level;
-        public TitleInfo(TitleDefine define, int level)
+        public TitleInfo(int ID, int level)
         {
-            this.define = define;
+            this.ID = ID;
             this.level = level;
+            this.define = DataManager.Instance.Titles[ID];
         }
     }
 }

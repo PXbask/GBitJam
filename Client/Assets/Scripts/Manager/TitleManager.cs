@@ -18,6 +18,13 @@ public class TitleManager : Singleton<TitleManager>
 
     public Dictionary<int, TitleInfo> AllGainedTitle = new Dictionary<int, TitleInfo>();
     public List<TitleInfo> EquipedTitle= new List<TitleInfo>();//暂定先放一个
+    public void Init()
+    {
+        foreach (var arr in DataManager.Instance.SaveData.gainedTitleData)
+        {
+            AllGainedTitle.Add(arr[0], new TitleInfo(arr[0], arr[1]));
+        }
+    }
     public void Equip(int id)
     {
         if (EquipedTitle.Count >= 1) return;
@@ -54,8 +61,7 @@ public class TitleManager : Singleton<TitleManager>
         TitleInfo info;
         if (!AllGainedTitle.TryGetValue(id,out info))
         {
-            TitleDefine define = DataManager.Instance.Titles[id];
-            AllGainedTitle.Add(id, new TitleInfo(define, 1));
+            AllGainedTitle.Add(id, new TitleInfo(id, 1));
         }
         else
         {

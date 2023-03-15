@@ -14,11 +14,17 @@ public class GameStart : MonoBehaviour
     CharController player;
     private void Awake()
     {
-        DataManager.Instance.LoadData();
+        DataManager.Instance.LoadConfigData();
+        DataManager.Instance.LoadUserData();
         CreatePlayer();
+
+        TitleManager.Instance.Init();
     }
+    
     public void CreatePlayer()
     {
+        //切换地图
+        //UnityEngine.SceneManagement.SceneManager.LoadScene(DataManager.Instance.SaveData.sceneIndex);
         //生成玩家
         GameObject playerPre = Resloader.Load<GameObject>("Prefab/GameObject/Player");
         var obj = Instantiate(playerPre);
@@ -29,19 +35,11 @@ public class GameStart : MonoBehaviour
         player.charBase.attributes = new Model.Attributes();
         TitleManager.Instance.OnTitleEquiped += player.charBase.attributes.Recalculate;
         TitleManager.Instance.OnTitleUnEquiped += player.charBase.attributes.Recalculate;
-        player.charBase.attributes.baseAttribute = new Model.Attribute()
-        {
-            HP = 100,
-            SPD = 4f,
-            ATK = 100,
-            DEF = 50
-        };
+        player.charBase.attributes.baseAttribute = DataManager.Instance.SaveData.playerAttri;
         player.charBase.attributes.Recalculate();
+        player.transform.position = DataManager.Instance.SaveData.playerPos;
         //玩家数据应用
         PlayerMovement movement = obj.GetComponent<PlayerMovement>();
         movement.speed = player.charBase.attributes.curAttribute.SPD;
-        //自动获得前两个称号
-        TitleManager.Instance.GainTitle(1);
-        TitleManager.Instance.GainTitle(2);
     }
 }

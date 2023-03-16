@@ -42,8 +42,8 @@ public class UIEquip : UIWindow
     private void RefreshTitleInfoArea()
     {
         _sb.Clear();
-        _sb.Append(string.Format("¹¥»÷¼Ó+{0}%", selectedItem.titleInfo.define.ATKratio * 100));
-        _sb.Append(string.Format("·ÀÓù¼Ó+{0}%", selectedItem.titleInfo.define.DEFratio * 100));
+        //_sb.Append(string.Format("¹¥»÷¼Ó+{0}%", selectedItem.titleInfo.define.ATKratio * 100));
+        //_sb.Append(string.Format("·ÀÓù¼Ó+{0}%", selectedItem.titleInfo.define.DEFratio * 100));
         titleInfoText.text = _sb.ToString();
     }
 

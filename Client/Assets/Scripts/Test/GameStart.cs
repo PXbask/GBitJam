@@ -16,9 +16,9 @@ public class GameStart : MonoBehaviour
     {
         DataManager.Instance.LoadConfigData();
         DataManager.Instance.LoadUserData();
-        CreatePlayer();
-
         TitleManager.Instance.Init();
+
+        CreatePlayer();
     }
     
     public void CreatePlayer()
@@ -31,15 +31,13 @@ public class GameStart : MonoBehaviour
         obj.name = "Player";
         //脚本初始化
         player = obj.GetComponent<CharController>();
-        player.charBase = new CharBase();
-        player.charBase.attributes = new Model.Attributes();
+        player.charBase = new CharBase(DataManager.Instance.Characters[0]);
         TitleManager.Instance.OnTitleEquiped += player.charBase.attributes.Recalculate;
         TitleManager.Instance.OnTitleUnEquiped += player.charBase.attributes.Recalculate;
-        player.charBase.attributes.baseAttribute = DataManager.Instance.SaveData.playerAttri;
         player.charBase.attributes.Recalculate();
         player.transform.position = DataManager.Instance.SaveData.playerPos;
         //玩家数据应用
         PlayerMovement movement = obj.GetComponent<PlayerMovement>();
-        movement.speed = player.charBase.attributes.curAttribute.SPD;
+        movement.speed = player.charBase.attributes.curAttribute.MoveVelocityRatio * 4f;
     }
 }

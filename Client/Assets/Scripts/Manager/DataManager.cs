@@ -20,7 +20,10 @@ public class DataManager : Singleton<DataManager>
     public SaveData SaveData = new SaveData();
 
     public Dictionary<int, TitleDefine> Titles= new Dictionary<int, TitleDefine>();
-    public Dictionary<int, ItemDefine> Items= new Dictionary<int, ItemDefine>();
+    public Dictionary<int, Dictionary<int, TitleAffectDefine>> TitleAffects = new Dictionary<int, Dictionary<int, TitleAffectDefine>>();
+    public Dictionary<int, CharacterDefine> Characters = new Dictionary<int, CharacterDefine>();
+
+    public CharacterDefine playerDefine => Characters[0];
     public DataManager()
     {
         Debug.Log("<color=#FF00FF>DataManager Init</color>");
@@ -31,8 +34,12 @@ public class DataManager : Singleton<DataManager>
         this.Titles = JsonConvert.DeserializeObject<Dictionary<int, TitleDefine>>(json);
         yield return null;
 
-        json = File.ReadAllText(dataPath + "ItemDefine.txt");
-        this.Items = JsonConvert.DeserializeObject<Dictionary<int, ItemDefine>>(json);
+        json = File.ReadAllText(dataPath + "TitleAffectDefine.txt");
+        this.TitleAffects = JsonConvert.DeserializeObject<Dictionary<int, Dictionary<int, TitleAffectDefine>>>(json);
+        yield return null;
+
+        json = File.ReadAllText(dataPath + "CharacterDefine.txt");
+        this.Characters = JsonConvert.DeserializeObject<Dictionary<int, CharacterDefine>>(json);
         yield return null;
     }
     public void LoadConfigData()
@@ -40,18 +47,20 @@ public class DataManager : Singleton<DataManager>
         string json = File.ReadAllText(dataPath + "TitleDefine.txt");
         this.Titles = JsonConvert.DeserializeObject<Dictionary<int, TitleDefine>>(json);
 
-        json = File.ReadAllText(dataPath + "ItemDefine.txt");
-        this.Items = JsonConvert.DeserializeObject<Dictionary<int, ItemDefine>>(json);
+        json = File.ReadAllText(dataPath + "TitleAffectDefine.txt");
+        this.TitleAffects = JsonConvert.DeserializeObject<Dictionary<int, Dictionary<int, TitleAffectDefine>>>(json);
+
+        json = File.ReadAllText(dataPath + "CharacterDefine.txt");
+        this.Characters = JsonConvert.DeserializeObject<Dictionary<int, CharacterDefine>>(json);
     }
     public void SaveUserData()
     {
         SaveData saveData = new SaveData();
-        saveData.playerAttri = GameManager.Instance.charc.charBase.attributes.curAttribute;
-        saveData.gainedTitleData = GetGainedTitleData();
+        saveData.alltitlesData = GetAllTitlesData();
         saveData.sceneIndex = GetSceneIndex();
         saveData.playerPos = GetPlayerPos();
         saveData.equipedTitle = GetEquipedTitle();
-        saveData.gainedItemData = GetGainedItemData();
+        saveData.playerLevel = GetPlayerLevel();
 #if UNITY_EDITOR
         string filePath = dataPath + "Save.json";
 #endif
@@ -70,14 +79,20 @@ public class DataManager : Singleton<DataManager>
         string json = File.ReadAllText(dataPath + "Save.json");
         SaveData = JsonConvert.DeserializeObject<SaveData>(json);
     }
-    #region tmpFuncs
-    private List<int[]> GetGainedTitleData()
+    #region privateFuncs
+    private List<int[]> GetAllTitlesData()
     {
         List<int[]> data = new List<int[]>();
         foreach (var title in TitleManager.Instance.AllGainedTitle)
         {
-            int[] arr = new int[] { title.Key, title.Value.level };
+            int[] arr = new int[] { title.Key, title.Value.level, 1 };
             if(arr!=null)
+                data.Add(arr);
+        }
+        foreach (var title in TitleManager.Instance.AllUnGainedTitle)
+        {
+            int[] arr = new int[] { title.Key, 0, 0 };
+            if (arr != null)
                 data.Add(arr);
         }
         return data;
@@ -101,16 +116,9 @@ public class DataManager : Singleton<DataManager>
         }
         return data;
     }
-    private List<int[]> GetGainedItemData()
+    private int GetPlayerLevel()
     {
-        List<int[]> data = new List<int[]>();
-        foreach (var item in ItemManager.Instance.gainedItems)
-        {
-            int[] arr = new int[] { item.Key, item.Value.Count };
-            if (arr != null)
-                data.Add(arr);
-        }
-        return data;
+        return GameManager.Instance.charc.charBase.level;
     }
     #endregion
 }

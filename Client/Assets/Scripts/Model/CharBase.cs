@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Model;
+using Define;
 
 /*
     Date:
@@ -11,5 +12,14 @@ using Model;
 
 public class CharBase
 {
-    public Attributes attributes;
+    public CharacterDefine define;
+    public Attributes attributes;//ÊôÐÔ×ÜÀà
+    public int level;
+    public bool IsPlayer => define.ID == 0;
+    public CharBase(CharacterDefine define)
+    {
+        this.define = define;
+        attributes = new Attributes(define);
+        if (IsPlayer) level = DataManager.Instance.SaveData.playerLevel;
+    }
 }

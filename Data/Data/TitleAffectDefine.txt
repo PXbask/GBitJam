@@ -1,0 +1,83 @@
+{
+  "1": {
+    "0": {
+      "MeleeGainV": 0.2,
+      "DodgeGainV": 0.05,
+      "MoveGainV": 0.05,
+      "Param": 0.0,
+      "杀手本能": {}
+    },
+    "1": {
+      "MeleeGainV": 0.25,
+      "DodgeGainV": 0.075,
+      "MoveGainV": 0.1,
+      "Param": 0.0
+    },
+    "2": {
+      "MeleeGainV": 0.3,
+      "DodgeGainV": 0.125,
+      "MoveGainV": 0.15,
+      "Param": 0.0
+    },
+    "3": {
+      "MeleeGainV": 0.4,
+      "DodgeGainV": 0.2,
+      "MoveGainV": 0.2,
+      "Param": 0.0
+    }
+  },
+  "2": {
+    "0": {
+      "MeleeGainV": 0.0,
+      "DodgeGainV": 0.1,
+      "MoveGainV": 0.0,
+      "Param": 0.0,
+      "洞察之眼": {}
+    },
+    "1": {
+      "MeleeGainV": 0.0,
+      "DodgeGainV": 0.125,
+      "MoveGainV": 0.0,
+      "Param": 0.0
+    },
+    "2": {
+      "MeleeGainV": 0.0,
+      "DodgeGainV": 0.175,
+      "MoveGainV": 0.0,
+      "Param": 0.0
+    },
+    "3": {
+      "MeleeGainV": 0.0,
+      "DodgeGainV": 0.25,
+      "MoveGainV": 0.0,
+      "Param": 0.0
+    }
+  },
+  "3": {
+    "0": {
+      "MeleeGainV": 0.0,
+      "DodgeGainV": 0.0,
+      "MoveGainV": 0.2,
+      "Param": 4.0,
+      "飞毛腿": {}
+    },
+    "1": {
+      "MeleeGainV": 0.0,
+      "DodgeGainV": 0.0,
+      "MoveGainV": 0.3,
+      "Param": 4.0
+    },
+    "2": {
+      "MeleeGainV": 0.0,
+      "DodgeGainV": 0.0,
+      "MoveGainV": 0.4,
+      "Param": 4.0
+    },
+    "3": {
+      "MeleeGainV": 0.0,
+      "DodgeGainV": 0.0,
+      "MoveGainV": 0.5,
+      "Param": 4.0
+    }
+  }
+}

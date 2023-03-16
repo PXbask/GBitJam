@@ -14,3 +14,17 @@ public enum AtkStyle
     Rifle=1,
     ShotGun=2,
 }
+public enum TitleType
+{
+    None = 0,
+    Attack = 1,
+    Assist = 2,
+    Skill = 3,
+}
+public enum StoryType
+{
+    None = 0,
+    Main = 1,
+    Branch = 2,
+    Hidden = 3,
+}

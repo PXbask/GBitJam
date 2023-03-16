@@ -1,0 +1,14 @@
+{
+  "0": {
+    "ID": 0,
+    "Name": "主角",
+    "HP": 100.0,
+    "DamageResistence": 0.0,
+    "Accuracy": 0.5,
+    "Dodge": 0.0,
+    "MoveVelocityRatio": 1.0,
+    "AttackVelocityRatio": 1.0,
+    "DamageRatio": 1.0,
+    "Damage": 10.0
+  }
+}

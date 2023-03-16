@@ -17,17 +17,30 @@ public class TitleManager : Singleton<TitleManager>
     public Action OnTitleUnEquiped = null;
 
     public Dictionary<int, TitleInfo> AllGainedTitle = new Dictionary<int, TitleInfo>();
-    public List<TitleInfo> EquipedTitle= new List<TitleInfo>();//暂定先放一个
+    public Dictionary<int, TitleInfo> AllUnGainedTitle = new Dictionary<int, TitleInfo>();
+    public List<TitleInfo> EquipedTitle= new List<TitleInfo>();
     public void Init()
     {
-        foreach (var arr in DataManager.Instance.SaveData.gainedTitleData)
+        foreach (var arr in DataManager.Instance.SaveData.alltitlesData)
         {
-            AllGainedTitle.Add(arr[0], new TitleInfo(arr[0], arr[1]));
+            if (arr[2] == 1)
+                AllGainedTitle.Add(arr[0], new TitleInfo(arr[0], arr[1]));
+            else
+                AllUnGainedTitle.Add(arr[0], new TitleInfo(arr[0], 0));
+        }
+        foreach (var id in DataManager.Instance.SaveData.equipedTitle)
+        {
+            if (AllGainedTitle.ContainsKey(id)){
+                EquipedTitle.Add(AllGainedTitle[id]);
+            }
+            else
+            {
+                Debug.LogWarningFormat("装备了不存在的Title! id:{0}", id);
+            }
         }
     }
     public void Equip(int id)
     {
-        if (EquipedTitle.Count >= 1) return;
         TitleInfo info;
         if(AllGainedTitle.TryGetValue(id,out info))
         {
@@ -58,13 +71,13 @@ public class TitleManager : Singleton<TitleManager>
     }
     public void GainTitle(int id)
     {
-        TitleInfo info;
-        if (!AllGainedTitle.TryGetValue(id,out info))
+        if (!AllGainedTitle.TryGetValue(id,out TitleInfo info))
         {
             AllGainedTitle.Add(id, new TitleInfo(id, 1));
         }
         else
         {
+            //TODO:可升级
             info.level++;
         }
     }

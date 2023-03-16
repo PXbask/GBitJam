@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Define;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,26 +11,28 @@ namespace Model
     {
         public Attribute baseAttribute;
         public Attribute curAttribute;
+        public Attributes(CharacterDefine define)
+        {
+            baseAttribute = new Attribute(define);
+            curAttribute = new Attribute(define);
+            Recalculate();
+        }
+
         public void Recalculate()
         {
-            baseAttribute = new Attribute()
-            {
-                HP = 100,
-                SPD = 4f,
-                ATK = 100,
-                DEF = 50
-            };
-            curAttribute = new Attribute();
-            curAttribute.SPD = baseAttribute.SPD;
-            curAttribute.HP = baseAttribute.HP;
-            curAttribute.ATK = baseAttribute.ATK;
-            curAttribute.DEF = baseAttribute.DEF;
+            float curHp = curAttribute.HP;
+            curAttribute.Copy(baseAttribute);
+            curAttribute.HP = curHp;
+            //TODO:计算curAttribute属性
             foreach (var title in TitleManager.Instance.EquipedTitle)
             {
-                curAttribute.ATK += baseAttribute.ATK * title.define.ATKratio;
-                curAttribute.DEF += baseAttribute.DEF * title.define.DEFratio;
+                if(title.define.TitleType==TitleType.Assist)
+                {
+                    curAttribute.DamageRatio += title.curAffect.MeleeGainV;
+                    curAttribute.Dodge += title.curAffect.DodgeGainV;
+                    curAttribute.MoveVelocityRatio += title.curAffect.MoveGainV;
+                }
             }
-
         }
     }
 }

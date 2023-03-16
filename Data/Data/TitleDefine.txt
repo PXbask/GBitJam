@@ -1,14 +1,77 @@
 {
   "1": {
     "ID": 1,
-    "Name": "杀手的本能",
-    "ATKratio": 0.1,
-    "DEFratio": 0.0
+    "Name": "杀手",
+    "Size": 1,
+    "Quality": 0,
+    "TitleType": "Attack",
+    "EnemyCanEquip": true,
+    "EnemyCanFall": false
   },
   "2": {
     "ID": 2,
-    "Name": "防御姿态",
-    "ATKratio": 0.0,
-    "DEFratio": 0.05
+    "Name": "杀手本能",
+    "Size": 1,
+    "Quality": 0,
+    "TitleType": "Assist",
+    "EnemyCanEquip": true,
+    "EnemyCanFall": true,
+    "TitleAffect": 1
+  },
+  "3": {
+    "ID": 3,
+    "Name": "枪械大师",
+    "Size": 4,
+    "Quality": 2,
+    "TitleType": "Attack",
+    "EnemyCanEquip": true,
+    "EnemyCanFall": false
+  },
+  "4": {
+    "ID": 4,
+    "Name": "洞察之眼",
+    "Size": 2,
+    "Quality": 1,
+    "TitleType": "Assist",
+    "EnemyCanEquip": true,
+    "EnemyCanFall": true,
+    "TitleAffect": 2
+  },
+  "5": {
+    "ID": 5,
+    "Name": "飞毛腿",
+    "Size": 2,
+    "Quality": 1,
+    "TitleType": "Assist",
+    "EnemyCanEquip": false,
+    "EnemyCanFall": true,
+    "TitleAffect": 3
+  },
+  "6": {
+    "ID": 6,
+    "Name": "钻头",
+    "Size": 2,
+    "Quality": 1,
+    "TitleType": "Assist",
+    "EnemyCanEquip": false,
+    "EnemyCanFall": false
+  },
+  "7": {
+    "ID": 7,
+    "Name": "万能钥匙",
+    "Size": 4,
+    "Quality": 2,
+    "TitleType": "Skill",
+    "EnemyCanEquip": false,
+    "EnemyCanFall": false
+  },
+  "8": {
+    "ID": 8,
+    "Name": "时间使者",
+    "Size": 8,
+    "Quality": 3,
+    "TitleType": "Skill",
+    "EnemyCanEquip": false,
+    "EnemyCanFall": false
   }
 }

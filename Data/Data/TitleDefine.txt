@@ -1,77 +1,189 @@
 {
   "1": {
     "ID": 1,
-    "Name": "杀手",
-    "Size": 1,
-    "Quality": 0,
+    "Name": "屠夫",
+    "Description": "获得武器分子刀",
+    "Size": 2,
+    "Quality": 1,
     "TitleType": "Attack",
     "EnemyCanEquip": true,
-    "EnemyCanFall": false
+    "EnemyCanFall": false,
+    "LindedWeapon": 1
   },
   "2": {
     "ID": 2,
-    "Name": "杀手本能",
-    "Size": 1,
-    "Quality": 0,
-    "TitleType": "Assist",
-    "EnemyCanEquip": true,
-    "EnemyCanFall": true,
-    "TitleAffect": 1
-  },
-  "3": {
-    "ID": 3,
     "Name": "枪械大师",
+    "Description": "获得远程武器步枪",
     "Size": 4,
     "Quality": 2,
     "TitleType": "Attack",
     "EnemyCanEquip": true,
-    "EnemyCanFall": false
+    "EnemyCanFall": false,
+    "LindedWeapon": 2
+  },
+  "3": {
+    "ID": 3,
+    "Name": "裁决者",
+    "Description": "获得中近距离武器霰弹枪",
+    "Size": 4,
+    "Quality": 2,
+    "TitleType": "Attack",
+    "EnemyCanEquip": true,
+    "EnemyCanFall": false,
+    "LindedWeapon": 3
   },
   "4": {
     "ID": 4,
+    "Name": "杀手本能",
+    "Size": 2,
+    "Quality": 1,
+    "TitleType": "Assist",
+    "EnemyCanEquip": true,
+    "EnemyCanFall": true,
+    "TitleAffect": 1,
+    "DropRate": 0.7
+  },
+  "5": {
+    "ID": 5,
     "Name": "洞察之眼",
     "Size": 2,
     "Quality": 1,
     "TitleType": "Assist",
     "EnemyCanEquip": true,
     "EnemyCanFall": true,
-    "TitleAffect": 2
+    "TitleAffect": 2,
+    "DropRate": 0.7
   },
-  "5": {
-    "ID": 5,
+  "6": {
+    "ID": 6,
     "Name": "飞毛腿",
     "Size": 2,
     "Quality": 1,
     "TitleType": "Assist",
     "EnemyCanEquip": false,
     "EnemyCanFall": true,
-    "TitleAffect": 3
+    "TitleAffect": 3,
+    "DropRate": 0.7
   },
-  "6": {
-    "ID": 6,
-    "Name": "钻头",
+  "7": {
+    "ID": 7,
+    "Name": "装甲义体",
+    "Size": 4,
+    "Quality": 2,
+    "TitleType": "Assist",
+    "EnemyCanEquip": true,
+    "EnemyCanFall": true,
+    "TitleAffect": 4,
+    "DropRate": 0.2
+  },
+  "8": {
+    "ID": 8,
+    "Name": "淘金者",
     "Size": 2,
     "Quality": 1,
     "TitleType": "Assist",
     "EnemyCanEquip": false,
-    "EnemyCanFall": false
+    "EnemyCanFall": true,
+    "TitleAffect": 5,
+    "DropRate": 0.7
   },
-  "7": {
-    "ID": 7,
-    "Name": "万能钥匙",
+  "9": {
+    "ID": 9,
+    "Name": "老兵",
+    "Size": 2,
+    "Quality": 1,
+    "TitleType": "Assist",
+    "EnemyCanEquip": false,
+    "EnemyCanFall": true,
+    "TitleAffect": 6,
+    "DropRate": 0.7
+  },
+  "10": {
+    "ID": 10,
+    "Name": "收割者",
     "Size": 4,
     "Quality": 2,
-    "TitleType": "Skill",
+    "TitleType": "Assist",
     "EnemyCanEquip": false,
-    "EnemyCanFall": false
+    "EnemyCanFall": true,
+    "TitleAffect": 7,
+    "DropRate": 0.2
   },
-  "8": {
-    "ID": 8,
-    "Name": "时间使者",
-    "Size": 8,
+  "11": {
+    "ID": 11,
+    "Name": "重火力",
+    "Size": 6,
     "Quality": 3,
-    "TitleType": "Skill",
+    "TitleType": "Assist",
     "EnemyCanEquip": false,
-    "EnemyCanFall": false
+    "EnemyCanFall": true,
+    "TitleAffect": 8,
+    "DropRate": 0.1
+  },
+  "12": {
+    "ID": 12,
+    "Name": "机动义体",
+    "Size": 4,
+    "Quality": 2,
+    "TitleType": "Assist",
+    "EnemyCanEquip": true,
+    "EnemyCanFall": true,
+    "TitleAffect": 9,
+    "DropRate": 0.2
+  },
+  "13": {
+    "ID": 13,
+    "Name": "万能钥匙",
+    "Description": "可打开地图中所有门",
+    "Size": 4,
+    "Quality": 2,
+    "TitleType": "Item",
+    "EnemyCanEquip": false,
+    "EnemyCanFall": false,
+    "IsConsumable": false
+  },
+  "14": {
+    "ID": 14,
+    "Name": "时间使者",
+    "Description": "获得技能“时间控制”\n使用此技能，除主角外所有物品速度-90%， 持续5S",
+    "Size": 6,
+    "Quality": 3,
+    "TitleType": "Item",
+    "EnemyCanEquip": false,
+    "EnemyCanFall": false,
+    "IsConsumable": false
+  },
+  "15": {
+    "ID": 15,
+    "Name": "纳米修复器",
+    "Description": "使用后，血量恢复最大血量的20%",
+    "Size": 2,
+    "Quality": 1,
+    "TitleType": "Item",
+    "EnemyCanEquip": false,
+    "EnemyCanFall": true,
+    "IsConsumable": true
+  },
+  "16": {
+    "ID": 16,
+    "Name": "钻头",
+    "Description": "可破坏地图中指定障碍物",
+    "Size": 2,
+    "Quality": 1,
+    "TitleType": "Item",
+    "EnemyCanEquip": false,
+    "EnemyCanFall": false,
+    "IsConsumable": false
+  },
+  "17": {
+    "ID": 17,
+    "Name": "炸药",
+    "Description": "使用后，向前扔出炸药，对指定范围敌人造成100伤害",
+    "Size": 2,
+    "Quality": 1,
+    "TitleType": "Item",
+    "EnemyCanEquip": false,
+    "EnemyCanFall": true,
+    "IsConsumable": true
   }
 }

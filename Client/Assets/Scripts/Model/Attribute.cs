@@ -20,6 +20,8 @@ namespace Model
         public float AttackVelocityRatio { get; set; }//攻击速度倍率
         public float DamageRatio { get; set; } //伤害倍率
         public float Damage { get; set; }//伤害
+        public float GoldRatio { get; set; }//金币加成
+        public float ExpRatio { get; set; }//经验加成
         public Attribute() { }
         public Attribute(CharacterDefine define)
         {
@@ -31,6 +33,8 @@ namespace Model
             this.AttackVelocityRatio= define.AttackVelocityRatio;
             this.DamageRatio= define.DamageRatio;
             this.Damage = define.Damage;
+            this.GoldRatio = define.GoldRatio;
+            this.ExpRatio = define.ExpRatio;
         }
         public void Copy(Attribute attri)
         {
@@ -42,6 +46,8 @@ namespace Model
             this.AttackVelocityRatio = attri.AttackVelocityRatio;
             this.DamageRatio = attri.DamageRatio;
             this.Damage = attri.Damage;
+            this.GoldRatio = attri.GoldRatio;
+            this.ExpRatio = attri.ExpRatio;
         } 
     }
 }

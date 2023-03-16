@@ -19,6 +19,7 @@ namespace Manager
         {
             this.UIResources.Add(typeof(UIDebug), new UIElement() { Resources = @"Prefab/UI/UIDebug", Cache = true });
             this.UIResources.Add(typeof(UIEquip), new UIElement() { Resources = @"Prefab/UI/UIEquip", Cache = false });
+            this.UIResources.Add(typeof(UITitle), new UIElement() { Resources = @"Prefab/UI/UITitle", Cache = false });
         }
         ~UIManager() { }
         public T Show<T>()

@@ -22,6 +22,7 @@ public class DataManager : Singleton<DataManager>
     public Dictionary<int, TitleDefine> Titles= new Dictionary<int, TitleDefine>();
     public Dictionary<int, Dictionary<int, TitleAffectDefine>> TitleAffects = new Dictionary<int, Dictionary<int, TitleAffectDefine>>();
     public Dictionary<int, CharacterDefine> Characters = new Dictionary<int, CharacterDefine>();
+    public Dictionary<int, WeaponDefine> Weapons = new Dictionary<int, WeaponDefine>();
 
     public CharacterDefine playerDefine => Characters[0];
     public DataManager()
@@ -41,6 +42,10 @@ public class DataManager : Singleton<DataManager>
         json = File.ReadAllText(dataPath + "CharacterDefine.txt");
         this.Characters = JsonConvert.DeserializeObject<Dictionary<int, CharacterDefine>>(json);
         yield return null;
+
+        json = File.ReadAllText(dataPath + "WeaponDefine.txt");
+        this.Weapons = JsonConvert.DeserializeObject<Dictionary<int, WeaponDefine>>(json);
+        yield return null;
     }
     public void LoadConfigData()
     {
@@ -52,6 +57,9 @@ public class DataManager : Singleton<DataManager>
 
         json = File.ReadAllText(dataPath + "CharacterDefine.txt");
         this.Characters = JsonConvert.DeserializeObject<Dictionary<int, CharacterDefine>>(json);
+
+        json = File.ReadAllText(dataPath + "WeaponDefine.txt");
+        this.Weapons = JsonConvert.DeserializeObject<Dictionary<int, WeaponDefine>>(json);
     }
     public void SaveUserData()
     {

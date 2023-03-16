@@ -16,9 +16,10 @@ namespace Define
         public TitleType TitleType { get; set; }
         public bool EnemyCanEquip { get; set; }//敌人是否可拥有
         public bool EnemyCanFall { get; set; }//敌人是否可掉落
-        public int LinkedAchievement { get; set; }//关联成就
         public int LinkedQuest { get; set; }//关联任务
         public bool IsConsumable { get; set; }//是否消耗
         public int TitleAffect { get; set; }//对应的TitleAffect类的ID号
+        public int LindedWeapon { get; set; }//对应的武器ID
+        public float DropRate { get; set; }//掉落概率
     }
 }

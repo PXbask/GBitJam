@@ -19,7 +19,7 @@ public enum TitleType
     None = 0,
     Attack = 1,
     Assist = 2,
-    Skill = 3,
+    Item = 3,
 }
 public enum StoryType
 {

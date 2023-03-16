@@ -7,8 +7,13 @@
     "Accuracy": 0.5,
     "Dodge": 0.0,
     "MoveVelocityRatio": 1.0,
+    "MaxMoveVelocityRatio": 2.0,
     "AttackVelocityRatio": 1.0,
     "DamageRatio": 1.0,
-    "Damage": 10.0
+    "Damage": 10.0,
+    "SlotCount": 3,
+    "MaxSlotCount": 12,
+    "GoldRatio": 1.0,
+    "ExpRatio": 1.0
   }
 }

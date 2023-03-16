@@ -31,6 +31,10 @@ namespace Model
                     curAttribute.DamageRatio += title.curAffect.MeleeGainV;
                     curAttribute.Dodge += title.curAffect.DodgeGainV;
                     curAttribute.MoveVelocityRatio += title.curAffect.MoveGainV;
+                    curAttribute.Accuracy += title.curAffect.AccuracyGainV;
+                    curAttribute.GoldRatio += title.curAffect.GoldGainV;
+                    curAttribute.ExpRatio += title.curAffect.ExpGainV;
+                    curAttribute.DamageResistence += title.curAffect.DamgeResistenceGainV;
                 }
             }
         }

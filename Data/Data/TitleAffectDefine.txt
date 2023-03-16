@@ -4,26 +4,34 @@
       "MeleeGainV": 0.2,
       "DodgeGainV": 0.05,
       "MoveGainV": 0.05,
-      "Param": 0.0,
+      "HPGainV": 0.0,
+      "DamgeResistenceGainV": 0.0,
+      "Param0": 0.0,
       "杀手本能": {}
     },
     "1": {
       "MeleeGainV": 0.25,
       "DodgeGainV": 0.075,
-      "MoveGainV": 0.1,
-      "Param": 0.0
+      "MoveGainV": 0.075,
+      "HPGainV": 0.0,
+      "DamgeResistenceGainV": 0.0,
+      "Param0": 0.0
     },
     "2": {
       "MeleeGainV": 0.3,
       "DodgeGainV": 0.125,
-      "MoveGainV": 0.15,
-      "Param": 0.0
+      "MoveGainV": 0.125,
+      "HPGainV": 0.0,
+      "DamgeResistenceGainV": 0.0,
+      "Param0": 0.0
     },
     "3": {
       "MeleeGainV": 0.4,
       "DodgeGainV": 0.2,
       "MoveGainV": 0.2,
-      "Param": 0.0
+      "HPGainV": 0.0,
+      "DamgeResistenceGainV": 0.0,
+      "Param0": 0.0
     }
   },
   "2": {
@@ -31,53 +39,132 @@
       "MeleeGainV": 0.0,
       "DodgeGainV": 0.1,
       "MoveGainV": 0.0,
-      "Param": 0.0,
+      "HPGainV": 0.0,
+      "DamgeResistenceGainV": 0.0,
+      "Param0": 0.0,
       "洞察之眼": {}
     },
     "1": {
       "MeleeGainV": 0.0,
       "DodgeGainV": 0.125,
       "MoveGainV": 0.0,
-      "Param": 0.0
+      "HPGainV": 0.0,
+      "DamgeResistenceGainV": 0.0,
+      "Param0": 0.0
     },
     "2": {
       "MeleeGainV": 0.0,
-      "DodgeGainV": 0.175,
+      "DodgeGainV": 0.15,
       "MoveGainV": 0.0,
-      "Param": 0.0
+      "HPGainV": 0.0,
+      "DamgeResistenceGainV": 0.0,
+      "Param0": 0.0
     },
     "3": {
       "MeleeGainV": 0.0,
-      "DodgeGainV": 0.25,
+      "DodgeGainV": 0.175,
       "MoveGainV": 0.0,
-      "Param": 0.0
+      "HPGainV": 0.0,
+      "DamgeResistenceGainV": 0.0,
+      "Param0": 0.0
     }
   },
   "3": {
     "0": {
       "MeleeGainV": 0.0,
       "DodgeGainV": 0.0,
-      "MoveGainV": 0.2,
-      "Param": 4.0,
+      "MoveGainV": 0.1,
+      "HPGainV": 0.0,
+      "DamgeResistenceGainV": 0.0,
+      "Param0": 4.0,
       "飞毛腿": {}
     },
     "1": {
       "MeleeGainV": 0.0,
       "DodgeGainV": 0.0,
-      "MoveGainV": 0.3,
-      "Param": 4.0
+      "MoveGainV": 0.15,
+      "HPGainV": 0.0,
+      "DamgeResistenceGainV": 0.0,
+      "Param0": 4.0
     },
     "2": {
       "MeleeGainV": 0.0,
       "DodgeGainV": 0.0,
-      "MoveGainV": 0.4,
-      "Param": 4.0
+      "MoveGainV": 0.2,
+      "HPGainV": 0.0,
+      "DamgeResistenceGainV": 0.0,
+      "Param0": 4.0
     },
     "3": {
       "MeleeGainV": 0.0,
       "DodgeGainV": 0.0,
-      "MoveGainV": 0.5,
-      "Param": 4.0
+      "MoveGainV": 0.25,
+      "HPGainV": 0.0,
+      "DamgeResistenceGainV": 0.0,
+      "Param0": 4.0
     }
+  },
+  "4": {
+    "0": {
+      "DodgeGainV": -0.05,
+      "MoveGainV": -0.05,
+      "HPGainV": 0.2,
+      "DamgeResistenceGainV": 0.05,
+      "装甲义体": {}
+    },
+    "1": {},
+    "2": {},
+    "3": {}
+  },
+  "5": {
+    "0": {
+      "淘金者": {}
+    },
+    "1": {},
+    "2": {},
+    "3": {}
+  },
+  "6": {
+    "0": {
+      "老兵": {}
+    },
+    "1": {},
+    "2": {},
+    "3": {}
+  },
+  "7": {
+    "0": {
+      "Param0": 0.1,
+      "Param1": 2.0,
+      "收割者": {}
+    },
+    "1": {
+      "Param0": 0.15,
+      "Param1": 2.0
+    },
+    "2": {
+      "Param0": 0.2,
+      "Param1": 2.0
+    },
+    "3": {
+      "Param0": 0.25,
+      "Param1": 2.0
+    }
+  },
+  "8": {
+    "0": {
+      "重火力": {}
+    },
+    "1": {},
+    "2": {},
+    "3": {}
+  },
+  "9": {
+    "0": {
+      "机动义体": {}
+    },
+    "1": {},
+    "2": {},
+    "3": {}
   }
 }

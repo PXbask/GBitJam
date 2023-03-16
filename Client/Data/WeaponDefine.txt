@@ -1,0 +1,29 @@
+{
+  "1": {
+    "ID": 1,
+    "Name": "分子刀",
+    "Knockback": false,
+    "ClipCount": 1,
+    "Interval": 0.5,
+    "Range": 0.3,
+    "Damage": 20.0
+  },
+  "2": {
+    "ID": 2,
+    "Name": "步枪",
+    "Knockback": false,
+    "ClipCount": 1,
+    "Interval": 0.2,
+    "Range": 3.0,
+    "Damage": 10.0
+  },
+  "3": {
+    "ID": 3,
+    "Name": "霰弹枪",
+    "Knockback": true,
+    "ClipCount": 6,
+    "Interval": 1.0,
+    "Range": 1.6,
+    "Damage": 8.0
+  }
+}

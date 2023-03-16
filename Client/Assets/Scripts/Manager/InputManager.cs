@@ -13,7 +13,7 @@ public class InputManager : MonoSingleton<InputManager>
 {
     public CharController charc;
     UIDebug uidebug = null;
-    UIEquip uiequip = null;
+    UITitle uititle = null;
     int uiCount = 0;
     private void Update()
     {
@@ -35,15 +35,15 @@ public class InputManager : MonoSingleton<InputManager>
         //E打开装备列表
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (uiequip == null)
+            if (uititle == null)
             {
-                uiequip = UIManager.Instance.Show<UIEquip>();
+                uititle = UIManager.Instance.Show<UITitle>();
                 uiCount++;
             }
             else
             {
-                UIManager.Instance.Close<UIEquip>();
-                uiequip = null;
+                UIManager.Instance.Close<UITitle>();
+                uititle = null;
                 uiCount--;
             }
         }

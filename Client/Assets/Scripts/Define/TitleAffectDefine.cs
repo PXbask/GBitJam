@@ -11,6 +11,12 @@ namespace Define
         public float MeleeGainV { get; set; }
         public float DodgeGainV { get; set; }
         public float MoveGainV { get; set; }
-        public float Param { get; set; }
+        public float HPGainV { get; set; }
+        public float AccuracyGainV { get; set; }
+        public float DamgeResistenceGainV { get; set; }
+        public float GoldGainV { get; set; }
+        public float ExpGainV { get; set; }
+        public float Param0 { get; set; }
+        public float Param1 { get; set; }
     }
 }

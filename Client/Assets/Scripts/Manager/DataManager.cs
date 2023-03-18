@@ -69,6 +69,8 @@ public class DataManager : Singleton<DataManager>
         saveData.playerPos = GetPlayerPos();
         saveData.equipedTitle = GetEquipedTitle();
         saveData.playerLevel = GetPlayerLevel();
+        saveData.gold = GetPlayerGold();
+        saveData.parts = GetPlayerParts();
 #if UNITY_EDITOR
         string filePath = dataPath + "Save.json";
 #endif
@@ -127,6 +129,15 @@ public class DataManager : Singleton<DataManager>
     private int GetPlayerLevel()
     {
         return GameManager.Instance.charc.charBase.level;
+    }
+    private int GetPlayerParts()
+    {
+        return GameManager.Instance.charc.charBase.parts;
+    }
+
+    private int GetPlayerGold()
+    {
+        return GameManager.Instance.charc.charBase.gold;
     }
     #endregion
 }

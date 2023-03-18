@@ -35,6 +35,7 @@
   "4": {
     "ID": 4,
     "Name": "杀手本能",
+    "Description": "杀手本能",
     "Size": 2,
     "Quality": 1,
     "TitleType": "Assist",
@@ -46,6 +47,7 @@
   "5": {
     "ID": 5,
     "Name": "洞察之眼",
+    "Description": "洞察之眼",
     "Size": 2,
     "Quality": 1,
     "TitleType": "Assist",
@@ -57,6 +59,7 @@
   "6": {
     "ID": 6,
     "Name": "飞毛腿",
+    "Description": "飞毛腿",
     "Size": 2,
     "Quality": 1,
     "TitleType": "Assist",
@@ -68,6 +71,7 @@
   "7": {
     "ID": 7,
     "Name": "装甲义体",
+    "Description": "装甲义体",
     "Size": 4,
     "Quality": 2,
     "TitleType": "Assist",
@@ -79,6 +83,7 @@
   "8": {
     "ID": 8,
     "Name": "淘金者",
+    "Description": "淘金者",
     "Size": 2,
     "Quality": 1,
     "TitleType": "Assist",
@@ -90,6 +95,7 @@
   "9": {
     "ID": 9,
     "Name": "老兵",
+    "Description": "老兵",
     "Size": 2,
     "Quality": 1,
     "TitleType": "Assist",
@@ -101,6 +107,7 @@
   "10": {
     "ID": 10,
     "Name": "收割者",
+    "Description": "收割者",
     "Size": 4,
     "Quality": 2,
     "TitleType": "Assist",
@@ -112,6 +119,7 @@
   "11": {
     "ID": 11,
     "Name": "重火力",
+    "Description": "重火力",
     "Size": 6,
     "Quality": 3,
     "TitleType": "Assist",
@@ -123,6 +131,7 @@
   "12": {
     "ID": 12,
     "Name": "机动义体",
+    "Description": "机动义体",
     "Size": 4,
     "Quality": 2,
     "TitleType": "Assist",

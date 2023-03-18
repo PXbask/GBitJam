@@ -112,25 +112,54 @@
       "DamgeResistenceGainV": 0.05,
       "装甲义体": {}
     },
-    "1": {},
-    "2": {},
-    "3": {}
+    "1": {
+      "DodgeGainV": -0.075,
+      "MoveGainV": -0.05,
+      "HPGainV": 0.3,
+      "DamgeResistenceGainV": 0.1
+    },
+    "2": {
+      "DodgeGainV": -0.1,
+      "MoveGainV": -0.1,
+      "HPGainV": 0.5,
+      "DamgeResistenceGainV": 0.15
+    },
+    "3": {
+      "DodgeGainV": -0.125,
+      "MoveGainV": -0.1,
+      "HPGainV": 1.0,
+      "DamgeResistenceGainV": 0.2
+    }
   },
   "5": {
     "0": {
+      "GoldGainV": 0.1,
       "淘金者": {}
     },
-    "1": {},
-    "2": {},
-    "3": {}
+    "1": {
+      "GoldGainV": 0.2
+    },
+    "2": {
+      "GoldGainV": 0.5
+    },
+    "3": {
+      "GoldGainV": 1.0
+    }
   },
   "6": {
     "0": {
+      "ExpGainV": 0.1,
       "老兵": {}
     },
-    "1": {},
-    "2": {},
-    "3": {}
+    "1": {
+      "ExpGainV": 0.2
+    },
+    "2": {
+      "ExpGainV": 0.5
+    },
+    "3": {
+      "ExpGainV": 1.0
+    }
   },
   "7": {
     "0": {
@@ -161,10 +190,25 @@
   },
   "9": {
     "0": {
+      "DodgeGainV": 0.1,
+      "MoveGainV": 0.05,
+      "DamgeResistenceGainV": -0.1,
       "机动义体": {}
     },
-    "1": {},
-    "2": {},
-    "3": {}
+    "1": {
+      "DodgeGainV": 0.125,
+      "MoveGainV": 0.075,
+      "DamgeResistenceGainV": -0.15
+    },
+    "2": {
+      "DodgeGainV": 0.175,
+      "MoveGainV": 0.125,
+      "DamgeResistenceGainV": -0.2
+    },
+    "3": {
+      "DodgeGainV": 0.25,
+      "MoveGainV": 0.2,
+      "DamgeResistenceGainV": -0.25
+    }
   }
 }

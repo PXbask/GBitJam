@@ -14,5 +14,7 @@ namespace Model
         public int sceneIndex;//场景ID
         public PXVector3 playerPos;//玩家位置
         public int playerLevel;//玩家等级
+        public int gold;//金币
+        public int parts;//魂芯原件
     }
 }

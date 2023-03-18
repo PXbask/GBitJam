@@ -19,18 +19,31 @@ public class TitleManager : Singleton<TitleManager>
     public Dictionary<int, TitleInfo> AllGainedTitle = new Dictionary<int, TitleInfo>();
     public Dictionary<int, TitleInfo> AllUnGainedTitle = new Dictionary<int, TitleInfo>();
     public List<TitleInfo> EquipedTitle= new List<TitleInfo>();
+    public int EquipedSize
+    {
+        get
+        {
+            int size = 0;
+            foreach (var item in EquipedTitle)
+            {
+                size += item.define.Size;
+            }
+            return size;
+        }
+    }
     public void Init()
     {
         foreach (var arr in DataManager.Instance.SaveData.alltitlesData)
         {
             if (arr[2] == 1)
-                AllGainedTitle.Add(arr[0], new TitleInfo(arr[0], arr[1]));
+                AllGainedTitle.Add(arr[0], new TitleInfo(arr[0], arr[1], true));
             else
-                AllUnGainedTitle.Add(arr[0], new TitleInfo(arr[0], 0));
+                AllUnGainedTitle.Add(arr[0], new TitleInfo(arr[0], 0, false));
         }
         foreach (var id in DataManager.Instance.SaveData.equipedTitle)
         {
-            if (AllGainedTitle.ContainsKey(id)){
+            if (AllGainedTitle.TryGetValue(id,out TitleInfo info)){
+                info.equiped = true;
                 EquipedTitle.Add(AllGainedTitle[id]);
             }
             else
@@ -47,8 +60,10 @@ public class TitleManager : Singleton<TitleManager>
             var temp = EquipedTitle.Where(t => t.ID == id).FirstOrDefault();
             if (temp == null)
             {
+                info.equiped = true;
                 EquipedTitle.Add(info);
                 OnTitleEquiped?.Invoke();
+                Debug.LogFormat("装备了{0}", info.define.Name);
             }
         }
         else
@@ -61,8 +76,10 @@ public class TitleManager : Singleton<TitleManager>
         TitleInfo info = EquipedTitle.Where(t => t.ID== id).FirstOrDefault();
         if(info!=null)
         {
+            info.equiped = false;
             EquipedTitle.Remove(info);
             OnTitleUnEquiped?.Invoke();
+            Debug.LogFormat("取下了{0}", info.define.Name);
         }
         else
         {
@@ -73,7 +90,11 @@ public class TitleManager : Singleton<TitleManager>
     {
         if (!AllGainedTitle.TryGetValue(id,out TitleInfo info))
         {
-            AllGainedTitle.Add(id, new TitleInfo(id, 1));
+            info = AllUnGainedTitle[id];
+            AllUnGainedTitle.Remove(id);
+
+            info.gained= true;
+            AllGainedTitle[id] = info;
         }
         else
         {

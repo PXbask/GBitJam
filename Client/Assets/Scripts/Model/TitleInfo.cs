@@ -47,13 +47,13 @@ namespace Model
             bool isAdd = pro > pre;
             if (targetLevel <= level)
             {
-                return string.Format("{0}{1}{2}%",tag, c1.ToString(), (Math.Abs(pre * 100)).ToString());
+                return string.Format("{0}{1}{2}%",tag, c1.ToString(), (Math.Abs(pre * 100)).ToString("f1"));
             }
             else
             {
                 return string.Format("{0}{1}{2}%<color={3}>{4}{5}%</color>",
-                tag, c1.ToString(), (Math.Abs(pre * 100)).ToString(), isAdd ? "#00FF00" : "#FF0000",
-                isAdd ? "+" : "-", (Math.Abs(pro - pre) * 100).ToString());
+                tag, c1.ToString(), (Math.Abs(pre * 100)).ToString("f1"), isAdd ? "#00FF00" : "#FF0000",
+                isAdd ? "+" : "-", (Math.Abs(pro - pre) * 100).ToString("f1"));
             }
         }
     }

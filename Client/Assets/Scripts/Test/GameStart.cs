@@ -17,6 +17,7 @@ public class GameStart : MonoBehaviour
         DataManager.Instance.LoadConfigData();
         DataManager.Instance.LoadUserData();
         TitleManager.Instance.Init();
+        DialogueManager.Instance.Init();
 
         CreatePlayer();
     }

@@ -1,6 +1,8 @@
+using Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /*
@@ -9,7 +11,7 @@ using UnityEngine.UI;
     Overview:
 */
 
-public class UITitleSlotMask : MonoBehaviour
+public class UITitleSlotMask : MonoBehaviour,IPointerClickHandler
 {
     const float SLOT_STEP = 20;
     const float SLOT_WIDTH = 50;
@@ -19,6 +21,7 @@ public class UITitleSlotMask : MonoBehaviour
     public Image image;
 
     public int id;
+    private TitleInfo info;
     public Vector3 Center => new Vector3(rectTransform.sizeDelta.x / 2f, -rectTransform.sizeDelta.y / 2f, 0);
     private void Awake()
     {
@@ -33,8 +36,9 @@ public class UITitleSlotMask : MonoBehaviour
             Destroy(transform.GetChild(i).gameObject);
         }
     }
-    public void MaskApply(int size)
+    public void MaskApply(int size, TitleInfo info)
     {
+        this.info = info;
         float _width = SLOT_WIDTH * size + SLOT_STEP * (size - 1);
         float _height = SLOT_HEIGHT;
         rectTransform.sizeDelta = new Vector2(_width, _height);
@@ -55,5 +59,10 @@ public class UITitleSlotMask : MonoBehaviour
         childImage.rectTransform.localPosition = Center;
         childImage.rectTransform.sizeDelta = new Vector2(SLOT_WIDTH - 10, SLOT_HEIGHT - 10);
         childImage.color = Color.black;
+    }
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        TitleManager.Instance.UnEquip(info.ID);
     }
 }

@@ -841,6 +841,7 @@ GameObject:
   - component: {fileID: 2831853709014864562}
   - component: {fileID: 2041659201}
   - component: {fileID: 2846011944816218443}
+  - component: {fileID: 8803713330867461746}
   m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
@@ -896,6 +897,8 @@ MonoBehaviour:
   rifleBltPre: {fileID: 0}
   shotgunBltPre: {fileID: 0}
   meleeEffectPre: {fileID: 0}
+  cldr2D: {fileID: 0}
+  confiner: {fileID: 0}
   effectRoot: {fileID: 4362432870103072673}
 --- !u!212 &2846011944816218443
 SpriteRenderer:
@@ -949,6 +952,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &8803713330867461746
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2831853709014864560}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &2831853709288974594
 GameObject:
   m_ObjectHideFlags: 0

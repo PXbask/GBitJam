@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Manager
 {
@@ -20,6 +21,7 @@ namespace Manager
             this.UIResources.Add(typeof(UIDebug), new UIElement() { Resources = @"Prefab/UI/UIDebug", Cache = true });
             this.UIResources.Add(typeof(UIEquip), new UIElement() { Resources = @"Prefab/UI/UIEquip", Cache = false });
             this.UIResources.Add(typeof(UITitle), new UIElement() { Resources = @"Prefab/UI/UITitle", Cache = false });
+            this.UIResources.Add(typeof(UIDialogue), new UIElement() { Resources = @"Prefab/UI/UIDialogue", Cache = true });
         }
         ~UIManager() { }
         public T Show<T>()
@@ -67,6 +69,14 @@ namespace Manager
         public void Close<T>()
         {
             this.Close(typeof(T));
+        }
+        public void TurntoBlack(Action callback)
+        {
+            GameManager.Instance.TurntoBlackAnim(callback);      
+        }
+        public void TurntoWhite()
+        {
+            GameManager.Instance.TurntoWhiteAnim();
         }
     }
 }

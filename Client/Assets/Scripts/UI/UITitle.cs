@@ -43,6 +43,7 @@ public class UITitle : UIWindow
     public Text titleaffectinfo;
     public List<UILevelItemOverable> levelitems = new List<UILevelItemOverable>();
     public Button equipbtn;
+    public Button unequipbtn;
     public Button uplevelbtn;
     [Header("其他")]
     public Button exit;
@@ -62,6 +63,7 @@ public class UITitle : UIWindow
         }
         SetPlayerAttriInfo();
         TitleManager.Instance.OnTitleEquiped += this.OnEquipedTitleChanged;
+        TitleManager.Instance.OnTitleUnEquiped += this.OnEquipedTitleChanged;
     }
     private void SetPlayerAttriInfo()
     {
@@ -99,12 +101,12 @@ public class UITitle : UIWindow
             if (totalSize < SLOT_COLUME_COUNT && size + totalSize > SLOT_COLUME_COUNT)
             {
                 //分为两部分
-                masks[totalSize].MaskApply(SLOT_COLUME_COUNT - totalSize);
-                masks[SLOT_COLUME_COUNT].MaskApply(size + totalSize - SLOT_COLUME_COUNT);
+                masks[totalSize].MaskApply(SLOT_COLUME_COUNT - totalSize, title);
+                masks[SLOT_COLUME_COUNT].MaskApply(size + totalSize - SLOT_COLUME_COUNT, title);
             }
             else
             {
-                masks[totalSize].MaskApply(size);
+                masks[totalSize].MaskApply(size,title);
             }
             totalSize += size;
         }
@@ -155,12 +157,14 @@ public class UITitle : UIWindow
         {
             levelitems[i].color = i <= selectedItem.info.level - 1 ? Color.yellow : Color.white;
         }
+        equipbtn.gameObject.SetActive(!selectedItem.info.equiped);
+        unequipbtn.gameObject.SetActive(selectedItem.info.equiped);
     }
     private void SetDetailedInfoPanel(int level)
     {
         if(selectedItem!=null)
             titleaffectinfo.text = selectedItem.info.GetDetailedInfo(level);
-    }
+    }   
     public void OnTitleItemClicked(UITitleItem item)
     {
         if(selectedItem==null || selectedItem != item)
@@ -183,10 +187,17 @@ public class UITitle : UIWindow
             OnClickEquipBtn();
         }
     }
+    public void OnClickUnEquipBtn()
+    {
+        if (!selectedItem.info.gained) return;
+        if (!selectedItem.info.equiped) return;
+        TitleManager.Instance.UnEquip(selectedItem.info.ID);
+    }
     public void OnEquipedTitleChanged()
     {
         SetTitleSlot();
         SetTitleContent();
+        SetPlayerAttriInfo();
     }
     private void OnLevelItemTouched(int obj)
     {

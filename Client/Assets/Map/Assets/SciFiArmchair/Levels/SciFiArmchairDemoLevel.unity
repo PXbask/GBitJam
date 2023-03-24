@@ -64,8 +64,7 @@ LightmapSettings:
     m_CompAOExponentDirect: 0
     m_ExtractAmbientOcclusion: 0
     m_Padding: 2
-    m_LightmapParameters: {fileID: 15200, guid: 0000000000000000f000000000000000,
-      type: 0}
+    m_LightmapParameters: {fileID: 15200, guid: 0000000000000000f000000000000000, type: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 0
     m_FinalGather: 0
@@ -98,10 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 4105683f45226fb499aa788365048f04,
-    type: 2}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: aacfcc2a55df643448bf3c34b1685120,
-    type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 4105683f45226fb499aa788365048f04, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: aacfcc2a55df643448bf3c34b1685120, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -133,63 +130,51 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8924147329485545781, guid: 451807bd3aa44444e8c77b3c2e238ac7,
-        type: 3}
+    - target: {fileID: 8924147329485545781, guid: 451807bd3aa44444e8c77b3c2e238ac7, type: 3}
       propertyPath: m_Name
       value: Armchair
       objectReference: {fileID: 0}
-    - target: {fileID: 8924147329485545782, guid: 451807bd3aa44444e8c77b3c2e238ac7,
-        type: 3}
+    - target: {fileID: 8924147329485545782, guid: 451807bd3aa44444e8c77b3c2e238ac7, type: 3}
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 8924147329485545782, guid: 451807bd3aa44444e8c77b3c2e238ac7,
-        type: 3}
+    - target: {fileID: 8924147329485545782, guid: 451807bd3aa44444e8c77b3c2e238ac7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8924147329485545782, guid: 451807bd3aa44444e8c77b3c2e238ac7,
-        type: 3}
+    - target: {fileID: 8924147329485545782, guid: 451807bd3aa44444e8c77b3c2e238ac7, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8924147329485545782, guid: 451807bd3aa44444e8c77b3c2e238ac7,
-        type: 3}
+    - target: {fileID: 8924147329485545782, guid: 451807bd3aa44444e8c77b3c2e238ac7, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8924147329485545782, guid: 451807bd3aa44444e8c77b3c2e238ac7,
-        type: 3}
+    - target: {fileID: 8924147329485545782, guid: 451807bd3aa44444e8c77b3c2e238ac7, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8924147329485545782, guid: 451807bd3aa44444e8c77b3c2e238ac7,
-        type: 3}
+    - target: {fileID: 8924147329485545782, guid: 451807bd3aa44444e8c77b3c2e238ac7, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8924147329485545782, guid: 451807bd3aa44444e8c77b3c2e238ac7,
-        type: 3}
+    - target: {fileID: 8924147329485545782, guid: 451807bd3aa44444e8c77b3c2e238ac7, type: 3}
       propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8924147329485545782, guid: 451807bd3aa44444e8c77b3c2e238ac7,
-        type: 3}
+    - target: {fileID: 8924147329485545782, guid: 451807bd3aa44444e8c77b3c2e238ac7, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8924147329485545782, guid: 451807bd3aa44444e8c77b3c2e238ac7,
-        type: 3}
+    - target: {fileID: 8924147329485545782, guid: 451807bd3aa44444e8c77b3c2e238ac7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8924147329485545782, guid: 451807bd3aa44444e8c77b3c2e238ac7,
-        type: 3}
+    - target: {fileID: 8924147329485545782, guid: 451807bd3aa44444e8c77b3c2e238ac7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8924147329485545782, guid: 451807bd3aa44444e8c77b3c2e238ac7,
-        type: 3}
+    - target: {fileID: 8924147329485545782, guid: 451807bd3aa44444e8c77b3c2e238ac7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
@@ -244,8 +229,7 @@ ReflectionProbe:
   m_RenderDynamicObjects: 0
   m_UseOcclusionCulling: 1
   m_Importance: 1
-  m_CustomBakedTexture: {fileID: 8900000, guid: d60229144a5727446854fc852dc1492b,
-    type: 3}
+  m_CustomBakedTexture: {fileID: 8900000, guid: d60229144a5727446854fc852dc1492b, type: 3}
 --- !u!4 &851786359
 Transform:
   m_ObjectHideFlags: 0
@@ -256,6 +240,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.009225655, y: 0.912, z: 0.56}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -349,6 +334,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: 1, w: 0}
   m_LocalPosition: {x: 0.29852498, y: 1.3616712, z: 1.0887599}
   m_LocalScale: {x: 0.16312839, y: 0.19618332, z: 0.06545853}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -412,6 +398,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 5fcf0663c850552499b49fc7c81901f7, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5fcf0663c850552499b49fc7c81901f7, type: 3}
 --- !u!1 &1588278170
@@ -493,6 +483,7 @@ Transform:
   m_LocalRotation: {x: -0, y: 0.9982497, z: -0.059140686, w: 0}
   m_LocalPosition: {x: 0, y: 0.71, z: 1.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0

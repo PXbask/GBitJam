@@ -24,16 +24,28 @@ EditorUserSettings:
       value: 0255045604060b5d5b0a5f214526064415151b7f7f2971347d2d4e60b5e13739
       flags: 0
     RecentlyUsedSceneGuid-6:
+<<<<<<< HEAD
       value: 0500510556015d0e080a0e7b487b5d44154e1a792a7875342f7a4963e0e3623a
       flags: 0
     RecentlyUsedSceneGuid-7:
       value: 51060604040d0d0b090a0f7449735e444f154c2c7e2b276275714560bab7366e
       flags: 0
+=======
+      value: 51060604040d0d0b090a0f7449735e444f154c2c7e2b276275714560bab7366e
+      flags: 0
+    RecentlyUsedSceneGuid-7:
+      value: 5054025307055b025b0f0a2448765e444e4f4b2f7c2a2034292d1931b6b16d6f
+      flags: 0
+>>>>>>> 1bb47f0cc9ccf890c82fb287c70a693f32e090f7
     RecentlyUsedSceneGuid-8:
       value: 5054025307055b025b0f0a2448765e444e4f4b2f7c2a2034292d1931b6b16d6f
       flags: 0
     RecentlyUsedSceneGuid-9:
+<<<<<<< HEAD
       value: 5707565557535e5e550b5a7215210e44144e1b2e78797136287d1e37b4b9366f
+=======
+      value: 0500510556015d0e080a0e7b487b5d44154e1a792a7875342f7a4963e0e3623a
+>>>>>>> 1bb47f0cc9ccf890c82fb287c70a693f32e090f7
       flags: 0
     UnityEditor.ShaderGraph.Blackboard:
       value: 18135939215a0a5004000b0e15254b524c030a3f2964643d120d1230e9e93a3fd6e826abbd2e2d293c4ead313b08042de6030a0afa240c0d020be94c4baf5e435d8715fa32c70d15d11612dacc11fee5d3c5d1fe9ab1bf968e93e2ffcbc3e7e2f0b3ffe0e8b0be9af8ffaeffff8e85dd8390e3949c8899daa7

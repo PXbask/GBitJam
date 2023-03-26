@@ -1,0 +1,5 @@
+GBitJam filter=lfs diff=lfs merge=lfs -text
+README.md filter=lfs diff=lfs merge=lfs -text
+Client filter=lfs diff=lfs merge=lfs -text
+Data filter=lfs diff=lfs merge=lfs -text
+*.psd filter=lfs diff=lfs merge=lfs -text

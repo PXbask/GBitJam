@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameObject\VideoPlayerController.cs" />
     <Compile Include="Assets\Map\Assets\VolumetricLines\Scripts\VolumetricLineVertexData.cs" />
+    <Compile Include="Assets\Map\Scripts\DoorControll.cs" />
     <Compile Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\CreateSinShapedLineStrip.cs" />
     <Compile Include="Assets\Scripts\Define\DialogueDefine.cs" />
     <Compile Include="Assets\Scripts\Define\CharacterDefine.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="Assets\Scripts\Assets\Resloader.cs" />
     <Compile Include="Assets\Scripts\GameObject\SceneLogic.cs" />
     <Compile Include="Assets\Scripts\GameObject\CharController.cs" />
+    <Compile Include="Assets\Map\Assets\PBS Materials Variety Pack\zzz\MaterialRandomizerScript.cs" />
     <Compile Include="Assets\Scripts\Model\SaveData.cs" />
     <Compile Include="Assets\Scripts\Test\GameStart.cs" />
     <Compile Include="Assets\Scripts\Manager\DialogueManager.cs" />
@@ -99,6 +101,7 @@
     <Compile Include="Assets\Scripts\Model\Attributes.cs" />
     <Compile Include="Assets\Scripts\Model\CharBase.cs" />
     <Compile Include="Assets\Scripts\Manager\DataManager.cs" />
+    <Compile Include="Assets\Map\Assets\PBS Materials Variety Pack\zzz\MaterialRandomizer.cs" />
     <Compile Include="Assets\Scripts\GameObject\BulletLogic.cs" />
     <Compile Include="Assets\Scripts\UI\UIEquip.cs" />
     <Compile Include="Assets\Scripts\Utilities\Enums.cs" />
@@ -115,6 +118,7 @@
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\SingleLine-TextureAdditive.shader" />
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\_SingleLineShader.cginc" />
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\LineStrip-TextureAdditive.shader" />
+    <None Include="Assets\Map\Assets\PBS Materials Variety Pack\readme.txt" />
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\SingleLine-TextureAlphaBlended.shader" />
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\LineStrip-LightSaber.shader" />
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\SingleLine-LightSaber.shader" />
@@ -864,6 +868,9 @@
     <Reference Include="Unity.RenderPipelines.Core.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Postprocessing.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Postprocessing.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualScripting.Flow">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
     </Reference>
@@ -887,6 +894,9 @@
     </Reference>
     <Reference Include="Unity.Burst">
       <HintPath>Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.Universal.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
@@ -923,12 +933,6 @@
     </Reference>
     <Reference Include="Unity.VisualScripting.State">
       <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Postprocessing.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Postprocessing.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.Postprocessing.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>

@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &6185937851195669105
 Transform:
@@ -207,12 +207,13 @@ GameObject:
   - component: {fileID: 6185937851195669113}
   - component: {fileID: 3857036429707997370}
   - component: {fileID: -654493469302883794}
+  - component: {fileID: 7217331291320549392}
   m_Layer: 0
   m_Name: Automatic Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &6185937851195669113
 Transform:
@@ -265,6 +266,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2863c7aad39f514429f6362e1bab35bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &7217331291320549392
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6185937851196024409}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 2, z: 0.5}
+  m_Center: {x: 0, y: 1, z: 0.5}
 --- !u!1 &6185937851196024411
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +296,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!4 &6185937851195669115
 Transform:

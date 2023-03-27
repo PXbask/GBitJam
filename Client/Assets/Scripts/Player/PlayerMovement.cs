@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
+using UnityEngine.UI;
 /*
     Date:
     Name:
@@ -10,19 +11,50 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed = 5.0f; // 玩家移动速度
 
-    // Update is called once per frame
-    void Update()
+
+    [Header("移动速度")]
+    public float speed = 2.0f;
+    [Header("移动倍率")]
+    public float speedMultiple = 1.00f;
+
+    [SerializeField]
+    private FpsInput input;
+    void Start()
     {
-        // 获取玩家输入
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
-
+        speed *= speedMultiple;
+    }
+    void FixedUpdate()
+    {
         // 计算玩家的移动向量
-        Vector3 movement = new Vector3(horizontalInput, verticalInput, 0).normalized * speed * Time.deltaTime;
-
+        var direction = new Vector3(input.Strafe, 0f, -input.Move).normalized;
+        //移动
+        var movement = direction * speed * Time.deltaTime;
         // 应用移动向量到角色位置
         transform.position += movement;
+    }
+
+    //输入设置
+    [Serializable]
+    private class FpsInput
+    {
+        [Tooltip("水平输入"),
+         SerializeField]
+        private string move = "Horizontal";
+
+        [Tooltip("垂直输入"),
+         SerializeField]
+        private string strafe = "Vertical";
+
+
+        public float Move
+        {
+            get { return Input.GetAxisRaw(move); }
+        }
+
+        public float Strafe
+        {
+            get { return Input.GetAxisRaw(strafe); }
+        }
     }
 }

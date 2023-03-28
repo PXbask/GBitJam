@@ -26,14 +26,13 @@ public class GameManager : MonoSingleton<GameManager>
     private void Awake()
     {
         Application.targetFrameRate = FPS;
-        
+        UnityEngine.SceneManagement.SceneManager.activeSceneChanged += GetBaseVars;
         Screen.SetResolution(width, height, false);
     }
     private void Start()
     {
         Init();
         blackMask.gameObject.SetActive(false);
-        charc = GameObject.Find("Player")?.GetComponent<CharController>();
     }
     public void Init()
     {
@@ -87,5 +86,13 @@ public class GameManager : MonoSingleton<GameManager>
         blackMask.gameObject.SetActive(false);
         maskText.gameObject.SetActive(false);
         yield return null;
+    }
+    private void GetBaseVars(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.Scene arg1)
+    {
+        this.GetBaseVars();
+    }
+    public void GetBaseVars()
+    {
+        charc = GameObject.Find("Player")?.GetComponent<CharController>();
     }
 }

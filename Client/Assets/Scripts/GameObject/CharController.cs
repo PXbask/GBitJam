@@ -15,6 +15,24 @@ public class CharController : MonoBehaviour
     public CharBase charBase;
     public AtkStyle atkStyle;
 
+    [SerializeField] PlayerStatus status;
+    public PlayerStatus Status
+    {
+        get { return status; }
+        set
+        {
+            switch (value)
+            {
+                case PlayerStatus.None:
+                    status = PlayerStatus.None;
+                    break;
+                case PlayerStatus.Jump:
+                    StartCoroutine(Status2Jump());
+                    break;
+            }
+        }
+    }
+
     [HideInInspector] public GameObject rifleBltPre;
     [HideInInspector] public GameObject shotgunBltPre;
     [HideInInspector] public GameObject meleeEffectPre;
@@ -22,20 +40,35 @@ public class CharController : MonoBehaviour
     [HideInInspector] public Cinemachine.CinemachineConfiner2D confiner;
 
     public Transform effectRoot;
+    public Rigidbody rb;
+
+    private Collider[] colliders;
     private void Awake()
     {
         rifleBltPre = Resloader.Load<GameObject>("Prefab/GameObject/rifleBlt");
         shotgunBltPre = Resloader.Load<GameObject>("Prefab/GameObject/shotgunBlt");
         meleeEffectPre = Resloader.Load<GameObject>("Prefab/GameObject/meleeEffect");
-        cldr2D = GameObject.Find("Map/bg").GetComponent<PolygonCollider2D>();
-        confiner = GetComponentInChildren<Cinemachine.CinemachineConfiner2D>();
         atkStyle = AtkStyle.Rifle;
+        status = PlayerStatus.None;
         mainCamera = Camera.main;
+
+        rb = GetComponent<Rigidbody>();
     }
-    private void Start()
+    private void Update()
     {
-        InputManager.Instance.charc = this;
-        confiner.m_BoundingShape2D = cldr2D;
+        switch (status)
+        {
+            case PlayerStatus.None:
+                
+                break;
+            case PlayerStatus.Jump:
+                bool isground = IsOnGround();
+                if (isground) Status = PlayerStatus.None;
+                InputManager.Instance.PlayerMovementEnabled(isground);
+                break;
+            default:
+                break;
+        }
     }
     public void MeleeAtk()
     {
@@ -104,4 +137,16 @@ public class CharController : MonoBehaviour
         Vector3 returnDirection = randomRotation * origin;
         return returnDirection;
     }
+    public bool IsOnGround()
+    {
+        colliders = Physics.OverlapCapsule(transform.position, transform.position, 0.25f, (1 << 11));
+        return colliders.Length > 0;
+    }
+    #region simpleFuncs
+    IEnumerator Status2Jump()
+    {
+        yield return new WaitForSeconds(0.2f);
+        status = PlayerStatus.Jump;
+    }
+    #endregion 
 }

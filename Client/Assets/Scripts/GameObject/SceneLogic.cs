@@ -18,10 +18,11 @@ public class SceneLogic : MonoBehaviour
     PXScene sceneDefine;
     private void Awake()
     {
-        sceneDefine = PXSceneManager.Instance.GetScene(id);
+        //sceneDefine = PXSceneManager.Instance.GetScene(id);
     }
     private void Start()
     {
+        sceneDefine = PXSceneManager.Instance.GetScene(id);
         if (sceneDefine.isFirstEntered)
         {
             sceneDefine.isFirstEntered = false;

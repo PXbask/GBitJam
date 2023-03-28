@@ -12,9 +12,15 @@ using UnityEngine;
 public class InputManager : MonoSingleton<InputManager>
 {
     public CharController charc;
+    public PlayerMovement movement;
     UIDebug uidebug = null;
     UITitle uititle = null;
     int uiCount = 0;
+    private void Start()
+    {
+        charc = GameManager.Instance.charc;
+        movement = charc.GetComponent<PlayerMovement>();
+    }
     private void Update()
     {
         //Esc打开Debug界面
@@ -33,7 +39,7 @@ public class InputManager : MonoSingleton<InputManager>
             }
         }
         //E打开装备列表
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.F))
         {
             if (uititle == null)
             {
@@ -80,5 +86,15 @@ public class InputManager : MonoSingleton<InputManager>
             }
             Debug.LogFormat("武器已切换到{0}", charc.atkStyle.ToString());
         }
+        //E键交互
+
+    }
+    public void PlayerMovementEnabled(bool enabled)
+    {
+        movement.enabled= enabled;
+    }
+    public void DisabledPlayerMovement(float dur)
+    {
+
     }
 }

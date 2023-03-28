@@ -21,6 +21,6 @@ public class PXSceneManager : Singleton<PXSceneManager>
     }
     public void Init()
     {
-        Scenes.Add(1, new PXScene());
+        Scenes.Add(2, new PXScene());
     }
 }

@@ -44,6 +44,6 @@ public class UIStart : MonoBehaviour
     }
     public void OnClickGameStartBtn()
     {
-        UIManager.Instance.TurntoBlack(() => UnityEngine.SceneManagement.SceneManager.LoadScene("level1"));
+        UIManager.Instance.TurntoBlack(() => UnityEngine.SceneManagement.SceneManager.LoadScene("Test_Scene"));
     }
 }

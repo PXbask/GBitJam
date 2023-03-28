@@ -28,3 +28,8 @@ public enum StoryType
     Branch = 2,
     Hidden = 3,
 }
+public enum PlayerStatus
+{
+    None,
+    Jump
+}

@@ -38,8 +38,8 @@ public class InputManager : MonoSingleton<InputManager>
                 uiCount--;
             }
         }
-        //E打开装备列表
-        if (Input.GetKeyDown(KeyCode.F))
+        //B打开芯片系统
+        if (Input.GetKeyDown(KeyCode.B))
         {
             if (uititle == null)
             {

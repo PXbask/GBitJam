@@ -98,16 +98,7 @@ public class UITitle : UIWindow
         foreach (var title in TitleManager.Instance.EquipedTitle)
         {
             int size = title.define.Size;
-            if (totalSize < SLOT_COLUME_COUNT && size + totalSize > SLOT_COLUME_COUNT)
-            {
-                //分为两部分
-                masks[totalSize].MaskApply(SLOT_COLUME_COUNT - totalSize, title);
-                masks[SLOT_COLUME_COUNT].MaskApply(size + totalSize - SLOT_COLUME_COUNT, title);
-            }
-            else
-            {
-                masks[totalSize].MaskApply(size,title);
-            }
+            masks[totalSize].MaskApply(size, title);
             totalSize += size;
         }
     }

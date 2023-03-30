@@ -21,6 +21,7 @@ public class DialogueManager : MonoSingleton<DialogueManager>
     private List<DialogueDefine> _defines = new List<DialogueDefine>();
     private int index = 0;
     private DialogueDefine _define = null;
+
     public void Init()
     {
         foreach (var diadics in DataManager.Instance.Dialogues)
@@ -40,16 +41,17 @@ public class DialogueManager : MonoSingleton<DialogueManager>
     {
         base.OnAwake();
     }
-    public void ShowDialogue(int diaId)
+    public void ShowDialogue(int diaId, Action oncomplete = null)
     {
         OnConversationStart?.Invoke();
 
+        Debug.Log(string.Format("开始对话: Id:{0}", diaId));
         _defines = Dialogues[diaId];
-        StartCoroutine(ShowDialogue(_defines));
+        StartCoroutine(ShowDialogue(_defines, oncomplete));
 
         OnConversationEnd?.Invoke();
     }
-    IEnumerator ShowDialogue(List<DialogueDefine> def)
+    IEnumerator ShowDialogue(List<DialogueDefine> def, Action callback)
     {
         UIManager.Instance.Show<UIDialogue>();
         foreach (var define in def)
@@ -59,5 +61,11 @@ public class DialogueManager : MonoSingleton<DialogueManager>
             yield return new WaitUntil(()=>Input.GetKeyUp(KeyCode.Space));
         }
         UIManager.Instance.Close<UIDialogue>();
+        callback?.Invoke();
+    }
+    public IEnumerator IEShowDialogue(int diaId,Action callback = null)
+    {
+        _defines = Dialogues[diaId];
+        yield return StartCoroutine(ShowDialogue(_defines, callback));
     }
 }

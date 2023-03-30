@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\UI\UIDebug.cs" />
     <Compile Include="Assets\Scripts\GameObject\TitleLogic.cs" />
     <Compile Include="Assets\Scripts\UI\UITitle.cs" />
+    <Compile Include="Assets\Scripts\GameObject\Level\JumpArea.cs" />
     <Compile Include="Assets\Scripts\UI\UIWindow.cs" />
     <Compile Include="Assets\Scripts\ListView\EquipListViewCell.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\GateConsole.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Assets\Scripts\GameObject\Level\Ladder.cs" />
     <Compile Include="Assets\Scripts\UI\UITabView.cs" />
     <Compile Include="Assets\Scripts\Model\TitleInfo.cs" />
+    <Compile Include="Assets\Scripts\Timeline\NoviceSignalReceiver.cs" />
     <Compile Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\CannonBehavior.cs" />
     <Compile Include="Assets\Scripts\Model\Attribute.cs" />
     <Compile Include="Assets\Scripts\Assets\Resloader.cs" />
@@ -99,6 +101,7 @@
     <Compile Include="Assets\Scripts\UI\UIDialogue.cs" />
     <Compile Include="Assets\Scripts\Model\PXScene.cs" />
     <Compile Include="Assets\Map\Assets\VolumetricLines\Scripts\VolumetricLineStripBehavior.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Consts.cs" />
     <Compile Include="Assets\Scripts\Utilities\MonoSingleton.cs" />
     <Compile Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\ShotBehavior.cs" />
     <Compile Include="Assets\Scripts\Model\Attributes.cs" />
@@ -115,7 +118,6 @@
     <Compile Include="Assets\Scripts\Manager\UIManager.cs" />
     <Compile Include="Assets\Scripts\Manager\TitleManager.cs" />
     <Compile Include="Assets\Scripts\Manager\InputManager.cs" />
-    <Compile Include="Assets\Scripts\GameObject\Level\JumpArea.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\_LineStripShader.cginc" />

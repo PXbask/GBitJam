@@ -13,9 +13,9 @@ using UnityEngine.UI;
 
 public class UITitleSlotMask : MonoBehaviour,IPointerClickHandler
 {
-    const float SLOT_STEP = 20;
-    const float SLOT_WIDTH = 50;
-    const float SLOT_HEIGHT = 50;
+    const float SLOT_STEP = 12;
+    const float SLOT_WIDTH = 40;
+    const float SLOT_HEIGHT = 40;
     RectTransform rectTransform;
     Image childImage;
     public Image image;

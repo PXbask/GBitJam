@@ -53,25 +53,29 @@
     <UnityVersion>2021.3.4f1c1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Map\Assets\QuickOutline\Scripts\Outline.cs" />
     <Compile Include="Assets\Scripts\GameObject\VideoPlayerController.cs" />
     <Compile Include="Assets\Map\Assets\VolumetricLines\Scripts\VolumetricLineVertexData.cs" />
+    <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\RowPropPlacer.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\AutomaticDoor.cs" />
-    <Compile Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\CreateSinShapedLineStrip.cs" />
     <Compile Include="Assets\Scripts\Define\DialogueDefine.cs" />
     <Compile Include="Assets\Scripts\Define\CharacterDefine.cs" />
     <Compile Include="Assets\Scripts\UI\UIDebug.cs" />
     <Compile Include="Assets\Scripts\GameObject\TitleLogic.cs" />
     <Compile Include="Assets\Scripts\UI\UITitle.cs" />
+    <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\Geometry\CompositeShapeData.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\JumpArea.cs" />
     <Compile Include="Assets\Scripts\UI\UIWindow.cs" />
     <Compile Include="Assets\Scripts\ListView\EquipListViewCell.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\GateConsole.cs" />
+    <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\MeshExtension.cs" />
     <Compile Include="Assets\Scripts\Utilities\Singleton.cs" />
     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
     <Compile Include="Assets\Scripts\UI\UITabButton.cs" />
+    <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\Geometry\CompositeShape.cs" />
     <Compile Include="Assets\Scripts\DataStruct\PXVector3.cs" />
     <Compile Include="Assets\Scripts\Manager\PXSceneManager.cs" />
     <Compile Include="Assets\Scripts\Manager\EventManager.cs" />
@@ -79,22 +83,26 @@
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\UI\UIStart.cs" />
     <Compile Include="Assets\Scripts\Define\TitleDefine.cs" />
+    <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\OriginOffsetRPP.cs" />
     <Compile Include="Assets\Scripts\Define\TitleAffectDefine.cs" />
     <Compile Include="Assets\Scripts\UI\UITitleItem.cs" />
     <Compile Include="Assets\Scripts\DataStruct\FixedCapQueue.cs" />
     <Compile Include="Assets\Scripts\UI\UITitleSlotMask.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\InteractionGate.cs" />
     <Compile Include="Assets\Scripts\ListView\ListView.cs" />
+    <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\KeepSourceScale.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\Ladder.cs" />
     <Compile Include="Assets\Scripts\UI\UITabView.cs" />
     <Compile Include="Assets\Scripts\Model\TitleInfo.cs" />
     <Compile Include="Assets\Scripts\Timeline\NoviceSignalReceiver.cs" />
-    <Compile Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\CannonBehavior.cs" />
     <Compile Include="Assets\Scripts\Model\Attribute.cs" />
+    <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\BMTSetInstaller.cs" />
+    <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\PropGroup.cs" />
     <Compile Include="Assets\Scripts\Assets\Resloader.cs" />
     <Compile Include="Assets\Scripts\GameObject\SceneLogic.cs" />
     <Compile Include="Assets\Scripts\GameObject\CharController.cs" />
     <Compile Include="Assets\Map\Assets\PBS Materials Variety Pack\zzz\MaterialRandomizerScript.cs" />
+    <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\Geometry\Triangulator.cs" />
     <Compile Include="Assets\Scripts\Model\SaveData.cs" />
     <Compile Include="Assets\Scripts\Test\GameStart.cs" />
     <Compile Include="Assets\Scripts\Manager\DialogueManager.cs" />
@@ -102,18 +110,22 @@
     <Compile Include="Assets\Scripts\Model\PXScene.cs" />
     <Compile Include="Assets\Map\Assets\VolumetricLines\Scripts\VolumetricLineStripBehavior.cs" />
     <Compile Include="Assets\Scripts\Utilities\Consts.cs" />
+    <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\Geometry\Shape.cs" />
     <Compile Include="Assets\Scripts\Utilities\MonoSingleton.cs" />
-    <Compile Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\ShotBehavior.cs" />
+    <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\UnityRuntimePreviewGenerator.cs" />
+    <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\Geometry\Polygon.cs" />
     <Compile Include="Assets\Scripts\Model\Attributes.cs" />
+    <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\BuildingUnit.cs" />
     <Compile Include="Assets\Scripts\Model\CharBase.cs" />
     <Compile Include="Assets\Scripts\Manager\DataManager.cs" />
     <Compile Include="Assets\Map\Assets\PBS Materials Variety Pack\zzz\MaterialRandomizer.cs" />
+    <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\BHUtilities.cs" />
     <Compile Include="Assets\Scripts\GameObject\BulletLogic.cs" />
     <Compile Include="Assets\Scripts\UI\UIEquip.cs" />
     <Compile Include="Assets\Scripts\UI\UIWorldTips.cs" />
     <Compile Include="Assets\Scripts\Utilities\Enums.cs" />
-    <Compile Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\ExampleScenes\ExampleScripts\VolumetricMultiLineBehavior.cs" />
     <Compile Include="Assets\Scripts\UI\UILevelItemOverable.cs" />
+    <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\Geometry\Maths2D.cs" />
     <Compile Include="Assets\Scripts\Define\WeaponDefine.cs" />
     <Compile Include="Assets\Scripts\Manager\UIManager.cs" />
     <Compile Include="Assets\Scripts\Manager\TitleManager.cs" />
@@ -121,6 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\_LineStripShader.cginc" />
+    <None Include="Assets\Map\Assets\QuickOutline\Resources\Shaders\OutlineMask.shader" />
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\LineStrip-TextureAlphaBlended.shader" />
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\SingleLine-TextureAdditive.shader" />
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\_SingleLineShader.cginc" />
@@ -129,6 +142,8 @@
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\SingleLine-TextureAlphaBlended.shader" />
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\LineStrip-LightSaber.shader" />
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\SingleLine-LightSaber.shader" />
+    <None Include="Assets\Map\Assets\SkySeries Freebie\Hdri setup.txt" />
+    <None Include="Assets\Map\Assets\QuickOutline\Resources\Shaders\OutlineFill.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -397,12 +412,6 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@3.0.2\Runtime\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Types">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.4f1c1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Android.Gradle">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.4f1c1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.4f1c1\Editor\Data\NetStandard\ref\2.1.0\netstandard.dll</HintPath>

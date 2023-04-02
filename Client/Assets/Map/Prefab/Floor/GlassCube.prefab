@@ -12,12 +12,12 @@ GameObject:
   - component: {fileID: 7259739652105442069}
   - component: {fileID: 5804952539887454535}
   - component: {fileID: 2877512613067185450}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GlassCube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7091175249580808792
 Transform:
@@ -74,7 +74,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5

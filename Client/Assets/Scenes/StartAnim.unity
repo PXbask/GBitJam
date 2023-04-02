@@ -472,6 +472,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   global: 1
   charc: {fileID: 0}
+  movement: {fileID: 0}
 --- !u!114 &570556664
 MonoBehaviour:
   m_ObjectHideFlags: 0

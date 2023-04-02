@@ -139,13 +139,13 @@ public class CharController : MonoBehaviour
     }
     public bool IsOnGround()
     {
-        colliders = Physics.OverlapCapsule(transform.position, transform.position, 0.25f, (1 << 11));
+        colliders = Physics.OverlapCapsule(transform.position, transform.position, 1f, (1 << 11));
         return colliders.Length > 0;
     }
     #region simpleFuncs
     IEnumerator Status2Jump()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.2f); 
         status = PlayerStatus.Jump;
     }
     #endregion 

@@ -67,7 +67,7 @@ public class UITitle : UIWindow
     }
     private void SetPlayerAttriInfo()
     {
-        Model.Attribute attri = GameManager.Instance.charc.charBase.attributes.curAttribute;
+        Model.Attribute attri = GameManager.Instance.player.charBase.attributes.curAttribute;
 
         hptext.text = attri.HP.ToString();
         damageresistext.text = (attri.DamageResistence * 100).ToString() + "%";
@@ -78,7 +78,7 @@ public class UITitle : UIWindow
         goldgaintext.text = (attri.GoldRatio * 100).ToString() + "%";
         expgaintext.text = (attri.ExpRatio * 100).ToString() + "%";
 
-        expslider.maxValue = GameManager.Instance.charc.charBase.attributes.baseAttribute.HP;
+        expslider.maxValue = GameManager.Instance.player.charBase.attributes.baseAttribute.HP;
         expslider.value = attri.HP;
         exptext.text = "";//ÔÝ¶¨
 
@@ -104,8 +104,8 @@ public class UITitle : UIWindow
     }
     private void SetResourcesData()
     {
-        goldtext.text = GameManager.Instance.charc.charBase.gold.ToString();
-        parttext.text = GameManager.Instance.charc.charBase.parts.ToString();
+        goldtext.text = GameManager.Instance.player.charBase.gold.ToString();
+        parttext.text = GameManager.Instance.player.charBase.parts.ToString();
     }
     private void SetTitleContent()
     {
@@ -197,6 +197,6 @@ public class UITitle : UIWindow
 
     private void OnLevelItemUnTouched(int obj)
     {
-        SetDetailedInfoPanel(selectedItem.info.level);
+        if(selectedItem) SetDetailedInfoPanel(selectedItem.info.level);
     }
 }

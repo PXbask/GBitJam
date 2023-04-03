@@ -120,8 +120,8 @@ public class DataManager : Singleton<DataManager>
     }
     private Vector3 GetPlayerPos()
     {
-        if (GameManager.Instance.charc)
-            return GameManager.Instance.charc.transform.position;
+        if (GameManager.Instance.player)
+            return GameManager.Instance.player.transform.position;
         return Vector3.zero;
     }
     private List<int> GetEquipedTitle()
@@ -135,16 +135,16 @@ public class DataManager : Singleton<DataManager>
     }
     private int GetPlayerLevel()
     {
-        return GameManager.Instance.charc.charBase.level;
+        return GameManager.Instance.player.charBase.level;
     }
     private int GetPlayerParts()
     {
-        return GameManager.Instance.charc.charBase.parts;
+        return GameManager.Instance.player.charBase.parts;
     }
 
     private int GetPlayerGold()
     {
-        return GameManager.Instance.charc.charBase.gold;
+        return GameManager.Instance.player.charBase.gold;
     }
     #endregion
 }

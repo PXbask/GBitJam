@@ -11,8 +11,7 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-
-
+    Rigidbody rb;
     [Header("移动速度")]
     public float speed = 2.0f;
     [Header("移动倍率")]
@@ -23,17 +22,16 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         speed *= speedMultiple;
+        rb = GameManager.Instance.player.rb;
     }
-    void FixedUpdate()
+    public void Move()
     {
         // 计算玩家的移动向量
         var direction = new Vector3(input.Strafe, 0f, -input.Move).normalized;
         //移动
-        var movement = direction * speed * Time.deltaTime;
-        // 应用移动向量到角色位置
-        transform.position += movement;
+        var movement = direction * speed * Time.fixedDeltaTime;
+        rb.MovePosition(rb.position + movement);
     }
-
     //输入设置
     [Serializable]
     private class FpsInput

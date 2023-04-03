@@ -11,33 +11,26 @@ using UnityEngine;
 
 public class InputManager : MonoSingleton<InputManager>
 {
+    public IInteract actObj = null;
     public CharController charc;
     public PlayerMovement movement;
-    UIDebug uidebug = null;
     UITitle uititle = null;
     int uiCount = 0;
+
+    public bool playerMoveEnabled = true;
     private void Start()
     {
-        charc = GameManager.Instance.charc;
+        charc = GameManager.Instance.player;
         movement = charc.GetComponent<PlayerMovement>();
     }
     private void Update()
     {
-        //Esc打开Debug界面
-        if (Input.GetKeyDown(KeyCode.Escape))
+        //F交互
+        if(Input.GetKeyDown(KeyCode.F))
         {
-            if(uidebug == null)
-            {
-                uidebug = UIManager.Instance.Show<UIDebug>();
-                uiCount++;
-            }
-            else
-            {
-                UIManager.Instance.Close<UIDebug>();
-                uidebug= null;
-                uiCount--;
-            }
+            actObj?.Interact(KeyCode.F);
         }
+        //E技能
         //B打开芯片系统
         if (Input.GetKeyDown(KeyCode.B))
         {
@@ -53,8 +46,15 @@ public class InputManager : MonoSingleton<InputManager>
                 uiCount--;
             }
         }
+        //Space跳跃&攀爬
+        if (Input.GetKey(KeyCode.Space))
+        {
+            actObj?.Interact(KeyCode.Space);
+        }
+        //Esc游戏菜单
+        //H帮助菜单
         //鼠标左键发动攻击
-        if(Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
             if (uiCount != 0) return;
             if (charc == null) return;
@@ -86,8 +86,16 @@ public class InputManager : MonoSingleton<InputManager>
             }
             Debug.LogFormat("武器已切换到{0}", charc.atkStyle.ToString());
         }
-        //E键交互
-
+    }
+    private void FixedUpdate()
+    {
+        //WASD移动
+        HandlePlayerMovement();
+    }
+    public void HandlePlayerMovement()
+    {
+        if (!playerMoveEnabled) return;
+        movement.Move();
     }
     public void PlayerMovementEnabled(bool enabled)
     {

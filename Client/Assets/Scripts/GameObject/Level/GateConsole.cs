@@ -11,27 +11,27 @@ using UnityEngine.Events;
     Overview:控制可交互门的终端,与InteractionGate一起使用
 */
 
-public class GateConsole : MonoBehaviour
+public class GateConsole : TrapLogic
 {
     private bool useful = true;
     [SerializeField] InteractionGate gate;
-    private void OnTriggerEnter(Collider other)
+    protected override void OnInit()
+    {
+        base.OnInit();
+        interactKey = KeyCode.F;
+        tipStr = "E 互动";
+    }
+    protected override void OnTriggerEnter(Collider other)
     {
         if (!useful) return;
-        UIManager.Instance.OpenWorldTip("E 互动", transform);
+        base.OnTriggerEnter(other);
     }
-    private void OnTriggerExit(Collider other)
+    protected override void OnInteract(KeyCode code)
     {
-        UIManager.Instance.CloseWorldTip();
-    }
-    private void OnTriggerStay(Collider other)
-    {
+        base.OnInteract(code);
         if (!gate.Islocked) return;
-        if (Input.GetKey(KeyCode.E))
-        {
-            this.useful= false;
-            gate.OpenGate();
-            UIManager.Instance.CloseWorldTip();
-        }
+        this.useful = false;
+        gate.OpenGate();
+        UIManager.Instance.CloseWorldTip();
     }
 }

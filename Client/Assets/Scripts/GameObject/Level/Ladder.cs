@@ -9,43 +9,33 @@ using UnityEngine;
     Overview:ÌÝ×Ó
 */
 
-public class Ladder : MonoBehaviour
+public class Ladder : TrapLogic
 {
-    [SerializeField] CharController charController;
-    private void Start()
+    protected override void OnInit()
     {
-        charController = GameManager.Instance.charc;
+        base.OnInit();
+        interactKey = KeyCode.Space;
+        tipStr = "Space ÉÏÉý";
     }
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerExit(Collider other)
     {
-        UIManager.Instance.OpenWorldTip("Space ÉÏÉý", charController.transform);
+        base.OnTriggerExit(other);
+        controller.rb.useGravity = true;
     }
-    private void OnTriggerExit(Collider other)
+    protected override void OnInteract(KeyCode code)
     {
-        UIManager.Instance.CloseWorldTip();
-        charController.rb.useGravity = true;
+        base.OnInteract(code);
+        controller.rb.useGravity = false;
+        controller?.rb.MovePosition(controller.rb.position + Vector3.up * Time.deltaTime);
     }
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            if (Input.GetKey(KeyCode.Space))
-            {
-                charController.rb.useGravity= false;
-                charController?.rb.MovePosition(charController.rb.position + Vector3.up * Time.deltaTime);
-            }
-        }
-        //if(charController == null)
-        //{
-        //    if (other.gameObject.CompareTag("Player"))
-        //    {
-        //        charController = other.gameObject.GetComponent<CharController>();
-        //    }
-        //}
-        //else
-        //{
-        //    charController.rb.MovePosition(charController.rb.position+Vector3.up*Time.deltaTime);
-        //}
-
-    }
+    //private void OnTriggerStay(Collider other)
+    //{
+    //    if (other.gameObject.CompareTag(targetTag))
+    //    {
+    //        if (Input.GetKey(KeyCode.Space))
+    //        {
+    //            OnInteract(KeyCode.Space);
+    //        }
+    //    }
+    //}
 }

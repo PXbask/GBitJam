@@ -21,17 +21,17 @@ public class GameManager : MonoSingleton<GameManager>
 
     public Image blackMask;
     public Text maskText;
-    public CharController charc;
+    public CharController player;
 
     private void Awake()
     {
         Application.targetFrameRate = FPS;
+        GameManager.Instance.Init();
         UnityEngine.SceneManagement.SceneManager.activeSceneChanged += GetBaseVars;
         Screen.SetResolution(width, height, false);
     }
     private void Start()
     {
-        Init();
         blackMask.gameObject.SetActive(false);
     }
     public void Init()
@@ -93,6 +93,18 @@ public class GameManager : MonoSingleton<GameManager>
     }
     public void GetBaseVars()
     {
-        charc = GameObject.Find("Player")?.GetComponent<CharController>();
+        if (player == null) GetPlayer();
+    }
+    public void GetPlayer()
+    {
+        var obj = GameObject.Find("Player");
+        player = obj.GetComponent<CharController>();
+        player.charBase = new CharBase(DataManager.Instance.Characters[0]);
+        TitleManager.Instance.OnTitleEquiped += player.charBase.attributes.Recalculate;
+        TitleManager.Instance.OnTitleUnEquiped += player.charBase.attributes.Recalculate;
+        player.charBase.attributes.Recalculate();
+        player.transform.position = DataManager.Instance.SaveData.playerPos;
+        PlayerMovement movement = obj.GetComponent<PlayerMovement>();
+        movement.speed = player.charBase.attributes.curAttribute.MoveVelocityRatio * 4f;
     }
 }

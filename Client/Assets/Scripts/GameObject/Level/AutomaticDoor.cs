@@ -2,21 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AutomaticDoor: MonoBehaviour
+public class AutomaticDoor: TrapLogic
 {
     private Animator anim;
     public bool IsOpen = false;
-    void Start()
+    protected override void OnInit()
     {
+        base.OnInit();
         anim = GetComponent<Animator>();
     }
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         if (IsOpen) return;
         if (other.gameObject.CompareTag("Player"))
         {
-            anim.Play("AutoMaticDoor_Open");
-            IsOpen= true;
+            OnInteract();
         }
+    }
+    protected override void OnInteract(KeyCode code = KeyCode.None)
+    {
+        anim.Play("AutoMaticDoor_Open");
+        IsOpen = true;
     }
 }

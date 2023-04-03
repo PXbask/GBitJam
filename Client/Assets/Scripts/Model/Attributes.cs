@@ -28,10 +28,9 @@ namespace Model
             {
                 if(title.define.TitleType==TitleType.Assist)
                 {
-                    curAttribute.DamageRatio += title.curAffect.MeleeGainV;
+                    curAttribute.DamageRatio += title.curAffect.DamageGainV;
                     curAttribute.Dodge += title.curAffect.DodgeGainV;
                     curAttribute.MoveVelocityRatio += title.curAffect.MoveGainV;
-                    curAttribute.Accuracy += title.curAffect.AccuracyGainV;
                     curAttribute.GoldRatio += title.curAffect.GoldGainV;
                     curAttribute.ExpRatio += title.curAffect.ExpGainV;
                     curAttribute.DamageResistence += title.curAffect.DamgeResistenceGainV;

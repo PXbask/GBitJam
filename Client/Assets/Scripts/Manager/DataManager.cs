@@ -24,7 +24,8 @@ public class DataManager : Singleton<DataManager>
     public Dictionary<int, CharacterDefine> Characters = new Dictionary<int, CharacterDefine>();
     public Dictionary<int, WeaponDefine> Weapons = new Dictionary<int, WeaponDefine>();
     public Dictionary<int, Dictionary<int, DialogueDefine>> Dialogues = new Dictionary<int, Dictionary<int, DialogueDefine>>();
-    public CharacterDefine playerDefine => Characters[0];
+    public Dictionary<int, Dictionary<int, LevelDefine>> Levels = new Dictionary<int, Dictionary<int, LevelDefine>>();
+    public CharacterDefine PlayerDefine => Characters[0];
     public DataManager()
     {
         Debug.Log("<color=#FF00FF>DataManager Init</color>");
@@ -50,6 +51,10 @@ public class DataManager : Singleton<DataManager>
         json = File.ReadAllText(dataPath + "DialogueDefine.txt");
         this.Dialogues = JsonConvert.DeserializeObject<Dictionary<int, Dictionary<int, DialogueDefine>>>(json);
         yield return null;
+
+        json = File.ReadAllText(dataPath + "LevelDefine.txt");
+        this.Levels = JsonConvert.DeserializeObject<Dictionary<int, Dictionary<int, LevelDefine>>>(json);
+        yield return null;
     }
     public void LoadConfigData()
     {
@@ -67,6 +72,9 @@ public class DataManager : Singleton<DataManager>
 
         json = File.ReadAllText(dataPath + "DialogueDefine.txt");
         this.Dialogues = JsonConvert.DeserializeObject<Dictionary<int, Dictionary<int, DialogueDefine>>>(json);
+
+        json = File.ReadAllText(dataPath + "LevelDefine.txt");
+        this.Levels = JsonConvert.DeserializeObject<Dictionary<int, Dictionary<int, LevelDefine>>>(json);
     }
     public void SaveUserData()
     {

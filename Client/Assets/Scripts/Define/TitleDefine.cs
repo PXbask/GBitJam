@@ -16,10 +16,22 @@ namespace Define
         public TitleType TitleType { get; set; }
         public bool EnemyCanEquip { get; set; }//敌人是否可拥有
         public bool EnemyCanFall { get; set; }//敌人是否可掉落
-        public int LinkedQuest { get; set; }//关联任务
         public bool IsConsumable { get; set; }//是否消耗
         public int TitleAffect { get; set; }//对应的TitleAffect类的ID号
         public int LindedWeapon { get; set; }//对应的武器ID
         public float DropRate { get; set; }//掉落概率
+        public int PartsBorn { get; set; }//碎片产出数量
+        public static int[,] GoldCost = new int[3, 3]
+        {
+            {100,400,900 },
+            {200,400,600 },
+            {300,100,100 }
+        };
+        public static int[,] PartCost = new int[3, 3]
+        {
+            {10,15,25 },
+            {15,20,35 },
+            {25,30,45 }
+        };
     }
 }

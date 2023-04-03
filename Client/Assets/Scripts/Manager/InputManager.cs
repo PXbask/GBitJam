@@ -95,7 +95,7 @@ public class InputManager : MonoSingleton<InputManager>
     public void HandlePlayerMovement()
     {
         if (!playerMoveEnabled) return;
-        movement.Move();
+        movement?.Move();
     }
     public void PlayerMovementEnabled(bool enabled)
     {

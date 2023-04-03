@@ -1,106 +1,54 @@
 {
   "1": {
     "0": {
-      "MeleeGainV": 0.2,
       "DodgeGainV": 0.05,
       "MoveGainV": 0.05,
-      "HPGainV": 0.0,
-      "DamgeResistenceGainV": 0.0,
-      "Param0": 0.0,
       "杀手本能": {}
     },
     "1": {
-      "MeleeGainV": 0.25,
       "DodgeGainV": 0.075,
-      "MoveGainV": 0.075,
-      "HPGainV": 0.0,
-      "DamgeResistenceGainV": 0.0,
-      "Param0": 0.0
+      "MoveGainV": 0.075
     },
     "2": {
-      "MeleeGainV": 0.3,
       "DodgeGainV": 0.125,
-      "MoveGainV": 0.125,
-      "HPGainV": 0.0,
-      "DamgeResistenceGainV": 0.0,
-      "Param0": 0.0
+      "MoveGainV": 0.125
     },
     "3": {
-      "MeleeGainV": 0.4,
       "DodgeGainV": 0.2,
-      "MoveGainV": 0.2,
-      "HPGainV": 0.0,
-      "DamgeResistenceGainV": 0.0,
-      "Param0": 0.0
+      "MoveGainV": 0.2
     }
   },
   "2": {
     "0": {
-      "MeleeGainV": 0.0,
       "DodgeGainV": 0.1,
-      "MoveGainV": 0.0,
-      "HPGainV": 0.0,
-      "DamgeResistenceGainV": 0.0,
-      "Param0": 0.0,
       "洞察之眼": {}
     },
     "1": {
-      "MeleeGainV": 0.0,
-      "DodgeGainV": 0.125,
-      "MoveGainV": 0.0,
-      "HPGainV": 0.0,
-      "DamgeResistenceGainV": 0.0,
-      "Param0": 0.0
+      "DodgeGainV": 0.125
     },
     "2": {
-      "MeleeGainV": 0.0,
-      "DodgeGainV": 0.15,
-      "MoveGainV": 0.0,
-      "HPGainV": 0.0,
-      "DamgeResistenceGainV": 0.0,
-      "Param0": 0.0
+      "DodgeGainV": 0.15
     },
     "3": {
-      "MeleeGainV": 0.0,
-      "DodgeGainV": 0.175,
-      "MoveGainV": 0.0,
-      "HPGainV": 0.0,
-      "DamgeResistenceGainV": 0.0,
-      "Param0": 0.0
+      "DodgeGainV": 0.175
     }
   },
   "3": {
     "0": {
-      "MeleeGainV": 0.0,
-      "DodgeGainV": 0.0,
       "MoveGainV": 0.1,
-      "HPGainV": 0.0,
-      "DamgeResistenceGainV": 0.0,
       "Param0": 4.0,
       "飞毛腿": {}
     },
     "1": {
-      "MeleeGainV": 0.0,
-      "DodgeGainV": 0.0,
       "MoveGainV": 0.15,
-      "HPGainV": 0.0,
-      "DamgeResistenceGainV": 0.0,
       "Param0": 4.0
     },
     "2": {
-      "MeleeGainV": 0.0,
-      "DodgeGainV": 0.0,
       "MoveGainV": 0.2,
-      "HPGainV": 0.0,
-      "DamgeResistenceGainV": 0.0,
       "Param0": 4.0
     },
     "3": {
-      "MeleeGainV": 0.0,
-      "DodgeGainV": 0.0,
       "MoveGainV": 0.25,
-      "HPGainV": 0.0,
-      "DamgeResistenceGainV": 0.0,
       "Param0": 4.0
     }
   },
@@ -110,7 +58,7 @@
       "MoveGainV": -0.05,
       "HPGainV": 0.2,
       "DamgeResistenceGainV": 0.05,
-      "装甲义体": {}
+      "重甲义体": {}
     },
     "1": {
       "DodgeGainV": -0.075,
@@ -182,11 +130,26 @@
   },
   "8": {
     "0": {
+      "DamageGainV": 1.0,
+      "HPGainV": -0.1,
+      "DamgeResistenceGainV": -0.05,
       "重火力": {}
     },
-    "1": {},
-    "2": {},
-    "3": {}
+    "1": {
+      "DamageGainV": 2.0,
+      "HPGainV": -0.15,
+      "DamgeResistenceGainV": -0.1
+    },
+    "2": {
+      "DamageGainV": 3.0,
+      "HPGainV": -0.3,
+      "DamgeResistenceGainV": -0.15
+    },
+    "3": {
+      "DamageGainV": 4.0,
+      "HPGainV": -0.5,
+      "DamgeResistenceGainV": -0.2
+    }
   },
   "9": {
     "0": {
@@ -209,6 +172,70 @@
       "DodgeGainV": 0.25,
       "MoveGainV": 0.2,
       "DamgeResistenceGainV": -0.25
+    }
+  },
+  "10": {
+    "0": {
+      "DamageGainV": 0.05,
+      "精确打击": {}
+    },
+    "1": {
+      "DamageGainV": 0.1
+    },
+    "2": {
+      "DamageGainV": 0.15
+    },
+    "3": {
+      "DamageGainV": 0.2
+    }
+  },
+  "11": {
+    "0": {
+      "DamgeResistenceGainV": 0.05,
+      "能量护甲": {}
+    },
+    "1": {
+      "DamgeResistenceGainV": 0.1
+    },
+    "2": {
+      "DamgeResistenceGainV": 0.15
+    },
+    "3": {
+      "DamgeResistenceGainV": 0.2
+    }
+  },
+  "12": {
+    "0": {
+      "PartGainV": 0.1,
+      "机械师": {}
+    },
+    "1": {
+      "PartGainV": 0.2
+    },
+    "2": {
+      "PartGainV": 0.5
+    },
+    "3": {
+      "PartGainV": 1.0
+    }
+  },
+  "13": {
+    "0": {
+      "GoldGainV": 0.1,
+      "PartGainV": 0.1,
+      "超级财阀": {}
+    },
+    "1": {
+      "GoldGainV": 0.2,
+      "PartGainV": 0.2
+    },
+    "2": {
+      "GoldGainV": 0.5,
+      "PartGainV": 0.5
+    },
+    "3": {
+      "GoldGainV": 1.0,
+      "PartGainV": 1.0
     }
   }
 }

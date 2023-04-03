@@ -1,19 +1,54 @@
 {
-  "0": {
-    "ID": 0,
-    "Name": "主角",
+  "1": {
+    "ID": 1,
+    "Name": "傀儡",
     "HP": 100.0,
     "DamageResistence": 0.0,
-    "Accuracy": 0.5,
     "Dodge": 0.0,
     "MoveVelocityRatio": 1.0,
     "MaxMoveVelocityRatio": 2.0,
-    "AttackVelocityRatio": 1.0,
     "DamageRatio": 1.0,
-    "Damage": 10.0,
-    "SlotCount": 3,
-    "MaxSlotCount": 12,
     "GoldRatio": 1.0,
-    "ExpRatio": 1.0
+    "ExpRatio": 1.0,
+    "ExpEarn": 0
+  },
+  "10": {
+    "ID": 10,
+    "Name": "普通敌人",
+    "HP": 100.0,
+    "DamageResistence": 0.0,
+    "Dodge": 0.0,
+    "MoveVelocityRatio": 1.0,
+    "MaxMoveVelocityRatio": 2.0,
+    "DamageRatio": 1.0,
+    "GoldRatio": 0.0,
+    "ExpRatio": 0.0,
+    "ExpEarn": 50
+  },
+  "100": {
+    "ID": 100,
+    "Name": "精英敌人",
+    "HP": 300.0,
+    "DamageResistence": 0.0,
+    "Dodge": 0.0,
+    "MoveVelocityRatio": 1.0,
+    "MaxMoveVelocityRatio": 2.0,
+    "DamageRatio": 1.0,
+    "GoldRatio": 0.0,
+    "ExpRatio": 0.0,
+    "ExpEarn": 120
+  },
+  "200": {
+    "ID": 200,
+    "Name": "BOSS",
+    "HP": 1000.0,
+    "DamageResistence": 0.0,
+    "Dodge": 0.0,
+    "MoveVelocityRatio": 1.0,
+    "MaxMoveVelocityRatio": 2.0,
+    "DamageRatio": 1.0,
+    "GoldRatio": 0.0,
+    "ExpRatio": 0.0,
+    "ExpEarn": 400
   }
 }

@@ -1,0 +1,104 @@
+{
+  "1": {
+    "1": {
+      "ExpCost": 100,
+      "LoadMax": 80,
+      "SlotNum": 5
+    },
+    "2": {
+      "ExpCost": 120,
+      "LoadMax": 80,
+      "SlotNum": 6
+    },
+    "3": {
+      "ExpCost": 130,
+      "LoadMax": 80,
+      "SlotNum": 7
+    },
+    "4": {
+      "ExpCost": 130,
+      "LoadMax": 80,
+      "SlotNum": 7
+    },
+    "5": {
+      "ExpCost": 150,
+      "LoadMax": 90,
+      "SlotNum": 8
+    },
+    "6": {
+      "ExpCost": 150,
+      "LoadMax": 90,
+      "SlotNum": 8
+    },
+    "7": {
+      "ExpCost": 150,
+      "LoadMax": 90,
+      "SlotNum": 8
+    },
+    "8": {
+      "ExpCost": 180,
+      "LoadMax": 90,
+      "SlotNum": 9
+    },
+    "9": {
+      "ExpCost": 180,
+      "LoadMax": 90,
+      "SlotNum": 9
+    },
+    "10": {
+      "ExpCost": 180,
+      "LoadMax": 90,
+      "SlotNum": 9
+    },
+    "11": {
+      "ExpCost": 180,
+      "LoadMax": 90,
+      "SlotNum": 9
+    },
+    "12": {
+      "ExpCost": 180,
+      "LoadMax": 90,
+      "SlotNum": 9
+    },
+    "13": {
+      "ExpCost": 230,
+      "LoadMax": 100,
+      "SlotNum": 11
+    },
+    "14": {
+      "ExpCost": 230,
+      "LoadMax": 100,
+      "SlotNum": 11
+    },
+    "15": {
+      "ExpCost": 230,
+      "LoadMax": 100,
+      "SlotNum": 11
+    },
+    "16": {
+      "ExpCost": 230,
+      "LoadMax": 100,
+      "SlotNum": 11
+    },
+    "17": {
+      "ExpCost": 230,
+      "LoadMax": 100,
+      "SlotNum": 11
+    },
+    "18": {
+      "ExpCost": 230,
+      "LoadMax": 100,
+      "SlotNum": 11
+    },
+    "19": {
+      "ExpCost": 230,
+      "LoadMax": 100,
+      "SlotNum": 11
+    },
+    "20": {
+      "ExpCost": 0,
+      "LoadMax": 100,
+      "SlotNum": 11
+    }
+  }
+}

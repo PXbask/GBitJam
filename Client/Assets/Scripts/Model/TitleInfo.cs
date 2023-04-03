@@ -31,11 +31,10 @@ namespace Model
             if(define.TitleType!=TitleType.Assist) return string.Empty;
             StringBuilder sb = new StringBuilder();
             TitleAffectDefine touchedAffect = affects[touchedLevel];
-            if (curAffect.MeleeGainV != 0) sb.AppendLine(GetStandardtext("近战", curAffect.MeleeGainV, touchedAffect.MeleeGainV,touchedLevel ));
+            if (curAffect.DamageGainV != 0) sb.AppendLine(GetStandardtext("攻击", curAffect.DamageGainV, touchedAffect.DamageGainV,touchedLevel ));
             if (curAffect.DodgeGainV != 0) sb.AppendLine(GetStandardtext("闪避", curAffect.DodgeGainV, touchedAffect.DodgeGainV, touchedLevel));
             if (curAffect.MoveGainV != 0) sb.AppendLine(GetStandardtext("移速", curAffect.MoveGainV, touchedAffect.MoveGainV, touchedLevel));
             if (curAffect.HPGainV != 0) sb.AppendLine(GetStandardtext("生命", curAffect.HPGainV, touchedAffect.HPGainV, touchedLevel));
-            if (curAffect.AccuracyGainV != 0) sb.AppendLine(GetStandardtext("命中", curAffect.AccuracyGainV, touchedAffect.AccuracyGainV, touchedLevel));
             if (curAffect.DamgeResistenceGainV != 0) sb.AppendLine(GetStandardtext("抗性", curAffect.DamgeResistenceGainV, touchedAffect.DamgeResistenceGainV, touchedLevel));
             if (curAffect.GoldGainV != 0) sb.AppendLine(GetStandardtext("金币", curAffect.GoldGainV, touchedAffect.GoldGainV, touchedLevel));
             if (curAffect.ExpGainV != 0) sb.AppendLine(GetStandardtext("经验", curAffect.ExpGainV, touchedAffect.ExpGainV, touchedLevel));

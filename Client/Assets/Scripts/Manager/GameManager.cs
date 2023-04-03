@@ -99,7 +99,7 @@ public class GameManager : MonoSingleton<GameManager>
     {
         var obj = GameObject.Find("Player");
         player = obj.GetComponent<CharController>();
-        player.charBase = new CharBase(DataManager.Instance.Characters[0]);
+        player.charBase = new CharBase(DataManager.Instance.Characters[1]);
         TitleManager.Instance.OnTitleEquiped += player.charBase.attributes.Recalculate;
         TitleManager.Instance.OnTitleUnEquiped += player.charBase.attributes.Recalculate;
         player.charBase.attributes.Recalculate();

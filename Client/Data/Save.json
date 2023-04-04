@@ -123,6 +123,8 @@
         "z": 0.0
     },
     "playerLevel": 1,
+    "exp": 0,
+    "load": 15,
     "gold":1000,
     "parts":500
 }

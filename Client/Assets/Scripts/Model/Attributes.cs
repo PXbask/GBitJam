@@ -17,7 +17,7 @@ namespace Model
             curAttribute = new Attribute(define);
             Recalculate();
         }
-
+        public void Recalculate(int _) { Recalculate(); }
         public void Recalculate()
         {
             float curHp = curAttribute.HP;

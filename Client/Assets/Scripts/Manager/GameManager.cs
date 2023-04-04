@@ -1,3 +1,5 @@
+using Manager;
+using Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -39,6 +41,7 @@ public class GameManager : MonoSingleton<GameManager>
         DataManager.Instance.LoadConfigData();
         DataManager.Instance.LoadUserData();
         TitleManager.Instance.Init();
+        UserManager.Instance.Init();
         DialogueManager.Instance.Init();
         PXSceneManager.Instance.Init();
     }
@@ -99,7 +102,8 @@ public class GameManager : MonoSingleton<GameManager>
     {
         var obj = GameObject.Find("Player");
         player = obj.GetComponent<CharController>();
-        player.charBase = new CharBase(DataManager.Instance.Characters[1]);
+        player.charBase = new Player(DataManager.Instance.Characters[1]);
+        UserManager.Instance.playerdata = player.charBase;
         TitleManager.Instance.OnTitleEquiped += player.charBase.attributes.Recalculate;
         TitleManager.Instance.OnTitleUnEquiped += player.charBase.attributes.Recalculate;
         player.charBase.attributes.Recalculate();

@@ -22,4 +22,14 @@ public static class Consts
         public const int Mid_Kill_Teaching = 21;
         public const int Pro_Kill_Teaching = 25;
     }
+    public static class Title
+    {
+        public const int Equip_Load = 15; 
+        public const int UnEquip_Load = 10;
+    }
+    public static class Player
+    {
+        public const int ID = 1;
+    }
+
 }

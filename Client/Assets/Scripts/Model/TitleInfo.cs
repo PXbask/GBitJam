@@ -1,4 +1,5 @@
 ﻿using Define;
+using Manager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace Model
             if (define.TitleAffect != 0)
                 this.affects = DataManager.Instance.TitleAffects[define.TitleAffect];
         }
+
         public string GetDetailedInfo(int touchedLevel)
         {
             if(define.TitleType!=TitleType.Assist) return string.Empty;
@@ -38,6 +40,7 @@ namespace Model
             if (curAffect.DamgeResistenceGainV != 0) sb.AppendLine(GetStandardtext("抗性", curAffect.DamgeResistenceGainV, touchedAffect.DamgeResistenceGainV, touchedLevel));
             if (curAffect.GoldGainV != 0) sb.AppendLine(GetStandardtext("金币", curAffect.GoldGainV, touchedAffect.GoldGainV, touchedLevel));
             if (curAffect.ExpGainV != 0) sb.AppendLine(GetStandardtext("经验", curAffect.ExpGainV, touchedAffect.ExpGainV, touchedLevel));
+            if (curAffect.PartGainV != 0) sb.AppendLine(GetStandardtext("碎片", curAffect.PartGainV, touchedAffect.PartGainV, touchedLevel));
             return sb.ToString();
         }
         private string GetStandardtext(string tag,float pre,float pro, int targetLevel)
@@ -54,6 +57,23 @@ namespace Model
                 tag, c1.ToString(), (Math.Abs(pre * 100)).ToString("f1"), isAdd ? "#00FF00" : "#FF0000",
                 isAdd ? "+" : "-", (Math.Abs(pro - pre) * 100).ToString("f1"));
             }
+        }
+        public (int, int) GetLevelupResCost()
+        {
+            int level = this.level;
+            int quality = define.Quality;
+            if (level < 0 || level > 2) return (0, 0);
+            int gold = TitleDefine.GoldCost[quality - 1, level];
+            int parts = TitleDefine.PartCost[quality - 1, level];
+            return (gold, parts);
+        }
+
+        public void Upgrade()
+        {
+            (int gold, int part) = GetLevelupResCost();
+            if (UserManager.Instance.gold >= gold) UserManager.Instance.gold -= gold;
+            if (UserManager.Instance.parts >= part) UserManager.Instance.parts -= part;
+            level++;
         }
     }
 }

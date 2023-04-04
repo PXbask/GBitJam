@@ -1,3 +1,4 @@
+using Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,7 @@ public class CharController : MonoBehaviour
 {
     public Camera mainCamera;
 
-    public CharBase charBase;
+    public Player charBase;
     public AtkStyle atkStyle;
 
     [SerializeField] PlayerStatus status;

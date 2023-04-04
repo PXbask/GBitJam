@@ -1,4 +1,5 @@
 using Define;
+using Manager;
 using Model;
 using Newtonsoft.Json;
 using System;
@@ -25,7 +26,7 @@ public class DataManager : Singleton<DataManager>
     public Dictionary<int, WeaponDefine> Weapons = new Dictionary<int, WeaponDefine>();
     public Dictionary<int, Dictionary<int, DialogueDefine>> Dialogues = new Dictionary<int, Dictionary<int, DialogueDefine>>();
     public Dictionary<int, Dictionary<int, LevelDefine>> Levels = new Dictionary<int, Dictionary<int, LevelDefine>>();
-    public CharacterDefine PlayerDefine => Characters[0];
+    public CharacterDefine PlayerDefine => Characters[Consts.Player.ID];
     public DataManager()
     {
         Debug.Log("<color=#FF00FF>DataManager Init</color>");
@@ -84,6 +85,8 @@ public class DataManager : Singleton<DataManager>
         saveData.playerPos = GetPlayerPos();
         saveData.equipedTitle = GetEquipedTitle();
         saveData.playerLevel = GetPlayerLevel();
+        saveData.exp = GetPlayerExp();
+        saveData.load = GetPlayerLoad();
         saveData.gold = GetPlayerGold();
         saveData.parts = GetPlayerParts();
 #if UNITY_EDITOR
@@ -143,16 +146,24 @@ public class DataManager : Singleton<DataManager>
     }
     private int GetPlayerLevel()
     {
-        return GameManager.Instance.player.charBase.level;
+        return UserManager.Instance.level;
+    }
+    private int GetPlayerExp()
+    {
+        return UserManager.Instance.exp;
+    }
+    private int GetPlayerLoad()
+    {
+        return UserManager.Instance.Load;
     }
     private int GetPlayerParts()
     {
-        return GameManager.Instance.player.charBase.parts;
+        return UserManager.Instance.parts;
     }
 
     private int GetPlayerGold()
     {
-        return GameManager.Instance.player.charBase.gold;
+        return UserManager.Instance.gold;
     }
     #endregion
 }

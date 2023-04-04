@@ -13,8 +13,8 @@ using UnityEngine;
 
 public class TitleManager : Singleton<TitleManager>
 {
-    public Action OnTitleEquiped = null;
-    public Action OnTitleUnEquiped = null;
+    public Action<int> OnTitleEquiped = null;
+    public Action<int> OnTitleUnEquiped = null;
 
     public Dictionary<int, TitleInfo> AllGainedTitle = new Dictionary<int, TitleInfo>();
     public Dictionary<int, TitleInfo> AllUnGainedTitle = new Dictionary<int, TitleInfo>();
@@ -62,7 +62,7 @@ public class TitleManager : Singleton<TitleManager>
             {
                 info.equiped = true;
                 EquipedTitle.Add(info);
-                OnTitleEquiped?.Invoke();
+                OnTitleEquiped?.Invoke(id);
                 Debug.LogFormat("装备了{0}", info.define.Name);
             }
         }
@@ -78,7 +78,7 @@ public class TitleManager : Singleton<TitleManager>
         {
             info.equiped = false;
             EquipedTitle.Remove(info);
-            OnTitleUnEquiped?.Invoke();
+            OnTitleUnEquiped?.Invoke(id);
             Debug.LogFormat("取下了{0}", info.define.Name);
         }
         else

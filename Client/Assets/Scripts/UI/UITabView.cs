@@ -18,15 +18,18 @@ public class UITabView : MonoBehaviour
     public UnityAction<int> OnTabSelect;
     public int index = -1;
 
+    public ScrollRect scroll;
+
     private IEnumerator Start()
     {
+        if(scroll) OnTabSelect += ScrollRectChanged;
         for (int i = 0; i < uITabButtons.Length; i++)
         {
             uITabButtons[i].tabView = this;
             uITabButtons[i].tabIndex = i;
         }
-        yield return new WaitForEndOfFrame();
         SelectTab(0);
+        yield return null;
     }
 
     internal void SelectTab(int tabIndex)
@@ -43,5 +46,14 @@ public class UITabView : MonoBehaviour
             if (this.OnTabSelect != null)
                 this.OnTabSelect(tabIndex);
         }
+    }
+    public void ScrollRectChanged(int index)
+    {
+        scroll.content = tabPages[index].transform as RectTransform;
+    }
+    private void OnDestroy()
+    {
+        if (scroll) 
+            OnTabSelect -= ScrollRectChanged;
     }
 }

@@ -1,3 +1,4 @@
+using Define;
 using Model;
 using System.Collections;
 using System.Collections.Generic;
@@ -32,10 +33,6 @@ public class UITitleItem : MonoBehaviour,IPointerClickHandler
             levelItem[i].color = i <= info.level - 1 ? Color.yellow : Color.white;
         }
         eqtag.SetActive(info.equiped);
-        if(!info.gained)
-            background.color = Color.gray;
-        else
-            background.color = Color.white;
     }
     public void OnPointerClick(PointerEventData eventData)
     {

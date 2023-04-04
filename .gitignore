@@ -38,7 +38,6 @@ ipch/
 *.sdf
 *.cachefile
 *.o
-*.obj
 *.idb
 *.pdb
 *.d

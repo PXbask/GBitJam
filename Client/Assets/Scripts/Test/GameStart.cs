@@ -1,4 +1,5 @@
 using Manager;
+using Model;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -32,7 +33,7 @@ public class GameStart : MonoBehaviour
         obj.name = "Player";
         //Ω≈±æ≥ı ºªØ
         player = obj.GetComponent<CharController>();
-        player.charBase = new CharBase(DataManager.Instance.Characters[0]);
+        player.charBase = new Player(DataManager.Instance.Characters[0]);
         TitleManager.Instance.OnTitleEquiped += player.charBase.attributes.Recalculate;
         TitleManager.Instance.OnTitleUnEquiped += player.charBase.attributes.Recalculate;
         player.charBase.attributes.Recalculate();

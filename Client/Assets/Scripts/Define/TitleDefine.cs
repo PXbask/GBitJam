@@ -23,7 +23,7 @@ namespace Define
         public int PartsBorn { get; set; }//碎片产出数量
         public static int[,] GoldCost = new int[3, 3]
         {
-            {100,400,900 },
+            {100,400,500 },
             {200,400,600 },
             {300,100,100 }
         };

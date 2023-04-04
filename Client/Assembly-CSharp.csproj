@@ -63,7 +63,6 @@
     <Compile Include="Assets\Scripts\GameObject\Level\AutomaticDoor.cs" />
     <Compile Include="Assets\Scripts\Define\DialogueDefine.cs" />
     <Compile Include="Assets\Scripts\Define\CharacterDefine.cs" />
-    <Compile Include="Assets\Scripts\UI\UIDebug.cs" />
     <Compile Include="Assets\Scripts\GameObject\TitleLogic.cs" />
     <Compile Include="Assets\Scripts\UI\UITitle.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\Geometry\CompositeShapeData.cs" />
@@ -100,6 +99,7 @@
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\PropGroup.cs" />
     <Compile Include="Assets\Scripts\Assets\Resloader.cs" />
     <Compile Include="Assets\Scripts\GameObject\SceneLogic.cs" />
+    <Compile Include="Assets\Scripts\Define\LevelDefine.cs" />
     <Compile Include="Assets\Scripts\GameObject\CharController.cs" />
     <Compile Include="Assets\Map\Assets\PBS Materials Variety Pack\zzz\MaterialRandomizerScript.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\Geometry\Triangulator.cs" />
@@ -132,7 +132,8 @@
     <Compile Include="Assets\Scripts\Manager\UIManager.cs" />
     <Compile Include="Assets\Scripts\Manager\TitleManager.cs" />
     <Compile Include="Assets\Scripts\Manager\InputManager.cs" />
-    <Compile Include="Assets\Scripts\Define\LevelDefine.cs" />
+    <Compile Include="Assets\Scripts\Model\Player.cs" />
+    <Compile Include="Assets\Scripts\Manager\UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\_LineStripShader.cginc" />

@@ -1,7 +1,10 @@
+using Manager;
+using Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,16 +21,17 @@ public class UITitle : UIWindow
     [Header("左侧显示UI")]
     public Text hptext;
     public Text damageresistext;
-    public Text accutext;
     public Text movevelotext;
-    public Text atkvelotext;
     public Text damgtext;
     public Text goldgaintext;
     public Text expgaintext;
     public Slider expslider;
     public Text exptext;
+    public Text expbartext;
     public List<GameObject> slots = new List<GameObject>();
     public List<UITitleSlotMask> masks = new List<UITitleSlotMask>();
+    public Slider loadslider;
+    public Text loadbartext;
     public Text goldtext;
     public Text tmpgoldtext;
     public Text parttext;
@@ -36,6 +40,7 @@ public class UITitle : UIWindow
     public GameObject contentprefab;
     public UITabView tabview;
     [Header("右侧显示UI")]
+    public GameObject rightcontent;
     public RawImage titleimg;
     public Text titletype;
     public Text titlename;
@@ -49,10 +54,10 @@ public class UITitle : UIWindow
     public Button exit;
     #endregion
     #region consts
-    public const int SLOT_COLUME_COUNT = 9;
     public const int SLOTS_STEP = 20;
     #endregion
     public UITitleItem selectedItem;
+    Dictionary<int, List<UITitleItem>> TitleItems = new Dictionary<int, List<UITitleItem>>();
     protected override void OnStart()
     {
         for(int i=0;i<levelitems.Count; i++)
@@ -61,9 +66,19 @@ public class UITitle : UIWindow
             levelitems[i].OnLevelItemTouched += this.OnLevelItemTouched;
             levelitems[i].OnLevelItemUnTouched += this.OnLevelItemUnTouched;
         }
-        SetPlayerAttriInfo();
+        SetInfo();
         TitleManager.Instance.OnTitleEquiped += this.OnEquipedTitleChanged;
         TitleManager.Instance.OnTitleUnEquiped += this.OnEquipedTitleChanged;
+    }
+    public void SetInfo()
+    {
+        SetPlayerAttriInfo();
+        SetLevelBar();
+        SetTitleSlot();
+        SetResourcesData();
+        SetLoadBar();
+        SetTitleContent();
+        SetTitleInfoPanel();
     }
     private void SetPlayerAttriInfo()
     {
@@ -71,23 +86,19 @@ public class UITitle : UIWindow
 
         hptext.text = attri.HP.ToString();
         damageresistext.text = (attri.DamageResistence * 100).ToString() + "%";
-        accutext.text = (attri.Accuracy * 100).ToString() + "%";
         movevelotext.text = (attri.MoveVelocityRatio * 100).ToString() + "%";
-        atkvelotext.text = (attri.AttackVelocityRatio * 100).ToString() + "%";
-        damgtext.text = attri.Damage.ToString();
+        damgtext.text = attri.DamageRatio.ToString();
         goldgaintext.text = (attri.GoldRatio * 100).ToString() + "%";
         expgaintext.text = (attri.ExpRatio * 100).ToString() + "%";
-
-        expslider.maxValue = GameManager.Instance.player.charBase.attributes.baseAttribute.HP;
-        expslider.value = attri.HP;
-        exptext.text = "";//暂定
-
-        SetTitleSlot();
-        SetResourcesData();
-
-        SetTitleContent();
     }
-
+    private void SetLevelBar()
+    {
+        var playerInfo = GameManager.Instance.player.charBase;
+        exptext.text = "Lv. " + UserManager.Instance.level.ToString();
+        expslider.maxValue = DataManager.Instance.Levels[1][UserManager.Instance.level].ExpCost;
+        expslider.value = UserManager.Instance.exp;
+        expbartext.text = string.Format("{0} / {1}", expslider.value, expslider.maxValue);
+    }
     private void SetTitleSlot()
     {
         foreach (var mask in masks)
@@ -102,10 +113,29 @@ public class UITitle : UIWindow
             totalSize += size;
         }
     }
+    private void SetLoadBar()
+    {
+        var playerInfo = GameManager.Instance.player.charBase;
+        loadslider.maxValue = DataManager.Instance.Levels[1][UserManager.Instance.level].LoadMax;
+        loadslider.value = UserManager.Instance.Load;
+        loadbartext.text = string.Format("{0} / {1}", loadslider.value, loadslider.maxValue);
+    }
     private void SetResourcesData()
     {
-        goldtext.text = GameManager.Instance.player.charBase.gold.ToString();
-        parttext.text = GameManager.Instance.player.charBase.parts.ToString();
+        goldtext.text = UserManager.Instance.gold.ToString();
+        parttext.text = UserManager.Instance.parts.ToString();
+    }
+    public void SetTmpResourcesData()
+    {
+        if (selectedItem == null) return;
+        (int gold, int part) res = selectedItem.info.GetLevelupResCost();
+        if (res.gold != 0) tmpgoldtext.text = (-res.gold).ToString();
+        if (res.part != 0) tmpparttext.text = (-res.part).ToString();
+    }
+    public void ResetTmpResourcesData()
+    {
+        tmpgoldtext.text = string.Empty;
+        tmpparttext.text = string.Empty;
     }
     private void SetTitleContent()
     {
@@ -116,6 +146,11 @@ public class UITitle : UIWindow
                 Destroy(p.transform.GetChild(i).gameObject);
             }
         }
+        TitleItems.Clear();
+
+        TitleItems.Add(0, new List<UITitleItem>());
+        TitleItems.Add(1, new List<UITitleItem>());
+        TitleItems.Add(2, new List<UITitleItem>());
         foreach (var title in TitleManager.Instance.AllGainedTitle)
         {
             TitleType type = title.Value.define.TitleType;
@@ -125,31 +160,54 @@ public class UITitle : UIWindow
             UITitleItem item = obj.GetComponent<UITitleItem>();
             item.SetInfo(title.Value);
             item.title = this;
+
+            TitleItems[(int)type - 1].Add(item);
         }
-        foreach (var title in TitleManager.Instance.AllUnGainedTitle)
+        //foreach (var title in TitleManager.Instance.AllUnGainedTitle)
+        //{
+        //    TitleType type = title.Value.define.TitleType;
+        //    if (type == TitleType.None) continue;
+        //    GameObject gobj = tabview.tabPages[(int)type - 1];
+        //    var obj = Instantiate(contentprefab, gobj.transform);
+        //    UITitleItem item = obj.GetComponent<UITitleItem>();
+        //    item.SetInfo(title.Value);
+        //    item.title = this;
+        //}
+    }
+    private void SetTitleContent(int id)
+    {
+        foreach (var lists in TitleItems.Values)
         {
-            TitleType type = title.Value.define.TitleType;
-            if (type == TitleType.None) continue;
-            GameObject gobj = tabview.tabPages[(int)type - 1];
-            var obj = Instantiate(contentprefab, gobj.transform);
-            UITitleItem item = obj.GetComponent<UITitleItem>();
-            item.SetInfo(title.Value);
-            item.title = this;
+            for(int i = 0; i < lists.Count; i++)
+            {
+                if (lists[i].info.ID==id)
+                {
+                    lists[i].SetInfo(lists[i].info);
+                }
+            }
         }
     }
     private void SetTitleInfoPanel()
     {
-        if (selectedItem == null) return;
-        titletype.text = selectedItem.info.define.TitleType.ToString();
-        titlename.text = selectedItem.info.define.Name.ToString();
-        titledescri.text = selectedItem.info.define.Description.ToString();
-        titleaffectinfo.text = selectedItem.info.GetDetailedInfo(selectedItem.info.level);
-        for (int i = 0; i < levelitems.Count; i++)
+        if (selectedItem == null)
         {
-            levelitems[i].color = i <= selectedItem.info.level - 1 ? Color.yellow : Color.white;
+            rightcontent.SetActive(false);
         }
-        equipbtn.gameObject.SetActive(!selectedItem.info.equiped);
-        unequipbtn.gameObject.SetActive(selectedItem.info.equiped);
+        else
+        {
+            rightcontent.SetActive(true);
+            titletype.text = selectedItem.info.define.TitleType.ToString();
+            titlename.text = selectedItem.info.define.Name.ToString();
+            titledescri.text = selectedItem.info.define.Description.ToString();
+            titleaffectinfo.text = selectedItem.info.GetDetailedInfo(selectedItem.info.level);
+            for (int i = 0; i < levelitems.Count; i++)
+            {
+                levelitems[i].color = i <= selectedItem.info.level - 1 ? Color.yellow : Color.white;
+            }
+            equipbtn.gameObject.SetActive(!selectedItem.info.equiped);
+            unequipbtn.gameObject.SetActive(selectedItem.info.equiped);
+        }
+
     }
     private void SetDetailedInfoPanel(int level)
     {
@@ -166,10 +224,12 @@ public class UITitle : UIWindow
     }
     public void OnClickEquipBtn()
     {
-        if (!selectedItem.info.gained) return;
+        if (UserManager.Instance.isOverLoad) return;
+        if (!selectedItem) return;
         if (selectedItem.info.equiped) return;
-        if (TitleManager.Instance.EquipedSize + selectedItem.info.define.Size <= 12)//暂定为12
+        if (TitleManager.Instance.EquipedSize + selectedItem.info.define.Size <= 11)
         {
+            UserManager.Instance.Load = Math.Clamp(UserManager.Instance.Load + Consts.Title.Equip_Load, 0, UserManager.Instance.loadMax);
             TitleManager.Instance.Equip(selectedItem.info.ID);
         }
         else
@@ -180,23 +240,37 @@ public class UITitle : UIWindow
     }
     public void OnClickUnEquipBtn()
     {
-        if (!selectedItem.info.gained) return;
+        if (UserManager.Instance.isOverLoad) return;
+        if (!selectedItem) return;
         if (!selectedItem.info.equiped) return;
+        UserManager.Instance.Load = Math.Clamp(UserManager.Instance.Load + Consts.Title.UnEquip_Load, 0, UserManager.Instance.loadMax);
         TitleManager.Instance.UnEquip(selectedItem.info.ID);
     }
-    public void OnEquipedTitleChanged()
+    public void OnEquipedTitleChanged(int id)
     {
         SetTitleSlot();
-        SetTitleContent();
+        //SetTitleContent();//不优雅
+        SetTitleContent(id);
         SetPlayerAttriInfo();
+        SetLoadBar();
+        SetTitleInfoPanel();
     }
     private void OnLevelItemTouched(int obj)
     {
         SetDetailedInfoPanel(obj);
     }
-
     private void OnLevelItemUnTouched(int obj)
     {
         if(selectedItem) SetDetailedInfoPanel(selectedItem.info.level);
+    }
+    public void OnClickUpgradeBtn()
+    {
+        if (!selectedItem) return;
+        selectedItem.info.Upgrade();
+        SetResourcesData();
+        SetTmpResourcesData();
+        SetTitleContent(selectedItem.info.ID);
+        SetTitleInfoPanel();
+        Debug.LogFormat("升级芯片[Name:{0} Id:{1}]", selectedItem.info.define.Name, selectedItem.info.define.ID);
     }
 }

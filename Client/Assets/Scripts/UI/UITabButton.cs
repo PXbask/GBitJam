@@ -18,7 +18,7 @@ public class UITabButton : MonoBehaviour
     public bool isSelected = false;
     private Image tabImage;
 
-    void Start()
+    void Awake()
     {
         tabImage = GetComponent<Image>();
         normalImage = tabImage.sprite;

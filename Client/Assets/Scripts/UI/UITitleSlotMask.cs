@@ -1,3 +1,4 @@
+using Manager;
 using Model;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ using UnityEngine.UI;
 
 public class UITitleSlotMask : MonoBehaviour,IPointerClickHandler
 {
-    const float SLOT_STEP = 12;
+    const float SLOT_STEP = 17;
     const float SLOT_WIDTH = 40;
     const float SLOT_HEIGHT = 40;
     RectTransform rectTransform;
@@ -63,6 +64,8 @@ public class UITitleSlotMask : MonoBehaviour,IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (UserManager.Instance.isOverLoad) return;
+        UserManager.Instance.Load = System.Math.Clamp(UserManager.Instance.Load + Consts.Title.UnEquip_Load, 0, UserManager.Instance.loadMax);
         TitleManager.Instance.UnEquip(info.ID);
     }
 }

@@ -68,7 +68,6 @@
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\Geometry\CompositeShapeData.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\JumpArea.cs" />
     <Compile Include="Assets\Scripts\UI\UIWindow.cs" />
-    <Compile Include="Assets\Scripts\ListView\EquipListViewCell.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\GateConsole.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\MeshExtension.cs" />
     <Compile Include="Assets\Scripts\Utilities\Singleton.cs" />
@@ -84,7 +83,8 @@
     <Compile Include="Assets\Scripts\Define\TitleDefine.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\OriginOffsetRPP.cs" />
     <Compile Include="Assets\Scripts\Define\TitleAffectDefine.cs" />
-    <Compile Include="Assets\Scripts\UI\UITitleItem.cs" />
+    <Compile Include="Assets\Scripts\UI\Items\UITitleItem.cs" />
+    <Compile Include="Assets\Scripts\Model\Player.cs" />
     <Compile Include="Assets\Scripts\DataStruct\FixedCapQueue.cs" />
     <Compile Include="Assets\Scripts\UI\UITitleSlotMask.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\InteractionGate.cs" />
@@ -98,7 +98,9 @@
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\BMTSetInstaller.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\PropGroup.cs" />
     <Compile Include="Assets\Scripts\Assets\Resloader.cs" />
+    <Compile Include="Assets\Scripts\UI\UIAtla.cs" />
     <Compile Include="Assets\Scripts\GameObject\SceneLogic.cs" />
+    <Compile Include="Assets\Scripts\UI\Items\UIAtlaItem.cs" />
     <Compile Include="Assets\Scripts\Define\LevelDefine.cs" />
     <Compile Include="Assets\Scripts\GameObject\CharController.cs" />
     <Compile Include="Assets\Map\Assets\PBS Materials Variety Pack\zzz\MaterialRandomizerScript.cs" />
@@ -118,10 +120,10 @@
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\BuildingUnit.cs" />
     <Compile Include="Assets\Scripts\Model\CharBase.cs" />
     <Compile Include="Assets\Scripts\Manager\DataManager.cs" />
+    <Compile Include="Assets\Scripts\Manager\UserManager.cs" />
     <Compile Include="Assets\Map\Assets\PBS Materials Variety Pack\zzz\MaterialRandomizer.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\BHUtilities.cs" />
     <Compile Include="Assets\Scripts\GameObject\BulletLogic.cs" />
-    <Compile Include="Assets\Scripts\UI\UIEquip.cs" />
     <Compile Include="Assets\Scripts\UI\UIWorldTips.cs" />
     <Compile Include="Assets\Scripts\Utilities\Enums.cs" />
     <Compile Include="Assets\Scripts\UI\UILevelItemOverable.cs" />
@@ -132,8 +134,6 @@
     <Compile Include="Assets\Scripts\Manager\UIManager.cs" />
     <Compile Include="Assets\Scripts\Manager\TitleManager.cs" />
     <Compile Include="Assets\Scripts\Manager\InputManager.cs" />
-    <Compile Include="Assets\Scripts\Model\Player.cs" />
-    <Compile Include="Assets\Scripts\Manager\UserManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\_LineStripShader.cginc" />

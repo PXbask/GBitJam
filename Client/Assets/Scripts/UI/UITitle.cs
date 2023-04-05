@@ -273,4 +273,8 @@ public class UITitle : UIWindow
         SetTitleInfoPanel();
         Debug.LogFormat("Éý¼¶Ð¾Æ¬[Name:{0} Id:{1}]", selectedItem.info.define.Name, selectedItem.info.define.ID);
     }
+    public void OnClickAltaBtn()
+    {
+        UIManager.Instance.Show<UIAtla>();
+    }
 }

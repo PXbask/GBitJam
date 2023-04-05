@@ -18,10 +18,10 @@ namespace Manager
         private Dictionary<Type, UIElement> UIResources = new Dictionary<Type, UIElement>();
         public UIManager()
         {
-            this.UIResources.Add(typeof(UIEquip), new UIElement() { Resources = @"Prefab/UI/UIEquip", Cache = false });
             this.UIResources.Add(typeof(UITitle), new UIElement() { Resources = @"Prefab/UI/UITitle", Cache = false });
             this.UIResources.Add(typeof(UIDialogue), new UIElement() { Resources = @"Prefab/UI/UIDialogue", Cache = true });
             this.UIResources.Add(typeof(UIWorldTips), new UIElement() { Resources = @"Prefab/UI/UIWorldTips", Cache = false });
+            this.UIResources.Add(typeof(UIAtla), new UIElement() { Resources = @"Prefab/UI/UIAtla", Cache = false });
         }
         ~UIManager() { }
         public T Show<T>()

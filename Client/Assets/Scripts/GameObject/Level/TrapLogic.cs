@@ -9,7 +9,7 @@ using UnityEngine;
     Overview:
 */
 
-public abstract class TrapLogic : MonoBehaviour, IInteract
+public abstract class TrapLogic : MonoBehaviour, IInteractable
 {
     public CharController controller;
     protected KeyCode interactKey;

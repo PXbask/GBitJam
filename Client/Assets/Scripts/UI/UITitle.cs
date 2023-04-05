@@ -94,9 +94,9 @@ public class UITitle : UIWindow
     private void SetLevelBar()
     {
         var playerInfo = GameManager.Instance.player.charBase;
-        exptext.text = "Lv. " + UserManager.Instance.level.ToString();
-        expslider.maxValue = DataManager.Instance.Levels[1][UserManager.Instance.level].ExpCost;
-        expslider.value = UserManager.Instance.exp;
+        exptext.text = "Lv. " + UserManager.Instance.Level.ToString();
+        expslider.maxValue = DataManager.Instance.Levels[1][UserManager.Instance.Level].ExpCost;
+        expslider.value = UserManager.Instance.Exp;
         expbartext.text = string.Format("{0} / {1}", expslider.value, expslider.maxValue);
     }
     private void SetTitleSlot()
@@ -116,7 +116,7 @@ public class UITitle : UIWindow
     private void SetLoadBar()
     {
         var playerInfo = GameManager.Instance.player.charBase;
-        loadslider.maxValue = DataManager.Instance.Levels[1][UserManager.Instance.level].LoadMax;
+        loadslider.maxValue = DataManager.Instance.Levels[1][UserManager.Instance.Level].LoadMax;
         loadslider.value = UserManager.Instance.Load;
         loadbartext.text = string.Format("{0} / {1}", loadslider.value, loadslider.maxValue);
     }
@@ -151,8 +151,9 @@ public class UITitle : UIWindow
         TitleItems.Add(0, new List<UITitleItem>());
         TitleItems.Add(1, new List<UITitleItem>());
         TitleItems.Add(2, new List<UITitleItem>());
-        foreach (var title in TitleManager.Instance.AllGainedTitle)
+        foreach (var title in TitleManager.Instance.AllTitles)
         {
+            if (!title.Value.gained) continue;
             TitleType type = title.Value.define.TitleType;
             if (type == TitleType.None) continue;
             GameObject gobj = tabview.tabPages[(int)type - 1];
@@ -163,16 +164,6 @@ public class UITitle : UIWindow
 
             TitleItems[(int)type - 1].Add(item);
         }
-        //foreach (var title in TitleManager.Instance.AllUnGainedTitle)
-        //{
-        //    TitleType type = title.Value.define.TitleType;
-        //    if (type == TitleType.None) continue;
-        //    GameObject gobj = tabview.tabPages[(int)type - 1];
-        //    var obj = Instantiate(contentprefab, gobj.transform);
-        //    UITitleItem item = obj.GetComponent<UITitleItem>();
-        //    item.SetInfo(title.Value);
-        //    item.title = this;
-        //}
     }
     private void SetTitleContent(int id)
     {

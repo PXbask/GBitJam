@@ -24,8 +24,8 @@ namespace Define
         public static int[,] GoldCost = new int[3, 3]
         {
             {100,400,500 },
-            {200,400,600 },
-            {300,100,100 }
+            {200,500,700 },
+            {500,700,900 }
         };
         public static int[,] PartCost = new int[3, 3]
         {

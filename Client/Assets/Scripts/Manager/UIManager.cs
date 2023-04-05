@@ -9,6 +9,7 @@ namespace Manager
 {
     public class UIManager : Singleton<UIManager>
     {
+        public UIDynamic dynamicPanel;
         class UIElement
         {
             public string Resources;
@@ -22,6 +23,8 @@ namespace Manager
             this.UIResources.Add(typeof(UIDialogue), new UIElement() { Resources = @"Prefab/UI/UIDialogue", Cache = true });
             this.UIResources.Add(typeof(UIWorldTips), new UIElement() { Resources = @"Prefab/UI/UIWorldTips", Cache = false });
             this.UIResources.Add(typeof(UIAtla), new UIElement() { Resources = @"Prefab/UI/UIAtla", Cache = false });
+            this.UIResources.Add(typeof(UIBattle), new UIElement() { Resources = @"Prefab/UI/UIBattle", Cache = false });
+            this.UIResources.Add(typeof(UIDynamic), new UIElement() { Resources = @"Prefab/UI/UIDynamic", Cache = false });
         }
         ~UIManager() { }
         public T Show<T>()
@@ -90,6 +93,10 @@ namespace Manager
         internal void CloseWorldTip()
         {
             this.Close<UIWorldTips>();
+        }
+        public void AddGainMessage(string str)
+        {
+            dynamicPanel.AddGainMsg(str);
         }
     }
 }

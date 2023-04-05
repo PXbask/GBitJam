@@ -61,6 +61,7 @@
     <Compile Include="Assets\Map\Assets\VolumetricLines\Scripts\VolumetricLineVertexData.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\RowPropPlacer.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\AutomaticDoor.cs" />
+    <Compile Include="Assets\Scripts\UI\Items\UIGainTipItem.cs" />
     <Compile Include="Assets\Scripts\Define\DialogueDefine.cs" />
     <Compile Include="Assets\Scripts\Define\CharacterDefine.cs" />
     <Compile Include="Assets\Scripts\GameObject\TitleLogic.cs" />
@@ -68,11 +69,14 @@
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\Geometry\CompositeShapeData.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\JumpArea.cs" />
     <Compile Include="Assets\Scripts\UI\UIWindow.cs" />
+    <Compile Include="Assets\Scripts\UI\UIBattle.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\GateConsole.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\MeshExtension.cs" />
+    <Compile Include="Assets\Scripts\UI\UIDynamic.cs" />
     <Compile Include="Assets\Scripts\Utilities\Singleton.cs" />
     <Compile Include="Assets\Scripts\Manager\GameManager.cs" />
     <Compile Include="Assets\Scripts\UI\UITabButton.cs" />
+    <Compile Include="Assets\Scripts\UI\UIGainTips.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\Geometry\CompositeShape.cs" />
     <Compile Include="Assets\Scripts\DataStruct\PXVector3.cs" />
     <Compile Include="Assets\Scripts\Manager\PXSceneManager.cs" />
@@ -119,6 +123,8 @@
     <Compile Include="Assets\Scripts\Model\Attributes.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\BuildingUnit.cs" />
     <Compile Include="Assets\Scripts\Model\CharBase.cs" />
+    <Compile Include="Assets\Scripts\DataStruct\PXTimerQueue.cs" />
+    <Compile Include="Assets\Scripts\GameObject\Level\Chest.cs" />
     <Compile Include="Assets\Scripts\Manager\DataManager.cs" />
     <Compile Include="Assets\Scripts\Manager\UserManager.cs" />
     <Compile Include="Assets\Map\Assets\PBS Materials Variety Pack\zzz\MaterialRandomizer.cs" />

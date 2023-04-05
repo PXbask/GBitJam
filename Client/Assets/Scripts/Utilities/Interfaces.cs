@@ -8,7 +8,7 @@ using UnityEngine;
     Overview:各种接口
 */
 
-public interface IInteract
+public interface IInteractable
 {
     void Interact(KeyCode code);
 }

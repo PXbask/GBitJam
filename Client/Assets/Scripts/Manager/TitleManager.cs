@@ -1,3 +1,4 @@
+using Manager;
 using Model;
 using System;
 using System.Collections;
@@ -16,8 +17,8 @@ public class TitleManager : Singleton<TitleManager>
     public Action<int> OnTitleEquiped = null;
     public Action<int> OnTitleUnEquiped = null;
 
-    public Dictionary<int, TitleInfo> AllGainedTitle = new Dictionary<int, TitleInfo>();
-    public Dictionary<int, TitleInfo> AllUnGainedTitle = new Dictionary<int, TitleInfo>();
+    public Dictionary<int, TitleInfo> AllTitles = new Dictionary<int, TitleInfo>();
+    public Dictionary<int, List<TitleInfo>> AllTypeTitles = new Dictionary<int, List<TitleInfo>>();
     public List<TitleInfo> EquipedTitle= new List<TitleInfo>();
     public int EquipedSize
     {
@@ -33,18 +34,20 @@ public class TitleManager : Singleton<TitleManager>
     }
     public void Init()
     {
+        AllTypeTitles.Add(1, new List<TitleInfo>());
+        AllTypeTitles.Add(2, new List<TitleInfo>());
+        AllTypeTitles.Add(3, new List<TitleInfo>());
         foreach (var arr in DataManager.Instance.SaveData.alltitlesData)
         {
-            if (arr[2] == 1)
-                AllGainedTitle.Add(arr[0], new TitleInfo(arr[0], arr[1], true));
-            else
-                AllUnGainedTitle.Add(arr[0], new TitleInfo(arr[0], 0, false));
+            var info = new TitleInfo(arr[0], arr[1], arr[2] == 1);
+            AllTitles.Add(arr[0], info);
+            AllTypeTitles[info.define.Quality].Add(info);
         }
         foreach (var id in DataManager.Instance.SaveData.equipedTitle)
         {
-            if (AllGainedTitle.TryGetValue(id,out TitleInfo info)){
+            if (AllTitles.TryGetValue(id, out TitleInfo info))
+            {
                 info.equiped = true;
-                EquipedTitle.Add(AllGainedTitle[id]);
             }
             else
             {
@@ -55,7 +58,7 @@ public class TitleManager : Singleton<TitleManager>
     public void Equip(int id)
     {
         TitleInfo info;
-        if(AllGainedTitle.TryGetValue(id,out info))
+        if (AllTitles.TryGetValue(id, out info))
         {
             var temp = EquipedTitle.Where(t => t.ID == id).FirstOrDefault();
             if (temp == null)
@@ -73,8 +76,8 @@ public class TitleManager : Singleton<TitleManager>
     }
     public void UnEquip(int id)
     {
-        TitleInfo info = EquipedTitle.Where(t => t.ID== id).FirstOrDefault();
-        if(info!=null)
+        TitleInfo info = EquipedTitle.Where(t => t.ID == id).FirstOrDefault();
+        if (info != null)
         {
             info.equiped = false;
             EquipedTitle.Remove(info);
@@ -88,18 +91,25 @@ public class TitleManager : Singleton<TitleManager>
     }
     public void GainTitle(int id)
     {
-        if (!AllGainedTitle.TryGetValue(id,out TitleInfo info))
+        if (AllTitles.TryGetValue(id, out TitleInfo info))
         {
-            info = AllUnGainedTitle[id];
-            AllUnGainedTitle.Remove(id);
-
-            info.gained= true;
-            AllGainedTitle[id] = info;
+            Debug.LogFormat("获得了[{0}] id:{1}", info.define.Name, info.ID);
+            if(!info.gained)
+            {
+                info.gained = true;
+                UIManager.Instance.AddGainMessage(info.define.Name);
+            }
+            else
+            {
+                //转换成碎片
+                UIManager.Instance.AddGainMessage(string.Format("获得碎片 *{0}",info.define.PartsBorn.ToString()));
+            }
         }
-        else
-        {
-            //TODO:可升级
-            info.level++;
-        }
+    }
+    public int RandomTitleWithTitleType(int type)
+    {
+        var lists = this.AllTypeTitles[type];
+        int index = UnityEngine.Random.Range(0, lists.Count);
+        return lists[index].ID;
     }
 }

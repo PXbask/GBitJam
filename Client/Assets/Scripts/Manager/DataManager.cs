@@ -84,6 +84,7 @@ public class DataManager : Singleton<DataManager>
         saveData.sceneIndex = GetSceneIndex();
         saveData.playerPos = GetPlayerPos();
         saveData.equipedTitle = GetEquipedTitle();
+        saveData.Hp = GetPlayerHp();
         saveData.playerLevel = GetPlayerLevel();
         saveData.exp = GetPlayerExp();
         saveData.load = GetPlayerLoad();
@@ -111,17 +112,10 @@ public class DataManager : Singleton<DataManager>
     private List<int[]> GetAllTitlesData()
     {
         List<int[]> data = new List<int[]>();
-        foreach (var title in TitleManager.Instance.AllGainedTitle)
+        foreach (var title in TitleManager.Instance.AllTitles)
         {
-            int[] arr = new int[] { title.Key, title.Value.level, 1 };
-            if(arr!=null)
-                data.Add(arr);
-        }
-        foreach (var title in TitleManager.Instance.AllUnGainedTitle)
-        {
-            int[] arr = new int[] { title.Key, 0, 0 };
-            if (arr != null)
-                data.Add(arr);
+            int[] arr = new int[] { title.Key, title.Value.level, title.Value.gained ? 1 : 0 };
+            data.Add(arr);
         }
         return data;
     }
@@ -144,13 +138,17 @@ public class DataManager : Singleton<DataManager>
         }
         return data;
     }
+    private int GetPlayerHp()
+    {
+        return UserManager.Instance.HP;
+    }
     private int GetPlayerLevel()
     {
-        return UserManager.Instance.level;
+        return UserManager.Instance.Level;
     }
     private int GetPlayerExp()
     {
-        return UserManager.Instance.exp;
+        return UserManager.Instance.Exp;
     }
     private int GetPlayerLoad()
     {

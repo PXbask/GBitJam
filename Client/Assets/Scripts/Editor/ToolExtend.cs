@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using Manager;
 
 /*
     Date:
@@ -15,5 +16,10 @@ public class ToolExtend : UnityEditor.Editor
     public static void Save()
     {
          DataManager.Instance?.SaveUserData();
+    }
+    [MenuItem("Tools/AddDynamicMsg")]
+    public static void AddDynamicMsg()
+    {
+        UIManager.Instance.AddGainMessage("Test");
     }
 }

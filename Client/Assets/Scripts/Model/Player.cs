@@ -10,8 +10,8 @@ namespace Model
 {
     public class Player: CharBase
     {
-        public int level => UserManager.Instance.level;
-        public int exp => UserManager.Instance.exp;
+        public int level => UserManager.Instance.Level;
+        public int exp => UserManager.Instance.Exp;
         public int load => UserManager.Instance.Load;
         public int gold => UserManager.Instance.gold;
         public int parts => UserManager.Instance.parts;

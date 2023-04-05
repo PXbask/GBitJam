@@ -11,7 +11,7 @@ using UnityEngine;
 
 public class InputManager : MonoSingleton<InputManager>
 {
-    public IInteract actObj = null;
+    public IInteractable actObj = null;
     public CharController charc;
     public PlayerMovement movement;
     UITitle uititle = null;

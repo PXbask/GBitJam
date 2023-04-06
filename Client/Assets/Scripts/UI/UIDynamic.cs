@@ -12,7 +12,8 @@ using UnityEngine;
 public class UIDynamic : UIWindow
 {
     public UIGainTips gainTips;
-    public UIInteractTips interactTips;
+
+    public UIWarningTips warningTips;
     protected override void OnStart()
     {
         base.OnStart();
@@ -22,13 +23,10 @@ public class UIDynamic : UIWindow
     {
         gainTips.AddMessage(str);
     }
-    public void AddInteractMsg(string str, Transform root)
+
+    public void AddWarning(string str)
     {
-        interactTips.AddMessage(str, root);
-    }
-    public void RemoveInteractMsg(Transform root)
-    {
-        interactTips.RemoveMessage(root);
+        warningTips.AddWarning(str);
     }
     private void OnDestroy()
     {

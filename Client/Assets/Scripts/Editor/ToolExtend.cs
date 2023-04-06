@@ -22,4 +22,9 @@ public class ToolExtend : UnityEditor.Editor
     {
         UIManager.Instance.AddGainMessage("Test");
     }
+    [MenuItem("Tools/PlayerLevelUp")]
+    public static void PlayerLevelUp()
+    {
+        UserManager.Instance.OnLevelUp();
+    }
 }

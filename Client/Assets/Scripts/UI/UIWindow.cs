@@ -25,7 +25,9 @@ public abstract class UIWindow : MonoBehaviour
     }
     public void Close(WindowResult result = WindowResult.None)
     {
+        if (UIManager.Instance.windowStack.Peek() != this) return;
         UIManager.Instance.Close(this.Type);
+        InputManager.Instance.OnCloseUIWindow(this);
         if (this.OnClose != null)
         {
             this.OnClose(this, result);

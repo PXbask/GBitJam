@@ -15,6 +15,7 @@ namespace Manager
         public Action OnPlayerExpChanged = null;
         public Action OnPlayerGoldChanged = null;
         public Action OnPlayerPartChanged = null;
+        public Action OnPlayerLoadChanged = null;
         public Action OnPlayerDead = null;
 
         public Player playerdata;
@@ -68,6 +69,7 @@ namespace Manager
                     isOverLoad = false;
                 }
                 load = value;
+                OnPlayerLoadChanged?.Invoke();
             }
         }
 
@@ -121,6 +123,7 @@ namespace Manager
             Level++;
             GetMaxParams();
             Exp = 0;
+            Debug.LogFormat("角色升级:当前等级:{0}", Level.ToString());
         }
         ~UserManager()
         {

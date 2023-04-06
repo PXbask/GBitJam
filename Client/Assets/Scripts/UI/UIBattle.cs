@@ -18,31 +18,49 @@ public class UIBattle : UIWindow
     public Text leveltext;
     public Slider hpslider;
     public Slider expslider;
+    public Slider loadslider;
 
     public GameObject enemyobj;
     public Text enemynametext;
     public Slider enemyhpslider;
 
     public UIIconList playerIcons;
+    public UIInteractTips interactTips;
 
     //public UIIconList enemyIcons;//TODO£∫µ–»À–æ∆¨Õº±Íœ‘ æ
     protected override void OnStart()
     {
+        UIManager.Instance.battlePanel = this;
+
         UserManager.Instance.OnPlayerHpChanged += SetHpSlider;
         UserManager.Instance.OnPlayerExpChanged += SetExpSlider;
         UserManager.Instance.OnPlayerLevelChanged += SetLevelText;
+        UserManager.Instance.OnPlayerLevelChanged += SetLoadSlider;
+        UserManager.Instance.OnPlayerLoadChanged += SetLoadSlider;
         TitleManager.Instance.OnTitleEquiped += AddIcon;
         TitleManager.Instance.OnTitleUnEquiped += RemoveIcon;
 
         Init();
     }
+
     private void Init()
     {
         SetLevelText();
         SetExpSlider();
         SetHpSlider();
         SetEnemyHpSlider();
+        SetLoadSlider();
         SetIconBar();
+    }
+
+    public void AddInteractMsg(string str, Transform root)
+    {
+        interactTips.AddMessage(str, root);
+    }
+
+    public void RemoveInteractMsg(Transform root)
+    {
+        interactTips.RemoveMessage(root);
     }
 
     private void SetLevelText()
@@ -61,12 +79,17 @@ public class UIBattle : UIWindow
         hpslider.maxValue = UserManager.Instance.hpMax;
         hpslider.value = UserManager.Instance.HP;
     }
+    private void SetLoadSlider()
+    {
+        loadslider.maxValue = UserManager.Instance.loadMax;
+        loadslider.value = UserManager.Instance.Load;
+    }
     private void SetEnemyHpSlider()
     {
         enemynametext.text = "BOSS";
         enemyhpslider.maxValue = 1000;
         enemyhpslider.value = 600;
-        enemyobj.SetActive(true);
+        enemyobj.SetActive(false);
     }
     public void SetIconBar()
     {
@@ -89,8 +112,11 @@ public class UIBattle : UIWindow
 
     private void OnDestroy()
     {
+        UIManager.Instance.battlePanel = null;
+
         UserManager.Instance.OnPlayerHpChanged -= SetHpSlider;
         UserManager.Instance.OnPlayerExpChanged -= SetExpSlider;
+        UserManager.Instance.OnPlayerLevelChanged -= SetLoadSlider;
         UserManager.Instance.OnPlayerLevelChanged -= SetLevelText;
 
         TitleManager.Instance.OnTitleEquiped -= AddIcon;

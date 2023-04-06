@@ -9,7 +9,10 @@ namespace Manager
 {
     public class UIManager : Singleton<UIManager>
     {
+        public UIBattle battlePanel;
         public UIDynamic dynamicPanel;
+        public bool OtherUIOverlayed = false;
+        public Stack<UIWindow> windowStack = new Stack<UIWindow>();
         class UIElement
         {
             public string Resources;
@@ -23,11 +26,11 @@ namespace Manager
             this.UIResources.Add(typeof(UIDialogue), new UIElement() { Resources = @"Prefab/UI/UIDialogue", Cache = true });
             this.UIResources.Add(typeof(UIWorldTips), new UIElement() { Resources = @"Prefab/UI/UIWorldTips", Cache = false });
             this.UIResources.Add(typeof(UIAtla), new UIElement() { Resources = @"Prefab/UI/UIAtla", Cache = false });
-            this.UIResources.Add(typeof(UIBattle), new UIElement() { Resources = @"Prefab/UI/UIBattle", Cache = false });
-            this.UIResources.Add(typeof(UIDynamic), new UIElement() { Resources = @"Prefab/UI/UIDynamic", Cache = false });
+            //this.UIResources.Add(typeof(UIBattle), new UIElement() { Resources = @"Prefab/UI/UIBattle", Cache = false });
+            //this.UIResources.Add(typeof(UIDynamic), new UIElement() { Resources = @"Prefab/UI/UIDynamic", Cache = false });
         }
         ~UIManager() { }
-        public T Show<T>()
+        public T Show<T>() where T : UIWindow
         {
             Type type = typeof(T);
             if (this.UIResources.ContainsKey(type))
@@ -47,7 +50,9 @@ namespace Manager
                     }
                     info.Instance = (GameObject)GameObject.Instantiate(prefab);
                 }
-                return info.Instance.GetComponent<T>();
+                T res = info.Instance.GetComponent<T>();
+                windowStack.Push(res);
+                return res;
             }
             Debug.LogWarningFormat("UI prefab can't find:{0}", type.Name);
             return default(T);
@@ -67,9 +72,10 @@ namespace Manager
                     GameObject.Destroy(uIElement.Instance);
                     uIElement.Instance = null;
                 }
+                windowStack.Pop();
             }
         }
-        public void Close<T>()
+        public void Close<T>() where T : UIWindow
         {
             this.Close(typeof(T));
         }
@@ -100,11 +106,15 @@ namespace Manager
         }
         public void AddInteractMessage(string str,Transform root)
         {
-            dynamicPanel?.AddInteractMsg(str, root);
+            battlePanel?.AddInteractMsg(str, root);
         }
         public void RemoveInteractMessage(Transform root)
         {
-            dynamicPanel?.RemoveInteractMsg(root);
+            battlePanel?.RemoveInteractMsg(root);
+        }
+        public void ShowWarning(string str)
+        {
+            dynamicPanel?.AddWarning(str);
         }
     }
 }

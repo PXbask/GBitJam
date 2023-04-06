@@ -28,7 +28,7 @@ public class UITitle : UIWindow
     public Slider expslider;
     public Text exptext;
     public Text expbartext;
-    public List<GameObject> slots = new List<GameObject>();
+    public List<UITitleSlot> slots = new List<UITitleSlot>();
     public List<UITitleSlotMask> masks = new List<UITitleSlotMask>();
     public Slider loadslider;
     public Text loadbartext;
@@ -70,13 +70,17 @@ public class UITitle : UIWindow
         TitleManager.Instance.OnTitleEquiped += this.OnEquipedTitleChanged;
         TitleManager.Instance.OnTitleUnEquiped += this.OnEquipedTitleChanged;
         TitleManager.Instance.OnGainNewTitle += SetTitleContent;
-
+        //金币&碎片
         UserManager.Instance.OnPlayerGoldChanged += this.SetResourcesData;
         UserManager.Instance.OnPlayerPartChanged += this.SetResourcesData;
-
+        //Level
         UserManager.Instance.OnPlayerLevelChanged += SetLevelBar;
+        UserManager.Instance.OnPlayerLevelChanged += SetTitleSlotMaxNum;
         UserManager.Instance.OnPlayerExpChanged += SetLevelBar;
+        //HP
+        UserManager.Instance.OnPlayerHpChanged += SetHpText;
     }
+
     private void OnDestroy()
     {
         TitleManager.Instance.OnTitleEquiped -= this.OnEquipedTitleChanged;
@@ -87,12 +91,16 @@ public class UITitle : UIWindow
         UserManager.Instance.OnPlayerPartChanged -= this.SetResourcesData;
 
         UserManager.Instance.OnPlayerLevelChanged -= SetLevelBar;
+        UserManager.Instance.OnPlayerLevelChanged -= SetTitleSlotMaxNum;
         UserManager.Instance.OnPlayerExpChanged -= SetLevelBar;
+
+        UserManager.Instance.OnPlayerHpChanged -= SetHpText;
     }
     public void SetInfo()
     {
         SetPlayerAttriInfo();
         SetLevelBar();
+        SetTitleSlotMaxNum();
         SetTitleSlot();
         SetResourcesData();
         SetLoadBar();
@@ -109,6 +117,10 @@ public class UITitle : UIWindow
         damgtext.text = attri.DamageRatio.ToString();
         goldgaintext.text = (attri.GoldRatio * 100).ToString() + "%";
         expgaintext.text = (attri.ExpRatio * 100).ToString() + "%";
+    }
+    private void SetHpText()
+    {
+        hptext.text = UserManager.Instance.HP.ToString();
     }
     private void SetLevelBar()
     {
@@ -130,6 +142,13 @@ public class UITitle : UIWindow
             int size = title.define.Size;
             masks[totalSize].MaskApply(size, title);
             totalSize += size;
+        }
+    }
+    private void SetTitleSlotMaxNum()
+    {
+        for (int i = 0; i < slots.Count; i++)
+        {
+            slots[i].ResetStatus();
         }
     }
     private void SetLoadBar()
@@ -216,6 +235,7 @@ public class UITitle : UIWindow
             }
             equipbtn.gameObject.SetActive(!selectedItem.info.equiped);
             unequipbtn.gameObject.SetActive(selectedItem.info.equiped);
+            uplevelbtn.gameObject.SetActive(selectedItem.info.CanUpgraded);
         }
 
     }
@@ -234,23 +254,32 @@ public class UITitle : UIWindow
     }
     public void OnClickEquipBtn()
     {
-        if (UserManager.Instance.isOverLoad) return;
+        if (UserManager.Instance.isOverLoad)
+        {
+            UIManager.Instance.ShowWarning("您已过载，无法装备芯片");
+            return;
+        }
         if (!selectedItem) return;
         if (selectedItem.info.equiped) return;
-        if (TitleManager.Instance.EquipedSize + selectedItem.info.define.Size <= 11)
+        if (TitleManager.Instance.EquipedSize + selectedItem.info.define.Size <= UserManager.Instance.slotMax)
         {
             UserManager.Instance.Load = Math.Clamp(UserManager.Instance.Load + Consts.Title.Equip_Load, 0, UserManager.Instance.loadMax);
             TitleManager.Instance.Equip(selectedItem.info.ID);
         }
         else
         {
-            TitleManager.Instance.UnEquip(TitleManager.Instance.EquipedTitle.First().ID);
-            OnClickEquipBtn();
+            UIManager.Instance.ShowWarning("当前槽数量不足，无法继续装备");
+            //TitleManager.Instance.UnEquip(TitleManager.Instance.EquipedTitle.First().ID);
+            //OnClickEquipBtn();
         }
     }
     public void OnClickUnEquipBtn()
     {
-        if (UserManager.Instance.isOverLoad) return;
+        if (UserManager.Instance.isOverLoad)
+        {
+            UIManager.Instance.ShowWarning("您已过载，无法卸下芯片");
+            return;
+        }
         if (!selectedItem) return;
         if (!selectedItem.info.equiped) return;
         UserManager.Instance.Load = Math.Clamp(UserManager.Instance.Load + Consts.Title.UnEquip_Load, 0, UserManager.Instance.loadMax);

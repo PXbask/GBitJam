@@ -45,6 +45,28 @@ public class GameManager : MonoSingleton<GameManager>
         DialogueManager.Instance.Init();
         PXSceneManager.Instance.Init();
     }
+    private void GetBaseVars(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.Scene arg1)
+    {
+        this.GetBaseVars();
+    }
+    public void GetBaseVars()
+    {
+        if (player == null) GetPlayer();
+    }
+    public void GetPlayer()
+    {
+        var obj = GameObject.Find("Player");
+        player = obj.GetComponent<CharController>();
+        player.charBase = new Player(DataManager.Instance.Characters[1]);
+        UserManager.Instance.playerdata = player.charBase;
+        TitleManager.Instance.OnTitleEquiped += player.charBase.attributes.Recalculate;
+        TitleManager.Instance.OnTitleUnEquiped += player.charBase.attributes.Recalculate;
+        player.charBase.attributes.Recalculate();
+        player.transform.position = DataManager.Instance.SaveData.playerPos;
+        PlayerMovement movement = obj.GetComponent<PlayerMovement>();
+        movement.speed = player.charBase.attributes.curAttribute.MoveVelocityRatio * 4f;
+    }
+    #region UI
     public void TurntoBlackAnim(Action callback)
     {
         StartCoroutine(TurntoBlack(callback));
@@ -60,7 +82,7 @@ public class GameManager : MonoSingleton<GameManager>
         maskText.gameObject.SetActive(true);
         blackMask.color = new Color(0, 0, 0, 0);
         maskText.color = new Color(1, 1, 1, 0);
-        while(blackMask.color.a< 1)
+        while (blackMask.color.a < 1)
         {
             Color color = blackMask.color;
             color.a += Time.deltaTime * 0.5f;
@@ -90,25 +112,5 @@ public class GameManager : MonoSingleton<GameManager>
         maskText.gameObject.SetActive(false);
         yield return null;
     }
-    private void GetBaseVars(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.Scene arg1)
-    {
-        this.GetBaseVars();
-    }
-    public void GetBaseVars()
-    {
-        if (player == null) GetPlayer();
-    }
-    public void GetPlayer()
-    {
-        var obj = GameObject.Find("Player");
-        player = obj.GetComponent<CharController>();
-        player.charBase = new Player(DataManager.Instance.Characters[1]);
-        UserManager.Instance.playerdata = player.charBase;
-        TitleManager.Instance.OnTitleEquiped += player.charBase.attributes.Recalculate;
-        TitleManager.Instance.OnTitleUnEquiped += player.charBase.attributes.Recalculate;
-        player.charBase.attributes.Recalculate();
-        player.transform.position = DataManager.Instance.SaveData.playerPos;
-        PlayerMovement movement = obj.GetComponent<PlayerMovement>();
-        movement.speed = player.charBase.attributes.curAttribute.MoveVelocityRatio * 4f;
-    }
+    #endregion
 }

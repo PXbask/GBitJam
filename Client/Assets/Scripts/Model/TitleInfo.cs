@@ -17,6 +17,14 @@ namespace Model
         public bool gained;
         public bool equiped;
         public TitleAffectDefine curAffect => affects[level];
+        public bool CanUpgraded
+        {
+            get
+            {
+                if (define.TitleType != TitleType.Assist) return false;
+                return level < 3;
+            }
+        }
         public TitleInfo(int ID, int level, bool gained)
         {
             this.ID = ID;
@@ -72,7 +80,17 @@ namespace Model
         {
             (int gold, int part) = GetLevelupResCost();
             if (UserManager.Instance.Gold >= gold) UserManager.Instance.Gold -= gold;
+            else
+            {
+                UIManager.Instance.ShowWarning("金币数量不足，无法升级");
+                return;
+            }
             if (UserManager.Instance.Parts >= part) UserManager.Instance.Parts -= part;
+            else
+            {
+                UIManager.Instance.ShowWarning("碎片数量不足，无法升级");
+                return;
+            }
             level++;
         }
     }

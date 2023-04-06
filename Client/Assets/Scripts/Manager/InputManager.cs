@@ -37,13 +37,11 @@ public class InputManager : MonoSingleton<InputManager>
             if (uititle == null)
             {
                 uititle = UIManager.Instance.Show<UITitle>();
-                uiCount++;
             }
             else
             {
                 UIManager.Instance.Close<UITitle>();
                 uititle = null;
-                uiCount--;
             }
         }
         //Space跳跃&攀爬
@@ -51,8 +49,21 @@ public class InputManager : MonoSingleton<InputManager>
         {
             actObj?.Interact(KeyCode.Space);
         }
-        //Esc游戏菜单
+        //Esc游戏菜单&UI移除
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (UIManager.Instance.windowStack.TryPeek(out var window))
+            {
+                OnCloseUIWindow(window);
+                window.Close();
+            }
+            else
+            {
+                //TODO:打开游戏菜单
+            }
+        }
         //H帮助菜单
+        /*
         //鼠标左键发动攻击
         if (Input.GetMouseButtonDown(0))
         {
@@ -86,6 +97,7 @@ public class InputManager : MonoSingleton<InputManager>
             }
             Debug.LogFormat("武器已切换到{0}", charc.atkStyle.ToString());
         }
+        */
     }
     private void FixedUpdate()
     {
@@ -104,5 +116,9 @@ public class InputManager : MonoSingleton<InputManager>
     public void DisabledPlayerMovement(float dur)
     {
 
+    }
+    public void OnCloseUIWindow(UIWindow window)
+    {
+        if (window as UITitle) uititle = null;
     }
 }

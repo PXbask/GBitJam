@@ -71,8 +71,8 @@ namespace Model
         public void Upgrade()
         {
             (int gold, int part) = GetLevelupResCost();
-            if (UserManager.Instance.gold >= gold) UserManager.Instance.gold -= gold;
-            if (UserManager.Instance.parts >= part) UserManager.Instance.parts -= part;
+            if (UserManager.Instance.Gold >= gold) UserManager.Instance.Gold -= gold;
+            if (UserManager.Instance.Parts >= part) UserManager.Instance.Parts -= part;
             level++;
         }
     }

@@ -29,11 +29,13 @@ public abstract class TrapLogic : MonoBehaviour, IInteractable
     protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag(targetTag)) InputManager.Instance.actObj = this;
-        UIManager.Instance.OpenWorldTip(tipStr, transform);
+        //UIManager.Instance.OpenWorldTip(tipStr, transform);
+        UIManager.Instance.AddInteractMessage(tipStr, transform);
     }
     protected virtual void OnTriggerExit(Collider other)
     {
-        UIManager.Instance.CloseWorldTip();
+        //UIManager.Instance.CloseWorldTip();
+        UIManager.Instance.RemoveInteractMessage(transform);
         if (other.CompareTag(targetTag)) InputManager.Instance.actObj = null;
     }
     protected virtual void OnInteract(KeyCode code)

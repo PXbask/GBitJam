@@ -13,6 +13,8 @@ namespace Manager
         public Action OnPlayerHpChanged = null; 
         public Action OnPlayerLevelChanged = null; 
         public Action OnPlayerExpChanged = null;
+        public Action OnPlayerGoldChanged = null;
+        public Action OnPlayerPartChanged = null;
         public Action OnPlayerDead = null;
 
         public Player playerdata;
@@ -69,8 +71,26 @@ namespace Manager
             }
         }
 
-        public int gold;
-        public int parts;
+        private int gold;
+        public int Gold
+        {
+            get => gold;
+            set
+            {
+                gold = value;
+                OnPlayerGoldChanged?.Invoke();
+            }
+        }
+        private int parts;
+        public int Parts
+        {
+            get => parts;
+            set
+            {
+                parts = value;
+                OnPlayerPartChanged?.Invoke();
+            }
+        }
 
         public int exp2NextLevel;
         public int loadMax;
@@ -86,8 +106,8 @@ namespace Manager
             HP = DataManager.Instance.SaveData.Hp;
             Exp = DataManager.Instance.SaveData.exp;
             Load = DataManager.Instance.SaveData.load;
-            gold = DataManager.Instance.SaveData.gold;
-            parts = DataManager.Instance.SaveData.parts;
+            Gold = DataManager.Instance.SaveData.gold;
+            Parts = DataManager.Instance.SaveData.parts;
         }
         private void GetMaxParams()
         {
@@ -98,9 +118,9 @@ namespace Manager
         }
         public void OnLevelUp()
         {
-            level++;
+            Level++;
             GetMaxParams();
-            exp = 0;
+            Exp = 0;
         }
         ~UserManager()
         {

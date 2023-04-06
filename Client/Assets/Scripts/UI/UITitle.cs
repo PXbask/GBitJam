@@ -69,6 +69,25 @@ public class UITitle : UIWindow
         SetInfo();
         TitleManager.Instance.OnTitleEquiped += this.OnEquipedTitleChanged;
         TitleManager.Instance.OnTitleUnEquiped += this.OnEquipedTitleChanged;
+        TitleManager.Instance.OnGainNewTitle += SetTitleContent;
+
+        UserManager.Instance.OnPlayerGoldChanged += this.SetResourcesData;
+        UserManager.Instance.OnPlayerPartChanged += this.SetResourcesData;
+
+        UserManager.Instance.OnPlayerLevelChanged += SetLevelBar;
+        UserManager.Instance.OnPlayerExpChanged += SetLevelBar;
+    }
+    private void OnDestroy()
+    {
+        TitleManager.Instance.OnTitleEquiped -= this.OnEquipedTitleChanged;
+        TitleManager.Instance.OnTitleUnEquiped -= this.OnEquipedTitleChanged;
+        TitleManager.Instance.OnGainNewTitle -= SetTitleContent;
+
+        UserManager.Instance.OnPlayerGoldChanged -= this.SetResourcesData;
+        UserManager.Instance.OnPlayerPartChanged -= this.SetResourcesData;
+
+        UserManager.Instance.OnPlayerLevelChanged -= SetLevelBar;
+        UserManager.Instance.OnPlayerExpChanged -= SetLevelBar;
     }
     public void SetInfo()
     {
@@ -95,7 +114,7 @@ public class UITitle : UIWindow
     {
         var playerInfo = GameManager.Instance.player.charBase;
         exptext.text = "Lv. " + UserManager.Instance.Level.ToString();
-        expslider.maxValue = DataManager.Instance.Levels[1][UserManager.Instance.Level].ExpCost;
+        expslider.maxValue = UserManager.Instance.exp2NextLevel;
         expslider.value = UserManager.Instance.Exp;
         expbartext.text = string.Format("{0} / {1}", expslider.value, expslider.maxValue);
     }
@@ -122,8 +141,8 @@ public class UITitle : UIWindow
     }
     private void SetResourcesData()
     {
-        goldtext.text = UserManager.Instance.gold.ToString();
-        parttext.text = UserManager.Instance.parts.ToString();
+        goldtext.text = UserManager.Instance.Gold.ToString();
+        parttext.text = UserManager.Instance.Parts.ToString();
     }
     public void SetTmpResourcesData()
     {
@@ -240,7 +259,6 @@ public class UITitle : UIWindow
     public void OnEquipedTitleChanged(int id)
     {
         SetTitleSlot();
-        //SetTitleContent();//≤ª”≈—≈
         SetTitleContent(id);
         SetPlayerAttriInfo();
         SetLoadBar();

@@ -19,7 +19,7 @@ namespace Manager
         private Dictionary<Type, UIElement> UIResources = new Dictionary<Type, UIElement>();
         public UIManager()
         {
-            this.UIResources.Add(typeof(UITitle), new UIElement() { Resources = @"Prefab/UI/UITitle", Cache = false });
+            this.UIResources.Add(typeof(UITitle), new UIElement() { Resources = @"Prefab/UI/UITitle", Cache = true });
             this.UIResources.Add(typeof(UIDialogue), new UIElement() { Resources = @"Prefab/UI/UIDialogue", Cache = true });
             this.UIResources.Add(typeof(UIWorldTips), new UIElement() { Resources = @"Prefab/UI/UIWorldTips", Cache = false });
             this.UIResources.Add(typeof(UIAtla), new UIElement() { Resources = @"Prefab/UI/UIAtla", Cache = false });
@@ -96,7 +96,15 @@ namespace Manager
         }
         public void AddGainMessage(string str)
         {
-            dynamicPanel.AddGainMsg(str);
+            dynamicPanel?.AddGainMsg(str);
+        }
+        public void AddInteractMessage(string str,Transform root)
+        {
+            dynamicPanel?.AddInteractMsg(str, root);
+        }
+        public void RemoveInteractMessage(Transform root)
+        {
+            dynamicPanel?.RemoveInteractMsg(root);
         }
     }
 }

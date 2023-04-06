@@ -16,6 +16,7 @@ public class TitleManager : Singleton<TitleManager>
 {
     public Action<int> OnTitleEquiped = null;
     public Action<int> OnTitleUnEquiped = null;
+    public Action<int> OnGainNewTitle= null;
 
     public Dictionary<int, TitleInfo> AllTitles = new Dictionary<int, TitleInfo>();
     public Dictionary<int, List<TitleInfo>> AllTypeTitles = new Dictionary<int, List<TitleInfo>>();
@@ -48,6 +49,7 @@ public class TitleManager : Singleton<TitleManager>
             if (AllTitles.TryGetValue(id, out TitleInfo info))
             {
                 info.equiped = true;
+                EquipedTitle.Add(info);
             }
             else
             {
@@ -98,11 +100,14 @@ public class TitleManager : Singleton<TitleManager>
             {
                 info.gained = true;
                 UIManager.Instance.AddGainMessage(info.define.Name);
+                OnGainNewTitle?.Invoke(id);
             }
             else
             {
                 //转换成碎片
-                UIManager.Instance.AddGainMessage(string.Format("获得碎片 *{0}",info.define.PartsBorn.ToString()));
+                int partcount = info.define.PartsBorn;
+                UIManager.Instance.AddGainMessage(string.Format("获得碎片 *{0}",partcount.ToString()));
+                UserManager.Instance.Parts += partcount;
             }
         }
     }
@@ -111,5 +116,9 @@ public class TitleManager : Singleton<TitleManager>
         var lists = this.AllTypeTitles[type];
         int index = UnityEngine.Random.Range(0, lists.Count);
         return lists[index].ID;
+    }
+    public TitleInfo GetTitleInfoByID(int id)
+    {
+        return this.AllTitles[id];
     }
 }

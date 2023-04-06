@@ -1,3 +1,4 @@
+using Manager;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,6 +28,7 @@ public class Chest : TrapLogic
     }
     protected override void OnTriggerEnter(Collider other)
     {
+        if (isOpened) return;
         base.OnTriggerEnter(other);
     }
     protected override void OnTriggerExit(Collider other)
@@ -37,6 +39,7 @@ public class Chest : TrapLogic
     {
         base.OnInteract(code);
         OpenChest();
+        UIManager.Instance.RemoveInteractMessage(transform);
     }
     private void OpenChest()
     {

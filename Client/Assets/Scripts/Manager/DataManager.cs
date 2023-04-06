@@ -156,12 +156,12 @@ public class DataManager : Singleton<DataManager>
     }
     private int GetPlayerParts()
     {
-        return UserManager.Instance.parts;
+        return UserManager.Instance.Parts;
     }
 
     private int GetPlayerGold()
     {
-        return UserManager.Instance.gold;
+        return UserManager.Instance.Gold;
     }
     #endregion
 }

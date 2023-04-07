@@ -11,11 +11,26 @@ using UnityEngine;
 
 public class Ladder : TrapLogic
 {
+    public int Length;
     protected override void OnInit()
     {
         base.OnInit();
         interactKey = KeyCode.Space;
         tipStr = "Space 上升";
+    }
+    protected override void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(targetTag))
+        {
+            if (InputManager.Instance.actObjMap[interactKey] == null)
+            {
+                if(Vector3.Distance(controller.rb.position, transform.position) <= 1f)
+                {
+                    InputManager.Instance.actObjMap[interactKey] = this;
+                    UIManager.Instance.AddInteractMessage(tipStr, transform);
+                }
+            }
+        }
     }
     protected override void OnTriggerExit(Collider other)
     {
@@ -25,7 +40,34 @@ public class Ladder : TrapLogic
     protected override void OnInteract(KeyCode code)
     {
         base.OnInteract(code);
+        UIManager.Instance.RemoveInteractMessage(transform);
+        StartCoroutine(ClimbLadderAnim());
+    }
+    IEnumerator ClimbLadderAnim()
+    {
+        //把大象装进冰箱需要几步?
         controller.rb.useGravity = false;
-        controller?.rb.MovePosition(controller.rb.position + Vector3.up * Time.deltaTime);
+        controller?.rb.MovePosition(transform.position);
+        while (!IsExitLadder())
+        {
+            controller?.rb.MovePosition(controller.rb.position + Vector3.up * Time.deltaTime * 2f);
+            yield return null;
+        }
+        controller.rb.velocity = (Vector3.up - transform.right * 0.25f) * 5;
+        //float dis = 0;
+        //while (dis <= 1f)
+        //{
+        //    controller?.rb.MovePosition(controller.rb.position - transform.right * Time.deltaTime);
+        //    dis += (Time.deltaTime);
+        //    yield return null;
+        //}
+        controller.rb.useGravity = true;
+        yield return null;
+    }
+    private bool IsExitLadder()
+    {
+        float y = controller._collider.bounds.extents.y;
+        Ray ray = new Ray(controller.rb.position + Vector3.down * (y - 0.05f), -transform.right);
+        return !Physics.Raycast(ray, 0.25f, ~(1<<10), QueryTriggerInteraction.Collide);        
     }
 }

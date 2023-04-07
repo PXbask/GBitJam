@@ -15,6 +15,7 @@ public class Chest : TrapLogic
     [Tooltip("1->ÆÕÍ¨ 2->Ê·Ê« 3->´«Ææ")]
     [SerializeField] public int type;
     Animation animat;
+    Outline outline;
 
     bool isOpened;
     protected override void OnInit()
@@ -25,6 +26,7 @@ public class Chest : TrapLogic
 
         isOpened= false;
         animat= GetComponentInChildren<Animation>();
+        outline = GetComponentInChildren<Outline>();
     }
     protected override void OnTriggerEnter(Collider other)
     {
@@ -45,6 +47,7 @@ public class Chest : TrapLogic
     {
         if(isOpened) { return; }
         animat.Play();
+        outline.enabled = false;
         isOpened= true;
         var info = TitleManager.Instance.RandomTitleWithTitleType(type);
         TitleManager.Instance.GainTitle(info);

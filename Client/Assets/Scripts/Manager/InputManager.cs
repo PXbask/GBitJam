@@ -27,6 +27,7 @@ public class InputManager : MonoSingleton<InputManager>
 
         actObjMap.Add(KeyCode.F, null);
         actObjMap.Add(KeyCode.Space, null);
+        actObjMap.Add(KeyCode.None, null);
     }
     private void Update()
     {
@@ -54,7 +55,7 @@ public class InputManager : MonoSingleton<InputManager>
             }
         }
         //SpaceÃ¯‘æ&≈ ≈¿
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             if (actObjMap.TryGetValue(KeyCode.Space, out actObj))
             {
@@ -128,8 +129,4 @@ public class InputManager : MonoSingleton<InputManager>
     {
 
     }
-    //public void OnCloseUIWindow(UIWindow window, UIWindow.WindowResult result = UIWindow.WindowResult.None)
-    //{
-    //    if (window as UITitle) uititle = null;
-    //}
 }

@@ -32,6 +32,6 @@ public class GateConsole : TrapLogic
         if (!gate.Islocked) return;
         this.useful = false;
         gate.OpenGate();
-        UIManager.Instance.CloseWorldTip();
+        UIManager.Instance.RemoveInteractMessage(transform);
     }
 }

@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\GameObject\TitleLogic.cs" />
     <Compile Include="Assets\Scripts\UI\UITitle.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\Geometry\CompositeShapeData.cs" />
+    <Compile Include="Assets\Scripts\UI\UITitleSlot.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\JumpArea.cs" />
     <Compile Include="Assets\Scripts\UI\UIWindow.cs" />
     <Compile Include="Assets\Scripts\UI\UIBattle.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\UnityRuntimePreviewGenerator.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\Geometry\Polygon.cs" />
     <Compile Include="Assets\Scripts\Model\Attributes.cs" />
+    <Compile Include="Assets\Scripts\UI\UIWarningTips.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\BuildingUnit.cs" />
     <Compile Include="Assets\Scripts\Model\CharBase.cs" />
     <Compile Include="Assets\Scripts\DataStruct\PXTimerQueue.cs" />
@@ -134,6 +136,7 @@
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\BHUtilities.cs" />
     <Compile Include="Assets\Scripts\GameObject\BulletLogic.cs" />
     <Compile Include="Assets\Scripts\UI\UIWorldTips.cs" />
+    <Compile Include="Assets\Scripts\UI\Items\UIWarningTipItem.cs" />
     <Compile Include="Assets\Scripts\Utilities\Enums.cs" />
     <Compile Include="Assets\Scripts\UI\UILevelItemOverable.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\TrapLogic.cs" />
@@ -144,9 +147,6 @@
     <Compile Include="Assets\Scripts\UI\Items\UIIconItem.cs" />
     <Compile Include="Assets\Scripts\Manager\TitleManager.cs" />
     <Compile Include="Assets\Scripts\Manager\InputManager.cs" />
-    <Compile Include="Assets\Scripts\UI\UIWarningTips.cs" />
-    <Compile Include="Assets\Scripts\UI\Items\UIWarningTipItem.cs" />
-    <Compile Include="Assets\Scripts\UI\UITitleSlot.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\_LineStripShader.cginc" />

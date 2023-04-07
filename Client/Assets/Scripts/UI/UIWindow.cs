@@ -25,14 +25,13 @@ public abstract class UIWindow : MonoBehaviour
     }
     public void Close(WindowResult result = WindowResult.None)
     {
-        if (UIManager.Instance.windowStack.Peek() != this) return;
+        if (UIManager.Instance.WindowStack.Peek() != this) return;
         UIManager.Instance.Close(this.Type);
-        InputManager.Instance.OnCloseUIWindow(this);
         if (this.OnClose != null)
         {
             this.OnClose(this, result);
         }
-        this.OnClose = null;
+        //this.OnClose = null;
     }
     public virtual void OnCloseClick()
     {
@@ -45,5 +44,9 @@ public abstract class UIWindow : MonoBehaviour
     public virtual void OnYesClick()
     {
         this.Close(WindowResult.Yes);
+    }
+    private void OnDestroy()
+    {
+        //OnClose -= InputManager.Instance.OnCloseUIWindow;
     }
 }

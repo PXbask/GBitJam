@@ -27,6 +27,6 @@ public class JumpArea : TrapLogic
     {
         base.OnInteract(code);
         controller.rb.velocity = Vector3.ProjectOnPlane(dir, Vector3.up) * jumpdes + Vector3.up * 5f;
-        controller.Status = PlayerStatus.Jump;
+        //controller.Status = PlayerStatus.Jump;
     }
 }

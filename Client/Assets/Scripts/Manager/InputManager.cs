@@ -11,50 +11,61 @@ using UnityEngine;
 
 public class InputManager : MonoSingleton<InputManager>
 {
-    public IInteractable actObj = null;
+    public Dictionary<KeyCode,IInteractable> actObjMap = new Dictionary<KeyCode,IInteractable>();
+    private IInteractable actObj = null;
     public CharController charc;
     public PlayerMovement movement;
-    UITitle uititle = null;
-    int uiCount = 0;
+
+    //UITitle uititle = null;
+    //UIAtla uIAtla = null;
 
     public bool playerMoveEnabled = true;
     private void Start()
     {
         charc = GameManager.Instance.player;
         movement = charc.GetComponent<PlayerMovement>();
+
+        actObjMap.Add(KeyCode.F, null);
+        actObjMap.Add(KeyCode.Space, null);
     }
     private void Update()
     {
         //F交互
         if(Input.GetKeyDown(KeyCode.F))
         {
-            actObj?.Interact(KeyCode.F);
+            if (actObjMap.TryGetValue(KeyCode.F, out actObj))
+            {
+                actObj?.Interact(KeyCode.F);
+            }
         }
         //E技能
         //B打开芯片系统
         if (Input.GetKeyDown(KeyCode.B))
         {
+            var uititle = UIManager.Instance.GetActiveInstance<UITitle>();
             if (uititle == null)
             {
                 uititle = UIManager.Instance.Show<UITitle>();
             }
             else
             {
-                UIManager.Instance.Close<UITitle>();
+                uititle.Close();
                 uititle = null;
             }
         }
         //Space跳跃&攀爬
         if (Input.GetKey(KeyCode.Space))
         {
-            actObj?.Interact(KeyCode.Space);
+            if (actObjMap.TryGetValue(KeyCode.Space, out actObj))
+            {
+                actObj?.Interact(KeyCode.Space);
+            }
         }
         //Esc游戏菜单&UI移除
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (UIManager.Instance.windowStack.TryPeek(out var window))
+            if (UIManager.Instance.WindowStack.TryPeek(out var window))
             {
-                OnCloseUIWindow(window);
                 window.Close();
             }
             else
@@ -111,14 +122,14 @@ public class InputManager : MonoSingleton<InputManager>
     }
     public void PlayerMovementEnabled(bool enabled)
     {
-        movement.enabled= enabled;
+        playerMoveEnabled= enabled;
     }
     public void DisabledPlayerMovement(float dur)
     {
 
     }
-    public void OnCloseUIWindow(UIWindow window)
-    {
-        if (window as UITitle) uititle = null;
-    }
+    //public void OnCloseUIWindow(UIWindow window, UIWindow.WindowResult result = UIWindow.WindowResult.None)
+    //{
+    //    if (window as UITitle) uititle = null;
+    //}
 }

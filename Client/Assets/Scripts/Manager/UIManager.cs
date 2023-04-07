@@ -12,7 +12,8 @@ namespace Manager
         public UIBattle battlePanel;
         public UIDynamic dynamicPanel;
         public bool OtherUIOverlayed = false;
-        public Stack<UIWindow> windowStack = new Stack<UIWindow>();
+        public Stack<UIWindow> WindowStack = new Stack<UIWindow>();
+        public bool HasUIOverlay => WindowStack.Count > 0;
         class UIElement
         {
             public string Resources;
@@ -20,6 +21,7 @@ namespace Manager
             public GameObject Instance;
         }
         private Dictionary<Type, UIElement> UIResources = new Dictionary<Type, UIElement>();
+        public Dictionary<Type, UIWindow> UIInstance = new Dictionary<Type, UIWindow>(); //UI运行时的缓存
         public UIManager()
         {
             this.UIResources.Add(typeof(UITitle), new UIElement() { Resources = @"Prefab/UI/UITitle", Cache = true });
@@ -51,7 +53,8 @@ namespace Manager
                     info.Instance = (GameObject)GameObject.Instantiate(prefab);
                 }
                 T res = info.Instance.GetComponent<T>();
-                windowStack.Push(res);
+                UIInstance[typeof(T)] = res;
+                WindowStack.Push(res);
                 return res;
             }
             Debug.LogWarningFormat("UI prefab can't find:{0}", type.Name);
@@ -69,10 +72,12 @@ namespace Manager
                 }
                 else
                 {
+                    UIInstance[type] = null;
                     GameObject.Destroy(uIElement.Instance);
                     uIElement.Instance = null;
                 }
-                windowStack.Pop();
+                
+                WindowStack.Pop();
             }
         }
         public void Close<T>() where T : UIWindow
@@ -95,11 +100,25 @@ namespace Manager
             ui.SetOwner(root);
             ui.transform.SetParent(root);
         }
-
-        internal void CloseWorldTip()
+        public T GetActiveInstance<T>() where T : UIWindow
         {
-            this.Close<UIWorldTips>();
+            if (this.UIInstance.ContainsKey(typeof(T)))
+            {
+                if(UIInstance[typeof(T)].gameObject.activeInHierarchy) 
+                    return (T)UIInstance[typeof(T)];
+                else
+                    return null;
+            }
+            else
+            {
+                Debug.LogWarningFormat("缓存中不存在激活的类型UI:[{0}] (第一次启动可忽略)",typeof(T).Name);
+                return null;
+            }
         }
+        //internal void CloseWorldTip()
+        //{
+        //    this.Close<UIWorldTips>();
+        //}
         public void AddGainMessage(string str)
         {
             dynamicPanel?.AddGainMsg(str);

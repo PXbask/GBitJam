@@ -1,6 +1,7 @@
 using Model;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /*
@@ -25,25 +26,37 @@ public class CharController : MonoBehaviour
             switch (value)
             {
                 case PlayerStatus.None:
-                    status = PlayerStatus.None;
+                    InputManager.Instance.PlayerMovementEnabled(true);
                     break;
                 case PlayerStatus.Jump:
-                    StartCoroutine(Status2Jump());
+                    InputManager.Instance.PlayerMovementEnabled(false);
+                    break;
+                default:
                     break;
             }
+            status = value;
         }
     }
 
     [HideInInspector] public GameObject rifleBltPre;
     [HideInInspector] public GameObject shotgunBltPre;
     [HideInInspector] public GameObject meleeEffectPre;
-    [HideInInspector] public PolygonCollider2D cldr2D;
-    [HideInInspector] public Cinemachine.CinemachineConfiner2D confiner;
 
     public Transform effectRoot;
     public Rigidbody rb;
 
-    private Collider[] colliders;
+    public CapsuleCollider _collider;
+    private readonly RaycastHit[] _groundCastResults = new RaycastHit[8];
+    private bool isground = true;
+    public bool Isground
+    {
+        get => isground;
+        set
+        {
+            Status = value ? PlayerStatus.None : PlayerStatus.Jump;
+            isground = value;
+        }
+    }
     private void Awake()
     {
         rifleBltPre = Resloader.Load<GameObject>("Prefab/GameObject/rifleBlt");
@@ -57,19 +70,41 @@ public class CharController : MonoBehaviour
     }
     private void Update()
     {
-        switch (status)
+        switch (Status)
         {
             case PlayerStatus.None:
                 
                 break;
             case PlayerStatus.Jump:
-                bool isground = IsOnGround();
-                if (isground) Status = PlayerStatus.None;
-                InputManager.Instance.PlayerMovementEnabled(isground);
+                
                 break;
             default:
                 break;
         }
+
+    }
+    private void FixedUpdate()
+    {
+        CheckGround();
+    }
+    private void CheckGround()
+    {
+        var bounds = _collider.bounds;
+        var extents = bounds.extents;
+        var radius = extents.x - 0.01f;
+        Physics.SphereCastNonAlloc(bounds.center, radius, Vector3.down,
+            _groundCastResults, extents.y - radius * 0.5f, 1 << 11, QueryTriggerInteraction.Ignore);
+        if (!_groundCastResults.Any(hit => hit.collider != null && hit.collider != _collider))
+        {
+            Isground = false;
+            return;
+        }
+        for (var i = 0; i < _groundCastResults.Length; i++)
+        {
+            _groundCastResults[i] = new RaycastHit();
+        }
+
+        Isground = true;
     }
     public void MeleeAtk()
     {
@@ -137,11 +172,6 @@ public class CharController : MonoBehaviour
         // 将原始方向与随机旋转相乘得到返回的方向
         Vector3 returnDirection = randomRotation * origin;
         return returnDirection;
-    }
-    public bool IsOnGround()
-    {
-        colliders = Physics.OverlapCapsule(transform.position, transform.position, 1f, (1 << 11));
-        return colliders.Length > 0;
     }
     #region simpleFuncs
     IEnumerator Status2Jump()

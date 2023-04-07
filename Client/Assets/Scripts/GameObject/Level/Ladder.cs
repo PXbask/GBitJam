@@ -28,14 +28,4 @@ public class Ladder : TrapLogic
         controller.rb.useGravity = false;
         controller?.rb.MovePosition(controller.rb.position + Vector3.up * Time.deltaTime);
     }
-    //private void OnTriggerStay(Collider other)
-    //{
-    //    if (other.gameObject.CompareTag(targetTag))
-    //    {
-    //        if (Input.GetKey(KeyCode.Space))
-    //        {
-    //            OnInteract(KeyCode.Space);
-    //        }
-    //    }
-    //}
 }

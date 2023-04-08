@@ -9,21 +9,32 @@ using UnityEngine;
 
 namespace Manager
 {
-    public class WeaponManager : Singleton<WeaponManager>
+    public class WeaponManager
     {
+        public CharBase owner;
         public Action OnWeaponConfigChanged = null;
-        public Dictionary<int, WeaponInfo> WeaponMap= new Dictionary<int, WeaponInfo>();
+        public Dictionary<int, WeaponInfo> WeaponMap;
         public WeaponInfo WeaponConfig;
-        public void Init()
+        public WeaponManager(CharBase owner)
         {
-            TitleManager.Instance.OnTitleEquiped += OnTitleEquiped;
-            TitleManager.Instance.OnTitleUnEquiped += OnTitleUnEquiped;
-        }
+            this.owner = owner;
+            WeaponMap = new Dictionary<int, WeaponInfo>();
 
+            if (owner.IsPlayer)
+            {
+                TitleManager.Instance.OnTitleEquiped += OnTitleEquiped;
+                TitleManager.Instance.OnTitleUnEquiped += OnTitleUnEquiped;
+                OnWeaponConfigChanged += UserManager.Instance.OnWeaponConfigChanged;
+            }
+        }
         ~WeaponManager()
         {
-            TitleManager.Instance.OnTitleEquiped -= OnTitleEquiped;
-            TitleManager.Instance.OnTitleUnEquiped -= OnTitleUnEquiped;
+            owner = null;
+            if (owner.IsPlayer)
+            {
+                TitleManager.Instance.OnTitleEquiped -= OnTitleEquiped;
+                TitleManager.Instance.OnTitleUnEquiped -= OnTitleUnEquiped;
+            }
         }
         public void OnTitleEquiped(int id)
         {
@@ -33,7 +44,7 @@ namespace Manager
                 int wid = info.define.LindedWeapon;
                 if (wid!=0 && !WeaponMap.ContainsKey(wid))
                 {
-                    WeaponMap.Add(wid, new WeaponInfo(DataManager.Instance.Weapons[wid]));
+                    WeaponMap.Add(wid, new WeaponInfo(DataManager.Instance.Weapons[wid], owner));
                 }
                 WeaponConfig = WeaponMap[wid];
                 OnWeaponConfigChanged?.Invoke();
@@ -50,10 +61,7 @@ namespace Manager
         }
         public void Update()
         {
-            foreach (var info in WeaponMap.Values)
-            {
-                info.Update();
-            }
+            WeaponConfig?.Update();
         }
     }
 }

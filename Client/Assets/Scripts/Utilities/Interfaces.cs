@@ -14,5 +14,5 @@ public interface IInteractable
 }
 public interface IAttackable
 {
-    void Attack(KeyCode code);
+    void Attack();
 }

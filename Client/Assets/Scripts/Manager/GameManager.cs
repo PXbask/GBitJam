@@ -41,10 +41,14 @@ public class GameManager : MonoSingleton<GameManager>
         DataManager.Instance.LoadConfigData();
         DataManager.Instance.LoadUserData();
         TitleManager.Instance.Init();
-        WeaponManager.Instance.Init();
         UserManager.Instance.Init();
         DialogueManager.Instance.Init();
         PXSceneManager.Instance.Init();
+        CharacterManager.Instance.Init();
+    }
+    private void Update()
+    {
+        CharacterManager.Instance.Update();
     }
     private void GetBaseVars(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.Scene arg1)
     {
@@ -59,13 +63,17 @@ public class GameManager : MonoSingleton<GameManager>
         var obj = GameObject.Find("Player");
         player = obj.GetComponent<CharController>();
         player.charBase = new Player(DataManager.Instance.Characters[1]);
-        UserManager.Instance.playerdata = player.charBase;
+        player.charBase.controller = player;
+        player.charBase.weaponManager = new WeaponManager(player.charBase);
+        UserManager.Instance.playerlogic = (Player)player.charBase;
         TitleManager.Instance.OnTitleEquiped += player.charBase.attributes.Recalculate;
         TitleManager.Instance.OnTitleUnEquiped += player.charBase.attributes.Recalculate;
         player.charBase.attributes.Recalculate();
         player.transform.position = DataManager.Instance.SaveData.playerPos;
         PlayerMovement movement = obj.GetComponent<PlayerMovement>();
         movement.speed = player.charBase.attributes.curAttribute.MoveVelocityRatio * 4f;
+
+        CharacterManager.Instance.AddCharacter(player.charBase);
     }
     #region UI
     public void TurntoBlackAnim(Action callback)

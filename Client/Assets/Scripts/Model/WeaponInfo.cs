@@ -10,6 +10,7 @@ namespace Model
 {
     public class WeaponInfo
     {
+        public CharBase owner;
         public int ID => define.ID;
         public WeaponDefine define;
         private float m_timer;
@@ -18,29 +19,19 @@ namespace Model
         {
             get => m_timer >= 0;
         }
-        public WeaponInfo(WeaponDefine define)
+        public WeaponInfo(WeaponDefine define, CharBase owner)
         {
             this.define = define;
+            this.owner = owner;
             m_timer = define.Interval;
         } 
         public void Update()
         {
-            if(equiped) 
-                m_timer -= Time.deltaTime;
+            m_timer -= Time.deltaTime;
         }
-        public void Fire()
+        public void OnFire()
         {
-            if (IsUnderCooling) return;
-            switch(ID)
-            {
-                case 1:
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    break;
-                default: break;
-            }
+            m_timer = define.Interval;
         }
     }
 }

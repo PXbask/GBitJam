@@ -19,7 +19,7 @@ namespace Manager
         public Action OnPlayerDead = null;
         public Action OnPlayerWeaponConfigChanged = null;
 
-        public Player playerdata;
+        public Player playerlogic;
         private int Hp;
         public int HP
         {
@@ -27,7 +27,7 @@ namespace Manager
             set
             {
                 Hp = value;
-                if (playerdata != null) playerdata.attributes.curAttribute.HP = value;
+                if (playerlogic != null) playerlogic.attributes.curAttribute.HP = value;
                 OnPlayerHpChanged?.Invoke();
                 if (value <= 0)
                     OnPlayerDead?.Invoke();
@@ -101,11 +101,11 @@ namespace Manager
         public int hpMax;
 
         public bool isOverLoad = false;
-        public WeaponInfo CurrentWeapon => WeaponManager.Instance.WeaponConfig;
+        public WeaponManager weaponManager => playerlogic.weaponManager;
+        public WeaponInfo CurrentWeapon => weaponManager.WeaponConfig;
         public void Init()
         {
             OnPlayerLevelChanged += GetMaxParams;
-            WeaponManager.Instance.OnWeaponConfigChanged += OnWeaponConfigChanged;
             TitleManager.Instance.OnTitleEquiped += OnTitleEquiped;
             TitleManager.Instance.OnTitleUnEquiped += OnTitleUnEquiped;
 
@@ -143,13 +143,14 @@ namespace Manager
             Exp = 0;
             Debug.LogFormat("角色升级:当前等级:{0}", Level.ToString());
         }
-        private void OnWeaponConfigChanged()
+        public void OnWeaponConfigChanged()
         {
             OnPlayerWeaponConfigChanged?.Invoke();
         }
         ~UserManager()
         {
             OnPlayerLevelChanged -= GetMaxParams;
+            weaponManager.OnWeaponConfigChanged -= OnWeaponConfigChanged;
         }
     }
 }

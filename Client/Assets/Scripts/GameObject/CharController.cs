@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 /*
     Date:
@@ -11,12 +12,11 @@ using UnityEngine;
     Overview:人物表现层
 */
 
-public class CharController : MonoBehaviour
+public class CharController : EntityController
 {
     public Camera mainCamera;
     public PlayerMovement movement;
     public SpriteRenderer render;
-    public Player charBase;
     [SerializeField] PlayerStatus status;
     public PlayerStatus Status
     {
@@ -37,9 +37,7 @@ public class CharController : MonoBehaviour
             status = value;
         }
     }
-    [HideInInspector] public GameObject rifleBltPre;
-    [HideInInspector] public GameObject shotgunBltPre;
-    [HideInInspector] public GameObject meleeEffectPre;
+
     public Transform effectRoot;
     public Rigidbody rb;
     public CapsuleCollider _collider;
@@ -55,11 +53,9 @@ public class CharController : MonoBehaviour
         }
     }
 
-    private void Awake()
+    protected override void OnAwake()
     {
-        rifleBltPre = Resloader.Load<GameObject>("Prefab/GameObject/rifleBullet");
-        shotgunBltPre = Resloader.Load<GameObject>("Prefab/GameObject/shotgunBullet");
-        meleeEffectPre = Resloader.Load<GameObject>("Prefab/GameObject/meleeEffect");
+        base.OnAwake();
         status = PlayerStatus.None;
         mainCamera = Camera.main;
 
@@ -75,9 +71,25 @@ public class CharController : MonoBehaviour
 
         render.flipX = movement.headDir.z > 0;
     }
-    public void Attack()
+    public override void Attack()
     {
-        UserManager.Instance.CurrentWeapon?.Fire();
+        var WeaponConfig = UserManager.Instance.CurrentWeapon;
+        if (WeaponConfig == null) return;
+        if (WeaponConfig.IsUnderCooling) return;
+        switch (WeaponConfig.ID)
+        {
+            case 1://刀
+
+                break;
+            case 2://步枪
+                RifleAtk();
+                break;
+            case 3://霰弹枪
+                ShotGunAtk();
+                break;
+            default: break;
+        }
+        WeaponConfig.OnFire();
     }
     private void CheckGround()
     {
@@ -98,47 +110,12 @@ public class CharController : MonoBehaviour
 
         Isground = true;
     }
-    public void ShotGunAtk()
-    {
-        for(int i = 0; i < 5; i++)
-        {
-            float ranSpeed = Random.Range(8, 12);
-            var dir = GetFireDirection(ranSpeed);
-            Vector3 ranDir = RandomDirection(dir, 30);
-            GameObject obj = Instantiate(shotgunBltPre, transform.position, Quaternion.identity);
-            obj.transform.up = ranDir;
-            BulletLogic bulletLogic = obj.GetComponent<BulletLogic>();
-            bulletLogic.SetInfo(ranDir.normalized, ranSpeed);
-        }
-        Debug.Log("ShotGunAtk");
-    }
-    public void RifleAtk()
-    {
-        Vector3 dir = GetFireDirection(18f);
-        GameObject obj = Instantiate(rifleBltPre, transform.position, Quaternion.identity);
-        obj.transform.up = movement.headDir;
-        BulletLogic bulletLogic = obj.GetComponent<BulletLogic>();
-        bulletLogic.SetInfo(dir.normalized, 18f);
-        Debug.Log("RifleAtk");
-    }
-    Vector3 RandomDirection(Vector3 origin, float degreeRange)
-    {
-        float randomAngle = Random.Range(-degreeRange, degreeRange);
-
-        Vector3 randomAxis = transform.up;
-
-        // 通过随机轴和角度生成旋转四元数
-        Quaternion randomRotation = Quaternion.AngleAxis(randomAngle, randomAxis);
-
-        // 将原始方向与随机旋转相乘得到返回的方向
-        Vector3 returnDirection = randomRotation * origin;
-        return returnDirection;
-    }
-    private Vector3 GetFireDirection(float speed)
+    public override Vector3 GetFireDirection(float speed)
     {
         return movement.headDir * speed + movement.direction;
     }
-    #region simpleFuncs
-
-    #endregion 
+    public override Vector3 GetBulletHeadDirection()
+    {
+        return movement.headDir;
+    }
 }

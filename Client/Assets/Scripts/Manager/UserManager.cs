@@ -17,6 +17,7 @@ namespace Manager
         public Action OnPlayerPartChanged = null;
         public Action OnPlayerLoadChanged = null;
         public Action OnPlayerDead = null;
+        public Action OnPlayerWeaponConfigChanged = null;
 
         public Player playerdata;
         private int Hp;
@@ -100,9 +101,13 @@ namespace Manager
         public int hpMax;
 
         public bool isOverLoad = false;
+        public WeaponInfo CurrentWeapon => WeaponManager.Instance.WeaponConfig;
         public void Init()
         {
             OnPlayerLevelChanged += GetMaxParams;
+            WeaponManager.Instance.OnWeaponConfigChanged += OnWeaponConfigChanged;
+            TitleManager.Instance.OnTitleEquiped += OnTitleEquiped;
+            TitleManager.Instance.OnTitleUnEquiped += OnTitleUnEquiped;
 
             Level = DataManager.Instance.SaveData.playerLevel;
             HP = DataManager.Instance.SaveData.Hp;
@@ -111,6 +116,19 @@ namespace Manager
             Gold = DataManager.Instance.SaveData.gold;
             Parts = DataManager.Instance.SaveData.parts;
         }
+
+        private void OnTitleUnEquiped(int obj)
+        {
+            Load = Math.Clamp(Load + Consts.Title.Equip_Load, 0, loadMax);
+            OnPlayerLoadChanged?.Invoke();
+        }
+
+        private void OnTitleEquiped(int obj)
+        {
+            Load = Math.Clamp(Load + Consts.Title.UnEquip_Load, 0, loadMax);
+            OnPlayerLoadChanged?.Invoke();
+        }
+
         private void GetMaxParams()
         {
             hpMax = 100;
@@ -124,6 +142,10 @@ namespace Manager
             GetMaxParams();
             Exp = 0;
             Debug.LogFormat("角色升级:当前等级:{0}", Level.ToString());
+        }
+        private void OnWeaponConfigChanged()
+        {
+            OnPlayerWeaponConfigChanged?.Invoke();
         }
         ~UserManager()
         {

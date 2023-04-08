@@ -33,22 +33,23 @@ public class UIWarningTipItem : MonoBehaviour
         rect.DOMoveY(MOVE_Y, TIME, true)
             .SetEase(Ease.Linear)
             .SetRelative()
-            .SetLink(this.gameObject);
+            .SetLink(this.gameObject)
+            .SetUpdate(true);
     }
     IEnumerator DestroyObj()
     {
-        yield return new WaitForSeconds(owner.duation);
+        yield return new WaitForSecondsRealtime(owner.duation);
         float time = 0;
         while (time <= owner.duation)
         {
-            time += Time.deltaTime;
+            time += Time.fixedDeltaTime;
 
             Color _color = image.color;
-            _color.a -= LAST_TIME * Time.deltaTime * IMAGE_START_ALPHY / 225f;
+            _color.a -= LAST_TIME * Time.fixedDeltaTime * IMAGE_START_ALPHY / 225f;
             image.color = _color;
 
             _color = tipText.color;
-            _color.a -= LAST_TIME * Time.deltaTime;
+            _color.a -= LAST_TIME * Time.fixedDeltaTime;
             tipText.color = _color;
 
             yield return null;

@@ -10,9 +10,10 @@ using UnityEngine;
 
 public enum AtkStyle
 {
-    Melee=0,
-    Rifle=1,
-    ShotGun=2,
+    None=0,
+    Melee=1,
+    Rifle=2,
+    ShotGun=3,
 }
 public enum TitleType
 {

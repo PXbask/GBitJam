@@ -25,7 +25,7 @@ namespace Manager
         public UIManager()
         {
             this.UIResources.Add(typeof(UITitle), new UIElement() { Resources = @"Prefab/UI/UITitle", Cache = true });
-            this.UIResources.Add(typeof(UIDialogue), new UIElement() { Resources = @"Prefab/UI/UIDialogue", Cache = true });
+            //this.UIResources.Add(typeof(UIDialogue), new UIElement() { Resources = @"Prefab/UI/UIDialogue", Cache = true });
             this.UIResources.Add(typeof(UIWorldTips), new UIElement() { Resources = @"Prefab/UI/UIWorldTips", Cache = false });
             this.UIResources.Add(typeof(UIAtla), new UIElement() { Resources = @"Prefab/UI/UIAtla", Cache = false });
             //this.UIResources.Add(typeof(UIBattle), new UIElement() { Resources = @"Prefab/UI/UIBattle", Cache = false });
@@ -54,7 +54,7 @@ namespace Manager
                 }
                 T res = info.Instance.GetComponent<T>();
                 UIInstance[typeof(T)] = res;
-                WindowStack.Push(res);
+                PushToStack(res);
                 return res;
             }
             Debug.LogWarningFormat("UI prefab can't find:{0}", type.Name);
@@ -76,8 +76,8 @@ namespace Manager
                     GameObject.Destroy(uIElement.Instance);
                     uIElement.Instance = null;
                 }
-                
-                WindowStack.Pop();
+
+                PopFromStack();
             }
         }
         public void Close<T>() where T : UIWindow
@@ -115,10 +115,17 @@ namespace Manager
                 return null;
             }
         }
-        //internal void CloseWorldTip()
-        //{
-        //    this.Close<UIWorldTips>();
-        //}
+        private void PushToStack(UIWindow uI)
+        {
+            if(uI != null)
+                WindowStack.Push(uI);
+            Time.timeScale = HasUIOverlay ? 0 : 1;
+        }
+        private void PopFromStack()
+        {
+            WindowStack.Pop();
+            Time.timeScale = HasUIOverlay ? 0 : 1;
+        }
         public void AddGainMessage(string str)
         {
             dynamicPanel?.AddGainMsg(str);

@@ -26,10 +26,11 @@ public class UIGainTipItem : MonoBehaviour
 
     private void Start()
     {
-        rect.DOMoveX(MOVE_X,TIME,true)
+        rect.DOMoveX(MOVE_X, TIME, true)
             .SetEase(Ease.Linear)
             .SetRelative()
-            .SetLink(this.gameObject);
+            .SetLink(this.gameObject)
+            .SetUpdate(true);
     }
     public void SetInfo(string str, UIGainTips owner)
     {
@@ -43,15 +44,17 @@ public class UIGainTipItem : MonoBehaviour
         rect.DOMoveY(MOVE_Y, TIME, true)
             .SetEase(Ease.Linear)
             .SetRelative()
-            .SetLink(this.gameObject);
+            .SetLink(this.gameObject)
+            .SetUpdate(true);
     }
     IEnumerator DestroyObj()
     {
-        yield return new WaitForSeconds(owner.duation);
+        yield return new WaitForSecondsRealtime(owner.duation);
         var tween = root.transform.DOMoveY(MOVE_Y, TIME, true)
                         .SetEase(Ease.Linear)
                         .SetRelative()
-                        .SetLink(this.gameObject); ;
+                        .SetLink(this.gameObject)
+                        .SetUpdate(true);
         tween.OnComplete(() => {
             owner.DequeueItem();
             Destroy(transform.parent.gameObject); 

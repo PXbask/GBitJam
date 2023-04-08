@@ -12,3 +12,7 @@ public interface IInteractable
 {
     void Interact(KeyCode code);
 }
+public interface IAttackable
+{
+    void Attack(KeyCode code);
+}

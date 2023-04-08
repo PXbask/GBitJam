@@ -12,6 +12,7 @@ using UnityEngine;
 public class Ladder : TrapLogic
 {
     public int Length;
+    public bool isClimbing = false;
     protected override void OnInit()
     {
         base.OnInit();
@@ -40,6 +41,7 @@ public class Ladder : TrapLogic
     protected override void OnInteract(KeyCode code)
     {
         base.OnInteract(code);
+        if (isClimbing) return;
         UIManager.Instance.RemoveInteractMessage(transform);
         StartCoroutine(ClimbLadderAnim());
     }
@@ -47,6 +49,7 @@ public class Ladder : TrapLogic
     {
         //把大象装进冰箱需要几步?
         controller.rb.useGravity = false;
+        isClimbing= true;
         controller?.rb.MovePosition(transform.position);
         while (!IsExitLadder())
         {
@@ -62,6 +65,7 @@ public class Ladder : TrapLogic
         //    yield return null;
         //}
         controller.rb.useGravity = true;
+        isClimbing= false;
         yield return null;
     }
     private bool IsExitLadder()

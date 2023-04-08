@@ -11,19 +11,14 @@ using UnityEngine;
 
 public class InputManager : MonoSingleton<InputManager>
 {
-    public Dictionary<KeyCode,IInteractable> actObjMap = new Dictionary<KeyCode,IInteractable>();
+    public Dictionary<KeyCode, IInteractable> actObjMap = new Dictionary<KeyCode, IInteractable>();
     private IInteractable actObj = null;
-    public CharController charc;
-    public PlayerMovement movement;
-
-    //UITitle uititle = null;
-    //UIAtla uIAtla = null;
+    public CharController charController;
 
     public bool playerMoveEnabled = true;
     private void Start()
     {
-        charc = GameManager.Instance.player;
-        movement = charc.GetComponent<PlayerMovement>();
+        charController = GameManager.Instance.player;
 
         actObjMap.Add(KeyCode.F, null);
         actObjMap.Add(KeyCode.Space, null);
@@ -40,13 +35,18 @@ public class InputManager : MonoSingleton<InputManager>
             }
         }
         //E技能
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            //TODO: 释放技能
+            Debug.Log("释放技能");
+        }
         //B打开芯片系统
         if (Input.GetKeyDown(KeyCode.B))
         {
             var uititle = UIManager.Instance.GetActiveInstance<UITitle>();
             if (uititle == null)
             {
-                uititle = UIManager.Instance.Show<UITitle>();
+                _ = UIManager.Instance.Show<UITitle>();
             }
             else
             {
@@ -75,41 +75,18 @@ public class InputManager : MonoSingleton<InputManager>
             }
         }
         //H帮助菜单
-        /*
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            //TODO: 帮助菜单
+            Debug.Log("帮助菜单");
+        }
         //鼠标左键发动攻击
         if (Input.GetMouseButtonDown(0))
         {
-            if (uiCount != 0) return;
-            if (charc == null) return;
-            switch(charc.atkStyle)
-            {
-                case AtkStyle.Melee:
-                    charc.MeleeAtk();
-                    break;
-                case AtkStyle.Rifle:
-                    charc.RifleAtk();
-                    break;
-                case AtkStyle.ShotGun:
-                    charc.ShotGunAtk();
-                    break;
-                default: break;
-            }
+            if (UIManager.Instance.HasUIOverlay) return;
+            if (charController == null) return;
+            charController.Attack();
         }
-        //Q键切换武器
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            switch (charc.atkStyle)
-            {
-                case AtkStyle.Melee:
-                    charc.atkStyle = AtkStyle.Rifle; break;
-                case AtkStyle.Rifle:
-                    charc.atkStyle = AtkStyle.ShotGun; break;
-                case AtkStyle.ShotGun:
-                    charc.atkStyle = AtkStyle.Melee; break;
-            }
-            Debug.LogFormat("武器已切换到{0}", charc.atkStyle.ToString());
-        }
-        */
     }
     private void FixedUpdate()
     {
@@ -119,7 +96,7 @@ public class InputManager : MonoSingleton<InputManager>
     public void HandlePlayerMovement()
     {
         if (!playerMoveEnabled) return;
-        movement?.Move();
+        charController.Move();
     }
     public void PlayerMovementEnabled(bool enabled)
     {

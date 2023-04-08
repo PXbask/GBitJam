@@ -19,6 +19,7 @@ public class UITitle : UIWindow
 {
     #region components
     [Header("左侧显示UI")]
+    public Text weapontext;
     public Text hptext;
     public Text damageresistext;
     public Text movevelotext;
@@ -79,6 +80,8 @@ public class UITitle : UIWindow
         UserManager.Instance.OnPlayerExpChanged += SetLevelBar;
         //HP
         UserManager.Instance.OnPlayerHpChanged += SetHpText;
+        //Load
+        UserManager.Instance.OnPlayerLoadChanged += SetLoadBar;
     }
 
     private void OnDestroy()
@@ -95,6 +98,8 @@ public class UITitle : UIWindow
         UserManager.Instance.OnPlayerExpChanged -= SetLevelBar;
 
         UserManager.Instance.OnPlayerHpChanged -= SetHpText;
+
+        UserManager.Instance.OnPlayerLoadChanged += SetLoadBar;
     }
     public void SetInfo()
     {
@@ -117,6 +122,10 @@ public class UITitle : UIWindow
         damgtext.text = attri.DamageRatio.ToString();
         goldgaintext.text = (attri.GoldRatio * 100).ToString() + "%";
         expgaintext.text = (attri.ExpRatio * 100).ToString() + "%";
+
+        if (UserManager.Instance.CurrentWeapon != null) weapontext.text = UserManager.Instance.CurrentWeapon.define.Name;
+        else weapontext.text = "<未装备武器>";
+
     }
     private void SetHpText()
     {
@@ -254,16 +263,20 @@ public class UITitle : UIWindow
     }
     public void OnClickEquipBtn()
     {
+        if (!selectedItem) return;
+        if (selectedItem.info.equiped) return;
         if (UserManager.Instance.isOverLoad)
         {
             UIManager.Instance.ShowWarning("您已过载，无法装备芯片");
             return;
         }
-        if (!selectedItem) return;
-        if (selectedItem.info.equiped) return;
+        if (selectedItem.info.define.TitleType == TitleType.Attack && UserManager.Instance.CurrentWeapon != null)
+        {
+            UIManager.Instance.ShowWarning("请卸载当前武器");
+            return;
+        }
         if (TitleManager.Instance.EquipedSize + selectedItem.info.define.Size <= UserManager.Instance.slotMax)
         {
-            UserManager.Instance.Load = Math.Clamp(UserManager.Instance.Load + Consts.Title.Equip_Load, 0, UserManager.Instance.loadMax);
             TitleManager.Instance.Equip(selectedItem.info.ID);
         }
         else
@@ -282,7 +295,6 @@ public class UITitle : UIWindow
         }
         if (!selectedItem) return;
         if (!selectedItem.info.equiped) return;
-        UserManager.Instance.Load = Math.Clamp(UserManager.Instance.Load + Consts.Title.UnEquip_Load, 0, UserManager.Instance.loadMax);
         TitleManager.Instance.UnEquip(selectedItem.info.ID);
     }
     public void OnEquipedTitleChanged(int id)
@@ -290,7 +302,6 @@ public class UITitle : UIWindow
         SetTitleSlot();
         SetTitleContent(id);
         SetPlayerAttriInfo();
-        SetLoadBar();
         SetTitleInfoPanel();
     }
     private void OnLevelItemTouched(int obj)

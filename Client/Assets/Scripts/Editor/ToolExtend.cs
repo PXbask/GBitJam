@@ -27,4 +27,9 @@ public class ToolExtend : UnityEditor.Editor
     {
         UserManager.Instance.OnLevelUp();
     }
+    [MenuItem("Tools/LoadClean")]
+    public static void LoadClean()
+    {
+        UserManager.Instance.Load = 0;
+    }
 }

@@ -10,29 +10,28 @@ using UnityEngine;
 
 public class BulletLogic : MonoBehaviour
 {
-    Camera mainCamera;
+    public Rigidbody rb;
     public Vector3 direction;
     public float speed;
-    private void Awake()
+    //private void Update()
+    //{
+    //    Vector3 pos = transform.position;
+    //    pos += direction.normalized * speed * Time.deltaTime;
+    //    transform.position = pos;
+    //}
+    private void OnTriggerEnter(Collider other)
     {
-        mainCamera= Camera.main;
-        speed= 10.0f;
-    }
-    private void Update()
-    {
-        Vector3 pos = transform.position;
-        pos += direction.normalized * speed * Time.deltaTime;
-        transform.position = pos;
-
-        if (IsOutOfCamera())
-        {
+        if(other.gameObject.layer != 10)//角色
             Destroy(gameObject);
-        }
     }
-    bool IsOutOfCamera()
+    public void SetInfo(Vector3 dir, float speed)
     {
-        Vector3 screenPos = mainCamera.WorldToViewportPoint(gameObject.transform.position);
-        // 判断屏幕坐标是否在视口范围内
-        return (screenPos.x < 0 || screenPos.x > 1 || screenPos.y < 0 || screenPos.y > 1);
+        this.direction= dir;
+        this.speed = speed;
+        rb.AddForce(speed * direction, ForceMode.VelocityChange);
+    }
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
     }
 }

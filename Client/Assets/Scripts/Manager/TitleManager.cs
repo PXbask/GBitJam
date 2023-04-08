@@ -68,7 +68,7 @@ public class TitleManager : Singleton<TitleManager>
                 info.equiped = true;
                 EquipedTitle.Add(info);
                 OnTitleEquiped?.Invoke(id);
-                Debug.LogFormat("装备了{0}", info.define.Name);
+                Debug.LogFormat("装备了[{0}]", info.define.Name);
             }
         }
         else
@@ -84,7 +84,7 @@ public class TitleManager : Singleton<TitleManager>
             info.equiped = false;
             EquipedTitle.Remove(info);
             OnTitleUnEquiped?.Invoke(id);
-            Debug.LogFormat("取下了{0}", info.define.Name);
+            Debug.LogFormat("取下了[{0}]", info.define.Name);
         }
         else
         {

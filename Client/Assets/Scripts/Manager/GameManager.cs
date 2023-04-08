@@ -41,6 +41,7 @@ public class GameManager : MonoSingleton<GameManager>
         DataManager.Instance.LoadConfigData();
         DataManager.Instance.LoadUserData();
         TitleManager.Instance.Init();
+        WeaponManager.Instance.Init();
         UserManager.Instance.Init();
         DialogueManager.Instance.Init();
         PXSceneManager.Instance.Init();

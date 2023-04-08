@@ -64,7 +64,11 @@ public class UITitleSlotMask : MonoBehaviour,IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (UserManager.Instance.isOverLoad) return;
+        if (UserManager.Instance.isOverLoad)
+        {
+            UIManager.Instance.ShowWarning("您已过载，无法卸下芯片");
+            return;
+        }
         UserManager.Instance.Load = System.Math.Clamp(UserManager.Instance.Load + Consts.Title.UnEquip_Load, 0, UserManager.Instance.loadMax);
         TitleManager.Instance.UnEquip(info.ID);
     }

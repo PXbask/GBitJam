@@ -21,10 +21,12 @@ public class Creature
     public bool IsPlayer => define.ID == Consts.Character.PlayerID;
     public List<TitleInfo> titles;
 
-    public Creature(CharacterDefine define)
+    public Creature(CharacterDefine define, IAttackable controller)
     {
         this.define = define;
+        this.controller = controller;
         attributes = new Attributes(define, this);
+        weaponManager = new WeaponManager(this);
     }
     ~Creature()
     {

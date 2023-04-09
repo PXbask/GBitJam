@@ -1,18 +1,21 @@
 ﻿using AI;
 using Define;
+using Manager;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Model
 {
     public class Enemy : Creature
     {
         public AIAgent agent;
+        public EnemyAttackStyle attackStyle;
         public BattleStatus battleStatus;
-        public Enemy(CharacterDefine define): base(define)
+        public Enemy(CharacterDefine define, IAttackable attackable): base(define, attackable)
         {
             agent = new AIAgent(this);
         }
@@ -33,9 +36,11 @@ namespace Model
                 default: break;
             }
         }
-        public void SetTitles(List<TitleInfo> values)
+        public void SetEquips(List<TitleInfo> values, EnemyAttackStyle style)
         {
             this.titles = values;
+            this.attackStyle = style;
+            weaponManager.SetWeapon((int)style);
         }
         public override void Update()
         {

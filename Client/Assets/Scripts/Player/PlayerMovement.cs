@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
 {
     Rigidbody rb;
     [Header("移动速度")]
-    public float speed = 2.0f;
+    public float speed = 4.0f;
     [Header("移动倍率")]
     public float speedMultiple = 1.00f;
     private float m_speed;

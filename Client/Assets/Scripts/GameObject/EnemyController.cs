@@ -21,6 +21,13 @@ public class EnemyController : PXCharacterController
         }
     }
     public Enemy enemy;
+    public void Init()
+    {
+        enemy = charBase as Enemy;
+        //¡Ÿ ±
+        enemy.agent.Target = UserManager.Instance.playerlogic;
+        enemy.battleStatus = BattleStatus.InBattle;
+    }
     protected override void OnAwake()
     {
         base.OnAwake();

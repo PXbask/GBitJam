@@ -25,7 +25,6 @@ public class GameManager : MonoSingleton<GameManager>
     public Image blackMask;
     public Text maskText;
     public PlayerController player;
-    public EnemyController enemy;
     private void Awake()
     {
         Application.targetFrameRate = FPS;
@@ -36,6 +35,7 @@ public class GameManager : MonoSingleton<GameManager>
     private void Start()
     {
         blackMask.gameObject.SetActive(false);
+        GameObjectManager.Instance.CreateEnemy(new Vector3(-8, 1, -1), EnemyAttackStyle.ShotGun , new List<TitleInfo> { new TitleInfo(20) });
     }
     public void Init()
     {
@@ -46,6 +46,7 @@ public class GameManager : MonoSingleton<GameManager>
         DialogueManager.Instance.Init();
         PXSceneManager.Instance.Init();
         CharacterManager.Instance.Init();
+        GameObjectManager.Instance.Init();
     }
     private void Update()
     {
@@ -58,50 +59,15 @@ public class GameManager : MonoSingleton<GameManager>
     public void GetBaseVars()
     {
         if (player == null) GetPlayer();
-        if (enemy == null) GetEnemy();
     }
     public void GetPlayer()
     {
         var obj = GameObject.Find("Player");
-        //controller
-        player = obj.GetComponent<PlayerController>();
-        player.charBase = new Player(DataManager.Instance.Characters[Consts.Character.PlayerID]);
-        player.charBase.controller = player;
-        player.charBase.weaponManager = new WeaponManager(player.charBase);
-        UserManager.Instance.playerlogic = (Player)player.charBase;
-        TitleManager.Instance.OnTitleEquiped += player.charBase.attributes.Recalculate;
-        TitleManager.Instance.OnTitleUnEquiped += player.charBase.attributes.Recalculate;
-        player.charBase.attributes.Recalculate();
-        player.transform.position = DataManager.Instance.SaveData.playerPos;
-        PlayerMovement movement = obj.GetComponent<PlayerMovement>();
-
-        CharacterManager.Instance.AddCharacter(player.charBase);
+        if(!obj) GameObjectManager.Instance.CreatePlayer();
     }
-    public void GetEnemy()
+    private void OnDestroy()
     {
-        var obj = GameObject.Find("Enemy");
-        enemy = obj.GetComponent<EnemyController>();
-        enemy.charBase = new Enemy(DataManager.Instance.Characters[Consts.Character.EnemyID]);
-        //AI
-        enemy.enemy = enemy.charBase as Enemy;
-        enemy.enemy.agent.Target = UserManager.Instance.playerlogic;
-        enemy.Status = BattleStatus.InBattle;
-        //Weapon
-        enemy.charBase.controller = enemy;
-        enemy.charBase.weaponManager = new WeaponManager(enemy.charBase);
-        enemy.charBase.weaponManager.SetWeapon(3);
-        //Title
-        List<TitleInfo> list = new List<TitleInfo>
-        {
-            new TitleInfo(20)
-        };
-        enemy.enemy.SetTitles(list);
-        enemy.charBase.attributes.Recalculate();
-        //Debug
-        Debug.Log(enemy.enemy.attributes.baseAttribute.ToString());
-        Debug.Log(enemy.enemy.attributes.curAttribute.ToString());
-
-        CharacterManager.Instance.AddCharacter(enemy.charBase);
+        UnityEngine.SceneManagement.SceneManager.activeSceneChanged -= GetBaseVars;
     }
     #region UI
     public void TurntoBlackAnim(Action callback)

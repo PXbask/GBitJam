@@ -15,9 +15,14 @@ namespace Model
         public int Load => UserManager.Instance.Load;
         public int Gold => UserManager.Instance.Gold;
         public int Parts => UserManager.Instance.Parts;
-        public Player(CharacterDefine define) : base(define)
+        public Player(CharacterDefine define, IAttackable attackable) : base(define, attackable)
         {
             titles = TitleManager.Instance.EquipedTitle;
+            UserManager.Instance.playerlogic = this;
+
+            TitleManager.Instance.OnTitleEquiped += this.attributes.Recalculate;
+            TitleManager.Instance.OnTitleUnEquiped += this.attributes.Recalculate;
+            attributes.Recalculate();
         }
         protected override void OnAttack()
         {

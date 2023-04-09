@@ -8,7 +8,7 @@ using UnityEngine;
     Overview:
 */
 
-public enum AtkStyle
+public enum EnemyAttackStyle
 {
     None=0,
     Melee=1,

@@ -8,16 +8,16 @@ namespace Manager
 {
     public class CharacterManager:Singleton<CharacterManager>
     {
-        public List<CharBase> Characters = new List<CharBase>();
+        public List<Creature> Characters = new List<Creature>();
         public void Init() { }
-        public void AddCharacter(CharBase cha)
+        public void AddCharacter(Creature cha)
         {
             if (!Characters.Contains(cha))
             {
                 this.Characters.Add(cha);
             }
         }
-        public void RemoveCharacter(CharBase cha)
+        public void RemoveCharacter(Creature cha)
         {
             this.Characters.Remove(cha);
         }

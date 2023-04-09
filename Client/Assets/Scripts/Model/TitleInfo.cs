@@ -35,7 +35,11 @@ namespace Model
             if (define.TitleAffect != 0)
                 this.affects = DataManager.Instance.TitleAffects[define.TitleAffect];
         }
-
+        /// <summary>
+        /// 仅供敌人使用
+        /// </summary>
+        /// <param name="ID">TitleDefine ID</param>
+        public TitleInfo(int ID): this(ID, 0, false) { }
         public string GetDetailedInfo(int touchedLevel)
         {
             if(define.TitleType!=TitleType.Assist) return string.Empty;

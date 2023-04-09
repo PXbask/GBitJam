@@ -8,13 +8,33 @@ using System.Threading.Tasks;
 
 namespace Model
 {
-    public class Player: CharBase
+    public class Player: Creature
     {
-        public int level => UserManager.Instance.Level;
-        public int exp => UserManager.Instance.Exp;
-        public int load => UserManager.Instance.Load;
-        public int gold => UserManager.Instance.Gold;
-        public int parts => UserManager.Instance.Parts;
-        public Player(CharacterDefine define) : base(define) { }
+        public int Level => UserManager.Instance.Level;
+        public int Exp => UserManager.Instance.Exp;
+        public int Load => UserManager.Instance.Load;
+        public int Gold => UserManager.Instance.Gold;
+        public int Parts => UserManager.Instance.Parts;
+        public Player(CharacterDefine define) : base(define)
+        {
+            titles = TitleManager.Instance.EquipedTitle;
+        }
+        protected override void OnAttack()
+        {
+            var weapon = weaponManager.WeaponConfig;
+            switch (weapon.ID)
+            {
+                case 1://刀
+                    controller.Melee_Attack();
+                    break;
+                case 2://步枪
+                    controller.Rifle_Attack();
+                    break;
+                case 3://霰弹枪
+                    controller.ShotGun_Attack();
+                    break;
+                default: break;
+            }
+        }
     }
 }

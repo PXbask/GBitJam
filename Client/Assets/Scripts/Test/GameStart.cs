@@ -12,7 +12,7 @@ using UnityEngine;
 
 public class GameStart : MonoBehaviour
 {
-    CharController player;
+    PlayerController player;
     private void Awake()
     {
         DataManager.Instance.LoadConfigData();
@@ -32,7 +32,7 @@ public class GameStart : MonoBehaviour
         var obj = Instantiate(playerPre);
         obj.name = "Player";
         //Ω≈±æ≥ı ºªØ
-        player = obj.GetComponent<CharController>();
+        player = obj.GetComponent<PlayerController>();
         player.charBase = new Player(DataManager.Instance.Characters[0]);
         TitleManager.Instance.OnTitleEquiped += player.charBase.attributes.Recalculate;
         TitleManager.Instance.OnTitleUnEquiped += player.charBase.attributes.Recalculate;

@@ -10,7 +10,7 @@ namespace Model
 {
     public class WeaponInfo
     {
-        public CharBase owner;
+        public Creature owner;
         public int ID => define.ID;
         public WeaponDefine define;
         private float m_timer;
@@ -19,7 +19,7 @@ namespace Model
         {
             get => m_timer >= 0;
         }
-        public WeaponInfo(WeaponDefine define, CharBase owner)
+        public WeaponInfo(WeaponDefine define, Creature owner)
         {
             this.define = define;
             this.owner = owner;

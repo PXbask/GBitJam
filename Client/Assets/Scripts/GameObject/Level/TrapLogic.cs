@@ -11,7 +11,7 @@ using UnityEngine;
 
 public abstract class TrapLogic : MonoBehaviour, IInteractable
 {
-    public CharController controller;
+    public PlayerController controller;
     protected KeyCode interactKey;
     [SerializeField] protected string tipStr;
     protected string targetTag;

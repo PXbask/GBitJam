@@ -132,9 +132,9 @@ namespace Manager
         private void GetMaxParams()
         {
             hpMax = 100;
-            loadMax = DataManager.Instance.Levels[Consts.Player.ID][Level].LoadMax;
-            slotMax = DataManager.Instance.Levels[Consts.Player.ID][Level].SlotNum;
-            exp2NextLevel = DataManager.Instance.Levels[Consts.Player.ID][Level].ExpCost;
+            loadMax = DataManager.Instance.Levels[Consts.Character.PlayerID][Level].LoadMax;
+            slotMax = DataManager.Instance.Levels[Consts.Character.PlayerID][Level].SlotNum;
+            exp2NextLevel = DataManager.Instance.Levels[Consts.Character.PlayerID][Level].ExpCost;
         }
         public void OnLevelUp()
         {

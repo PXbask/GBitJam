@@ -34,3 +34,9 @@ public enum PlayerStatus
     None,
     Jump
 }
+public enum BattleStatus
+{
+    None = 0,
+    Idle = 1,
+    InBattle = 2,
+}

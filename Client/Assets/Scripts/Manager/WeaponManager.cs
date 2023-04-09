@@ -11,11 +11,11 @@ namespace Manager
 {
     public class WeaponManager
     {
-        public CharBase owner;
+        public Creature owner;
         public Action OnWeaponConfigChanged = null;
         public Dictionary<int, WeaponInfo> WeaponMap;
         public WeaponInfo WeaponConfig;
-        public WeaponManager(CharBase owner)
+        public WeaponManager(Creature owner)
         {
             this.owner = owner;
             WeaponMap = new Dictionary<int, WeaponInfo>();
@@ -58,6 +58,15 @@ namespace Manager
                 WeaponConfig = null;
                 OnWeaponConfigChanged?.Invoke();
             }
+        }
+        /// <summary>
+        /// 仅对敌人有用
+        /// </summary>
+        /// <param name="id">武器对应ID</param>
+        public void SetWeapon(int id)
+        {
+            if (owner.IsPlayer) return;
+            WeaponConfig = new WeaponInfo(DataManager.Instance.Weapons[id], owner);
         }
         public void Update()
         {

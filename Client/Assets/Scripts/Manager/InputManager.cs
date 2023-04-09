@@ -13,7 +13,7 @@ public class InputManager : MonoSingleton<InputManager>
 {
     public Dictionary<KeyCode, IInteractable> actObjMap = new Dictionary<KeyCode, IInteractable>();
     private IInteractable actObj = null;
-    public CharController charController;
+    public PlayerController charController;
 
     public bool playerMoveEnabled = true;
     private void Start()
@@ -85,7 +85,7 @@ public class InputManager : MonoSingleton<InputManager>
         {
             if (UIManager.Instance.HasUIOverlay) return;
             if (charController == null) return;
-            charController.Attack();
+            UserManager.Instance.playerlogic.Attack();
         }
     }
     private void FixedUpdate()

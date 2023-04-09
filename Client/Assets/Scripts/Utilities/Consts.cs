@@ -27,9 +27,10 @@ public static class Consts
         public const int Equip_Load = 15; 
         public const int UnEquip_Load = 10;
     }
-    public static class Player
+    public static class Character
     {
-        public const int ID = 1;
+        public const int PlayerID = 1;
+        public const int EnemyID = 10;
     }
 
 }

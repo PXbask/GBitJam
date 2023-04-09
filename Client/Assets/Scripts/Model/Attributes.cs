@@ -11,8 +11,10 @@ namespace Model
     {
         public Attribute baseAttribute;
         public Attribute curAttribute;
-        public Attributes(CharacterDefine define)
+        public Creature owner;
+        public Attributes(CharacterDefine define, Creature owner)
         {
+            this.owner= owner;
             baseAttribute = new Attribute(define);
             curAttribute = new Attribute(define);
             Recalculate();
@@ -20,11 +22,12 @@ namespace Model
         public void Recalculate(int _) { Recalculate(); }
         public void Recalculate()
         {
+            if (owner.titles == null) return;
             float curHp = curAttribute.HP;
             curAttribute.Copy(baseAttribute);
             curAttribute.HP = curHp;
             //TODO:计算curAttribute属性
-            foreach (var title in TitleManager.Instance.EquipedTitle)
+            foreach (var title in owner.titles)
             {
                 if(title.define.TitleType==TitleType.Assist)
                 {

@@ -1,6 +1,7 @@
 using Define;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 
 /*
@@ -39,7 +40,19 @@ namespace Model
             this.DamageRatio = attri.DamageRatio;
             this.GoldRatio = attri.GoldRatio;
             this.ExpRatio = attri.ExpRatio;
-        } 
+        }
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(string.Format("Hp : [{0}]", HP));
+            sb.AppendLine(string.Format("DamageRatio : [{0}]", DamageRatio));
+            sb.AppendLine(string.Format("Dodge : [{0}]", Dodge));
+            sb.AppendLine(string.Format("MoveVelocityRatio : [{0}]", MoveVelocityRatio));
+            sb.AppendLine(string.Format("DamageResistence : [{0}]", DamageResistence));
+            sb.AppendLine(string.Format("GoldRatio : [{0}]", GoldRatio));
+            sb.AppendLine(string.Format("ExpRatio : [{0}]", ExpRatio));
+            return sb.ToString();
+        }
     }
 }
 

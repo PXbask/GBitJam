@@ -26,7 +26,7 @@ public class DataManager : Singleton<DataManager>
     public Dictionary<int, WeaponDefine> Weapons = new Dictionary<int, WeaponDefine>();
     public Dictionary<int, Dictionary<int, DialogueDefine>> Dialogues = new Dictionary<int, Dictionary<int, DialogueDefine>>();
     public Dictionary<int, Dictionary<int, LevelDefine>> Levels = new Dictionary<int, Dictionary<int, LevelDefine>>();
-    public CharacterDefine PlayerDefine => Characters[Consts.Player.ID];
+    public CharacterDefine PlayerDefine => Characters[Consts.Character.PlayerID];
     public DataManager()
     {
         Debug.Log("<color=#FF00FF>DataManager Init</color>");

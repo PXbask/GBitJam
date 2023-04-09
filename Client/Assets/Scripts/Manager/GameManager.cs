@@ -3,6 +3,7 @@ using Model;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Experimental.Audio;
 using UnityEngine.UI;
@@ -23,8 +24,8 @@ public class GameManager : MonoSingleton<GameManager>
 
     public Image blackMask;
     public Text maskText;
-    public CharController player;
-
+    public PlayerController player;
+    public EnemyController enemy;
     private void Awake()
     {
         Application.targetFrameRate = FPS;
@@ -57,12 +58,14 @@ public class GameManager : MonoSingleton<GameManager>
     public void GetBaseVars()
     {
         if (player == null) GetPlayer();
+        if (enemy == null) GetEnemy();
     }
     public void GetPlayer()
     {
         var obj = GameObject.Find("Player");
-        player = obj.GetComponent<CharController>();
-        player.charBase = new Player(DataManager.Instance.Characters[1]);
+        //controller
+        player = obj.GetComponent<PlayerController>();
+        player.charBase = new Player(DataManager.Instance.Characters[Consts.Character.PlayerID]);
         player.charBase.controller = player;
         player.charBase.weaponManager = new WeaponManager(player.charBase);
         UserManager.Instance.playerlogic = (Player)player.charBase;
@@ -71,9 +74,34 @@ public class GameManager : MonoSingleton<GameManager>
         player.charBase.attributes.Recalculate();
         player.transform.position = DataManager.Instance.SaveData.playerPos;
         PlayerMovement movement = obj.GetComponent<PlayerMovement>();
-        movement.speed = player.charBase.attributes.curAttribute.MoveVelocityRatio * 4f;
 
         CharacterManager.Instance.AddCharacter(player.charBase);
+    }
+    public void GetEnemy()
+    {
+        var obj = GameObject.Find("Enemy");
+        enemy = obj.GetComponent<EnemyController>();
+        enemy.charBase = new Enemy(DataManager.Instance.Characters[Consts.Character.EnemyID]);
+        //AI
+        enemy.enemy = enemy.charBase as Enemy;
+        enemy.enemy.agent.Target = UserManager.Instance.playerlogic;
+        enemy.Status = BattleStatus.InBattle;
+        //Weapon
+        enemy.charBase.controller = enemy;
+        enemy.charBase.weaponManager = new WeaponManager(enemy.charBase);
+        enemy.charBase.weaponManager.SetWeapon(3);
+        //Title
+        List<TitleInfo> list = new List<TitleInfo>
+        {
+            new TitleInfo(20)
+        };
+        enemy.enemy.SetTitles(list);
+        enemy.charBase.attributes.Recalculate();
+        //Debug
+        Debug.Log(enemy.enemy.attributes.baseAttribute.ToString());
+        Debug.Log(enemy.enemy.attributes.curAttribute.ToString());
+
+        CharacterManager.Instance.AddCharacter(enemy.charBase);
     }
     #region UI
     public void TurntoBlackAnim(Action callback)

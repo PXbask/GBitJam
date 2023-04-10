@@ -108,7 +108,7 @@ public class DataManager : Singleton<DataManager>
         string json = File.ReadAllText(dataPath + "Save.json");
         SaveData = JsonConvert.DeserializeObject<SaveData>(json);
     }
-    #region privateFuncs
+     #region privateFuncs
     private List<int[]> GetAllTitlesData()
     {
         List<int[]> data = new List<int[]>();

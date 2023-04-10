@@ -18,10 +18,11 @@ namespace Manager
         public Action OnPlayerLoadChanged = null;
         public Action OnPlayerDead = null;
         public Action OnPlayerWeaponConfigChanged = null;
+        public Action OnPlayerTargetChanged = null;
 
         public Player playerlogic;
-        private int Hp;
-        public int HP
+        private float Hp;
+        public float HP
         {
             get { return Hp; }
             set
@@ -94,7 +95,16 @@ namespace Manager
                 OnPlayerPartChanged?.Invoke();
             }
         }
-
+        private Creature targetEnemy;
+        public Creature TargetEnemy
+        {
+            get => targetEnemy;
+            set
+            {
+                targetEnemy = value;
+                OnPlayerTargetChanged?.Invoke();
+            }
+        }
         public int exp2NextLevel;
         public int loadMax;
         public int slotMax;
@@ -103,6 +113,8 @@ namespace Manager
         public bool isOverLoad = false;
         public WeaponManager weaponManager => playerlogic.weaponManager;
         public WeaponInfo CurrentWeapon => weaponManager.WeaponConfig;
+
+
         public void Init()
         {
             OnPlayerLevelChanged += GetMaxParams;
@@ -117,13 +129,13 @@ namespace Manager
             Parts = DataManager.Instance.SaveData.parts;
         }
 
-        private void OnTitleUnEquiped(int obj)
+        private void OnTitleEquiped(int obj)
         {
             Load = Math.Clamp(Load + Consts.Title.Equip_Load, 0, loadMax);
             OnPlayerLoadChanged?.Invoke();
         }
 
-        private void OnTitleEquiped(int obj)
+        private void OnTitleUnEquiped(int obj)
         {
             Load = Math.Clamp(Load + Consts.Title.UnEquip_Load, 0, loadMax);
             OnPlayerLoadChanged?.Invoke();

@@ -138,7 +138,7 @@ namespace Manager
         {
             battlePanel?.RemoveInteractMsg(root);
         }
-        public void ShowWarning(string str)
+        public void AddWarning(string str)
         {
             dynamicPanel?.AddWarning(str);
         }

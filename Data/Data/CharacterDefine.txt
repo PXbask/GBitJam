@@ -10,7 +10,8 @@
     "DamageRatio": 1.0,
     "GoldRatio": 1.0,
     "ExpRatio": 1.0,
-    "ExpEarn": 0
+    "ExpEarn": 0,
+    "GoldEarn": 0
   },
   "10": {
     "ID": 10,
@@ -23,7 +24,8 @@
     "DamageRatio": 1.0,
     "GoldRatio": 0.0,
     "ExpRatio": 0.0,
-    "ExpEarn": 50
+    "ExpEarn": 50,
+    "GoldEarn": 500
   },
   "100": {
     "ID": 100,
@@ -36,7 +38,8 @@
     "DamageRatio": 1.0,
     "GoldRatio": 0.0,
     "ExpRatio": 0.0,
-    "ExpEarn": 120
+    "ExpEarn": 120,
+    "GoldEarn": 1000
   },
   "200": {
     "ID": 200,
@@ -49,6 +52,7 @@
     "DamageRatio": 1.0,
     "GoldRatio": 0.0,
     "ExpRatio": 0.0,
-    "ExpEarn": 400
+    "ExpEarn": 400,
+    "GoldEarn": 5000
   }
 }

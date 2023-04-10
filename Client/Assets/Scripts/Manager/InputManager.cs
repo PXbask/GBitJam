@@ -35,10 +35,21 @@ public class InputManager : MonoSingleton<InputManager>
             }
         }
         //E技能
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            //TODO: 释放技能
-            Debug.Log("释放技能");
+            SkillManager.Instance.CastSkill(1);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SkillManager.Instance.CastSkill(2);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SkillManager.Instance.CastSkill(3);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            SkillManager.Instance.CastSkill(4);
         }
         //B打开芯片系统
         if (Input.GetKeyDown(KeyCode.B))

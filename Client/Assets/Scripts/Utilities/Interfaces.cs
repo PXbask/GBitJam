@@ -15,6 +15,7 @@ public interface IInteractable
 public interface IAttackable
 {
     void Melee_Attack();
+    void OnDeath();
     void Rifle_Attack();
     void ShotGun_Attack();
 }

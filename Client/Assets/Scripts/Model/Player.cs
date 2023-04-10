@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Model
 {
@@ -40,6 +41,11 @@ namespace Model
                     break;
                 default: break;
             }
+        }
+        public override void OnDamage(float damage)
+        {
+            base.OnDamage(damage);
+            UserManager.Instance.HP -= Mathf.CeilToInt(damage);
         }
     }
 }

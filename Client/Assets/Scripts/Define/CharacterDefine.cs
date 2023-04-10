@@ -20,5 +20,6 @@ namespace Define
         public float GoldRatio { get; set; } //金币获得倍率
         public float ExpRatio { get; set; }//经验获得倍率
         public int ExpEarn { get; set; }//击杀获得经验
+        public int GoldEarn { get; set; }//击杀获得金币
     }
 }

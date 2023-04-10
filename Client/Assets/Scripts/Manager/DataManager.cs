@@ -138,7 +138,7 @@ public class DataManager : Singleton<DataManager>
         }
         return data;
     }
-    private int GetPlayerHp()
+    private float GetPlayerHp()
     {
         return UserManager.Instance.HP;
     }

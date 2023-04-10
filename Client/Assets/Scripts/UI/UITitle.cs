@@ -116,7 +116,7 @@ public class UITitle : UIWindow
     {
         Model.Attribute attri = GameManager.Instance.player.charBase.attributes.curAttribute;
 
-        hptext.text = attri.HP.ToString();
+        hptext.text = attri.HP.ToString("f0");
         damageresistext.text = (attri.DamageResistence * 100).ToString() + "%";
         movevelotext.text = (attri.MoveVelocityRatio * 100).ToString() + "%";
         damgtext.text = attri.DamageRatio.ToString();
@@ -267,12 +267,12 @@ public class UITitle : UIWindow
         if (selectedItem.info.equiped) return;
         if (UserManager.Instance.isOverLoad)
         {
-            UIManager.Instance.ShowWarning("您已过载，无法装备芯片");
+            UIManager.Instance.AddWarning("您已过载，无法装备芯片");
             return;
         }
         if (selectedItem.info.define.TitleType == TitleType.Attack && UserManager.Instance.CurrentWeapon != null)
         {
-            UIManager.Instance.ShowWarning("请卸载当前武器");
+            UIManager.Instance.AddWarning("请卸载当前武器");
             return;
         }
         if (TitleManager.Instance.EquipedSize + selectedItem.info.define.Size <= UserManager.Instance.slotMax)
@@ -281,7 +281,7 @@ public class UITitle : UIWindow
         }
         else
         {
-            UIManager.Instance.ShowWarning("当前槽数量不足，无法继续装备");
+            UIManager.Instance.AddWarning("当前槽数量不足，无法继续装备");
             //TitleManager.Instance.UnEquip(TitleManager.Instance.EquipedTitle.First().ID);
             //OnClickEquipBtn();
         }
@@ -290,7 +290,7 @@ public class UITitle : UIWindow
     {
         if (UserManager.Instance.isOverLoad)
         {
-            UIManager.Instance.ShowWarning("您已过载，无法卸下芯片");
+            UIManager.Instance.AddWarning("您已过载，无法卸下芯片");
             return;
         }
         if (!selectedItem) return;

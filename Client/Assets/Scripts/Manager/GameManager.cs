@@ -43,6 +43,7 @@ public class GameManager : MonoSingleton<GameManager>
         DataManager.Instance.LoadUserData();
         TitleManager.Instance.Init();
         UserManager.Instance.Init();
+        SkillManager.Instance.Init();
         DialogueManager.Instance.Init();
         PXSceneManager.Instance.Init();
         CharacterManager.Instance.Init();
@@ -51,6 +52,7 @@ public class GameManager : MonoSingleton<GameManager>
     private void Update()
     {
         CharacterManager.Instance.Update();
+        SkillManager.Instance.Update();
     }
     private void GetBaseVars(UnityEngine.SceneManagement.Scene arg0, UnityEngine.SceneManagement.Scene arg1)
     {

@@ -43,9 +43,17 @@ namespace Manager
             //Instantiate
             controller.transform.position = DataManager.Instance.SaveData.playerPos;
             CharacterManager.Instance.AddCharacter(controller.charBase);
-            Characters.Add(playerobj);
+            AddCharacterObj(playerobj);
 
             backgroundCamera.GetUniversalAdditionalCameraData().cameraStack.Add(Camera.main);
+        }
+        public void AddCharacterObj(GameObject obj)
+        {
+            this.Characters.Add(obj);
+        }
+        public void RemoveCharacterObj(GameObject obj)
+        {
+            this.Characters.Remove(obj);
         }
         /// <summary>
         /// 用于生成敌人
@@ -72,7 +80,7 @@ namespace Manager
             Debug.Log(enemy.attributes.curAttribute.ToString());
 
             CharacterManager.Instance.AddCharacter(controller.charBase);
-            Characters.Add(enemyobj);
+            AddCharacterObj(enemyobj);
         }
         #region PoolFuncs
         private BulletLogic OnCreatePoolItem(GameObject pre)

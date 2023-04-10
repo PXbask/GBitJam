@@ -14,9 +14,11 @@ namespace Define
         public int Size { get; set; }//占有空间
         public int Quality { get; set; }//稀有度
         public TitleType TitleType { get; set; }
+        public SkillTitleType SkillType { get; set; }
         public bool EnemyCanEquip { get; set; }//敌人是否可拥有
         public bool EnemyCanFall { get; set; }//敌人是否可掉落
         public bool IsConsumable { get; set; }//是否消耗
+        public float CoolingDown { get; set; }
         public int TitleAffect { get; set; }//对应的TitleAffect类的ID号
         public int LindedWeapon { get; set; }//对应的武器ID
         public float DropRate { get; set; }//掉落概率

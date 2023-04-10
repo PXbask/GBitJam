@@ -86,13 +86,13 @@ namespace Model
             if (UserManager.Instance.Gold >= gold) UserManager.Instance.Gold -= gold;
             else
             {
-                UIManager.Instance.ShowWarning("金币数量不足，无法升级");
+                UIManager.Instance.AddWarning("金币数量不足，无法升级");
                 return;
             }
             if (UserManager.Instance.Parts >= part) UserManager.Instance.Parts -= part;
             else
             {
-                UIManager.Instance.ShowWarning("碎片数量不足，无法升级");
+                UIManager.Instance.AddWarning("碎片数量不足，无法升级");
                 return;
             }
             level++;

@@ -57,16 +57,10 @@ public class Creature
         }
 
         var damage = context.weapon.Damage * context.curAttri.DamageRatio * (1 - attributes.curAttribute.DamageResistence);
-        if(!IsPlayer)
-            attributes.curAttribute.HP -= damage;
-        else
-            UserManager.Instance.HP -= Mathf.CeilToInt(damage);
-
-        Debug.LogFormat("Take Damage:[{0}]",damage.ToString());
-        if (attributes.curAttribute.HP < 0)
-        {
-            //Dead
-            Debug.Log("µÐÈËÒÑËÀÍö");
-        }
+        OnDamage(damage);
+    }
+    public virtual void OnDamage(float damage)
+    {
+        Debug.LogFormat("Take Damage:[{0}]", damage.ToString());
     }
 }

@@ -40,3 +40,9 @@ public enum BattleStatus
     Idle = 1,
     InBattle = 2,
 }
+public enum SkillTitleType
+{
+    None = 0,
+    Positive = 1,
+    Passive = 2,
+}

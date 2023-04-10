@@ -27,7 +27,11 @@ public class UIBattle : UIWindow
     public UIIconList playerIcons;
     public UIInteractTips interactTips;
 
-    //public UIIconList enemyIcons;//TODO£ºµÐÈËÐ¾Æ¬Í¼±êÏÔÊ¾
+    public UIIconList enemyIcons;
+    public UISkillBar skillBar;
+    private Creature TargetEnemy => UserManager.Instance.TargetEnemy;
+
+    private Creature m_targetEnemy;
     protected override void OnStart()
     {
         UIManager.Instance.battlePanel = this;
@@ -37,6 +41,8 @@ public class UIBattle : UIWindow
         UserManager.Instance.OnPlayerLevelChanged += SetLevelText;
         UserManager.Instance.OnPlayerLevelChanged += SetLoadSlider;
         UserManager.Instance.OnPlayerLoadChanged += SetLoadSlider;
+        UserManager.Instance.OnPlayerTargetChanged += SetEnemyHpSlider;
+        UserManager.Instance.OnPlayerTargetChanged += SetEnemyIconBar;
         TitleManager.Instance.OnTitleEquiped += AddIcon;
         TitleManager.Instance.OnTitleUnEquiped += RemoveIcon;
 
@@ -50,7 +56,7 @@ public class UIBattle : UIWindow
         SetHpSlider();
         SetEnemyHpSlider();
         SetLoadSlider();
-        SetIconBar();
+        SetPlayerIconBar();
     }
 
     public void AddInteractMsg(string str, Transform root)
@@ -61,6 +67,10 @@ public class UIBattle : UIWindow
     public void RemoveInteractMsg(Transform root)
     {
         interactTips.RemoveMessage(root);
+    }
+    public void SetSkillBar()
+    {
+
     }
 
     private void SetLevelText()
@@ -86,17 +96,40 @@ public class UIBattle : UIWindow
     }
     private void SetEnemyHpSlider()
     {
-        enemynametext.text = "BOSS";
-        enemyhpslider.maxValue = 1000;
-        enemyhpslider.value = 600;
-        enemyobj.SetActive(false);
+        if (UserManager.Instance.TargetEnemy == null)
+        {
+            enemyobj.SetActive(false);
+            return;
+        }
+        else
+        {
+            enemynametext.text = TargetEnemy.define.Name;
+            enemyhpslider.maxValue = TargetEnemy.attributes.baseAttribute.HP;
+            enemyhpslider.value = TargetEnemy.attributes.curAttribute.HP;
+            enemyobj.SetActive(true);
+        }
     }
-    public void SetIconBar()
+    public void SetPlayerIconBar()
     {
         playerIcons.Clear();
         foreach (var item in TitleManager.Instance.EquipedTitle)
         {
             playerIcons.AddNewItem(item);
+        }
+    }
+    public void SetEnemyIconBar()
+    {
+        if(TargetEnemy!= m_targetEnemy)
+        {
+            m_targetEnemy = TargetEnemy;
+            if (m_targetEnemy != null)
+            {
+                enemyIcons.Clear();
+                foreach (var item in TargetEnemy.titles)
+                {
+                    enemyIcons.AddNewItem(item);
+                }
+            }
         }
     }
     private void RemoveIcon(int infoId)
@@ -118,6 +151,8 @@ public class UIBattle : UIWindow
         UserManager.Instance.OnPlayerExpChanged -= SetExpSlider;
         UserManager.Instance.OnPlayerLevelChanged -= SetLoadSlider;
         UserManager.Instance.OnPlayerLevelChanged -= SetLevelText;
+        UserManager.Instance.OnPlayerTargetChanged -= SetEnemyHpSlider;
+        UserManager.Instance.OnPlayerTargetChanged -= SetEnemyIconBar;
 
         TitleManager.Instance.OnTitleEquiped -= AddIcon;
         TitleManager.Instance.OnTitleUnEquiped -= RemoveIcon;

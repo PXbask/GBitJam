@@ -67,4 +67,9 @@ public abstract class PXCharacterController : MonoBehaviour, IAttackable
         Vector3 returnDirection = randomRotation * origin;
         return returnDirection;
     }
+
+    public virtual void OnDeath()
+    {
+        
+    }
 }

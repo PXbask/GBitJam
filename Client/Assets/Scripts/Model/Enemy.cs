@@ -5,8 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using static UnityEngine.EventSystems.EventTrigger;
+using UnityEngine;
 
 namespace Model
 {
@@ -46,6 +45,19 @@ namespace Model
         {
             base.Update();
             agent.Update();
+        }
+        public override void OnDamage(float damage)
+        {
+            base.OnDamage(damage);
+            attributes.curAttribute.HP -= damage;
+            UserManager.Instance.TargetEnemy = this;
+            if (attributes.curAttribute.HP <= 0)
+            {
+                controller.OnDeath();
+                UserManager.Instance.Exp += define.ExpEarn;
+                UserManager.Instance.Exp += define.GoldEarn;
+                Debug.Log("Enemy Dead");
+            }
         }
     }
 }

@@ -55,4 +55,13 @@ public class EnemyController : PXCharacterController
     {
         return transform.forward;
     }
+    public override void OnDeath()
+    {
+        base.OnDeath();
+        Destroy(this.gameObject);
+
+        GameObjectManager.Instance.RemoveCharacterObj(gameObject);
+        CharacterManager.Instance.RemoveCharacter(this.charBase);
+        if (UserManager.Instance.TargetEnemy == charBase) UserManager.Instance.TargetEnemy = null;
+    }
 }

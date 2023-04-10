@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Pool;
 using UnityEngine.Rendering.Universal;
-using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Manager
 {
@@ -15,8 +15,23 @@ namespace Manager
         public Camera backgroundCamera;
         [SerializeField] GameObject playerPrefab;
         [SerializeField] GameObject enemyPrefab;
+        [SerializeField] GameObject riflePrefab;
+        [SerializeField] GameObject shotGunPrefab;
+
         List<GameObject> Characters = new List<GameObject>();
-        public void Init() { }
+        public ObjectPool<BulletLogic> RiflePool;
+        public ObjectPool<BulletLogic> ShotGunPool;
+
+        public Transform poolRoot;
+        public void Init()
+        {
+            GameObject obj = new GameObject("GameObjectManager");
+            obj.transform.SetParent(transform, false);
+            poolRoot = obj.transform;
+            //Object Pool Init
+            RiflePool = new ObjectPool<BulletLogic>(() => OnCreatePoolItem(riflePrefab), OnGetPoolItem, OnReleasePoolItem, OnDestroyPoolItem);
+            ShotGunPool = new ObjectPool<BulletLogic>(() => OnCreatePoolItem(shotGunPrefab), OnGetPoolItem, OnReleasePoolItem, OnDestroyPoolItem);
+        }
         public void CreatePlayer()
         {
             //PlayerController
@@ -28,6 +43,7 @@ namespace Manager
             //Instantiate
             controller.transform.position = DataManager.Instance.SaveData.playerPos;
             CharacterManager.Instance.AddCharacter(controller.charBase);
+            Characters.Add(playerobj);
 
             backgroundCamera.GetUniversalAdditionalCameraData().cameraStack.Add(Camera.main);
         }
@@ -56,6 +72,27 @@ namespace Manager
             Debug.Log(enemy.attributes.curAttribute.ToString());
 
             CharacterManager.Instance.AddCharacter(controller.charBase);
+            Characters.Add(enemyobj);
         }
+        #region PoolFuncs
+        private BulletLogic OnCreatePoolItem(GameObject pre)
+        {
+            GameObject obj = Instantiate(pre);
+            return obj.GetComponent<BulletLogic>();
+        }
+        private void OnReleasePoolItem(BulletLogic obj)
+        {
+            obj.gameObject.SetActive(false);
+            obj.transform.SetParent(poolRoot);
+        }
+        private void OnGetPoolItem(BulletLogic obj)
+        {
+            obj.gameObject.SetActive(true);
+        }
+        private void OnDestroyPoolItem(BulletLogic obj)
+        {
+            Destroy(obj.gameObject);
+        }
+        #endregion
     }
 }

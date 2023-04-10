@@ -45,7 +45,7 @@ namespace AI
         }
         private void Move()
         {
-            UnityEngine.Debug.Log("Move");
+            //UnityEngine.Debug.Log("Move");
         }
     }
 }

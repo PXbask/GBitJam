@@ -1,3 +1,4 @@
+using Battle;
 using Manager;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,17 +22,13 @@ public abstract class PXCharacterController : MonoBehaviour, IAttackable
     }
     protected virtual void OnAwake()
     {
-        rifleBltPre = Resloader.Load<GameObject>("Prefab/GameObject/rifleBullet");
-        shotgunBltPre = Resloader.Load<GameObject>("Prefab/GameObject/shotgunBullet");
-        meleeEffectPre = Resloader.Load<GameObject>("Prefab/GameObject/meleeEffect");
+
     }
     public virtual void Rifle_Attack()
     {
         Vector3 dir = GetFireDirection(18f);
-        GameObject obj = Instantiate(rifleBltPre, transform.position, Quaternion.identity);
-        obj.transform.up = GetBulletHeadDirection();
-        BulletLogic bulletLogic = obj.GetComponent<BulletLogic>();
-        bulletLogic.SetInfo(dir.normalized, 18f);
+        BulletLogic bulletLogic = GameObjectManager.Instance.RiflePool.Get();
+        bulletLogic.SetDetails(charBase, transform.position, dir.normalized, 18f, GetBulletHeadDirection());
         Debug.Log("Rifle Attack");
     }
     public virtual void Melee_Attack()
@@ -41,17 +38,19 @@ public abstract class PXCharacterController : MonoBehaviour, IAttackable
     public virtual void ShotGun_Attack()
     {
         int num = charBase.weaponManager.WeaponConfig.define.ClipCount;
-        for (int i = 0; i < num; i++)
+        for(int i=0;i<num; i++)
         {
             float ranSpeed = Random.Range(8, 12);
             var dir = GetFireDirection(ranSpeed);
             Vector3 ranDir = RandomDirection(dir, 30);
-            GameObject obj = Instantiate(shotgunBltPre, transform.position, Quaternion.identity);
-            obj.transform.up = ranDir;
-            BulletLogic bulletLogic = obj.GetComponent<BulletLogic>();
-            bulletLogic.SetInfo(ranDir.normalized, ranSpeed);
+            BulletLogic bulletLogic = GameObjectManager.Instance.ShotGunPool.Get();
+            bulletLogic.SetDetails(charBase,transform.position, ranDir.normalized, ranSpeed,ranDir);
         }
         Debug.Log("ShotGun Attack");
+    }
+    public void ReceiveDamage(BattleContext context)
+    {
+        charBase.ReceiveDamage(context);
     }
     public abstract Vector3 GetFireDirection(float speed);
     public abstract Vector3 GetBulletHeadDirection();

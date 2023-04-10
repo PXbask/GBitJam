@@ -46,4 +46,27 @@ public class Creature
     {
         weaponManager.Update();
     }
+    public void ReceiveDamage(Battle.BattleContext context)
+    {
+        //If Dodged
+        float dodge = attributes.curAttribute.Dodge;
+        float random_dodge = Random.Range(0, 1f);
+        if(random_dodge< dodge)
+        {
+            //dodged Miss
+        }
+
+        var damage = context.weapon.Damage * context.curAttri.DamageRatio * (1 - attributes.curAttribute.DamageResistence);
+        if(!IsPlayer)
+            attributes.curAttribute.HP -= damage;
+        else
+            UserManager.Instance.HP -= Mathf.CeilToInt(damage);
+
+        Debug.LogFormat("Take Damage:[{0}]",damage.ToString());
+        if (attributes.curAttribute.HP < 0)
+        {
+            //Dead
+            Debug.Log("µÐÈËÒÑËÀÍö");
+        }
+    }
 }

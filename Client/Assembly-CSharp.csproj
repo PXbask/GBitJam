@@ -62,6 +62,7 @@
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\RowPropPlacer.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\AutomaticDoor.cs" />
     <Compile Include="Assets\Scripts\UI\Items\UIGainTipItem.cs" />
+    <Compile Include="Assets\Scripts\Manager\GameObjectManager.cs" />
     <Compile Include="Assets\Scripts\Define\DialogueDefine.cs" />
     <Compile Include="Assets\Scripts\UI\UIInteractTips.cs" />
     <Compile Include="Assets\Scripts\Define\CharacterDefine.cs" />
@@ -70,6 +71,7 @@
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\Geometry\CompositeShapeData.cs" />
     <Compile Include="Assets\Scripts\UI\UITitleSlot.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\JumpArea.cs" />
+    <Compile Include="Assets\Scripts\Battle\BattleContext.cs" />
     <Compile Include="Assets\Scripts\UI\UIWindow.cs" />
     <Compile Include="Assets\Scripts\UI\UIBattle.cs" />
     <Compile Include="Assets\Scripts\UI\Items\UIInteractTipItem.cs" />
@@ -155,7 +157,6 @@
     <Compile Include="Assets\Scripts\UI\Items\UIIconItem.cs" />
     <Compile Include="Assets\Scripts\Manager\TitleManager.cs" />
     <Compile Include="Assets\Scripts\Manager\InputManager.cs" />
-    <Compile Include="Assets\Scripts\Manager\GameObjectManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\_LineStripShader.cginc" />

@@ -13,7 +13,7 @@ using Manager;
 
 public class Creature
 {
-    public IAttackable controller;
+    public PXCharacterController controller;
     public CharacterDefine define;
     public Attributes attributes;//ÊôÐÔ×ÜÀà
 
@@ -21,7 +21,7 @@ public class Creature
     public bool IsPlayer => define.ID == Consts.Character.PlayerID;
     public List<TitleInfo> titles;
 
-    public Creature(CharacterDefine define, IAttackable controller)
+    public Creature(CharacterDefine define, PXCharacterController controller)
     {
         this.define = define;
         this.controller = controller;

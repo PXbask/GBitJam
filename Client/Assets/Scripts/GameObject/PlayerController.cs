@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 /*
     Date:
@@ -88,10 +87,6 @@ public class PlayerController : PXCharacterController
         }
 
         Isground = true;
-    }
-    public override Vector3 GetFireDirection(float speed)
-    {
-        return movement.headDir * speed + movement.direction;
     }
     public override Vector3 GetBulletHeadDirection()
     {

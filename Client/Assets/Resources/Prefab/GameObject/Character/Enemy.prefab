@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 7481339103334936841}
   - component: {fileID: 7481339103334936842}
   - component: {fileID: 7481339103334936843}
+  - component: {fileID: -2403747828213036348}
   m_Layer: 15
   m_Name: Enemy
   m_TagString: Player
@@ -201,6 +202,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7aad7d4610b3d43a003de0123dab52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rifleBltPre: {fileID: 0}
-  shotgunBltPre: {fileID: 0}
-  meleeEffectPre: {fileID: 0}
+  rb: {fileID: 0}
+  headDir: {x: 0, y: 0, z: 0}
+  attackDistance: 0
+  offset: 0
+--- !u!195 &-2403747828213036348
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7481339103334936844}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 2
+  m_Acceleration: 100
+  avoidancePriority: 50
+  m_AngularSpeed: 0
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 0
+  m_AutoBraking: 1
+  m_AutoRepath: 0
+  m_Height: 1
+  m_BaseOffset: 0.3
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

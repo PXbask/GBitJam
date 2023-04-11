@@ -1,5 +1,4 @@
-﻿using AI;
-using Define;
+﻿using Define;
 using Manager;
 using System;
 using System.Collections.Generic;
@@ -11,12 +10,11 @@ namespace Model
 {
     public class Enemy : Creature
     {
-        public AIAgent agent;
         public EnemyAttackStyle attackStyle;
         public BattleStatus battleStatus;
-        public Enemy(CharacterDefine define, IAttackable attackable): base(define, attackable)
+        public Enemy(CharacterDefine define, EnemyController attackable): base(define, attackable)
         {
-            agent = new AIAgent(this);
+            
         }
         protected override void OnAttack()
         {
@@ -44,7 +42,6 @@ namespace Model
         public override void Update()
         {
             base.Update();
-            agent.Update();
         }
         public override void OnDamage(float damage)
         {

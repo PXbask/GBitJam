@@ -40,12 +40,20 @@ namespace AI
         //进行攻击条件检测，若是则攻击
         private bool TryAttack()
         {
-            Owner.Attack();
-            return true;
+            //如果大概在一条水平线时，则攻击
+            var rb = Owner.controller.GetRigidbody();
+            var trb = Target.controller.GetRigidbody();
+            if(Math.Abs(rb.position.x - trb.position.x) <= 0.5f)
+            {
+                Owner.Attack();
+                return true;
+            }
+            else
+                return false;
         }
         private void Move()
         {
-            //UnityEngine.Debug.Log("Move");
+            Owner.controller.Move();
         }
     }
 }

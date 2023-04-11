@@ -39,7 +39,6 @@ public class PlayerController : PXCharacterController
     }
 
     public Transform effectRoot;
-    public Rigidbody rb;
     public CapsuleCollider _collider;
     private readonly RaycastHit[] _groundCastResults = new RaycastHit[8];
     private bool isground = true;
@@ -65,7 +64,7 @@ public class PlayerController : PXCharacterController
     {
         CheckGround();
     }
-    public void Move()
+    public override void Move()
     {
         movement.Move();
 

@@ -16,13 +16,14 @@ public abstract class PXCharacterController : MonoBehaviour, IAttackable
     public GameObject rifleBltPre;
     public GameObject shotgunBltPre;
     public GameObject meleeEffectPre;
+    public Rigidbody rb;
     private void Awake()
     {
         OnAwake();
     }
     protected virtual void OnAwake()
     {
-
+        rb = GetComponentInChildren<Rigidbody>();
     }
     public virtual void Rifle_Attack()
     {
@@ -71,5 +72,15 @@ public abstract class PXCharacterController : MonoBehaviour, IAttackable
     public virtual void OnDeath()
     {
         
+    }
+
+    public virtual void Move()
+    {
+        
+    }
+
+    public Rigidbody GetRigidbody()
+    {
+        return rb;
     }
 }

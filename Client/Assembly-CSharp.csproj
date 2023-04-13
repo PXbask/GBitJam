@@ -93,8 +93,8 @@
     <Compile Include="Assets\Scripts\Manager\EventManager.cs" />
     <Compile Include="Assets\Map\Assets\VolumetricLines\Scripts\VolumetricLineBehavior.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\GameObject\DeadZone.cs" />
     <Compile Include="Assets\Scripts\UI\UIStart.cs" />
-    <Compile Include="Assets\Scripts\AI\AIBase.cs" />
     <Compile Include="Assets\Scripts\Define\TitleDefine.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\OriginOffsetRPP.cs" />
     <Compile Include="Assets\Scripts\Define\TitleAffectDefine.cs" />
@@ -106,7 +106,6 @@
     <Compile Include="Assets\Scripts\UI\UITitleSlotMask.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\InteractionGate.cs" />
     <Compile Include="Assets\Scripts\ListView\ListView.cs" />
-    <Compile Include="Assets\Scripts\AI\AIBoss.cs" />
     <Compile Include="Assets\Scripts\Model\Creature.cs" />
     <Compile Include="Assets\Scripts\Model\Enemy.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\KeepSourceScale.cs" />
@@ -145,7 +144,6 @@
     <Compile Include="Assets\Scripts\Manager\UserManager.cs" />
     <Compile Include="Assets\Map\Assets\PBS Materials Variety Pack\zzz\MaterialRandomizer.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\BHUtilities.cs" />
-    <Compile Include="Assets\Scripts\AI\AIAgent.cs" />
     <Compile Include="Assets\Scripts\GameObject\BulletLogic.cs" />
     <Compile Include="Assets\Scripts\Manager\CharacterManager.cs" />
     <Compile Include="Assets\Scripts\UI\UIWorldTips.cs" />

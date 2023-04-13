@@ -38,7 +38,7 @@ public class BulletLogic : MonoBehaviour
     {
         this.owner = owner;
 
-        context.curAttri = owner.attributes.curAttribute;
+        context.attacker = owner;
         context.weapon = info.define;
     }
     private void OnTriggerEnter(Collider other)

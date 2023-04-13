@@ -13,7 +13,7 @@ using Manager;
 
 public class Creature
 {
-    public IAttackable controller;
+    public PXCharacterController controller;
     public CharacterDefine define;
     public Attributes attributes;//ÊôÐÔ×ÜÀà
 
@@ -21,7 +21,7 @@ public class Creature
     public bool IsPlayer => define.ID == Consts.Character.PlayerID;
     public List<TitleInfo> titles;
 
-    public Creature(CharacterDefine define, IAttackable controller)
+    public Creature(CharacterDefine define, PXCharacterController controller)
     {
         this.define = define;
         this.controller = controller;
@@ -53,13 +53,13 @@ public class Creature
         float random_dodge = Random.Range(0, 1f);
         if(random_dodge< dodge)
         {
-            //dodged Miss
+            //dodged
+            return;
         }
-
-        var damage = context.weapon.Damage * context.curAttri.DamageRatio * (1 - attributes.curAttribute.DamageResistence);
-        OnDamage(damage);
+        var damage = context.weapon.Damage * context.attacker.attributes.curAttribute.DamageRatio * (1 - attributes.curAttribute.DamageResistence);
+        OnDamage(damage, context.attacker);
     }
-    public virtual void OnDamage(float damage)
+    public virtual void OnDamage(float damage, Creature attacker)
     {
         Debug.LogFormat("Take Damage:[{0}]", damage.ToString());
     }

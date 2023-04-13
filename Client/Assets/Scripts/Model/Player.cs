@@ -16,7 +16,7 @@ namespace Model
         public int Load => UserManager.Instance.Load;
         public int Gold => UserManager.Instance.Gold;
         public int Parts => UserManager.Instance.Parts;
-        public Player(CharacterDefine define, IAttackable attackable) : base(define, attackable)
+        public Player(CharacterDefine define, PlayerController attackable) : base(define, attackable)
         {
             titles = TitleManager.Instance.EquipedTitle;
             UserManager.Instance.playerlogic = this;
@@ -42,9 +42,9 @@ namespace Model
                 default: break;
             }
         }
-        public override void OnDamage(float damage)
+        public override void OnDamage(float damage, Creature attacker)
         {
-            base.OnDamage(damage);
+            base.OnDamage(damage, attacker);
             UserManager.Instance.HP -= Mathf.CeilToInt(damage);
         }
     }

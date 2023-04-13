@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using static UnityEngine.EventSystems.EventTrigger;
 
 /*
     Date:
@@ -17,29 +16,28 @@ public class PlayerController : PXCharacterController
     public Camera mainCamera;
     public PlayerMovement movement;
     public SpriteRenderer render;
-    [SerializeField] PlayerStatus status;
-    public PlayerStatus Status
+    [SerializeField] PlayerState state;
+    public PlayerState State
     {
-        get { return status; }
+        get { return state; }
         set
         {
             switch (value)
             {
-                case PlayerStatus.None:
+                case PlayerState.None:
                     InputManager.Instance.PlayerMovementEnabled(true);
                     break;
-                case PlayerStatus.Jump:
+                case PlayerState.Jump:
                     InputManager.Instance.PlayerMovementEnabled(false);
                     break;
                 default:
                     break;
             }
-            status = value;
+            state = value;
         }
     }
 
     public Transform effectRoot;
-    public Rigidbody rb;
     public CapsuleCollider _collider;
     private readonly RaycastHit[] _groundCastResults = new RaycastHit[8];
     private bool isground = true;
@@ -48,7 +46,7 @@ public class PlayerController : PXCharacterController
         get => isground;
         set
         {
-            Status = value ? PlayerStatus.None : PlayerStatus.Jump;
+            State = value ? PlayerState.None : PlayerState.Jump;
             isground = value;
         }
     }
@@ -56,7 +54,7 @@ public class PlayerController : PXCharacterController
     protected override void OnAwake()
     {
         base.OnAwake();
-        status = PlayerStatus.None;
+        state = PlayerState.None;
         mainCamera = Camera.main;
 
         rb = GetComponent<Rigidbody>();
@@ -65,7 +63,7 @@ public class PlayerController : PXCharacterController
     {
         CheckGround();
     }
-    public void Move()
+    public override void Move()
     {
         movement.Move();
 
@@ -89,10 +87,6 @@ public class PlayerController : PXCharacterController
         }
 
         Isground = true;
-    }
-    public override Vector3 GetFireDirection(float speed)
-    {
-        return movement.headDir * speed + movement.direction;
     }
     public override Vector3 GetBulletHeadDirection()
     {

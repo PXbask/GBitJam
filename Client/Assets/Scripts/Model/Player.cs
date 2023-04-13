@@ -42,9 +42,9 @@ namespace Model
                 default: break;
             }
         }
-        public override void OnDamage(float damage)
+        public override void OnDamage(float damage, Creature attacker)
         {
-            base.OnDamage(damage);
+            base.OnDamage(damage, attacker);
             UserManager.Instance.HP -= Mathf.CeilToInt(damage);
         }
     }

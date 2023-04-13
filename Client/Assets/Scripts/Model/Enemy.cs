@@ -43,11 +43,18 @@ namespace Model
         {
             base.Update();
         }
-        public override void OnDamage(float damage)
+        public override void OnDamage(float damage, Creature attacker)
         {
-            base.OnDamage(damage);
+            base.OnDamage(damage, attacker);
+            EnemyController owncontroller = controller as EnemyController;
             attributes.curAttribute.HP -= damage;
+
             UserManager.Instance.TargetEnemy = this;
+
+            if(owncontroller == null || owncontroller.attackTarget != attacker)
+            {
+                owncontroller.SetTarget(attacker);
+            }
             if (attributes.curAttribute.HP <= 0)
             {
                 controller.OnDeath();

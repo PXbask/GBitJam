@@ -16,6 +16,8 @@ public class UISkillBar : MonoBehaviour
     [SerializeField] List<Image> passiveImages;
     private void Start()
     {
+        ResetBar();
+
         SkillManager.Instance.OnSkillTitleChanged += ResetBar;
     }
     public void ResetBar()

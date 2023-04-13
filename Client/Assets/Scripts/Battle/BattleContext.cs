@@ -8,7 +8,7 @@ namespace Battle
 {
     public class BattleContext
     {
-        public Model.Attribute curAttri;
+        public Creature attacker;
         public Define.WeaponDefine weapon;
     }
 }

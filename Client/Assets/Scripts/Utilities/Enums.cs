@@ -29,7 +29,7 @@ public enum StoryType
     Branch = 2,
     Hidden = 3,
 }
-public enum PlayerStatus
+public enum PlayerState
 {
     None,
     Jump
@@ -45,4 +45,25 @@ public enum SkillTitleType
     None = 0,
     Positive = 1,
     Passive = 2,
+}
+
+public enum CheckDistanceResult
+{
+    None = 0,
+    /// <summary>
+    /// 需要远离
+    /// </summary>
+    NeedStayOff = 1,
+    /// <summary>
+    /// 距离远于检测距离
+    /// </summary>
+    TooFar = 2,
+    /// <summary>
+    /// 不需要远离，且距离在检测距离内
+    /// </summary>
+    Normal = 3,
+    /// <summary>
+    /// 距离在检测距离内
+    /// </summary>
+    Detected = 4,
 }

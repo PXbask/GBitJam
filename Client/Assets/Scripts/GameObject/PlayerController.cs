@@ -16,24 +16,24 @@ public class PlayerController : PXCharacterController
     public Camera mainCamera;
     public PlayerMovement movement;
     public SpriteRenderer render;
-    [SerializeField] PlayerStatus status;
-    public PlayerStatus Status
+    [SerializeField] PlayerState state;
+    public PlayerState State
     {
-        get { return status; }
+        get { return state; }
         set
         {
             switch (value)
             {
-                case PlayerStatus.None:
+                case PlayerState.None:
                     InputManager.Instance.PlayerMovementEnabled(true);
                     break;
-                case PlayerStatus.Jump:
+                case PlayerState.Jump:
                     InputManager.Instance.PlayerMovementEnabled(false);
                     break;
                 default:
                     break;
             }
-            status = value;
+            state = value;
         }
     }
 
@@ -46,7 +46,7 @@ public class PlayerController : PXCharacterController
         get => isground;
         set
         {
-            Status = value ? PlayerStatus.None : PlayerStatus.Jump;
+            State = value ? PlayerState.None : PlayerState.Jump;
             isground = value;
         }
     }
@@ -54,7 +54,7 @@ public class PlayerController : PXCharacterController
     protected override void OnAwake()
     {
         base.OnAwake();
-        status = PlayerStatus.None;
+        state = PlayerState.None;
         mainCamera = Camera.main;
 
         rb = GetComponent<Rigidbody>();

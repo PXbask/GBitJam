@@ -32,7 +32,7 @@ namespace Manager
             RiflePool = new ObjectPool<BulletLogic>(() => OnCreatePoolItem(riflePrefab), OnGetPoolItem, OnReleasePoolItem, OnDestroyPoolItem);
             ShotGunPool = new ObjectPool<BulletLogic>(() => OnCreatePoolItem(shotGunPrefab), OnGetPoolItem, OnReleasePoolItem, OnDestroyPoolItem);
         }
-        public void CreatePlayer()
+        public void CreatePlayer(Vector3 pos)
         {
             //PlayerController
             GameObject playerobj = Instantiate(playerPrefab);
@@ -41,11 +41,9 @@ namespace Manager
             //CharBase
             controller.charBase = new Player(DataManager.Instance.PlayerDefine, controller);
             //Instantiate
-            controller.transform.position = DataManager.Instance.SaveData.playerPos;
+            controller.transform.position = pos;
             CharacterManager.Instance.AddCharacter(controller.charBase);
             AddCharacterObj(playerobj);
-
-            backgroundCamera.GetUniversalAdditionalCameraData().cameraStack.Add(Camera.main);
         }
         public void AddCharacterObj(GameObject obj)
         {

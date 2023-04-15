@@ -20,23 +20,29 @@ namespace Manager
         public Dictionary<int, List<DialogueDefine>> Dialogues = new Dictionary<int, List<DialogueDefine>>();
         public UIDialogue uiDialogue;
 
-        private List<DialogueDefine> _defines = new List<DialogueDefine>();
+        private List<DialogueDefine> m_defines = null;
         private int index = 0;
-        private DialogueDefine _define = null;
+        private DialogueDefine m_define = null;
 
-        public void Init()
+        public void InitAync()
+        {
+            StartCoroutine(InitAyncAnim());
+        }
+        IEnumerator InitAyncAnim()
         {
             foreach (var diadics in DataManager.Instance.Dialogues)
             {
-                _defines.Clear();
+                var defines = new List<DialogueDefine>(diadics.Value.Count);
                 index = 1;
-                _define = null;
-                while (diadics.Value.TryGetValue(index++, out _define))
+                m_define = null;
+                while (diadics.Value.TryGetValue(index++, out m_define))
                 {
-                    _defines.Add(_define);
+                    defines.Add(m_define);
                 }
-                Dialogues.Add(diadics.Key, _defines);
+                Dialogues.Add(diadics.Key, defines);
             }
+            yield return null;
+            Debug.Log("DialogueManager Init");
             //DataManager.Instance.Dialogues.Clear();
         }
         protected override void OnAwake()
@@ -48,14 +54,14 @@ namespace Manager
             OnConversationStart?.Invoke();
 
             Debug.Log(string.Format("开始对话: Id:{0}", diaId));
-            _defines = Dialogues[diaId];
-            StartCoroutine(ShowDialogue(_defines, oncomplete));
+            m_defines = Dialogues[diaId];
+            StartCoroutine(ShowDialogue(m_defines, oncomplete));
 
             OnConversationEnd?.Invoke();
         }
         IEnumerator ShowDialogue(List<DialogueDefine> def, Action callback)
         {
-            UIManager.Instance.Show<UIDialogue>();
+            uiDialogue = UIManager.Instance.Show<UIDialogue>();
             foreach (var define in def)
             {
                 uiDialogue.SetInfo(define);
@@ -67,8 +73,8 @@ namespace Manager
         }
         public IEnumerator IEShowDialogue(int diaId, Action callback = null)
         {
-            _defines = Dialogues[diaId];
-            yield return StartCoroutine(ShowDialogue(_defines, callback));
+            m_defines = Dialogues[diaId];
+            yield return StartCoroutine(ShowDialogue(m_defines, callback));
         }
     }
 }

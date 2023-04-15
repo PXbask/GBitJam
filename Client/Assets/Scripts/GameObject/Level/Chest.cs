@@ -14,10 +14,10 @@ public class Chest : TrapLogic
 {
     [Tooltip("1->ÆÕÍ¨ 2->Ê·Ê« 3->´«Ææ")]
     [SerializeField] public int type;
-    Animation animat;
-    Outline outline;
+    protected Animation animat;
+    protected Outline outline;
 
-    bool isOpened;
+    protected bool isOpened;
     protected override void OnInit()
     {
         base.OnInit();
@@ -43,7 +43,7 @@ public class Chest : TrapLogic
         OpenChest();
         UIManager.Instance.RemoveInteractMessage(transform);
     }
-    private void OpenChest()
+    protected virtual void OpenChest()
     {
         if(isOpened) { return; }
         animat.Play();

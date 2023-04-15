@@ -1,7 +1,12 @@
+using Manager;
 using Model;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using System;
 
 /*
     Date:
@@ -9,18 +14,77 @@ using UnityEngine;
     Overview:
 */
 
-public class PXSceneManager : Singleton<PXSceneManager>
+public class PXSceneManager : MonoSingleton<PXSceneManager>
 {
-    public Dictionary<int, PXScene> Scenes= new Dictionary<int, PXScene>();
-    public PXScene GetScene(int id)
+    public Dictionary<int, PXSceneInfo> Scenes= new Dictionary<int, PXSceneInfo>();
+
+    private UnityEngine.AsyncOperation m_asyncOperation;
+
+    public GameObject uiInterlude;
+    public Text text;
+    public PXSceneInfo GetScene(int id)
     {
-        PXScene pXScene = null;
-        if(Scenes.TryGetValue(id, out pXScene)) 
+        if(Scenes.TryGetValue(id, out var pXScene)) 
             return pXScene;
         return null;
     }
     public void Init()
     {
-        Scenes.Add(2, new PXScene());
+        foreach (var scene in DataManager.Instance.Scenes)
+        {
+            Scenes.Add(scene.Key, new PXSceneInfo(scene.Value));
+        }
+    }
+    public void LoadScene(PXSceneInfo info, float duration)
+    {
+        StartCoroutine(LoadSceneAsync(info, duration));
+    }
+    public IEnumerator LoadSceneAsync(PXSceneInfo info, float duration)
+    {
+        GameManager.Instance.Status = GameStatus.Loading;
+
+        m_asyncOperation = SceneManager.LoadSceneAsync(info.define.Name, LoadSceneMode.Single);
+        m_asyncOperation.allowSceneActivation = false;
+        yield return new WaitForSeconds(duration);
+        m_asyncOperation.allowSceneActivation = true;
+        yield return null;
+        //第一次进入场景就播放过场动画
+        bool isFirstEntered = info.isFirstEntered;
+        if (isFirstEntered)
+        {
+            info.isFirstEntered = false;
+            GameManager.Instance.Status = GameStatus.BeforeGame;
+            yield return StartInterludeAnim(info.define.InterludeText);
+        }
+        //生成角色
+        GameManager.Instance.GetPlayer(info.startPosition);
+        //是否进行新手引导
+        if (isFirstEntered && info.isFirstScene)
+        {
+            GameManager.Instance.Status = GameStatus.Novice;
+        }
+        else
+        {
+            GameManager.Instance.Status = GameStatus.Game;
+        }
+
+        Debug.LogFormat("scene: changed to [{0}]", info.define.Name);
+    }
+    IEnumerator StartInterludeAnim(string str)
+    {
+        uiInterlude.SetActive(true);
+
+        text.text = string.Empty;
+        Tween tween = text.DOText(str, 150)
+            .SetSpeedBased()
+            .SetEase(Ease.Linear)
+            .SetUpdate(true);
+
+        bool complete = false;
+        tween.onComplete += () => complete = true;
+        yield return new WaitUntil(() => complete);
+
+        yield return new WaitForSeconds(1f);
+        uiInterlude.SetActive(false);
     }
 }

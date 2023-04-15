@@ -11,13 +11,12 @@ using UnityEngine;
 
 public abstract class TrapLogic : MonoBehaviour, IInteractable
 {
-    public PlayerController controller;
+    public PlayerController Controller => GameManager.Instance.player;
     protected KeyCode interactKey;
     [SerializeField] protected string tipStr;
     protected string targetTag;
     protected virtual void OnInit()
     {
-        controller = GameManager.Instance.player;
         interactKey = KeyCode.None;
         tipStr = string.Empty;
         targetTag = "Player";

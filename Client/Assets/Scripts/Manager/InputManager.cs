@@ -16,16 +16,25 @@ public class InputManager : MonoSingleton<InputManager>
     public PlayerController charController;
 
     public bool playerMoveEnabled = true;
+    public static bool active = false;
     private void Start()
     {
-        charController = GameManager.Instance.player;
-
+        GameManager.Instance.OnEnterGameMode += OnGameStart;
         actObjMap.Add(KeyCode.F, null);
         actObjMap.Add(KeyCode.Space, null);
         actObjMap.Add(KeyCode.None, null);
     }
+    private void OnDestroy()
+    {
+        GameManager.Instance.OnEnterGameMode -= OnGameStart;
+    }
+    private void OnGameStart()
+    {
+        charController = GameManager.Instance.player;
+    }
     private void Update()
     {
+        if (!active) return;
         //F½»»¥
         if(Input.GetKeyDown(KeyCode.F))
         {
@@ -101,6 +110,7 @@ public class InputManager : MonoSingleton<InputManager>
     }
     private void FixedUpdate()
     {
+        if (!active) return;
         //WASDÒÆ¶¯
         HandlePlayerMovement();
     }
@@ -116,5 +126,13 @@ public class InputManager : MonoSingleton<InputManager>
     public void DisabledPlayerMovement(float dur)
     {
 
+    }
+    public static void Activate()
+    {
+        active = true;
+    }
+    public static void Deactivate()
+    {
+        active= false;
     }
 }

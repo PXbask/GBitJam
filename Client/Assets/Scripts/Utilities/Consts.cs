@@ -12,9 +12,9 @@ public static class Consts
 {
     public static class Dialogues
     {
-        public const int Operation_Btn_Teaching = 1;
-        //public const int Pre_Bagpack_Teaching = 2;
-        //public const int Pro_Bagpack_Teaching = 3;
+        public const int Operation_Btn_Teaching_1 = 1;
+        public const int Operation_Btn_Teaching_2 = 3;
+        public const int Operation_Btn_Teaching_3 = 5;
         public const int Pre_TitleEqu_Teaching = 4;
         public const int Pro_TitleEqu_Teaching = 5;
         public const int Atlas_Teaching = 15;
@@ -32,5 +32,8 @@ public static class Consts
         public const int PlayerID = 1;
         public const int EnemyID = 10;
     }
-
+    public static class Loading
+    {
+        public const float Default_Loading_Interval = 5f;
+    }
 }

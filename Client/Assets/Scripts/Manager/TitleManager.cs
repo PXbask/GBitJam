@@ -33,6 +33,10 @@ public class TitleManager : Singleton<TitleManager>
             return size;
         }
     }
+    public void Reset()
+    {
+
+    }
     public void Init()
     {
         AllTypeTitles.Add(1, new List<TitleInfo>());

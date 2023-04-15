@@ -26,7 +26,7 @@ public class JumpArea : TrapLogic
     protected override void OnInteract(KeyCode code)
     {
         base.OnInteract(code);
-        controller.rb.velocity = Vector3.ProjectOnPlane(dir, Vector3.up) * jumpdes + Vector3.up * 5f;
+        Controller.rb.velocity = Vector3.ProjectOnPlane(dir, Vector3.up) * jumpdes + Vector3.up * 5f;
         //controller.Status = PlayerStatus.Jump;
     }
 }

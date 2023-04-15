@@ -16,7 +16,7 @@ using UnityEngine.Playables;
 public class SceneLogic : MonoBehaviour
 {
     public int id;
-    PXScene sceneDefine;
+    PXSceneInfo sceneDefine;
 
     public PlayableDirector timeline;
     private void Awake()

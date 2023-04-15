@@ -22,16 +22,25 @@ namespace Manager
         }
         private Dictionary<Type, UIElement> UIResources = new Dictionary<Type, UIElement>();
         public Dictionary<Type, UIWindow> UIInstance = new Dictionary<Type, UIWindow>(); //UI运行时的缓存
+        public void Init()
+        {
+            GameManager.Instance.OnGameLoadingBegin += ShowLoadingMenu;
+            GameManager.Instance.OnGameLoadingEnd += HideLoadingMenu;
+        }
         public UIManager()
         {
             this.UIResources.Add(typeof(UITitle), new UIElement() { Resources = @"Prefab/UI/UITitle", Cache = true });
-            //this.UIResources.Add(typeof(UIDialogue), new UIElement() { Resources = @"Prefab/UI/UIDialogue", Cache = true });
+            this.UIResources.Add(typeof(UIDialogue), new UIElement() { Resources = @"Prefab/UI/UIDialogue", Cache = true });
             this.UIResources.Add(typeof(UIWorldTips), new UIElement() { Resources = @"Prefab/UI/UIWorldTips", Cache = false });
             this.UIResources.Add(typeof(UIAtla), new UIElement() { Resources = @"Prefab/UI/UIAtla", Cache = false });
             //this.UIResources.Add(typeof(UIBattle), new UIElement() { Resources = @"Prefab/UI/UIBattle", Cache = false });
             //this.UIResources.Add(typeof(UIDynamic), new UIElement() { Resources = @"Prefab/UI/UIDynamic", Cache = false });
         }
-        ~UIManager() { }
+        ~UIManager()
+        {
+            GameManager.Instance.OnGameLoadingBegin -= ShowLoadingMenu;
+            GameManager.Instance.OnGameLoadingEnd -= HideLoadingMenu;
+        }
         public T Show<T>() where T : UIWindow
         {
             Type type = typeof(T);
@@ -141,6 +150,14 @@ namespace Manager
         public void AddWarning(string str)
         {
             dynamicPanel?.AddWarning(str);
+        }
+        private void ShowLoadingMenu()
+        {
+            GameManager.Instance.ShowLoadingMenu(Consts.Loading.Default_Loading_Interval);
+        }
+        private void HideLoadingMenu()
+        {
+            GameManager.Instance.HideLoadingMenu();
         }
     }
 }

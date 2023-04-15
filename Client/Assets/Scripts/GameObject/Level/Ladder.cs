@@ -25,7 +25,7 @@ public class Ladder : TrapLogic
         {
             if (InputManager.Instance.actObjMap[interactKey] == null)
             {
-                if(Vector3.Distance(controller.rb.position, transform.position) <= 1f)
+                if(Vector3.Distance(Controller.rb.position, transform.position) <= 1f)
                 {
                     InputManager.Instance.actObjMap[interactKey] = this;
                     UIManager.Instance.AddInteractMessage(tipStr, transform);
@@ -36,7 +36,7 @@ public class Ladder : TrapLogic
     protected override void OnTriggerExit(Collider other)
     {
         base.OnTriggerExit(other);
-        controller.rb.useGravity = true;
+        Controller.rb.useGravity = true;
     }
     protected override void OnInteract(KeyCode code)
     {
@@ -48,15 +48,15 @@ public class Ladder : TrapLogic
     IEnumerator ClimbLadderAnim()
     {
         //把大象装进冰箱需要几步?
-        controller.rb.useGravity = false;
+        Controller.rb.useGravity = false;
         isClimbing= true;
-        controller?.rb.MovePosition(transform.position);
+        Controller?.rb.MovePosition(transform.position);
         while (!IsExitLadder())
         {
-            controller?.rb.MovePosition(controller.rb.position + Vector3.up * Time.deltaTime * 2f);
+            Controller?.rb.MovePosition(Controller.rb.position + Vector3.up * Time.deltaTime * 2f);
             yield return null;
         }
-        controller.rb.velocity = (Vector3.up - transform.right * 0.25f) * 5;
+        Controller.rb.velocity = (Vector3.up - transform.right * 0.25f) * 5;
         //float dis = 0;
         //while (dis <= 1f)
         //{
@@ -64,14 +64,14 @@ public class Ladder : TrapLogic
         //    dis += (Time.deltaTime);
         //    yield return null;
         //}
-        controller.rb.useGravity = true;
+        Controller.rb.useGravity = true;
         isClimbing= false;
         yield return null;
     }
     private bool IsExitLadder()
     {
-        float y = controller._collider.bounds.extents.y;
-        Ray ray = new Ray(controller.rb.position + Vector3.down * (y - 0.05f), -transform.right);
+        float y = Controller._collider.bounds.extents.y;
+        Ray ray = new Ray(Controller.rb.position + Vector3.down * (y - 0.05f), -transform.right);
         return !Physics.Raycast(ray, 0.25f, ~(1<<10), QueryTriggerInteraction.Collide);        
     }
 }

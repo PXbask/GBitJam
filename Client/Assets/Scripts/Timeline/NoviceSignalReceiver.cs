@@ -20,17 +20,13 @@ public class NoviceSignalReceiver : MonoBehaviour
     public void PlayOperBtnTeaching()
     {
         Director.playableGraph.GetRootPlayable(0).SetSpeed(0);
-        DialogueManager.Instance.ShowDialogue(Consts.Dialogues.Operation_Btn_Teaching, 
+        GameManager.Instance.Status = GameStatus.Dialoguing;
+        DialogueManager.Instance.ShowDialogue(Consts.Dialogues.Operation_Btn_Teaching_3, 
             ()=> { Director.playableGraph.GetRootPlayable(0).SetSpeed(0); });
     }
-    public void PlayBagTeachingPre()
-    {
-        StartCoroutine(IEPlayBagTeachingPre());
-    }
-    IEnumerator IEPlayBagTeachingPre()
+    public void SequenceStop()
     {
         Director.playableGraph.GetRootPlayable(0).SetSpeed(0);
-        yield return StartCoroutine(DialogueManager.Instance.IEShowDialogue(Consts.Dialogues.Pre_TitleEqu_Teaching));
     }
     IEnumerator IEPressButton(KeyCode code)
     {

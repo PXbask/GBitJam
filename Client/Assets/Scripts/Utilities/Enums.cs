@@ -67,3 +67,13 @@ public enum CheckDistanceResult
     /// </summary>
     Detected = 4,
 }
+public enum GameStatus
+{
+    None = 0,
+    Menu = 1,
+    Loading = 2,
+    Game = 3,
+    BeforeGame = 4,
+    Dialoguing = 5,
+    Novice = 6,
+}

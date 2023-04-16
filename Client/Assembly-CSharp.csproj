@@ -63,6 +63,7 @@
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\RowPropPlacer.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\AutomaticDoor.cs" />
     <Compile Include="Assets\Scripts\UI\Items\UIGainTipItem.cs" />
+    <Compile Include="Assets\Scripts\UI\UIMenuWindow.cs" />
     <Compile Include="Assets\Scripts\Model\SkillInfo.cs" />
     <Compile Include="Assets\Scripts\Manager\GameObjectManager.cs" />
     <Compile Include="Assets\Scripts\Define\MapDefine.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="Assets\Scripts\UI\UITitleSlot.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\JumpArea.cs" />
     <Compile Include="Assets\Scripts\Battle\BattleContext.cs" />
+    <Compile Include="Assets\Scripts\UI\UISetting.cs" />
     <Compile Include="Assets\Scripts\UI\UIWindow.cs" />
     <Compile Include="Assets\Scripts\UI\UIBattle.cs" />
     <Compile Include="Assets\Scripts\UI\Items\UIInteractTipItem.cs" />
@@ -122,6 +124,7 @@
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\PropGroup.cs" />
     <Compile Include="Assets\Scripts\Assets\Resloader.cs" />
     <Compile Include="Assets\Scripts\UI\UIAtla.cs" />
+    <Compile Include="Assets\Scripts\UI\MessageBox.cs" />
     <Compile Include="Assets\Scripts\GameObject\SceneLogic.cs" />
     <Compile Include="Assets\Scripts\UI\Items\UIAtlaItem.cs" />
     <Compile Include="Assets\Scripts\Define\LevelDefine.cs" />
@@ -139,6 +142,7 @@
     <Compile Include="Assets\Scripts\Model\WeaponInfo.cs" />
     <Compile Include="Assets\Scripts\Utilities\MonoSingleton.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\UnityRuntimePreviewGenerator.cs" />
+    <Compile Include="Assets\Scripts\UI\UIMessageBox.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\Geometry\Polygon.cs" />
     <Compile Include="Assets\Scripts\Model\Attributes.cs" />
     <Compile Include="Assets\Scripts\UI\UIWarningTips.cs" />
@@ -165,10 +169,6 @@
     <Compile Include="Assets\Scripts\UI\Items\UIIconItem.cs" />
     <Compile Include="Assets\Scripts\Manager\TitleManager.cs" />
     <Compile Include="Assets\Scripts\Manager\InputManager.cs" />
-    <Compile Include="Assets\Scripts\UI\UIMessageBox.cs" />
-    <Compile Include="Assets\Scripts\UI\MessageBox.cs" />
-    <Compile Include="Assets\Scripts\UI\UIMenuWindow.cs" />
-    <Compile Include="Assets\Scripts\UI\UISetting.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\_LineStripShader.cginc" />
@@ -182,7 +182,6 @@
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\SingleLine-TextureAlphaBlended.shader" />
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\LineStrip-LightSaber.shader" />
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\SingleLine-LightSaber.shader" />
-    <None Include="Assets\Shader\BackBlur.shader" />
     <None Include="Assets\Map\Assets\SkySeries Freebie\Hdri setup.txt" />
     <None Include="Assets\Map\Assets\QuickOutline\Resources\Shaders\OutlineFill.shader" />
   </ItemGroup>

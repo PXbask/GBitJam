@@ -114,7 +114,21 @@ namespace Manager
         public WeaponManager weaponManager => playerlogic.weaponManager;
         public WeaponInfo CurrentWeapon => weaponManager.WeaponConfig;
 
+        internal void Reset()
+        {
+            OnPlayerHpChanged = null;
+            OnPlayerLevelChanged = null;
+            OnPlayerExpChanged = null;
+            OnPlayerGoldChanged = null;
+            OnPlayerPartChanged = null;
+            OnPlayerLoadChanged = null;
+            OnPlayerDead = null;
+            OnPlayerWeaponConfigChanged = null;
+            OnPlayerTargetChanged = null;
 
+            playerlogic = null;
+            targetEnemy= null;
+        }
         public void Init()
         {
             OnPlayerLevelChanged += GetMaxParams;
@@ -159,6 +173,7 @@ namespace Manager
         {
             OnPlayerWeaponConfigChanged?.Invoke();
         }
+
         ~UserManager()
         {
             OnPlayerLevelChanged -= GetMaxParams;

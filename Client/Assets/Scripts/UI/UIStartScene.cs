@@ -27,11 +27,15 @@ public class UIStartScene : MonoBehaviour
         titletext.text = "按任意键继续";
         GameManager.Instance.Status = GameStatus.None;
 
-        texttween = titletext.DOColor(new Color(1, 1, 1, 50 / 255f), 2.5f)
+        titleimage.color = new Color(1, 1, 1, 0);
+        titletext.color = new Color(0.5f, 0.5f, 0.5f, 0);
+        titleimage.DOFade(1, 1)
+            .SetLink(titleimage.gameObject)
+            .SetEase(Ease.Linear);
+        texttween = titletext.DOFade(1, 2f)
             .SetLink(titletext.gameObject)
             .SetEase(Ease.Linear)
-            .SetLoops(-1, LoopType.Yoyo)
-            .SetOptions(true);
+            .SetLoops(-1, LoopType.Yoyo);
     }
     private void Update()
     {

@@ -12,7 +12,6 @@ namespace Manager
 {
     public class GameObjectManager : MonoSingleton<GameObjectManager>
     {
-        public Camera backgroundCamera;
         [SerializeField] GameObject playerPrefab;
         [SerializeField] GameObject enemyPrefab;
         [SerializeField] GameObject riflePrefab;
@@ -31,6 +30,12 @@ namespace Manager
             //Object Pool Init
             RiflePool = new ObjectPool<BulletLogic>(() => OnCreatePoolItem(riflePrefab), OnGetPoolItem, OnReleasePoolItem, OnDestroyPoolItem);
             ShotGunPool = new ObjectPool<BulletLogic>(() => OnCreatePoolItem(shotGunPrefab), OnGetPoolItem, OnReleasePoolItem, OnDestroyPoolItem);
+        }
+        internal void Reset()
+        {
+            Characters.Clear();
+            RiflePool?.Clear();
+            ShotGunPool?.Clear();
         }
         public void CreatePlayer(Vector3 pos)
         {

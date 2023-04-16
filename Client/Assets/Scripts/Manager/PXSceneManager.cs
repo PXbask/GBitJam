@@ -39,7 +39,7 @@ public class PXSceneManager : MonoSingleton<PXSceneManager>
     {
         StartCoroutine(LoadSceneAsync(info, duration));
     }
-    public IEnumerator LoadSceneAsync(PXSceneInfo info, float duration)
+    IEnumerator LoadSceneAsync(PXSceneInfo info, float duration)
     {
         GameManager.Instance.Status = GameStatus.Loading;
 
@@ -69,6 +69,20 @@ public class PXSceneManager : MonoSingleton<PXSceneManager>
         }
 
         Debug.LogFormat("scene: changed to [{0}]", info.define.Name);
+    }
+    public void LoadMainMenuScene()
+    {
+        StartCoroutine(LoadMainMenuSceneAsync());
+    }
+    IEnumerator LoadMainMenuSceneAsync()
+    {
+        GameManager.Instance.Status = GameStatus.Loading;
+        m_asyncOperation = SceneManager.LoadSceneAsync("Scenes/Menu", LoadSceneMode.Single);
+        m_asyncOperation.allowSceneActivation = false;
+        yield return new WaitForSeconds(Consts.Loading.Default_Loading_Interval);
+        m_asyncOperation.allowSceneActivation = true;
+        yield return null;
+        GameManager.Instance.Status = GameStatus.Menu;
     }
     IEnumerator StartInterludeAnim(string str)
     {

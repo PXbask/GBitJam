@@ -12,8 +12,9 @@ using UnityEngine;
 
 public class NoviceManager : MonoSingleton<NoviceManager>
 {
-    public GameObject confiner_1;
-    public GameObject confiner_2;
+    [SerializeField] GameObject novice_chest;//新手箱子
+    [SerializeField] GameObject confiner_1;//第一层空气墙
+    [SerializeField] GameObject confiner_2;//第二层空气墙
 
     NoviceStep step = NoviceStep.None;
     public NoviceStep Step

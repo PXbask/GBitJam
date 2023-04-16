@@ -216,7 +216,11 @@ public class GameManager : MonoSingleton<GameManager>
     }
     internal void Reset()
     {
-        
+        TitleManager.Instance.Reset();
+        UserManager.Instance.Reset();
+        SkillManager.Instance.Reset();
+        CharacterManager.Instance.Reset();
+        GameObjectManager.Instance.Reset();
     }
     #endregion
 }

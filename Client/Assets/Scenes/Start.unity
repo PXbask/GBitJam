@@ -2073,7 +2073,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   global: 1
-  charController: {fileID: 0}
   playerMoveEnabled: 1
 --- !u!114 &1529873020
 MonoBehaviour:
@@ -2094,6 +2093,7 @@ MonoBehaviour:
   blackMask: {fileID: 957126426}
   maskText: {fileID: 217087908}
   loadingMenu: {fileID: 1165526552}
+  backgroundCamera: {fileID: 0}
   player: {fileID: 0}
   status: 0
 --- !u!4 &1529873021

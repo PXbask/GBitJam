@@ -35,7 +35,12 @@ public class TitleManager : Singleton<TitleManager>
     }
     public void Reset()
     {
-
+        OnTitleEquiped = null;
+        OnTitleUnEquiped = null;
+        OnGainNewTitle = null;
+        AllTypeTitles.Clear();
+        AllTitles.Clear();
+        EquipedTitle.Clear();
     }
     public void Init()
     {

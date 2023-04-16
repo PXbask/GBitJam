@@ -13,24 +13,15 @@ public class InputManager : MonoSingleton<InputManager>
 {
     public Dictionary<KeyCode, IInteractable> actObjMap = new Dictionary<KeyCode, IInteractable>();
     private IInteractable actObj = null;
-    public PlayerController charController;
+    public PlayerController CharController => GameManager.Instance.player;
 
     public bool playerMoveEnabled = true;
     public static bool active = false;
     private void Start()
     {
-        GameManager.Instance.OnEnterGameMode += OnGameStart;
         actObjMap.Add(KeyCode.F, null);
         actObjMap.Add(KeyCode.Space, null);
         actObjMap.Add(KeyCode.None, null);
-    }
-    private void OnDestroy()
-    {
-        GameManager.Instance.OnEnterGameMode -= OnGameStart;
-    }
-    private void OnGameStart()
-    {
-        charController = GameManager.Instance.player;
     }
     private void Update()
     {
@@ -91,7 +82,16 @@ public class InputManager : MonoSingleton<InputManager>
             }
             else
             {
-                //TODO:打开游戏菜单
+                var uimenu = UIManager.Instance.GetActiveInstance<UIMenuWindow>();
+                if (uimenu == null)
+                {
+                    _ = UIManager.Instance.Show<UIMenuWindow>();
+                }
+                else
+                {
+                    uimenu.Close();
+                    uimenu = null;
+                }
             }
         }
         //H帮助菜单
@@ -104,7 +104,7 @@ public class InputManager : MonoSingleton<InputManager>
         if (Input.GetMouseButtonDown(0))
         {
             if (UIManager.Instance.HasUIOverlay) return;
-            if (charController == null) return;
+            if (CharController == null) return;
             UserManager.Instance.playerlogic.Attack();
         }
     }
@@ -117,7 +117,7 @@ public class InputManager : MonoSingleton<InputManager>
     public void HandlePlayerMovement()
     {
         if (!playerMoveEnabled) return;
-        charController.Move();
+        CharController.Move();
     }
     public void PlayerMovementEnabled(bool enabled)
     {

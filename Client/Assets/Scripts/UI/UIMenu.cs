@@ -13,6 +13,7 @@ using UnityEngine.SceneManagement;
 
 public class UIMenu : MonoBehaviour
 {
+    public GameObject settingpanel;
     private void Start()
     {
         GameManager.Instance.Status = GameStatus.Menu;
@@ -27,7 +28,7 @@ public class UIMenu : MonoBehaviour
     }
     public void OnClickSetting()
     {
-
+        settingpanel.SetActive(true);
     }
     public void OnClickMakerList()
     {
@@ -35,10 +36,15 @@ public class UIMenu : MonoBehaviour
     }
     public void OnClickQuit()
     {
+        MessageBox.Show("确认退出游戏吗?", "确定", "取消"
+            , () =>
+            {
 #if UNITY_EDITOR
-        EditorApplication.ExitPlaymode();
+                EditorApplication.ExitPlaymode();
 #else
         Application.Quit();
 #endif
+            }, null);
+
     }
 }

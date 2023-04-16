@@ -33,6 +33,8 @@ namespace Manager
             this.UIResources.Add(typeof(UIDialogue), new UIElement() { Resources = @"Prefab/UI/UIDialogue", Cache = true });
             this.UIResources.Add(typeof(UIWorldTips), new UIElement() { Resources = @"Prefab/UI/UIWorldTips", Cache = false });
             this.UIResources.Add(typeof(UIAtla), new UIElement() { Resources = @"Prefab/UI/UIAtla", Cache = false });
+            this.UIResources.Add(typeof(UIMenuWindow), new UIElement() { Resources = @"Prefab/UI/UIMenuWindow", Cache = true });
+            this.UIResources.Add(typeof(UISetting), new UIElement() { Resources = @"Prefab/UI/UISetting", Cache = true });
             //this.UIResources.Add(typeof(UIBattle), new UIElement() { Resources = @"Prefab/UI/UIBattle", Cache = false });
             //this.UIResources.Add(typeof(UIDynamic), new UIElement() { Resources = @"Prefab/UI/UIDynamic", Cache = false });
         }

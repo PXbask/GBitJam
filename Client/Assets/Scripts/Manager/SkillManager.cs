@@ -19,6 +19,13 @@ namespace Manager
             TitleManager.Instance.OnTitleEquiped += OnTitleEquiped;
             TitleManager.Instance.OnTitleUnEquiped += OnTitleUnEquiped;
         }
+        internal void Reset()
+        {
+            OnSkillTitleChanged = null;
+
+            skillTitles.Clear();
+            passiveTitles.Clear();
+        }
         public void Init()
         {
             ReloadSkill();
@@ -113,6 +120,7 @@ namespace Manager
                 }
             }
         }
+
         ~SkillManager() 
         {
             TitleManager.Instance.OnTitleEquiped -= OnTitleEquiped;

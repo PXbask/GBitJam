@@ -10,6 +10,10 @@ namespace Manager
     {
         public List<Creature> Characters = new List<Creature>();
         public void Init() { }
+        internal void Reset()
+        {
+            Characters.Clear();
+        }
         public void AddCharacter(Creature cha)
         {
             if (!Characters.Contains(cha))

@@ -514,13 +514,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366c8a62108506b4f9e2d566b5745ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rifleBltPre: {fileID: 0}
-  shotgunBltPre: {fileID: 0}
-  meleeEffectPre: {fileID: 0}
+  rb: {fileID: 813721453497737162}
+  headDir: {x: 0, y: 0, z: 0}
   mainCamera: {fileID: 0}
   movement: {fileID: 813721453497737160}
   render: {fileID: 813721452961184042}
-  status: 0
+  state: 0
   effectRoot: {fileID: 0}
-  rb: {fileID: 813721453497737162}
   _collider: {fileID: 813721453497737163}

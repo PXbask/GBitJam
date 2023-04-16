@@ -14,7 +14,7 @@ public class UIAtla : UIWindow
     public GameObject itemPrefab;
     public ListView listMain;
     public Transform itemRoot;
-    protected override void OnStart()
+    public override void OnStart()
     {
         UpdateList();
     }

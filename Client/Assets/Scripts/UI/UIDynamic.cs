@@ -14,7 +14,7 @@ public class UIDynamic : UIWindow
     public UIGainTips gainTips;
 
     public UIWarningTips warningTips;
-    protected override void OnStart()
+    public override void OnStart()
     {
         base.OnStart();
         UIManager.Instance.dynamicPanel = this;

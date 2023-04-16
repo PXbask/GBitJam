@@ -59,7 +59,7 @@ public class UITitle : UIWindow
     #endregion
     public UITitleItem selectedItem;
     Dictionary<int, List<UITitleItem>> TitleItems = new Dictionary<int, List<UITitleItem>>();
-    protected override void OnStart()
+    public override void OnStart()
     {
         for(int i=0;i<levelitems.Count; i++)
         {

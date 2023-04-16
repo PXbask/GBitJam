@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Manager;
+using System;
 
 public abstract class UIWindow : MonoBehaviour
 {
@@ -19,9 +20,13 @@ public abstract class UIWindow : MonoBehaviour
     {
         this.OnStart();
     }
-    protected virtual void OnStart()
+    public virtual void OnStart()
     {
 
+    }
+    public virtual void OnReopen()
+    {
+        
     }
     public void Close(WindowResult result = WindowResult.None)
     {
@@ -31,7 +36,6 @@ public abstract class UIWindow : MonoBehaviour
         {
             this.OnClose(this, result);
         }
-        //this.OnClose = null;
     }
     public virtual void OnCloseClick()
     {
@@ -47,6 +51,9 @@ public abstract class UIWindow : MonoBehaviour
     }
     private void OnDestroy()
     {
-        //OnClose -= InputManager.Instance.OnCloseUIWindow;
+        if(UIManager.Instance.UIInstance.ContainsKey(Type))
+        {
+            UIManager.Instance.UIInstance.Remove(Type);
+        }
     }
 }

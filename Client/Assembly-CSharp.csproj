@@ -172,6 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\_LineStripShader.cginc" />
+    <None Include="Assets\Shader\Blur.shader" />
     <None Include="Assets\Map\Assets\QuickOutline\Resources\Shaders\OutlineMask.shader" />
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\LineStrip-TextureAlphaBlended.shader" />
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\SingleLine-TextureAdditive.shader" />

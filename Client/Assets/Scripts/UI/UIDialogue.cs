@@ -21,7 +21,7 @@ public class UIDialogue : UIWindow
     {
         DialogueManager.Instance.uiDialogue = this;
     }
-    protected override void OnStart()
+    public override void OnStart()
     {
         base.OnStart();
     }

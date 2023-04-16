@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 
 /*
@@ -13,15 +14,32 @@ using UnityEngine.SceneManagement;
 
 public class UIMenuWindow : UIWindow
 {
+    [SerializeField] RenderTexture renderTexture;
+    public override void OnStart()
+    {
+        OnClose += OnCloseFunc;
+    }
+    public override void OnReopen()
+    {
+        base.OnReopen();
+        GameManager.Instance.backgroundCamera.targetTexture= renderTexture;
+    }
+    private void OnCloseFunc(UIWindow sender, WindowResult result)
+    {
+        var backgroundCamera = GameManager.Instance.backgroundCamera;
+        backgroundCamera.GetUniversalAdditionalCameraData().cameraStack.Clear();
+        backgroundCamera.targetTexture = null;
+        backgroundCamera.GetUniversalAdditionalCameraData().cameraStack.Add(Camera.main);
+    }
     public void OnClickContinue()
     {
-        UIManager.Instance.Close<UIMenuWindow>();
+        Close();
     }
     public void OnClickStartGame()
     {
         MessageBox.Show("确认要重新开始游戏吗?", "确定", "取消", () =>
         {
-            //从头加载第一关
+            Close();
             GameManager.Instance.Reset();
             GameManager.Instance.InitAync();
             var info = PXSceneManager.Instance.GetScene(1);//Level01-1
@@ -40,7 +58,7 @@ public class UIMenuWindow : UIWindow
     {
         MessageBox.Show("确认要退出游戏吗?", "确定", "取消", () =>
         {
-            UIManager.Instance.Close<UIMenuWindow>();
+            Close();
             PXSceneManager.Instance.LoadMainMenuScene();
             GameManager.Instance.Reset();
         }, null);

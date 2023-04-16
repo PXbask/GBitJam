@@ -373,6 +373,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Root: {fileID: 0}
+  renderTexture: {fileID: 8400000, guid: c7f31d926510d154e80bb7683044e514, type: 2}
 --- !u!1 &5779447844800916621
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,7 +674,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 109d68442b9c84a418ef69301548659a, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:

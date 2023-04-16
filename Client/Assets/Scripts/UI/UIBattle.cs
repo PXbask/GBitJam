@@ -32,7 +32,7 @@ public class UIBattle : UIWindow
     private Creature TargetEnemy => UserManager.Instance.TargetEnemy;
 
     private Creature m_targetEnemy;
-    protected override void OnStart()
+    public override void OnStart()
     {
         UIManager.Instance.battlePanel = this;
 

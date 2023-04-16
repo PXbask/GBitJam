@@ -64,6 +64,8 @@ namespace Manager
                     info.Instance = (GameObject)GameObject.Instantiate(prefab);
                 }
                 T res = info.Instance.GetComponent<T>();
+                res.OnReopen();
+
                 UIInstance[typeof(T)] = res;
                 PushToStack(res);
                 return res;

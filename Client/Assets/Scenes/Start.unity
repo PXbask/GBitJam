@@ -2054,7 +2054,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   global: 1
-  backgroundCamera: {fileID: 0}
   playerPrefab: {fileID: 813721453497737206, guid: 5f68b9a10b60d7f4a81e1700d5fba287, type: 3}
   enemyPrefab: {fileID: 7481339103334936844, guid: 677066ba7aae5ae4986e0d5435292ff1, type: 3}
   riflePrefab: {fileID: 1286089893953966570, guid: c4e17fc31bc4ba942ba886e8fb6b0e6c, type: 3}

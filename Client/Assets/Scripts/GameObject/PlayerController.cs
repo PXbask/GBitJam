@@ -1,3 +1,4 @@
+using Battle;
 using Manager;
 using Model;
 using System.Collections;
@@ -87,6 +88,20 @@ public class PlayerController : PXCharacterController
         }
 
         Isground = true;
+    }
+    public override void Melee_Attack()
+    {
+        base.Melee_Attack();
+        m_colliders = Physics.OverlapSphere(transform.position, charBase.weaponManager.WeaponConfig.define.Range, LayerMask.GetMask("Enemy"));
+        foreach (var c in m_colliders)
+        {
+            var ctr = c.gameObject.GetComponent<EnemyController>();
+            ctr.charBase.ReceiveDamage(new BattleContext
+            {
+                attacker = charBase,
+                weapon = charBase.weaponManager.WeaponConfig.define
+            });
+        }
     }
     public override Vector3 GetBulletHeadDirection()
     {

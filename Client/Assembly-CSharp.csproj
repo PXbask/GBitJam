@@ -156,6 +156,7 @@
     <Compile Include="Assets\Scripts\GameObject\BulletLogic.cs" />
     <Compile Include="Assets\Scripts\Manager\CharacterManager.cs" />
     <Compile Include="Assets\Scripts\UI\UIWorldTips.cs" />
+    <Compile Include="Assets\Scripts\GameObject\Level\NoviceEndArea.cs" />
     <Compile Include="Assets\Scripts\UI\Items\UIWarningTipItem.cs" />
     <Compile Include="Assets\Scripts\Novice\Chest_Novice.cs" />
     <Compile Include="Assets\Scripts\Utilities\Enums.cs" />
@@ -176,6 +177,7 @@
     <None Include="Assets\Map\Assets\QuickOutline\Resources\Shaders\OutlineMask.shader" />
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\LineStrip-TextureAlphaBlended.shader" />
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\SingleLine-TextureAdditive.shader" />
+    <None Include="Assets\Shader\UIBloom.shader" />
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\_SingleLineShader.cginc" />
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\LineStrip-TextureAdditive.shader" />
     <None Include="Assets\Map\Assets\PBS Materials Variety Pack\readme.txt" />

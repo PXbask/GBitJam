@@ -59,6 +59,7 @@ public class Creature
         var damage = context.weapon.Damage * context.attacker.attributes.curAttribute.DamageRatio * (1 - attributes.curAttribute.DamageResistence);
         OnDamage(damage, context.attacker);
     }
+
     public virtual void OnDamage(float damage, Creature attacker)
     {
         Debug.LogFormat("Take Damage:[{0}]", damage.ToString());

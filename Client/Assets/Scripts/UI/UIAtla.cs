@@ -1,4 +1,5 @@
 using Model;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class UIAtla : UIWindow
     public GameObject itemPrefab;
     public ListView listMain;
     public Transform itemRoot;
+
+    public Action OnClickExit_Atla = null;
     public override void OnStart()
     {
         UpdateList();
@@ -43,5 +46,9 @@ public class UIAtla : UIWindow
     private void ClearList()
     {
         listMain.RemoveAll();
+    }
+    public void ApplyOnClickExit()
+    {
+        OnClickExit_Atla?.Invoke();
     }
 }

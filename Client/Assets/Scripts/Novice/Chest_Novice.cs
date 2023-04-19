@@ -19,6 +19,6 @@ public class Chest_Novice : Chest
         isOpened = true;
         TitleManager.Instance.GainTitle(1);
 
-        NoviceManager.Instance.Step = NoviceManager.NoviceStep.GainedFirstTitle;
+        NoviceManager.Instance.Step = NoviceManager.NoviceStep.GainedFirstTitleDialogue;
     }
 }

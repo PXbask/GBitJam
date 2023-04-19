@@ -46,7 +46,7 @@ Shader "Custom/Blur" {
                     sum += tex2D(_MainTex, i.uv + float2(blurSize, blurSize));
 
                     col = (col + sum) / 5.0;
-                    col = col * _Color;
+                    col = col *  _Color;
 
                     return col;
                 }

@@ -2,7 +2,9 @@ using Battle;
 using Manager;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 /*
     Date:
@@ -16,6 +18,8 @@ public class PXCharacterController : MonoBehaviour
     public Rigidbody rb;
 
     public Vector3 headDir;
+
+    protected Collider[] m_colliders;
     private void Awake()
     {
         OnAwake();

@@ -64,7 +64,7 @@ namespace Manager
         /// <param name="position">生成位置</param>
         /// <param name="attackStyle">攻击模式，决定敌人拿什么武器</param>
         /// <param name="gainedtitles">增益类芯片，其他类别没有用</param>
-        public void CreateEnemy(Vector3 position, EnemyAttackStyle attackStyle, List<TitleInfo> gainedtitles = null)
+        public GameObject CreateEnemy(Vector3 position, EnemyAttackStyle attackStyle, List<TitleInfo> gainedtitles = null)
         {
             //EnemyController
             GameObject enemyobj = Instantiate(enemyPrefab);
@@ -84,6 +84,8 @@ namespace Manager
 
             CharacterManager.Instance.AddCharacter(controller.charBase);
             AddCharacterObj(enemyobj);
+
+            return enemyobj;
         }
         #region PoolFuncs
         private BulletLogic OnCreatePoolItem(GameObject pre)

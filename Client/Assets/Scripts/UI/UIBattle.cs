@@ -125,9 +125,12 @@ public class UIBattle : UIWindow
             if (m_targetEnemy != null)
             {
                 enemyIcons.Clear();
-                foreach (var item in TargetEnemy.titles)
+                if (TargetEnemy.titles != null)
                 {
-                    enemyIcons.AddNewItem(item);
+                    foreach (var item in TargetEnemy.titles)
+                    {
+                        enemyIcons.AddNewItem(item);
+                    }
                 }
             }
         }

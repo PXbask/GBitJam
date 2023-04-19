@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -4137,7 +4137,6 @@ MonoBehaviour:
   unequipbtn: {fileID: 2511343648132187253}
   uplevelbtn: {fileID: 7562845670041090440}
   exit: {fileID: 7562845670412103134}
-  selectedItem: {fileID: 0}
 --- !u!1 &4646596478000831978
 GameObject:
   m_ObjectHideFlags: 0
@@ -4931,7 +4930,7 @@ GameObject:
   - component: {fileID: 7562845669174516866}
   - component: {fileID: 7562845669174516867}
   m_Layer: 5
-  m_Name: Button (Legacy) (1)
+  m_Name: Atla
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5008,7 +5007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -5587,7 +5586,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -5621,6 +5620,18 @@ MonoBehaviour:
       - m_Target: {fileID: 4646596477985592365}
         m_TargetAssemblyTypeName: UITitle, Assembly-CSharp
         m_MethodName: OnClickEquipBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4646596477985592365}
+        m_TargetAssemblyTypeName: UITitle, Assembly-CSharp
+        m_MethodName: ApplyOnClickEquip
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6527,7 +6538,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7562845669676535397}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4646596477985592365}
+        m_TargetAssemblyTypeName: UITitle, Assembly-CSharp
+        m_MethodName: ApplyOnClickMidBtn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &8495961079826107993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7289,7 +7312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -7781,7 +7804,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
@@ -7815,6 +7838,18 @@ MonoBehaviour:
       - m_Target: {fileID: 4646596477985592365}
         m_TargetAssemblyTypeName: UIWindow, Assembly-CSharp
         m_MethodName: OnCloseClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 4646596477985592365}
+        m_TargetAssemblyTypeName: UITitle, Assembly-CSharp
+        m_MethodName: ApplyOnClickQuit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8661,7 +8696,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}

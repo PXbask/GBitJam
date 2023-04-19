@@ -30,6 +30,7 @@ public class GameManager : MonoSingleton<GameManager>
     public PlayerController player;
     [Header("运行参数")]
     [SerializeField] private GameStatus status;
+    private bool isenterednovice = false;
     public GameStatus Status
     {
         get => status;
@@ -37,6 +38,9 @@ public class GameManager : MonoSingleton<GameManager>
         {
             if (value != GameStatus.Loading && status == GameStatus.Loading)
                 OnGameLoadingEnd?.Invoke();
+
+            status = value;
+            Debug.LogFormat("Game Status: <color=#00FFFF>[{0}]</color>", value.ToString());
 
             switch (value)
             {
@@ -56,18 +60,24 @@ public class GameManager : MonoSingleton<GameManager>
                     InputManager.Activate();
                     break;
                 case GameStatus.BeforeGame:
-                    InputManager.Deactivate();
+                    InputManager.Deactivate();//TODO
                     break;
                 case GameStatus.Novice:
-                    SetBGCameraConfigs();
-                    NoviceManager.Instance.StartNovice();
                     InputManager.Activate();
+                    if (!isenterednovice)
+                    {
+                        status = value;
+                        isenterednovice = true;
+                        SetBGCameraConfigs();
+                        NoviceManager.Instance.StartNovice();
+                    }
+                    break;
+                case GameStatus.Dialoguing:
+                    InputManager.Deactivate();
                     break;
                 default:
                     break;
             }
-            status= value;
-            Debug.LogFormat("Game Status: <color=#00FFFF>[{0}]</color>", value.ToString());
         }
     }
     public Action OnEnterGameMode = null;
@@ -106,6 +116,8 @@ public class GameManager : MonoSingleton<GameManager>
             default:
                 break;
         }
+        CharacterManager.Instance.Update();
+        SkillManager.Instance.Update();
     }
     public void GetBaseVars()
     {

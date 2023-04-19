@@ -61,7 +61,10 @@ namespace Manager
         }
         IEnumerator ShowDialogue(List<DialogueDefine> def, Action callback)
         {
+            var statue = GameManager.Instance.Status;
+            GameManager.Instance.Status = GameStatus.Dialoguing;
             uiDialogue = UIManager.Instance.Show<UIDialogue>();
+            InputManager.Deactivate();
             foreach (var define in def)
             {
                 uiDialogue.SetInfo(define);
@@ -69,12 +72,10 @@ namespace Manager
                 yield return new WaitUntil(() => Input.GetKeyUp(KeyCode.Space));
             }
             UIManager.Instance.Close<UIDialogue>();
+            GameManager.Instance.Status = statue;
+
+            InputManager.Activate();
             callback?.Invoke();
-        }
-        public IEnumerator IEShowDialogue(int diaId, Action callback = null)
-        {
-            m_defines = Dialogues[diaId];
-            yield return StartCoroutine(ShowDialogue(m_defines, callback));
         }
     }
 }

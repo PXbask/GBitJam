@@ -15,12 +15,11 @@ public static class Consts
         public const int Operation_Btn_Teaching_1 = 1;
         public const int Operation_Btn_Teaching_2 = 3;
         public const int Operation_Btn_Teaching_3 = 5;
-        public const int Pre_TitleEqu_Teaching = 4;
-        public const int Pro_TitleEqu_Teaching = 5;
-        public const int Atlas_Teaching = 15;
-        public const int Pre_Kill_Teaching = 18;
-        public const int Mid_Kill_Teaching = 21;
-        public const int Pro_Kill_Teaching = 25;
+        public const int Equip_Attack_Title_First = 7;
+        public const int Novice_Enemy_Detected = 9;
+        public const int Novice_Enemy_Defended = 11;
+        public const int Open_Atla_First = 13;
+        public const int Equip_Assist_Title_First = 15;
     }
     public static class Title
     {

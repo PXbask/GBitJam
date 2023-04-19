@@ -136,7 +136,7 @@ namespace Manager
         }
         private void PopFromStack()
         {
-            WindowStack.Pop();
+             WindowStack.Pop();
             Time.timeScale = HasUIOverlay ? 0 : 1;
         }
         public void AddGainMessage(string str)

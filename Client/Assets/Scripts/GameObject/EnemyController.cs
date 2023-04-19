@@ -61,6 +61,7 @@ public class EnemyController : PXCharacterController
     float m_detectTimer;
     Collider[] hitColliders;
     CheckDistanceResult m_res = CheckDistanceResult.None;
+    public CheckDistanceResult M_res => m_res;
     public void Init()
     {
         enemy = charBase as Enemy;
@@ -269,7 +270,16 @@ public class EnemyController : PXCharacterController
     #region AttackMode
     public override void Melee_Attack()
     {
-
+        base.Melee_Attack();
+        m_colliders = Physics.OverlapSphere(transform.position, charBase.weaponManager.WeaponConfig.define.Range, LayerMask.GetMask("Player"));
+        Collider collider = m_colliders.FirstOrDefault();
+        if (collider == null) return;
+        var ctr = collider.gameObject.GetComponent<PlayerController>();
+        ctr.charBase.ReceiveDamage(new BattleContext
+        {
+            attacker = charBase,
+            weapon = charBase.weaponManager.WeaponConfig.define
+        });
     }
     public override void Rifle_Attack()
     {

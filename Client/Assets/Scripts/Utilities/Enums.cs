@@ -77,3 +77,12 @@ public enum GameStatus
     Dialoguing = 5,
     Novice = 6,
 }
+public enum VideoQuality
+{
+    None,
+    Low,
+    Inferior,
+    Middle,
+    High,
+    Extreme,
+}

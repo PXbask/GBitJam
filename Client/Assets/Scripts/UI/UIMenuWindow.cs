@@ -48,7 +48,7 @@ public class UIMenuWindow : UIWindow
     }
     public void OnClickSetting()
     {
-        
+        UIManager.Instance.Show<UISetting>();
     }
     public void OnClickMakerList()
     {

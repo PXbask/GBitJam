@@ -170,6 +170,11 @@
     <Compile Include="Assets\Scripts\UI\Items\UIIconItem.cs" />
     <Compile Include="Assets\Scripts\Manager\TitleManager.cs" />
     <Compile Include="Assets\Scripts\Manager\InputManager.cs" />
+    <Compile Include="Assets\Scripts\UI\Items\UISettingVideoItem.cs" />
+    <Compile Include="Assets\Scripts\UI\Items\UISettingAudioItem.cs" />
+    <Compile Include="Assets\Scripts\UI\Items\UISettingHUDItem.cs" />
+    <Compile Include="Assets\Scripts\UI\UISettingWindow.cs" />
+    <Compile Include="Assets\Scripts\Manager\SoundManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\_LineStripShader.cginc" />

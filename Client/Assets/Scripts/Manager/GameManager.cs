@@ -18,8 +18,19 @@ using UnityEngine.UI;
 public class GameManager : MonoSingleton<GameManager>
 {
     [Header("基础设置")]
+    [SerializeField] private FullScreenMode windowsMode = FullScreenMode.Windowed;
     public int width = 1920;
     public int height = 1080;
+    [SerializeField] private VideoQuality videoQuality = VideoQuality.Middle;
+    public float mainVolume = 100;
+    public float musicVolume = 100;
+    public float sfxVolume = 100;
+    [SerializeField] private bool minimapEnabled = true;
+    [SerializeField] private bool healthBarEnabled = true;
+    [SerializeField] private bool expBarEnabled = true;
+    [SerializeField] private bool skillBarEnabled = true;
+    [SerializeField] private bool enemyDetailEnabled = true;
+    [SerializeField] private bool tipsEnabled = true;
     public int FPS = 60;
     [Header("全局UI")]
     public Image blackMask;
@@ -83,6 +94,94 @@ public class GameManager : MonoSingleton<GameManager>
     public Action OnEnterGameMode = null;
     public Action OnGameLoadingBegin= null;
     public Action OnGameLoadingEnd= null;
+    #region Setting
+    public FullScreenMode WindowsMode
+    {
+        get => windowsMode;
+        set
+        {
+            if (windowsMode != value)
+            {
+                windowsMode = value;
+                Screen.SetResolution(width, height, windowsMode);
+            }
+        }
+    }
+    private Vector2 resolution;
+    public Vector2 Resolution
+    {
+        get { return resolution; }
+        set
+        {
+            if(resolution != value)
+            {
+                resolution = value;
+                width = (int)value.x;
+                height = (int)value.y;
+                Screen.SetResolution(width, height, windowsMode);
+            }
+
+        }
+    }
+
+    public VideoQuality VideoQuality
+    {
+        get => videoQuality;
+        set
+        {
+            if (videoQuality != value)
+            {
+                videoQuality = value;
+                //TODO:改变画质
+            }
+        }
+    }
+
+
+    public bool MiniMapEnabled
+    {
+        get { return minimapEnabled; }
+        set { minimapEnabled = value; }
+    }
+
+
+    public bool HealthBarEnabled
+    {
+        get { return healthBarEnabled; }
+        set { healthBarEnabled = value; }
+    }
+
+
+    public bool ExpBarEnabled
+    {
+        get { return expBarEnabled; }
+        set { expBarEnabled = value; }
+    }
+
+
+    public bool SkillBarEnabled
+    {
+        get { return skillBarEnabled; }
+        set { skillBarEnabled = value; }
+    }
+
+
+    public bool EnemyDetailEnabled
+    {
+        get { return enemyDetailEnabled; }
+        set { enemyDetailEnabled = value; }
+    }
+
+
+    public bool TipsEnabled
+    {
+        get { return tipsEnabled; }
+        set { tipsEnabled = value; }
+    }
+
+
+    #endregion
+
 
     private void Awake()
     {
@@ -93,7 +192,6 @@ public class GameManager : MonoSingleton<GameManager>
     {
         blackMask.gameObject.SetActive(false);
         loadingMenu.gameObject.SetActive(false);
-        //GameObjectManager.Instance.CreateEnemy(new Vector3(-8, 1, -1), EnemyAttackStyle.ShotGun , new List<TitleInfo> { new TitleInfo(20) });
     }
     private void Update()
     {
@@ -132,10 +230,6 @@ public class GameManager : MonoSingleton<GameManager>
     {
         var obj = GameObject.Find("Player");
         if (!obj) GameObjectManager.Instance.CreatePlayer(pos);
-    }
-    private void OnDestroy()
-    {
-        //UnityEngine.SceneManagement.SceneManager.activeSceneChanged -= GetBaseVars;
     }
     #region UI
     public void TurntoBlackAnim(Action callback)
@@ -234,5 +328,8 @@ public class GameManager : MonoSingleton<GameManager>
         CharacterManager.Instance.Reset();
         GameObjectManager.Instance.Reset();
     }
+    #endregion
+    #region Setting
+
     #endregion
 }

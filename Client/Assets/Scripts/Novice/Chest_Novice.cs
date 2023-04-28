@@ -1,3 +1,4 @@
+using Manager;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,7 +19,7 @@ public class Chest_Novice : Chest
         outline.enabled = false;
         isOpened = true;
         TitleManager.Instance.GainTitle(1);
-
+        MiniMapManager.Instance.Remove(this);
         NoviceManager.Instance.Step = NoviceManager.NoviceStep.GainedFirstTitleDialogue;
     }
 }

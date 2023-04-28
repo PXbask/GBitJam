@@ -39,6 +39,7 @@ public class GameManager : MonoSingleton<GameManager>
     [Header("运行对象")]
     public Camera backgroundCamera;
     public PlayerController player;
+    public Collider boundary;
     [Header("运行参数")]
     [SerializeField] private GameStatus status;
     private bool isenterednovice = false;
@@ -216,6 +217,7 @@ public class GameManager : MonoSingleton<GameManager>
         }
         CharacterManager.Instance.Update();
         SkillManager.Instance.Update();
+        MiniMapManager.Instance.UpdateBoundary(boundary);
     }
     public void GetBaseVars()
     {
@@ -313,6 +315,8 @@ public class GameManager : MonoSingleton<GameManager>
         CharacterManager.Instance.Init();
         yield return null;
         GameObjectManager.Instance.Init();
+        yield return null;
+        MiniMapManager.Instance.Init();
         yield return null;
     }
     private void SetBGCameraConfigs()

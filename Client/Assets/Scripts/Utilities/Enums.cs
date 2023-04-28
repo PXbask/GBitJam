@@ -86,3 +86,10 @@ public enum VideoQuality
     High,
     Extreme,
 }
+public enum MapIconType
+{
+    None,
+    Player,
+    Enemy,
+    Object,
+}

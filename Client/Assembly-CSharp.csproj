@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Map\Assets\QuickOutline\Scripts\Outline.cs" />
     <Compile Include="Assets\Scripts\GameObject\VideoPlayerController.cs" />
+    <Compile Include="Assets\Scripts\UI\UIMiniMap.cs" />
     <Compile Include="Assets\Map\Assets\VolumetricLines\Scripts\VolumetricLineVertexData.cs" />
     <Compile Include="Assets\Scripts\UI\UISkillBar.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\RowPropPlacer.cs" />
@@ -67,6 +68,8 @@
     <Compile Include="Assets\Scripts\Model\SkillInfo.cs" />
     <Compile Include="Assets\Scripts\Manager\GameObjectManager.cs" />
     <Compile Include="Assets\Scripts\Define\MapDefine.cs" />
+    <Compile Include="Assets\Scripts\UI\Items\UISettingVideoItem.cs" />
+    <Compile Include="Assets\Scripts\UI\Items\UISettingHUDItem.cs" />
     <Compile Include="Assets\Scripts\Define\DialogueDefine.cs" />
     <Compile Include="Assets\Scripts\UI\UIInteractTips.cs" />
     <Compile Include="Assets\Scripts\Define\CharacterDefine.cs" />
@@ -84,6 +87,7 @@
     <Compile Include="Assets\Scripts\Manager\SkillManager.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\GateConsole.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\MeshExtension.cs" />
+    <Compile Include="Assets\Scripts\UI\UISettingWindow.cs" />
     <Compile Include="Assets\Scripts\UI\UIDynamic.cs" />
     <Compile Include="Assets\Scripts\Utilities\Singleton.cs" />
     <Compile Include="Assets\Scripts\GameObject\EnemyController.cs" />
@@ -144,6 +148,7 @@
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\UnityRuntimePreviewGenerator.cs" />
     <Compile Include="Assets\Scripts\UI\UIMessageBox.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\Geometry\Polygon.cs" />
+    <Compile Include="Assets\Scripts\Manager\MiniMapManager.cs" />
     <Compile Include="Assets\Scripts\Model\Attributes.cs" />
     <Compile Include="Assets\Scripts\UI\UIWarningTips.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\BuildingUnit.cs" />
@@ -155,6 +160,7 @@
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\BHUtilities.cs" />
     <Compile Include="Assets\Scripts\GameObject\BulletLogic.cs" />
     <Compile Include="Assets\Scripts\Manager\CharacterManager.cs" />
+    <Compile Include="Assets\Scripts\Manager\SoundManager.cs" />
     <Compile Include="Assets\Scripts\UI\UIWorldTips.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\NoviceEndArea.cs" />
     <Compile Include="Assets\Scripts\UI\Items\UIWarningTipItem.cs" />
@@ -164,17 +170,13 @@
     <Compile Include="Assets\Scripts\GameObject\PXCharacterController.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\TrapLogic.cs" />
     <Compile Include="Assets\Scripts\Utilities\Interfaces.cs" />
+    <Compile Include="Assets\Scripts\UI\Items\UISettingAudioItem.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\Geometry\Maths2D.cs" />
     <Compile Include="Assets\Scripts\Define\WeaponDefine.cs" />
     <Compile Include="Assets\Scripts\Manager\UIManager.cs" />
     <Compile Include="Assets\Scripts\UI\Items\UIIconItem.cs" />
     <Compile Include="Assets\Scripts\Manager\TitleManager.cs" />
     <Compile Include="Assets\Scripts\Manager\InputManager.cs" />
-    <Compile Include="Assets\Scripts\UI\Items\UISettingVideoItem.cs" />
-    <Compile Include="Assets\Scripts\UI\Items\UISettingAudioItem.cs" />
-    <Compile Include="Assets\Scripts\UI\Items\UISettingHUDItem.cs" />
-    <Compile Include="Assets\Scripts\UI\UISettingWindow.cs" />
-    <Compile Include="Assets\Scripts\Manager\SoundManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\_LineStripShader.cginc" />

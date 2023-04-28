@@ -12,3 +12,9 @@ public interface IInteractable
 {
     void Interact(KeyCode code);
 }
+public interface IVisibleinMap
+{
+    string GetName();
+    Transform GetTransform();
+    MapIconType GetIconType();
+}

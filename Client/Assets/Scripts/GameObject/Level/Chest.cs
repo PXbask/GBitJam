@@ -10,7 +10,7 @@ using UnityEngine;
     Overview:箱子
 */
 
-public class Chest : TrapLogic
+public class Chest : TrapLogic, IVisibleinMap
 {
     [Tooltip("1->普通 2->史诗 3->传奇")]
     [SerializeField] public int type;
@@ -27,6 +27,8 @@ public class Chest : TrapLogic
         isOpened= false;
         animat= GetComponentInChildren<Animation>();
         outline = GetComponentInChildren<Outline>();
+
+        MiniMapManager.Instance.Register(this);
     }
     protected override void OnTriggerEnter(Collider other)
     {
@@ -51,5 +53,11 @@ public class Chest : TrapLogic
         isOpened= true;
         var info = TitleManager.Instance.RandomTitleWithTitleType(type);
         TitleManager.Instance.GainTitle(info);
+        MiniMapManager.Instance.Remove(this);
     }
+    public string GetName() { return "Chest"; }
+
+    public Transform GetTransform() { return transform; }
+
+    public MapIconType GetIconType() { return MapIconType.Object; }
 }

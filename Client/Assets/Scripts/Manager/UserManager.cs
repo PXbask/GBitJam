@@ -21,6 +21,7 @@ namespace Manager
         public Action OnPlayerTargetChanged = null;
 
         public Player playerlogic;
+        public GameObject playerObject => playerlogic.controller.gameObject;
         private float Hp;
         public float HP
         {

@@ -12,7 +12,7 @@ using UnityEngine;
     Overview:人物表现层
 */
 
-public class PlayerController : PXCharacterController
+public class PlayerController : PXCharacterController, IVisibleinMap
 {
     public Camera mainCamera;
     public PlayerMovement movement;
@@ -59,6 +59,10 @@ public class PlayerController : PXCharacterController
         mainCamera = Camera.main;
 
         rb = GetComponent<Rigidbody>();
+    }
+    private void Start()
+    {
+        MiniMapManager.Instance.Register(this);
     }
     private void FixedUpdate()
     {
@@ -107,4 +111,9 @@ public class PlayerController : PXCharacterController
     {
         return movement.headDir;
     }
+    public string GetName() { return "Player"; }
+
+    public Transform GetTransform() { return transform; }
+
+    public MapIconType GetIconType() { return MapIconType.Player; }
 }

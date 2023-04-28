@@ -15,7 +15,7 @@ using UnityEngine.AI;
     Overview:
 */
 
-public class EnemyController : PXCharacterController
+public class EnemyController : PXCharacterController, IVisibleinMap
 {
     public BattleStatus Status
     {
@@ -76,7 +76,10 @@ public class EnemyController : PXCharacterController
 
         m_detectInterval = 1 / detectFrequency;
     }
-
+    private void Start()
+    {
+        MiniMapManager.Instance.Register(this);
+    }
     protected override void Update()
     {
         base.Update();
@@ -261,7 +264,7 @@ public class EnemyController : PXCharacterController
     {
         base.OnDeath();
         Destroy(this.gameObject);
-
+        MiniMapManager.Instance.Remove(this);
         GameObjectManager.Instance.RemoveCharacterObj(gameObject);
         CharacterManager.Instance.RemoveCharacter(this.charBase);
         if (UserManager.Instance.TargetEnemy == charBase) UserManager.Instance.TargetEnemy = null;
@@ -308,4 +311,10 @@ public class EnemyController : PXCharacterController
     {
         return headDir;
     }
+
+    public string GetName() { return charBase.define.Name; }
+
+    public Transform GetTransform() { return transform; }
+
+    public MapIconType GetIconType() { return MapIconType.Enemy; }
 }

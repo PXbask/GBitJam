@@ -1713,7 +1713,7 @@ RectTransform:
   m_GameObject: {fileID: 2238009681489274312}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2238009682001965525}
@@ -1752,7 +1752,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6fa45adac4406764f8d873b647973ba6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 87130f184a5c3ae45b31c5401571728b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1891,10 +1891,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skillImages:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 39489859}
+  - {fileID: 855279651}
+  - {fileID: 243590277}
+  - {fileID: 60563140}
   passiveImages:
   - {fileID: 2238009682085197643}
   - {fileID: 2238009682445454240}
@@ -2356,6 +2356,7 @@ GameObject:
   - component: {fileID: 2238009682001965526}
   - component: {fileID: 2238009682001965527}
   - component: {fileID: 2238009682001965524}
+  - component: {fileID: 2238009682939812863}
   m_Layer: 5
   m_Name: miniMap
   m_TagString: Untagged
@@ -2435,6 +2436,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!114 &2238009682939812863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2238009682001965530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b4aef08fc04ee041b8ed69d7e0e804a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  iconBase: {fileID: 0}
+  boundary: {fileID: 0}
+  mapImage: {fileID: 2238009681489274314}
+  playertr: {fileID: 0}
 --- !u!1 &2238009682057075834
 GameObject:
   m_ObjectHideFlags: 0

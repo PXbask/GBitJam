@@ -15,7 +15,7 @@ using UnityEngine.AI;
     Overview:
 */
 
-public class EnemyController : PXCharacterController, IVisibleinMap
+public sealed class EnemyController : PXCharacterController, IVisibleinMap
 {
     public BattleStatus Status
     {

@@ -19,7 +19,7 @@ public class UILevelItemOverable : MonoBehaviour,IPointerEnterHandler,IPointerEx
     public Action<int> OnLevelItemTouched=null;
     public Action<int> OnLevelItemUnTouched=null;
 
-    private RawImage rawImage;
+    private Image rawImage;
     public Color color
     {
         get
@@ -33,7 +33,7 @@ public class UILevelItemOverable : MonoBehaviour,IPointerEnterHandler,IPointerEx
     }
     private void Awake()
     {
-        rawImage = GetComponent<RawImage>();
+        rawImage = GetComponent<Image>();
     }
     public void OnPointerEnter(PointerEventData eventData)
     {

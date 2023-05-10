@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 /*
     Date:
@@ -8,9 +9,19 @@ using UnityEngine;
     Overview:
 */
 
-public class SoundManager : Singleton<SoundManager>
+public class SoundManager : MonoSingleton<SoundManager>
 {
-	private float mainVolume;
+    public AudioMixer audioMixer;
+
+    public AudioSource musicAudioSource;
+
+    public AudioSource soundAudioSource;
+
+    private const string MusicPath = "Music/";
+
+    private const string SoundPath = "Sound/";
+
+    private float mainVolume;
 
 	public float MainVolume
 	{
@@ -21,6 +32,7 @@ public class SoundManager : Singleton<SoundManager>
 			GameManager.Instance.mainVolume = value;
 		}
 	}
+
 	private float musicVolume;
 
 	public float MusicVolume
@@ -28,10 +40,16 @@ public class SoundManager : Singleton<SoundManager>
 		get { return musicVolume; }
 		set
 		{
-			musicVolume = value;
-            GameManager.Instance.musicVolume = value;
+			if(musicVolume != value)
+			{
+                musicVolume = value;
+                GameManager.Instance.musicVolume = value;
+
+                this.SetVolume("MusicVolume", musicVolume);
+            }
         }
 	}
+
 	private float sfxVolume;
 
 	public float SFXVolume
@@ -39,10 +57,46 @@ public class SoundManager : Singleton<SoundManager>
 		get { return sfxVolume; }
 		set
 		{
-			sfxVolume = value; 
-			GameManager.Instance.sfxVolume = value;
+			if(musicVolume != value)
+			{
+                sfxVolume = value;
+                GameManager.Instance.sfxVolume = value;
+
+                this.SetVolume("SoundVolume", sfxVolume);
+            }
 		}
 	}
 
+    private void SetVolume(string name, float value)
+    {
+        float volume = value * 0.5f - 50f;
+        this.audioMixer.SetFloat(name, volume);
+    }
 
+    internal void PlayMusic(string name)
+    {
+        AudioClip clip = Resloader.Load<AudioClip>(MusicPath + name);
+        if (clip == null)
+        {
+            Debug.LogWarningFormat("PlayMusic:{0} not exist", name);
+            return;
+        }
+        if (musicAudioSource.isPlaying)
+        {
+            musicAudioSource.Stop();
+        }
+        musicAudioSource.clip = clip;
+        musicAudioSource.Play();
+    }
+
+    internal void PlaySound(string name)
+    {
+        AudioClip clip = Resloader.Load<AudioClip>(SoundPath + name);
+        if (clip == null)
+        {
+            Debug.LogWarningFormat("PlaySound:{0} not exist", name);
+            return;
+        }
+        soundAudioSource.PlayOneShot(clip);
+    }
 }

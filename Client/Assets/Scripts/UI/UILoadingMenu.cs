@@ -16,7 +16,7 @@ public class UILoadingMenu : MonoBehaviour
 {
     public Image image;
     public Text text;
-    public Slider loadSlider;
+    public Image fakeSlider;
     public Text percentText;
 
     List<DialogueDefine> InterludeTexts;
@@ -58,13 +58,12 @@ public class UILoadingMenu : MonoBehaviour
     }
     IEnumerator HandleSlider()
     {
-        loadSlider.value = 0;
-        loadSlider.maxValue = 100;
+        fakeSlider.fillAmount = 0;
 
-        while (loadSlider.value<loadSlider.maxValue)
+        while (fakeSlider.fillAmount < 1)
         {
-            loadSlider.value += 100f / m_duartion * Time.deltaTime;
-            percentText.text = string.Format("{0}%", loadSlider.value.ToString("f0"));
+            fakeSlider.fillAmount += 1f / m_duartion * Time.deltaTime;
+            percentText.text = string.Format("{0}%", (fakeSlider.fillAmount*100).ToString("f0"));
             yield return null;
         }
     }

@@ -27,6 +27,12 @@ namespace Manager
             GameManager.Instance.OnGameLoadingBegin += ShowLoadingMenu;
             GameManager.Instance.OnGameLoadingEnd += HideLoadingMenu;
         }
+
+        public void Reset()
+        {
+            UIInstance.Clear();
+            WindowStack.Clear();
+        }
         public UIManager()
         {
             this.UIResources.Add(typeof(UITitle), new UIElement() { Resources = @"Prefab/UI/UITitle", Cache = true });

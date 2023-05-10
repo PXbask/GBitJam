@@ -8,9 +8,11 @@ using UnityEngine;
     Overview:各种接口
 */
 
-public interface IInteractable
+public interface IInteractable<T>
 {
     void Interact(KeyCode code);
+    void OnSomeTriggerEnter(T Collider);
+    void OnSomeTriggerExit(T Collider);
 }
 public interface IVisibleinMap
 {

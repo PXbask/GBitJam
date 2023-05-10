@@ -9,7 +9,7 @@ using UnityEngine;
     Overview:
 */
 
-public abstract class TrapLogic : MonoBehaviour, IInteractable
+public abstract class TrapLogic : MonoBehaviour, IInteractable<Collider>
 {
     public PlayerController Controller => GameManager.Instance.player;
     protected KeyCode interactKey;
@@ -25,7 +25,26 @@ public abstract class TrapLogic : MonoBehaviour, IInteractable
     {
         OnInit();
     }
-    protected virtual void OnTriggerEnter(Collider other)
+    protected void OnTriggerEnter(Collider other)
+    {
+        OnSomeTriggerEnter(other);
+        //UIManager.Instance.OpenWorldTip(tipStr, transform);
+    }
+    protected void OnTriggerExit(Collider other)
+    {
+        OnSomeTriggerExit(other);
+        //UIManager.Instance.CloseWorldTip();
+    }
+    protected virtual void OnInteract(KeyCode code)
+    {
+        if (code != interactKey) return;
+    }
+    public void Interact(KeyCode code)
+    {
+        OnInteract(code);
+    }
+
+    public virtual void OnSomeTriggerEnter(Collider other)
     {
         if (other.CompareTag(targetTag))
         {
@@ -35,11 +54,10 @@ public abstract class TrapLogic : MonoBehaviour, IInteractable
                 UIManager.Instance.AddInteractMessage(tipStr, transform);
             }
         }
-        //UIManager.Instance.OpenWorldTip(tipStr, transform);
     }
-    protected virtual void OnTriggerExit(Collider other)
+
+    public virtual void OnSomeTriggerExit(Collider other)
     {
-        //UIManager.Instance.CloseWorldTip();
         if (other.CompareTag(targetTag))
         {
             if (InputManager.Instance.actObjMap[interactKey] != null)
@@ -48,13 +66,5 @@ public abstract class TrapLogic : MonoBehaviour, IInteractable
                 InputManager.Instance.actObjMap[interactKey] = null;
             }
         }
-    }
-    protected virtual void OnInteract(KeyCode code)
-    {
-        if (code != interactKey) return;
-    }
-    public void Interact(KeyCode code)
-    {
-        OnInteract(code);
     }
 }

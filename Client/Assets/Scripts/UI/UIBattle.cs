@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Manager;
 using Model;
 using System;
@@ -29,6 +30,10 @@ public class UIBattle : UIWindow
 
     public UIIconList enemyIcons;
     public UISkillBar skillBar;
+
+    public UIGameOverPanel gameover;
+
+    [SerializeField] Image hurtMask;
     private Creature TargetEnemy => UserManager.Instance.TargetEnemy;
 
     private Creature m_targetEnemy;
@@ -43,6 +48,8 @@ public class UIBattle : UIWindow
         UserManager.Instance.OnPlayerLoadChanged += SetLoadSlider;
         UserManager.Instance.OnPlayerTargetChanged += SetEnemyHpSlider;
         UserManager.Instance.OnPlayerTargetChanged += SetEnemyIconBar;
+        UserManager.Instance.OnPlayerHurt += OnPlayerHurt;
+        UserManager.Instance.OnPlayerDead += gameover.Show;
         TitleManager.Instance.OnTitleEquiped += AddIcon;
         TitleManager.Instance.OnTitleUnEquiped += RemoveIcon;
 
@@ -88,6 +95,8 @@ public class UIBattle : UIWindow
     {
         hpslider.maxValue = UserManager.Instance.hpMax;
         hpslider.value = UserManager.Instance.HP;
+
+        leveltext.text = UserManager.Instance.Level.ToString();
     }
     private void SetLoadSlider()
     {
@@ -135,6 +144,18 @@ public class UIBattle : UIWindow
             }
         }
     }
+
+    private void OnPlayerHurt()
+    {
+        hurtMask.gameObject.SetActive(true);
+
+        hurtMask.color = new Color(1, 125 / 255f, 125 / 255f, 100 / 255f);
+        hurtMask.DOColor(Color.clear, 0.25f)
+                .SetOptions(true)
+                .SetUpdate(true)
+                .OnComplete(() => hurtMask.gameObject.SetActive(false));
+    }
+
     private void RemoveIcon(int infoId)
     {
         var info = TitleManager.Instance.GetTitleInfoByID(infoId);
@@ -156,6 +177,8 @@ public class UIBattle : UIWindow
         UserManager.Instance.OnPlayerLevelChanged -= SetLevelText;
         UserManager.Instance.OnPlayerTargetChanged -= SetEnemyHpSlider;
         UserManager.Instance.OnPlayerTargetChanged -= SetEnemyIconBar;
+        UserManager.Instance.OnPlayerHurt -= OnPlayerHurt;
+        UserManager.Instance.OnPlayerDead -= gameover.Show;
 
         TitleManager.Instance.OnTitleEquiped -= AddIcon;
         TitleManager.Instance.OnTitleUnEquiped -= RemoveIcon;

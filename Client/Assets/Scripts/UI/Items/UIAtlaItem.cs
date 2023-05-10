@@ -19,7 +19,7 @@ public class UIAtlaItem : ListView.ListViewItem
     public Text typeText;
     public Text affectText;
     public Text descriptionText;
-    public List<RawImage> levelItem = new List<RawImage>();
+    public List<Image> levelItem = new List<Image>();
 
     public TitleInfo info;
     public void SetInfo(TitleInfo info)

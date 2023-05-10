@@ -65,6 +65,7 @@ public class PXSceneManager : MonoSingleton<PXSceneManager>
         }
         else
         {
+            Destroy(Utils.GetNoviceInstanceObject());
             GameManager.Instance.Status = GameStatus.Game;
         }
 
@@ -89,7 +90,7 @@ public class PXSceneManager : MonoSingleton<PXSceneManager>
         uiInterlude.SetActive(true);
 
         text.text = string.Empty;
-        Tween tween = text.DOText(str, 150)
+        Tween tween = text.DOText(str, 24)//150
             .SetSpeedBased()
             .SetEase(Ease.Linear)
             .SetUpdate(true);

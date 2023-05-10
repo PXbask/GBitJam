@@ -17,6 +17,7 @@ public class UIMenu : MonoBehaviour
     private void Start()
     {
         GameManager.Instance.Status = GameStatus.Menu;
+        InputManager.Deactivate();
     }
     public void OnClickStartGame()
     {

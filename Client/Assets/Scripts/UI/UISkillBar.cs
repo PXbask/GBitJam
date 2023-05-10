@@ -13,7 +13,7 @@ using UnityEngine.UI;
 public class UISkillBar : MonoBehaviour
 {
     [SerializeField] List<UISkillBarItem> skillImages;
-    [SerializeField] List<Image> passiveImages;
+    //[SerializeField] List<Image> passiveImages;
     private void Start()
     {
         ResetBar();
@@ -31,14 +31,14 @@ public class UISkillBar : MonoBehaviour
                 skillImages[i].SetInfo(null);
         }
 
-        var pass = SkillManager.Instance.passiveTitles;
-        for (int i = 0; i < passiveImages.Count; i++)
-        {
-            if(pass.Count > i)
-                passiveImages[i].sprite = null;
-            else
-                passiveImages[i].sprite = null;
-        }
+        //var pass = SkillManager.Instance.passiveTitles;
+        //for (int i = 0; i < passiveImages.Count; i++)
+        //{
+        //    if(pass.Count > i)
+        //        passiveImages[i].sprite = null;
+        //    else
+        //        passiveImages[i].sprite = null;
+        //}
     }
     private void OnDestroy()
     {

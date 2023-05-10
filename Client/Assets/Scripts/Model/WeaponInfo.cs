@@ -13,7 +13,7 @@ namespace Model
         public Creature owner;
         public int ID => define.ID;
         public WeaponDefine define;
-        private float m_timer;
+        public float m_timer;
         public bool equiped;
         public bool IsUnderCooling
         {

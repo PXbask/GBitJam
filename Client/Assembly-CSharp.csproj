@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\Define\CharacterDefine.cs" />
     <Compile Include="Assets\Scripts\UI\UILoadingMenu.cs" />
     <Compile Include="Assets\Scripts\GameObject\TitleLogic.cs" />
+    <Compile Include="Assets\Scripts\GameObject\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\UI\UITitle.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\Geometry\CompositeShapeData.cs" />
     <Compile Include="Assets\Scripts\UI\UITitleSlot.cs" />
@@ -87,7 +88,6 @@
     <Compile Include="Assets\Scripts\Manager\SkillManager.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\GateConsole.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\MeshExtension.cs" />
-    <Compile Include="Assets\Scripts\UI\UISettingWindow.cs" />
     <Compile Include="Assets\Scripts\UI\UIDynamic.cs" />
     <Compile Include="Assets\Scripts\Utilities\Singleton.cs" />
     <Compile Include="Assets\Scripts\GameObject\EnemyController.cs" />
@@ -97,6 +97,7 @@
     <Compile Include="Assets\Scripts\UI\UIIconList.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\Geometry\CompositeShape.cs" />
     <Compile Include="Assets\Scripts\DataStruct\PXVector3.cs" />
+    <Compile Include="Assets\Scripts\UI\UIGameOverPanel.cs" />
     <Compile Include="Assets\Scripts\Manager\EventManager.cs" />
     <Compile Include="Assets\Map\Assets\VolumetricLines\Scripts\VolumetricLineBehavior.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
@@ -114,7 +115,9 @@
     <Compile Include="Assets\Scripts\UI\UITitleSlotMask.cs" />
     <Compile Include="Assets\Scripts\GameObject\Level\InteractionGate.cs" />
     <Compile Include="Assets\Scripts\ListView\ListView.cs" />
+    <Compile Include="Assets\Scripts\Utilities\Utils.cs" />
     <Compile Include="Assets\Scripts\UI\UIStartScene.cs" />
+    <Compile Include="Assets\Scripts\GameObject\CheckPoint.cs" />
     <Compile Include="Assets\Scripts\Model\Creature.cs" />
     <Compile Include="Assets\Scripts\Novice\NoviceManager.cs" />
     <Compile Include="Assets\Scripts\Model\Enemy.cs" />
@@ -158,6 +161,8 @@
     <Compile Include="Assets\Scripts\Manager\UserManager.cs" />
     <Compile Include="Assets\Map\Assets\PBS Materials Variety Pack\zzz\MaterialRandomizer.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\BHUtilities.cs" />
+    <Compile Include="Assets\Scripts\Model\Boss.cs" />
+    <Compile Include="Assets\Scripts\GameObject\BossController.cs" />
     <Compile Include="Assets\Scripts\GameObject\BulletLogic.cs" />
     <Compile Include="Assets\Scripts\Manager\CharacterManager.cs" />
     <Compile Include="Assets\Scripts\Manager\SoundManager.cs" />

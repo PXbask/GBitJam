@@ -18,7 +18,7 @@ public class UITitleItem : MonoBehaviour,IPointerClickHandler
     public Image background;
     public Image lftImage;
     public Text nameText;
-    public List<RawImage> levelItem = new List<RawImage>();
+    public List<Image> levelItem = new List<Image>();
     public GameObject eqtag;
 
     public TitleInfo info;

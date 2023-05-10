@@ -98,7 +98,7 @@ public class NoviceManager : MonoSingleton<NoviceManager>
 
     public void StartNovice()
     {
-        var obj = GameObjectManager.Instance.CreateEnemy(new Vector3(-8f, 1f, -1f), EnemyAttackStyle.Melee, null);
+        var obj = GameObjectManager.Instance.CreateEnemy(new Vector3(-8f, 2f, -1f), EnemyAttackStyle.Melee, null);
         novice_enemy = obj.GetComponent<EnemyController>();
 
         Step = NoviceStep.Start;

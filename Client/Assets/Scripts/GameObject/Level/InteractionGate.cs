@@ -31,4 +31,6 @@ public class InteractionGate : MonoBehaviour
         locks.SetActive(false);
         yield return null;
     }
+
+    public Transform GetRealPositionTransform() => locks.transform;
 }

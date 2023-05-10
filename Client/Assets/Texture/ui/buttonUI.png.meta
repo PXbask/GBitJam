@@ -124,7 +124,7 @@ TextureImporter:
         width: 1841
         height: 578
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -140,13 +140,13 @@ TextureImporter:
       name: buttonUI_1
       rect:
         serializedVersion: 2
-        x: 69
-        y: 1097
-        width: 600
-        height: 172
+        x: 86
+        y: 1110
+        width: 569
+        height: 148
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 180, y: 0, z: 240, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -161,13 +161,13 @@ TextureImporter:
       name: buttonUI_2
       rect:
         serializedVersion: 2
-        x: 697
-        y: 1097
-        width: 585
-        height: 174
+        x: 711
+        y: 1118
+        width: 568
+        height: 145
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 123, y: 0, z: 271, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -182,13 +182,13 @@ TextureImporter:
       name: buttonUI_3
       rect:
         serializedVersion: 2
-        x: 1321
-        y: 1094
-        width: 599
-        height: 182
+        x: 1344
+        y: 1123
+        width: 567
+        height: 149
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 177, y: 0, z: 269, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
@@ -203,12 +203,12 @@ TextureImporter:
       name: buttonUI_4
       rect:
         serializedVersion: 2
-        x: 273
-        y: 413
-        width: 1541
-        height: 468
+        x: 288
+        y: 425
+        width: 1520
+        height: 428
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

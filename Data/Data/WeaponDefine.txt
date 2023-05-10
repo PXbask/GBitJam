@@ -22,7 +22,7 @@
     "Name": "霰弹枪",
     "Knockback": true,
     "ClipCount": 6,
-    "Interval": 1.0,
+    "Interval": 2.5,
     "Range": 1.6,
     "Damage": 8.0
   }

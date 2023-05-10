@@ -68,6 +68,8 @@ namespace Manager
             if (owner.IsPlayer) return;
             WeaponConfig = new WeaponInfo(DataManager.Instance.Weapons[id], owner);
         }
+
+        public void AttackImmediately() => WeaponConfig.m_timer = 0;
         public void Update()
         {
             WeaponConfig?.Update();

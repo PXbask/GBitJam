@@ -152,7 +152,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7481339103334936844}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8, y: 1, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -209,7 +209,7 @@ MonoBehaviour:
   offset: 1.5
   maintainDistance: 4
   speed: 2
-  attackDesire: 50
+  attackDesire: 4
   maxSeekNum: 3
   maxDetectDistance: 5
   minDisattackDistance: 10

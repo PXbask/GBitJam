@@ -20,6 +20,7 @@ public static class Consts
         public const int Novice_Enemy_Defended = 11;
         public const int Open_Atla_First = 13;
         public const int Equip_Assist_Title_First = 15;
+        public const int BOSS_Dialogue = 20;
     }
     public static class Title
     {
@@ -30,6 +31,7 @@ public static class Consts
     {
         public const int PlayerID = 1;
         public const int EnemyID = 10;
+        public const int BossID = 200;
     }
     public static class Loading
     {

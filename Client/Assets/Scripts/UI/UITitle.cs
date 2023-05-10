@@ -126,7 +126,7 @@ public class UITitle : UIWindow
 
         UserManager.Instance.OnPlayerHpChanged -= SetHpText;
 
-        UserManager.Instance.OnPlayerLoadChanged += SetLoadBar;
+        UserManager.Instance.OnPlayerLoadChanged -= SetLoadBar;
     }
     public void SetInfo()
     {

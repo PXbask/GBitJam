@@ -11,8 +11,8 @@ using UnityEngine;
 
 public class InputManager : MonoSingleton<InputManager>
 {
-    public Dictionary<KeyCode, IInteractable> actObjMap = new Dictionary<KeyCode, IInteractable>();
-    private IInteractable actObj = null;
+    public Dictionary<KeyCode, IInteractable<Collider>> actObjMap = new Dictionary<KeyCode, IInteractable<Collider>>();
+    private IInteractable<Collider> actObj = null;
     public PlayerController CharController => GameManager.Instance.player;
 
     public bool playerMoveEnabled = true;

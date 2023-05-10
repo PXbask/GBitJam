@@ -16,6 +16,7 @@ namespace Model
         public int Load => UserManager.Instance.Load;
         public int Gold => UserManager.Instance.Gold;
         public int Parts => UserManager.Instance.Parts;
+
         public Player(CharacterDefine define, PlayerController attackable) : base(define, attackable)
         {
             titles = TitleManager.Instance.EquipedTitle;
@@ -45,7 +46,13 @@ namespace Model
         public override void OnDamage(float damage, Creature attacker)
         {
             base.OnDamage(damage, attacker);
+            if (invincible) return;
             UserManager.Instance.HP -= Mathf.CeilToInt(damage);
+            UserManager.Instance.SetInvincibleInterval(1);
+            if(UserManager.Instance.HP <= 0)
+            {
+                controller.OnDeath();
+            }
         }
     }
 }

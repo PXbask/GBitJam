@@ -10,36 +10,39 @@ namespace Manager
 {
     public class SkillManager : Singleton<SkillManager>
     {
-        public List<SkillInfo> skillTitles= new List<SkillInfo>(4);//只能存放4个技能，两个被动
-        public List<TitleInfo> passiveTitles = new List<TitleInfo>(2);
+        public List<SkillInfo> skillTitles= new List<SkillInfo>(1);//只能存放1个技能，两个被动
+        //public List<TitleInfo> passiveTitles = new List<TitleInfo>(2);
 
         public Action OnSkillTitleChanged = null;
         public SkillManager() 
         {
-            TitleManager.Instance.OnTitleEquiped += OnTitleEquiped;
-            TitleManager.Instance.OnTitleUnEquiped += OnTitleUnEquiped;
+
         }
         internal void Reset()
         {
             OnSkillTitleChanged = null;
 
+            TitleManager.Instance.OnTitleEquiped -= OnTitleEquiped;
+            TitleManager.Instance.OnTitleUnEquiped -= OnTitleUnEquiped;
+
             skillTitles.Clear();
-            passiveTitles.Clear();
+            //passiveTitles.Clear();
         }
         public void Init()
         {
+            TitleManager.Instance.OnTitleEquiped += OnTitleEquiped;
+            TitleManager.Instance.OnTitleUnEquiped += OnTitleUnEquiped;
+
             ReloadSkill();
         }
         public void ReloadSkill()
         {
             skillTitles.Clear();
-            passiveTitles.Clear();
+            //passiveTitles.Clear();
             foreach (var item in TitleManager.Instance.EquipedTitle)
             {
                 if (item.define.SkillType == SkillTitleType.Positive)
                     skillTitles.Add(new SkillInfo(item.define));
-                else if(item.define.SkillType == SkillTitleType.Positive)
-                    passiveTitles.Add(item);
             }
         }
         public void CastSkill(int index)
@@ -90,14 +93,14 @@ namespace Manager
                     OnSkillTitleChanged?.Invoke();
                 }
             }
-            else if(info.define.SkillType == SkillTitleType.Passive)
-            {
-                if (passiveTitles.Contains(info))
-                {
-                    passiveTitles.Remove(info);
-                    OnSkillTitleChanged?.Invoke();
-                }
-            }             
+            //else if(info.define.SkillType == SkillTitleType.Passive)
+            //{
+            //    if (passiveTitles.Contains(info))
+            //    {
+            //        passiveTitles.Remove(info);
+            //        OnSkillTitleChanged?.Invoke();
+            //    }
+            //}             
         }
 
         private void OnTitleEquiped(int obj)
@@ -111,20 +114,14 @@ namespace Manager
                     OnSkillTitleChanged?.Invoke();
                 }
             }
-            else if (info.define.SkillType == SkillTitleType.Passive)
-            {
-                if (!passiveTitles.Contains(info))
-                {
-                    passiveTitles.Add(info);
-                    OnSkillTitleChanged?.Invoke();
-                }
-            }
-        }
-
-        ~SkillManager() 
-        {
-            TitleManager.Instance.OnTitleEquiped -= OnTitleEquiped;
-            TitleManager.Instance.OnTitleUnEquiped -= OnTitleUnEquiped;
+            //else if (info.define.SkillType == SkillTitleType.Passive)
+            //{
+            //    if (!passiveTitles.Contains(info))
+            //    {
+            //        passiveTitles.Add(info);
+            //        OnSkillTitleChanged?.Invoke();
+            //    }
+            //}
         }
     }
 }

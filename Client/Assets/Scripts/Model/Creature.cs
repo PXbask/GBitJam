@@ -21,6 +21,8 @@ public class Creature
     public bool IsPlayer => define.ID == Consts.Character.PlayerID;
     public List<TitleInfo> titles;
 
+    public bool invincible = false;
+
     public Creature(CharacterDefine define, PXCharacterController controller)
     {
         this.define = define;
@@ -40,6 +42,10 @@ public class Creature
         if (weapon.IsUnderCooling) return;
         OnAttack();
         weapon.OnFire();
+    }
+    public void AttackImmediately()
+    {
+        weaponManager.AttackImmediately();
     }
     protected virtual void OnAttack() { }
     public virtual void Update()

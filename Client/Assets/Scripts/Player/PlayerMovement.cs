@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
 {
     Rigidbody rb;
     [Header("移动速度")]
-    public float speed = 4.0f;
+    public float speed;
     [Header("移动倍率")]
     public float speedMultiple = 1.00f;
     private float m_speed;
@@ -48,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Start()
     {
+        speed = 
         m_speed = speed * speedMultiple;
         rb = GameManager.Instance.player.rb;
         headDir = transform.forward;

@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using DG.Tweening;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace Manager
         public Action OnPlayerDead = null;
         public Action OnPlayerWeaponConfigChanged = null;
         public Action OnPlayerTargetChanged = null;
+        public Action OnPlayerHurt = null;
 
         public Player playerlogic;
         public GameObject playerObject => playerlogic.controller.gameObject;
@@ -28,6 +30,7 @@ namespace Manager
             get { return Hp; }
             set
             {
+                if (Hp > value) OnPlayerHurt?.Invoke();
                 Hp = value;
                 if (playerlogic != null) playerlogic.attributes.curAttribute.HP = value;
                 OnPlayerHpChanged?.Invoke();
@@ -51,7 +54,20 @@ namespace Manager
             get => exp;
             set
             {
-                exp = value;
+                if (value >= exp)
+                {
+                    int remain = value;
+                    while(remain >= exp2NextLevel)
+                    {
+                        remain -= exp2NextLevel;
+                        OnLevelUp();
+                    }
+                    exp = remain;
+                }
+                else
+                {
+                    exp = value;
+                }
                 OnPlayerExpChanged?.Invoke();
             }
         }
@@ -115,6 +131,29 @@ namespace Manager
         public WeaponManager weaponManager => playerlogic.weaponManager;
         public WeaponInfo CurrentWeapon => weaponManager.WeaponConfig;
 
+        public Vector3 checkPoint;
+
+        public Camera GetPlayerBindingCamera()
+        {
+            return (playerlogic?.controller as PlayerController).mainCamera ?? Camera.main;
+        } 
+
+        public void SetInvincible(bool b)
+        {
+            playerlogic.invincible= b;
+        }
+        /** Turn the player to invincible, searval seconds later turn to vincible */
+        public void SetInvincibleInterval(float dur)
+        {
+            Sequence sequence = DOTween.Sequence();
+
+            sequence.AppendCallback(() => SetInvincible(true))
+                    .AppendInterval(dur)
+                    .AppendCallback(() => SetInvincible(false));
+
+            sequence.SetLoops(1).Play();
+        }
+
         internal void Reset()
         {
             OnPlayerHpChanged = null;
@@ -136,12 +175,27 @@ namespace Manager
             TitleManager.Instance.OnTitleEquiped += OnTitleEquiped;
             TitleManager.Instance.OnTitleUnEquiped += OnTitleUnEquiped;
 
-            Level = DataManager.Instance.SaveData.playerLevel;
-            HP = DataManager.Instance.SaveData.Hp;
-            Exp = DataManager.Instance.SaveData.exp;
-            Load = DataManager.Instance.SaveData.load;
-            Gold = DataManager.Instance.SaveData.gold;
-            Parts = DataManager.Instance.SaveData.parts;
+            //Level = DataManager.Instance.SaveData.playerLevel;
+            //HP = DataManager.Instance.SaveData.Hp;
+            //Exp = DataManager.Instance.SaveData.exp;
+            //Load = DataManager.Instance.SaveData.load;
+            //Gold = DataManager.Instance.SaveData.gold;
+            //Parts = DataManager.Instance.SaveData.parts;
+
+            Level = 1;
+            HP = DataManager.Instance.PlayerDefine.HP;
+            checkPoint = Utils.GetDefaultPointPosition();
+            Exp = 0;
+            Load = 0;
+            Gold = 0;
+            Parts = 0;
+        }
+
+        public void ReBorn()
+        {
+            HP = DataManager.Instance.PlayerDefine.HP;
+            Load = 0;
+            playerObject.transform.position = checkPoint;
         }
 
         private void OnTitleEquiped(int obj)
@@ -173,6 +227,12 @@ namespace Manager
         public void OnWeaponConfigChanged()
         {
             OnPlayerWeaponConfigChanged?.Invoke();
+        }
+
+        public void SetCheckPoint(Vector3 pos)
+        {
+            this.checkPoint = pos;
+            UIManager.Instance.AddGainMessage("检查点更新");
         }
 
         ~UserManager()

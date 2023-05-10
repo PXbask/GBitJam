@@ -59,7 +59,7 @@ namespace Model
             {
                 controller.OnDeath();
                 UserManager.Instance.Exp += define.ExpEarn;
-                UserManager.Instance.Exp += define.GoldEarn;
+                UserManager.Instance.Gold += define.GoldEarn;
                 Debug.Log("Enemy Dead");
             }
         }

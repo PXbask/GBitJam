@@ -160,5 +160,23 @@
       "Name": "后勤支援部：",
       "Dialogue": "对面还有几个喽啰，去解决掉它们。"
     }
+  },
+  "20": {
+    "1": {
+      "Name": "BOSS",
+      "Dialogue": "全民制作人们大家好"
+    },
+    "2": {
+      "Name": "BOSS",
+      "Dialogue": "我是练习时长两年半的个人练习生cxk"
+    },
+    "3": {
+      "Name": "BOSS",
+      "Dialogue": "喜欢唱跳rap篮球"
+    },
+    "4": {
+      "Name": "BOSS",
+      "Dialogue": "music~"
+    }
   }
 }

@@ -11,7 +11,7 @@ public class AutomaticDoor: TrapLogic
         base.OnInit();
         anim = GetComponent<Animator>();
     }
-    protected override void OnTriggerEnter(Collider other)
+    public override void OnSomeTriggerEnter(Collider other)
     {
         if (IsOpen) return;
         if (other.gameObject.CompareTag("Player"))

@@ -16,6 +16,12 @@ namespace Manager
             get { return boundary; }
         }
 
+        public void Reset()
+        {
+            visibleObjs.Clear();
+            uIMiniMap?.Reset();
+        }
+
         public void Register(IVisibleinMap v)
         {
             if (visibleObjs.Contains(v)) return;

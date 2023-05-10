@@ -68,6 +68,11 @@ public class UIMiniMap : MonoBehaviour
             UpdateIcons();
     }
 
+    public void Reset()
+    {
+        IconMaps.Clear();
+    }
+
     private void UpdateIcons()
     {
         List<IVisibleinMap> objs = MiniMapManager.Instance.GetVisibleinMaps();

@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.Rendering.Universal;
+using static UnityEditor.PlayerSettings;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace Manager
 {
@@ -14,6 +16,7 @@ namespace Manager
     {
         [SerializeField] GameObject playerPrefab;
         [SerializeField] GameObject enemyPrefab;
+        [SerializeField] GameObject bossPrefab;
         [SerializeField] GameObject riflePrefab;
         [SerializeField] GameObject shotGunPrefab;
 
@@ -66,10 +69,11 @@ namespace Manager
         /// <param name="gainedtitles">增益类芯片，其他类别没有用</param>
         public GameObject CreateEnemy(Vector3 position, EnemyAttackStyle attackStyle, List<TitleInfo> gainedtitles = null)
         {
+            Debug.Log($"生成敌人{position}");
             //EnemyController
-            GameObject enemyobj = Instantiate(enemyPrefab);
+            GameObject enemyobj = Instantiate(enemyPrefab, position, Quaternion.identity);
             EnemyController controller = enemyobj.GetComponent<EnemyController>();
-            controller.transform.position = position;
+
             //CharBase
             Enemy enemy = new(DataManager.Instance.Characters[Consts.Character.EnemyID], controller);
             controller.charBase = enemy;
@@ -78,9 +82,53 @@ namespace Manager
             enemy.SetEquips(gainedtitles, attackStyle);
             enemy.attributes.Recalculate();
 
-            //Debug
-            Debug.Log(enemy.attributes.baseAttribute.ToString());
-            Debug.Log(enemy.attributes.curAttribute.ToString());
+            CharacterManager.Instance.AddCharacter(controller.charBase);
+            AddCharacterObj(enemyobj);
+
+            return enemyobj;
+        }
+        public GameObject CreateEnemy(Vector3 position, EnemyAttackStyle attackStyle, int difficulty)
+        {
+            List<TitleInfo> titleInfos = new List<TitleInfo>();
+            while (difficulty >= 1)
+            {
+                TitleInfo m_info;
+                if (difficulty >= 5)
+                {
+                    int info = TitleManager.Instance.RandomTitleWithTitleType(0.33f, 0.34f, 0.33f);
+                    m_info = new TitleInfo(info);
+                }
+                else if(difficulty >= 3)
+                {
+                    int info = TitleManager.Instance.RandomTitleWithTitleType(0.6f, 0.4f, 0f);
+                    m_info = new TitleInfo(info);
+                }
+                else
+                {
+                    int info = TitleManager.Instance.RandomTitleWithTitleType(1f, 0f, 0f);
+                    m_info = new TitleInfo(info);
+                }
+                if (titleInfos.Count >= 3) break;
+                if (m_info.define.TitleType != TitleType.Assist || titleInfos.Where(x => x.ID == m_info.ID).Any()) continue;
+                difficulty -= m_info.define.Size;
+                titleInfos.Add(m_info);
+            }
+            return CreateEnemy(position, attackStyle, titleInfos);
+        }
+        public GameObject CreateBoss(Vector3 position, List<TitleInfo> gainedtitles = null)
+        {
+            //BossController
+            GameObject enemyobj = Instantiate(bossPrefab, position, Quaternion.identity);
+            BossController controller = enemyobj.GetComponent<BossController>();
+
+            //Charbase
+            Boss boss = new(DataManager.Instance.Characters[Consts.Character.BossID], controller);
+            controller.charBase = boss;
+            controller.Init();
+
+            //Title
+            boss.SetEquips(gainedtitles, EnemyAttackStyle.Melee);
+            boss.attributes.Recalculate();
 
             CharacterManager.Instance.AddCharacter(controller.charBase);
             AddCharacterObj(enemyobj);

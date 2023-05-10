@@ -20,6 +20,7 @@ public class Chest_Novice : Chest
         isOpened = true;
         TitleManager.Instance.GainTitle(1);
         MiniMapManager.Instance.Remove(this);
-        NoviceManager.Instance.Step = NoviceManager.NoviceStep.GainedFirstTitleDialogue;
+        if(NoviceManager.Instance != null)
+            NoviceManager.Instance.Step = NoviceManager.NoviceStep.GainedFirstTitleDialogue;
     }
 }

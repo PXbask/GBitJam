@@ -19,13 +19,13 @@ public class Ladder : TrapLogic
         interactKey = KeyCode.Space;
         tipStr = "Space иоиЩ";
     }
-    protected override void OnTriggerEnter(Collider other)
+    public override void OnSomeTriggerEnter(Collider other)
     {
         if (other.CompareTag(targetTag))
         {
             if (InputManager.Instance.actObjMap[interactKey] == null)
             {
-                if(Vector3.Distance(Controller.rb.position, transform.position) <= 1f)
+                if (Vector3.Distance(Controller.rb.position, transform.position) <= 1f)
                 {
                     InputManager.Instance.actObjMap[interactKey] = this;
                     UIManager.Instance.AddInteractMessage(tipStr, transform);
@@ -33,9 +33,9 @@ public class Ladder : TrapLogic
             }
         }
     }
-    protected override void OnTriggerExit(Collider other)
+    public override void OnSomeTriggerExit(Collider other)
     {
-        base.OnTriggerExit(other);
+        base.OnSomeTriggerExit(other);
         Controller.rb.useGravity = true;
     }
     protected override void OnInteract(KeyCode code)

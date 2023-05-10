@@ -19,12 +19,7 @@ public class GateConsole : TrapLogic
     {
         base.OnInit();
         interactKey = KeyCode.F;
-        tipStr = "E »¥¶¯";
-    }
-    protected override void OnTriggerEnter(Collider other)
-    {
-        if (!useful) return;
-        base.OnTriggerEnter(other);
+        tipStr = "F »¥¶¯";
     }
     protected override void OnInteract(KeyCode code)
     {
@@ -33,5 +28,16 @@ public class GateConsole : TrapLogic
         this.useful = false;
         gate.OpenGate();
         UIManager.Instance.RemoveInteractMessage(transform);
+
+        Controller.MainCameraMoveto(gate.GetRealPositionTransform().gameObject);
+    }
+    public override void OnSomeTriggerEnter(Collider other)
+    {
+        if (!useful) return;
+        base.OnSomeTriggerEnter(other);
+    }
+    public override void OnSomeTriggerExit(Collider other)
+    {
+        base.OnSomeTriggerExit(other);
     }
 }

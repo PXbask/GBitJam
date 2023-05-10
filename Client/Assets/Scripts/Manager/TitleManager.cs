@@ -126,6 +126,15 @@ public class TitleManager : Singleton<TitleManager>
         int index = UnityEngine.Random.Range(0, lists.Count);
         return lists[index].ID;
     }
+    public int RandomTitleWithTitleType(float normalRate, float legendRate, float epicRate)
+    {
+        float random = UnityEngine.Random.Range(0, 1);
+        float totalRate = normalRate;
+        if (random <= totalRate) return RandomTitleWithTitleType(1);
+        totalRate += legendRate;
+        if (random <= totalRate) return RandomTitleWithTitleType(2);
+        return RandomTitleWithTitleType(3);
+    }
     public TitleInfo GetTitleInfoByID(int id)
     {
         return this.AllTitles[id];

@@ -211,6 +211,7 @@ public class GameManager : MonoSingleton<GameManager>
             case GameStatus.BeforeGame:
                 break;
             case GameStatus.Novice:
+                //GameObjectManager.Instance.CreateEnemy(new Vector3(-7.44f, 0.76f, 0.34f), EnemyAttackStyle.Melee);
                 break;
             default:
                 break;
@@ -245,6 +246,7 @@ public class GameManager : MonoSingleton<GameManager>
 
     IEnumerator TurntoBlack(Action callback)
     {
+        blackMask.transform.parent.gameObject.SetActive(true);
         blackMask.gameObject.SetActive(true);
         maskText.gameObject.SetActive(true);
         blackMask.color = new Color(0, 0, 0, 0);
@@ -275,6 +277,7 @@ public class GameManager : MonoSingleton<GameManager>
             maskText.color = color;
             yield return null;
         }
+        blackMask.transform.parent.gameObject.SetActive(false);
         blackMask.gameObject.SetActive(false);
         maskText.gameObject.SetActive(false);
         yield return null;
@@ -299,6 +302,10 @@ public class GameManager : MonoSingleton<GameManager>
         SkillManager.Instance.Init();
         CharacterManager.Instance.Init();
         GameObjectManager.Instance.Init();
+        MiniMapManager.Instance.Init();
+
+        if(NoviceManager.Instance != null) 
+            NoviceManager.Instance.Step = NoviceManager.NoviceStep.None;
     }
     public void InitAync()
     {
@@ -318,6 +325,9 @@ public class GameManager : MonoSingleton<GameManager>
         yield return null;
         MiniMapManager.Instance.Init();
         yield return null;
+
+        if (NoviceManager.Instance != null)
+            NoviceManager.Instance.Step = NoviceManager.NoviceStep.None;
     }
     private void SetBGCameraConfigs()
     {
@@ -331,6 +341,8 @@ public class GameManager : MonoSingleton<GameManager>
         SkillManager.Instance.Reset();
         CharacterManager.Instance.Reset();
         GameObjectManager.Instance.Reset();
+        MiniMapManager.Instance.Reset();
+        UIManager.Instance.Reset();
     }
     #endregion
     #region Setting

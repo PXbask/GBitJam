@@ -30,15 +30,6 @@ public class Chest : TrapLogic, IVisibleinMap
 
         MiniMapManager.Instance.Register(this);
     }
-    protected override void OnTriggerEnter(Collider other)
-    {
-        if (isOpened) return;
-        base.OnTriggerEnter(other);
-    }
-    protected override void OnTriggerExit(Collider other)
-    {
-        base.OnTriggerExit(other);
-    }
     protected override void OnInteract(KeyCode code)
     {
         base.OnInteract(code);
@@ -51,8 +42,20 @@ public class Chest : TrapLogic, IVisibleinMap
         animat.Play();
         outline.enabled = false;
         isOpened= true;
-        var info = TitleManager.Instance.RandomTitleWithTitleType(type);
-        TitleManager.Instance.GainTitle(info);
+
+        if (type == 1) RandomTitleWithTitleType(0.33f, 0.33f, 0.33f);
+        if (type == 2)
+        {
+            RandomTitleWithTitleType(0f, 1f, 0f);
+            RandomTitleWithTitleType(0.33f, 0.33f, 0.33f);
+        }
+        if(type == 3)
+        {
+            RandomTitleWithTitleType(0f, 0f, 1f);
+            RandomTitleWithTitleType(0.6f, 0.4f, 1f);
+            RandomTitleWithTitleType(0.6f, 0.4f, 1f);
+        }
+
         MiniMapManager.Instance.Remove(this);
     }
     public string GetName() { return "Chest"; }
@@ -60,4 +63,18 @@ public class Chest : TrapLogic, IVisibleinMap
     public Transform GetTransform() { return transform; }
 
     public MapIconType GetIconType() { return MapIconType.Object; }
+    public override void OnSomeTriggerEnter(Collider other)
+    {
+        if (isOpened) return;
+        base.OnSomeTriggerEnter(other);
+    }
+    public override void OnSomeTriggerExit(Collider other)
+    {
+        base.OnSomeTriggerExit(other);
+    }
+    private void RandomTitleWithTitleType(float normalRate, float legendRate, float epicRate)
+    {
+        var info = TitleManager.Instance.RandomTitleWithTitleType(normalRate, legendRate, epicRate);
+        TitleManager.Instance.GainTitle(info);
+    }
 }

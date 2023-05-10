@@ -18,7 +18,9 @@ public class Chest_Novice : Chest
         animat.Play();
         outline.enabled = false;
         isOpened = true;
+
         TitleManager.Instance.GainTitle(1);
+
         MiniMapManager.Instance.Remove(this);
         if(NoviceManager.Instance != null)
             NoviceManager.Instance.Step = NoviceManager.NoviceStep.GainedFirstTitleDialogue;

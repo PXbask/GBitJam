@@ -14,6 +14,8 @@ using UnityEngine.UI;
 
 public class UILoadingMenu : MonoBehaviour
 {
+    public List<Sprite> illustrations = new List<Sprite>();  
+
     public Image image;
     public Text text;
     public Image fakeSlider;
@@ -43,6 +45,7 @@ public class UILoadingMenu : MonoBehaviour
         while(true)
         {
             int index = -1;
+            int illIndex = -1;
             while (true)
             {
                 var ran = UnityEngine.Random.Range(0, InterludeTexts.Count);
@@ -52,7 +55,17 @@ public class UILoadingMenu : MonoBehaviour
                     break;
                 }
             }
+            while (true)
+            {
+                var ran = UnityEngine.Random.Range(0, illustrations.Count);
+                if (ran != illIndex)
+                {
+                    illIndex = ran;
+                    break;
+                }
+            }
             text.text = InterludeTexts[index].Dialogue;
+            image.sprite = illustrations[illIndex];
             yield return new WaitForSeconds(5f);
         }
     }

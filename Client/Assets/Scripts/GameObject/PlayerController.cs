@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 /*
     Date:
@@ -22,7 +23,11 @@ public class PlayerController : PXCharacterController, IVisibleinMap
     private CinemachineVirtualCamera virtualCamera;
 
     public PlayerMovement movement;
+
     public SpriteRenderer render;
+
+    public GameObject bodyObject;
+
     [SerializeField] PlayerState state;
     public PlayerState State
     {
@@ -91,6 +96,7 @@ public class PlayerController : PXCharacterController, IVisibleinMap
         virtualCamera = GetComponentInChildren<CinemachineVirtualCamera>();     
 
         rb = GetComponent<Rigidbody>();
+        bodyObject = transform.Find("body").gameObject;
     }
     private void Start()
     {
@@ -106,6 +112,9 @@ public class PlayerController : PXCharacterController, IVisibleinMap
 
         render.flipX = movement.headDir.z > 0;
     }
+
+    private Vector3 GetPosition() => bodyObject.transform.position;
+
     private void CheckGround()
     {
         var bounds = _collider.bounds;
@@ -143,6 +152,18 @@ public class PlayerController : PXCharacterController, IVisibleinMap
     {
         return movement.headDir;
     }
+
+    public bool TryDestroyObstacle()
+    {
+        Ray ray = new Ray(GetPosition(), movement.headDir);
+        var flag = Physics.Raycast(ray, out var hitInfo, 2f, LayerMask.GetMask("Obstacle"));
+        if(hitInfo.transform!=null)
+            if(hitInfo.transform.gameObject.CompareTag("Destroyable"))
+                Destroy(hitInfo.transform.gameObject);
+
+        return flag;
+    }
+
     public string GetName() { return "Player"; }
 
     public Transform GetTransform() { return transform; }

@@ -196,6 +196,8 @@ namespace Manager
             HP = DataManager.Instance.PlayerDefine.HP;
             Load = 0;
             playerObject.transform.position = checkPoint;
+
+            InputManager.Activate();
         }
 
         private void OnTitleEquiped(int obj)

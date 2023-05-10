@@ -11,7 +11,7 @@ namespace Manager
     public class SkillManager : Singleton<SkillManager>
     {
         public List<SkillInfo> skillTitles= new List<SkillInfo>(1);//只能存放1个技能，两个被动
-        //public List<TitleInfo> passiveTitles = new List<TitleInfo>(2);
+        public List<TitleInfo> passiveTitles = new List<TitleInfo>(1);
 
         public Action OnSkillTitleChanged = null;
         public SkillManager() 
@@ -26,7 +26,7 @@ namespace Manager
             TitleManager.Instance.OnTitleUnEquiped -= OnTitleUnEquiped;
 
             skillTitles.Clear();
-            //passiveTitles.Clear();
+            passiveTitles.Clear();
         }
         public void Init()
         {
@@ -38,7 +38,7 @@ namespace Manager
         public void ReloadSkill()
         {
             skillTitles.Clear();
-            //passiveTitles.Clear();
+            passiveTitles.Clear();
             foreach (var item in TitleManager.Instance.EquipedTitle)
             {
                 if (item.define.SkillType == SkillTitleType.Positive)
@@ -61,14 +61,8 @@ namespace Manager
                     var cure = maxHP * 0.2f;
                     UserManager.Instance.HP = Math.Clamp(UserManager.Instance.HP + cure, 0, maxHP);
                     break;
-                case 82://炸药
-                    Debug.Log("释放 炸药");
-                    break;
-                case 84://时间使者
-                    Debug.Log("释放 时间使者");
-                    break;
-                case 85://EMP
-                    Debug.Log("释放 EMP");
+                case 81://钻头
+                    if (UserManager.Instance.playerlogic.controller is PlayerController playerController) playerController.TryDestroyObstacle();
                     break;
                 default: break;
             }
@@ -93,14 +87,14 @@ namespace Manager
                     OnSkillTitleChanged?.Invoke();
                 }
             }
-            //else if(info.define.SkillType == SkillTitleType.Passive)
-            //{
-            //    if (passiveTitles.Contains(info))
-            //    {
-            //        passiveTitles.Remove(info);
-            //        OnSkillTitleChanged?.Invoke();
-            //    }
-            //}             
+            else if (info.define.SkillType == SkillTitleType.Passive)
+            {
+                if (passiveTitles.Contains(info))
+                {
+                    passiveTitles.Remove(info);
+                    OnSkillTitleChanged?.Invoke();
+                }
+            }
         }
 
         private void OnTitleEquiped(int obj)
@@ -114,14 +108,14 @@ namespace Manager
                     OnSkillTitleChanged?.Invoke();
                 }
             }
-            //else if (info.define.SkillType == SkillTitleType.Passive)
-            //{
-            //    if (!passiveTitles.Contains(info))
-            //    {
-            //        passiveTitles.Add(info);
-            //        OnSkillTitleChanged?.Invoke();
-            //    }
-            //}
+            else if (info.define.SkillType == SkillTitleType.Passive)
+            {
+                if (!passiveTitles.Contains(info))
+                {
+                    passiveTitles.Add(info);
+                    OnSkillTitleChanged?.Invoke();
+                }
+            }
         }
     }
 }

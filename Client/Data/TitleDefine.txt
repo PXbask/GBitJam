@@ -253,5 +253,20 @@
     "CoolingDown": 8.0,
     "DropRate": 0.6,
     "PartsBorn": 5
+  },
+  "81": {
+    "ID": 81,
+    "Name": "钻头",
+    "Description": "势不可挡，破坏指定位置的障碍物。据说研发人员是从一部名为电钻手霍华德的漫画中获得了灵感，因此造出了如此具有破坏性的义体之芯，但没想到受到了室内装修行业的一致好评。",
+    "Size": 1,
+    "Quality": 1,
+    "TitleType": "Item",
+    "SkillType": "Positive",
+    "EnemyCanEquip": false,
+    "EnemyCanFall": false,
+    "IsConsumable": false,
+    "CoolingDown": 5.0,
+    "DropRate": 0.6,
+    "PartsBorn": 5
   }
 }

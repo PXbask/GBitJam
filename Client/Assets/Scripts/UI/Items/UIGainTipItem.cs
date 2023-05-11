@@ -22,7 +22,7 @@ public class UIGainTipItem : MonoBehaviour
 
     const int MOVE_X = 500;
     const int MOVE_Y = 80;
-    const float TIME = 0.5f;
+    const float TIME = 0.3f;
 
     private void Start()
     {

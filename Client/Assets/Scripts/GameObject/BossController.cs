@@ -81,6 +81,16 @@ public class BossController : PXCharacterController, IVisibleinMap, IInteractabl
         UpdateAI();
     }
 
+    public override void OnDeath()
+    {
+        base.OnDeath();
+        Destroy(this.gameObject);
+        MiniMapManager.Instance.Remove(this);
+        GameObjectManager.Instance.RemoveCharacterObj(gameObject);
+        CharacterManager.Instance.RemoveCharacter(this.charBase);
+        if (UserManager.Instance.TargetEnemy == charBase) UserManager.Instance.TargetEnemy = null;
+    }
+
     public void SetTarget(Creature target)
     {
         attackTarget = target;
@@ -379,7 +389,7 @@ public class BossController : PXCharacterController, IVisibleinMap, IInteractabl
 
         Vector3 dir = (destination - rb.position).normalized;
 
-        while (Vector3.Distance(rb.position, destination) >= 0.1f)
+        while (Vector3.Distance(rb.position, destination) >= 0.5f)
         {
             transform.position = transform.position + dir * Time.fixedDeltaTime * movementSpeed * 2f;
             yield return null;

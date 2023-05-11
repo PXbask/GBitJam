@@ -48,7 +48,7 @@ namespace Model
         {
             base.OnDamage(damage, attacker);
             BossController owncontroller = controller as BossController;
-            attributes.curAttribute.HP -= damage;
+            attributes.curAttribute.HP -= damage * 10;
 
             UserManager.Instance.TargetEnemy = this;
 

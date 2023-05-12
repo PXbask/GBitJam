@@ -35,6 +35,10 @@ public class PXSceneManager : MonoSingleton<PXSceneManager>
             Scenes.Add(scene.Key, new PXSceneInfo(scene.Value));
         }
     }
+    public void LoadEnd()
+    {
+        SceneManager.LoadScene("End");
+    }
     public void LoadScene(PXSceneInfo info, float duration)
     {
         StartCoroutine(LoadSceneAsync(info, duration));

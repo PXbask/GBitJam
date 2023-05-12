@@ -87,6 +87,9 @@ public class GameManager : MonoSingleton<GameManager>
                 case GameStatus.Dialoguing:
                     InputManager.Deactivate();
                     break;
+                case GameStatus.End:
+                    InputManager.Deactivate();
+                    break;
                 default:
                     break;
             }
@@ -210,8 +213,9 @@ public class GameManager : MonoSingleton<GameManager>
                 break;
             case GameStatus.BeforeGame:
                 break;
-            case GameStatus.Novice:
-                //GameObjectManager.Instance.CreateEnemy(new Vector3(-7.44f, 0.76f, 0.34f), EnemyAttackStyle.Melee);
+            case GameStatus.Novice:              
+                break;
+            case GameStatus.End:
                 break;
             default:
                 break;
@@ -303,6 +307,7 @@ public class GameManager : MonoSingleton<GameManager>
         CharacterManager.Instance.Init();
         GameObjectManager.Instance.Init();
         MiniMapManager.Instance.Init();
+        EventManager.Instance.Init();
 
         if(NoviceManager.Instance != null) 
             NoviceManager.Instance.Step = NoviceManager.NoviceStep.None;
@@ -325,6 +330,8 @@ public class GameManager : MonoSingleton<GameManager>
         yield return null;
         MiniMapManager.Instance.Init();
         yield return null;
+        EventManager.Instance.Init();
+        yield return null;
 
         if (NoviceManager.Instance != null)
             NoviceManager.Instance.Step = NoviceManager.NoviceStep.None;
@@ -343,6 +350,17 @@ public class GameManager : MonoSingleton<GameManager>
         GameObjectManager.Instance.Reset();
         MiniMapManager.Instance.Reset();
         UIManager.Instance.Reset();
+        EventManager.Instance.Reset();
+    }
+
+    internal void CompleteGame()
+    {
+        GameManager.Instance.Status = GameStatus.End;
+
+        UIManager.Instance.TurntoBlack(() =>
+        {
+            PXSceneManager.Instance.LoadEnd();
+        });
     }
     #endregion
     #region Setting

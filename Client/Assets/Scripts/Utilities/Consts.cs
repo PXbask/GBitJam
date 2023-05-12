@@ -20,7 +20,9 @@ public static class Consts
         public const int Novice_Enemy_Defended = 11;
         public const int Open_Atla_First = 13;
         public const int Equip_Assist_Title_First = 15;
-        public const int BOSS_Dialogue = 20;
+        public const int BOSS_Dialogue_Pre = 20;
+        public const int BOSS_Dialogue_Pro = 21;
+        public const int Door_Locked = 25;
     }
     public static class Title
     {

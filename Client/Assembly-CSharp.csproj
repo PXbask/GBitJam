@@ -102,7 +102,7 @@
     <Compile Include="Assets\Map\Assets\VolumetricLines\Scripts\VolumetricLineBehavior.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\GameObject\DeadZone.cs" />
-    <Compile Include="Assets\Scripts\UI\UIStart.cs" />
+    <Compile Include="Assets\Scripts\UI\UIEnd.cs" />
     <Compile Include="Assets\Scripts\Define\TitleDefine.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\OriginOffsetRPP.cs" />
     <Compile Include="Assets\Scripts\Define\TitleAffectDefine.cs" />
@@ -182,6 +182,7 @@
     <Compile Include="Assets\Scripts\UI\Items\UIIconItem.cs" />
     <Compile Include="Assets\Scripts\Manager\TitleManager.cs" />
     <Compile Include="Assets\Scripts\Manager\InputManager.cs" />
+    <Compile Include="Assets\Scripts\GameObject\Level\ExitTransporter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\_LineStripShader.cginc" />

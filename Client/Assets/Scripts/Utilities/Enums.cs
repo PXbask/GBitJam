@@ -76,6 +76,7 @@ public enum GameStatus
     BeforeGame = 4,
     Dialoguing = 5,
     Novice = 6,
+    End = 7,
 }
 public enum VideoQuality
 {

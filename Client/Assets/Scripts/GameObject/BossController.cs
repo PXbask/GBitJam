@@ -84,11 +84,17 @@ public class BossController : PXCharacterController, IVisibleinMap, IInteractabl
     public override void OnDeath()
     {
         base.OnDeath();
-        Destroy(this.gameObject);
-        MiniMapManager.Instance.Remove(this);
-        GameObjectManager.Instance.RemoveCharacterObj(gameObject);
-        CharacterManager.Instance.RemoveCharacter(this.charBase);
-        if (UserManager.Instance.TargetEnemy == charBase) UserManager.Instance.TargetEnemy = null;
+
+        EventManager.OnBossDefend?.Invoke();
+
+        DialogueManager.Instance.ShowDialogue(Consts.Dialogues.BOSS_Dialogue_Pro, () =>
+        {
+            Destroy(this.gameObject);
+            MiniMapManager.Instance.Remove(this);
+            GameObjectManager.Instance.RemoveCharacterObj(gameObject);
+            CharacterManager.Instance.RemoveCharacter(this.charBase);
+            if (UserManager.Instance.TargetEnemy == charBase) UserManager.Instance.TargetEnemy = null;
+        });
     }
 
     public void SetTarget(Creature target)
@@ -432,7 +438,7 @@ public class BossController : PXCharacterController, IVisibleinMap, IInteractabl
 
     private void ShowDialogue()
     {
-        DialogueManager.Instance.ShowDialogue(Consts.Dialogues.BOSS_Dialogue, () =>
+        DialogueManager.Instance.ShowDialogue(Consts.Dialogues.BOSS_Dialogue_Pre, () =>
         {
 
             if (InputManager.Instance.actObjMap[KeyCode.F] != null)

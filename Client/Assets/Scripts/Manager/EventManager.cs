@@ -14,25 +14,12 @@ using System;
 
 public class EventManager : Singleton<EventManager>
 {
-    #region bools
-    bool isFirstEnterGame;
-    public bool IsFirstEnterGame
+    public static Action OnBossDefend = null;
+
+    public void Init() { }
+
+    public void Reset()
     {
-        get { return isFirstEnterGame; }
-        set
-        {
-            isFirstEnterGame = value;
-            BooleanDics[nameof(isFirstEnterGame)] = true;
-        }
-    }
-    #endregion
-    #region events
-    
-    #endregion
-    public Dictionary<string, bool> BooleanDics = new Dictionary<string, bool>();
-    public EventManager()
-    {
-        isFirstEnterGame = BooleanDics[nameof(isFirstEnterGame)];
-        
+        OnBossDefend = null;
     }
 }

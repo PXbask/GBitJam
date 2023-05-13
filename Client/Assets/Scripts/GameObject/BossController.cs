@@ -315,7 +315,10 @@ public class BossController : PXCharacterController, IVisibleinMap, IInteractabl
     {
         if (attackTarget == null) return;
         rb.velocity = Vector3.zero;
+
         headDir = rb.position.z > attackTarget.controller.rb.position.z ? Vector3.back : Vector3.forward;
+        //spriteRenderer.flipX = headDir.z > 0;
+
         boss.Attack();
     }
 

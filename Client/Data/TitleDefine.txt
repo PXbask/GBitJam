@@ -12,7 +12,8 @@
     "IsConsumable": false,
     "LindedWeapon": 1,
     "DropRate": 0.6,
-    "PartsBorn": 5
+    "PartsBorn": 5,
+    "IconPath": "image/title1"
   },
   "2": {
     "ID": 2,
@@ -27,7 +28,8 @@
     "IsConsumable": false,
     "LindedWeapon": 2,
     "DropRate": 0.3,
-    "PartsBorn": 10
+    "PartsBorn": 10,
+    "IconPath": "image/title2"
   },
   "3": {
     "ID": 3,
@@ -42,7 +44,8 @@
     "IsConsumable": false,
     "LindedWeapon": 3,
     "DropRate": 0.3,
-    "PartsBorn": 10
+    "PartsBorn": 10,
+    "IconPath": "image/title3"
   },
   "20": {
     "ID": 20,
@@ -57,7 +60,8 @@
     "IsConsumable": false,
     "TitleAffect": 1,
     "DropRate": 0.6,
-    "PartsBorn": 5
+    "PartsBorn": 5,
+    "IconPath": "image/title21"
   },
   "21": {
     "ID": 21,
@@ -72,7 +76,8 @@
     "IsConsumable": false,
     "TitleAffect": 10,
     "DropRate": 0.6,
-    "PartsBorn": 5
+    "PartsBorn": 5,
+    "IconPath": "image/title21"
   },
   "22": {
     "ID": 22,
@@ -87,7 +92,8 @@
     "IsConsumable": false,
     "TitleAffect": 2,
     "DropRate": 0.6,
-    "PartsBorn": 5
+    "PartsBorn": 5,
+    "IconPath": "image/title22"
   },
   "23": {
     "ID": 23,
@@ -102,7 +108,8 @@
     "IsConsumable": false,
     "TitleAffect": 11,
     "DropRate": 0.6,
-    "PartsBorn": 5
+    "PartsBorn": 5,
+    "IconPath": "image/title23"
   },
   "24": {
     "ID": 24,
@@ -117,7 +124,8 @@
     "IsConsumable": false,
     "TitleAffect": 3,
     "DropRate": 0.6,
-    "PartsBorn": 5
+    "PartsBorn": 5,
+    "IconPath": "image/title23"
   },
   "25": {
     "ID": 25,
@@ -132,7 +140,8 @@
     "IsConsumable": false,
     "TitleAffect": 5,
     "DropRate": 0.6,
-    "PartsBorn": 5
+    "PartsBorn": 5,
+    "IconPath": "image/title23"
   },
   "26": {
     "ID": 26,
@@ -147,7 +156,8 @@
     "IsConsumable": false,
     "TitleAffect": 6,
     "DropRate": 0.6,
-    "PartsBorn": 5
+    "PartsBorn": 5,
+    "IconPath": "image/title23"
   },
   "27": {
     "ID": 27,
@@ -162,7 +172,8 @@
     "IsConsumable": false,
     "TitleAffect": 12,
     "DropRate": 0.6,
-    "PartsBorn": 5
+    "PartsBorn": 5,
+    "IconPath": "image/title23"
   },
   "28": {
     "ID": 28,
@@ -177,7 +188,8 @@
     "IsConsumable": false,
     "TitleAffect": 7,
     "DropRate": 0.3,
-    "PartsBorn": 10
+    "PartsBorn": 10,
+    "IconPath": "image/title23"
   },
   "29": {
     "ID": 29,
@@ -192,7 +204,8 @@
     "IsConsumable": false,
     "TitleAffect": 9,
     "DropRate": 0.3,
-    "PartsBorn": 10
+    "PartsBorn": 10,
+    "IconPath": "image/title23"
   },
   "30": {
     "ID": 30,
@@ -207,7 +220,8 @@
     "IsConsumable": false,
     "TitleAffect": 4,
     "DropRate": 0.3,
-    "PartsBorn": 10
+    "PartsBorn": 10,
+    "IconPath": "image/title23"
   },
   "31": {
     "ID": 31,
@@ -222,7 +236,8 @@
     "IsConsumable": false,
     "TitleAffect": 8,
     "DropRate": 0.1,
-    "PartsBorn": 20
+    "PartsBorn": 20,
+    "IconPath": "image/title23"
   },
   "32": {
     "ID": 32,
@@ -237,7 +252,8 @@
     "IsConsumable": false,
     "TitleAffect": 13,
     "DropRate": 0.1,
-    "PartsBorn": 20
+    "PartsBorn": 20,
+    "IconPath": "image/title23"
   },
   "80": {
     "ID": 80,
@@ -252,7 +268,8 @@
     "IsConsumable": true,
     "CoolingDown": 8.0,
     "DropRate": 0.6,
-    "PartsBorn": 5
+    "PartsBorn": 5,
+    "IconPath": "image/title23"
   },
   "81": {
     "ID": 81,
@@ -267,6 +284,7 @@
     "IsConsumable": false,
     "CoolingDown": 5.0,
     "DropRate": 0.6,
-    "PartsBorn": 5
+    "PartsBorn": 5,
+    "IconPath": "image/title23"
   }
 }

@@ -34,6 +34,9 @@ public class UIBattle : UIWindow
     public UIGameOverPanel gameover;
 
     [SerializeField] Image hurtMask;
+
+    public List<Sprite> hpsprites = new List<Sprite>(); 
+
     private Creature TargetEnemy => UserManager.Instance.TargetEnemy;
 
     private Creature m_targetEnemy;
@@ -42,6 +45,7 @@ public class UIBattle : UIWindow
         UIManager.Instance.battlePanel = this;
 
         UserManager.Instance.OnPlayerHpChanged += SetHpSlider;
+        UserManager.Instance.OnPlayerHpChanged += SetAvatarsprite;
         UserManager.Instance.OnPlayerExpChanged += SetExpSlider;
         UserManager.Instance.OnPlayerLevelChanged += SetLevelText;
         UserManager.Instance.OnPlayerLevelChanged += SetLoadSlider;
@@ -97,6 +101,18 @@ public class UIBattle : UIWindow
         hpslider.value = UserManager.Instance.HP;
 
         leveltext.text = UserManager.Instance.Level.ToString();
+    }
+    private void SetAvatarsprite()
+    {
+        Model.Attributes attributes = UserManager.Instance.playerlogic.attributes;
+        float curhp = attributes.curAttribute.HP;
+        float maxhp = attributes.baseAttribute.HP;
+        float ratio = curhp / maxhp;
+
+        if (ratio >= 0.66f) avatar.sprite = hpsprites[0];
+        if (ratio < 0.66f && ratio >= 0.33f) avatar.sprite = hpsprites[1];
+        if (ratio < 0.33f && ratio > 0) avatar.sprite = hpsprites[2];
+        if (ratio <= 0f) avatar.sprite = hpsprites[3];
     }
     private void SetLoadSlider()
     {
@@ -172,6 +188,7 @@ public class UIBattle : UIWindow
         UIManager.Instance.battlePanel = null;
 
         UserManager.Instance.OnPlayerHpChanged -= SetHpSlider;
+        UserManager.Instance.OnPlayerHpChanged -= SetAvatarsprite;
         UserManager.Instance.OnPlayerExpChanged -= SetExpSlider;
         UserManager.Instance.OnPlayerLevelChanged -= SetLoadSlider;
         UserManager.Instance.OnPlayerLevelChanged -= SetLevelText;

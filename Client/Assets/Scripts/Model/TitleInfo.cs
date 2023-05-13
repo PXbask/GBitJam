@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 
 namespace Model
 {
@@ -17,6 +18,9 @@ namespace Model
         public bool gained;
         public bool equiped;
         public TitleAffectDefine curAffect => affects[level];
+
+        public Sprite sprite;
+
         public bool CanUpgraded
         {
             get
@@ -32,6 +36,7 @@ namespace Model
             this.gained = gained;
             this.equiped = false;
             this.define = DataManager.Instance.Titles[ID];
+            this.sprite = Resloader.Load<Sprite>(define.IconPath);
             if (define.TitleAffect != 0)
                 this.affects = DataManager.Instance.TitleAffects[define.TitleAffect];
         }

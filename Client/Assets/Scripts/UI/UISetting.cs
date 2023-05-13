@@ -253,6 +253,8 @@ public class UISetting : UIWindow
     #region Event
     public void OnClickApply()
     {
+        SoundManager.Instance.PlayBtnClickSound();
+
         ApplyWindowsMode();
         ApplyResolution();
         ApplyVideoQulity();
@@ -268,10 +270,12 @@ public class UISetting : UIWindow
     }
     public void OnClickDefult()
     {
-
+        SoundManager.Instance.PlayBtnClickSound();
     }
     public void OnClickQuit()
     {
+        SoundManager.Instance.PlayBtnClickSound();
+
         M_windowsModeIndex = windowsModeIndex;
         M_resolutionIndex= resolutionIndex;
         M_videoQulityIndex= videoQulityIndex;

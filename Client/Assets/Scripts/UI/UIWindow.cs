@@ -30,6 +30,8 @@ public abstract class UIWindow : MonoBehaviour
     }
     public void Close(WindowResult result = WindowResult.None)
     {
+        SoundManager.Instance.PlayBtnClickSound();
+
         if (UIManager.Instance.WindowStack.Peek() != this) return;
         UIManager.Instance.Close(this.Type);
         if (this.OnClose != null)

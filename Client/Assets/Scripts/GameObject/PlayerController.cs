@@ -24,11 +24,15 @@ public class PlayerController : PXCharacterController, IVisibleinMap
 
     public PlayerMovement movement;
 
-    public SpriteRenderer render;
-
     public GameObject bodyObject;
 
+    public GameObject animationObject;
+
     [SerializeField] PlayerState state;
+
+    private bool isRun = false;
+
+    private float animscale;
     public PlayerState State
     {
         get { return state; }
@@ -101,7 +105,11 @@ public class PlayerController : PXCharacterController, IVisibleinMap
     private void Start()
     {
         MiniMapManager.Instance.Register(this);
+
+        animscale = animationObject.transform.localScale.x;
     }
+    protected override void Update() { }
+
     private void FixedUpdate()
     {
         CheckGround();
@@ -109,8 +117,17 @@ public class PlayerController : PXCharacterController, IVisibleinMap
     public override void Move()
     {
         movement.Move();
+        /** Handle Player's performance */
+        var xscale = movement.headDir.z > 0 ? -animscale : animscale;
+        animationObject.transform.localScale = new Vector3(xscale, animscale, animscale);
 
-        render.flipX = movement.headDir.z > 0;
+        bool temp = movement.direction.sqrMagnitude >= 0.05f;
+        if (temp != isRun)
+        {
+            isRun = temp;
+            animator.SetBool("run", isRun);
+            animator.SetBool("idle", !isRun);
+        }
     }
 
     private Vector3 GetPosition() => bodyObject.transform.position;

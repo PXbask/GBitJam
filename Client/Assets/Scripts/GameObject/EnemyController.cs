@@ -1,4 +1,5 @@
 using Battle;
+using DG.Tweening;
 using Manager;
 using Model;
 using System;
@@ -28,7 +29,7 @@ public sealed class EnemyController : PXCharacterController, IVisibleinMap
     public Enemy enemy;
     public Creature attackTarget;
 
-
+    public SpriteRenderer spriteRenderer;
     NavMeshAgent agent;
     private bool autoNav = false;
     private bool isbacktoward = false; 
@@ -62,6 +63,9 @@ public sealed class EnemyController : PXCharacterController, IVisibleinMap
     Collider[] hitColliders;
     CheckDistanceResult m_res = CheckDistanceResult.None;
     public CheckDistanceResult M_res => m_res;
+
+    public List<Sprite> sprites = new List<Sprite>();
+
     public void Init()
     {
         enemy = charBase as Enemy;
@@ -79,10 +83,21 @@ public sealed class EnemyController : PXCharacterController, IVisibleinMap
     private void Start()
     {
         MiniMapManager.Instance.Register(this);
+
+        spriteRenderer.sprite = sprites[UnityEngine.Random.Range(0, sprites.Count)];
+        spriteRenderer.transform.localScale = new Vector3(0.95f, 1.05f, 1) * spriteRenderer.transform.localScale.x;
+        spriteRenderer.transform.DOScale(new Vector3(1.05f, 0.95f, 1) * spriteRenderer.transform.localScale.x, 1f)
+                 .SetLink(gameObject)
+                 .SetEase(Ease.Linear)
+                 .SetLoops(-1, LoopType.Yoyo)
+                 .SetUpdate(true);
+
+        if (enemy.attackStyle == EnemyAttackStyle.Melee) maintainDistance = 1f;
     }
     protected override void Update()
     {
         base.Update();
+        spriteRenderer.flipX = headDir.z > 0;
         UpdateAI();
     }
     #region AI
@@ -209,8 +224,13 @@ public sealed class EnemyController : PXCharacterController, IVisibleinMap
     {
         if (attackTarget == null) return;
         rb.velocity = Vector3.zero;
-        headDir = rb.position.z > attackTarget.controller.rb.position.z ? Vector3.back : Vector3.forward;
+
         enemy.Attack();
+    }
+    public void SetHeadDir()
+    {
+        headDir = rb.position.z > attackTarget.controller.rb.position.z ? Vector3.back : Vector3.forward;
+        spriteRenderer.flipX = headDir.z > 0;
     }
     private void StartNav()
     {
@@ -289,6 +309,8 @@ public sealed class EnemyController : PXCharacterController, IVisibleinMap
         Vector3 dir = GetBulletHeadDirection();
         BulletLogic bulletLogic = GameObjectManager.Instance.RiflePool.Get();
         bulletLogic.SetDetails(charBase, transform.position, dir.normalized, 10f, dir);
+
+        this.PlayEnemyRifleSound();
         Debug.Log("Rifle Attack");
     }
     public override void ShotGun_Attack()
@@ -304,8 +326,11 @@ public sealed class EnemyController : PXCharacterController, IVisibleinMap
             BulletLogic bulletLogic = GameObjectManager.Instance.ShotGunPool.Get();
             bulletLogic.SetDetails(charBase, transform.position, ranDir.normalized, ranSpeed, ranDir);
         }
+
+        SoundManager.Instance.PlayEnemyShotGunSound();
         Debug.Log("ShotGun Attack");
     }
+
     #endregion
     public override Vector3 GetBulletHeadDirection()
     {

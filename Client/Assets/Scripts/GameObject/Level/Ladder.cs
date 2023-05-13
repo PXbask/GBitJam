@@ -71,7 +71,7 @@ public class Ladder : TrapLogic
     private bool IsExitLadder()
     {
         float y = Controller._collider.bounds.extents.y;
-        Ray ray = new Ray(Controller.rb.position + Vector3.down * (y - 0.05f), -transform.right);
+        Ray ray = new Ray(Controller.rb.position + Vector3.down * (y * 0.5f - 0.05f), -transform.right);
         return !Physics.Raycast(ray, 0.25f, ~(1<<10), QueryTriggerInteraction.Collide);        
     }
 }

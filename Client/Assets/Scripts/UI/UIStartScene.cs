@@ -45,6 +45,8 @@ public class UIStartScene : MonoBehaviour
             {
                 StartCoroutine(StartLoadingAnim());
                 isLoading = true;
+
+                SoundManager.Instance.PlayBtnClickSound();
             }
         }
     }

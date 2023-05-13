@@ -23,6 +23,8 @@ namespace Define
         public int LindedWeapon { get; set; }//对应的武器ID
         public float DropRate { get; set; }//掉落概率
         public int PartsBorn { get; set; }//碎片产出数量
+        public string IconPath { get; set; }
+
         public static int[,] GoldCost = new int[3, 3]
         {
             {100,400,500 },

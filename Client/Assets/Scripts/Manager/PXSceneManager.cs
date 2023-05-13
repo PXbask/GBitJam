@@ -21,6 +21,7 @@ public class PXSceneManager : MonoSingleton<PXSceneManager>
     private UnityEngine.AsyncOperation m_asyncOperation;
 
     public GameObject uiInterlude;
+
     public Text text;
     public PXSceneInfo GetScene(int id)
     {
@@ -93,11 +94,13 @@ public class PXSceneManager : MonoSingleton<PXSceneManager>
     {
         uiInterlude.SetActive(true);
 
+        SoundManager.Instance.PlayPressMusic();
         text.text = string.Empty;
         Tween tween = text.DOText(str, 24)//150
             .SetSpeedBased()
             .SetEase(Ease.Linear)
-            .SetUpdate(true);
+            .SetUpdate(true)
+            .OnComplete(() => SoundManager.Instance.musicAudioSource.Stop());
 
         bool complete = false;
         tween.onComplete += () => complete = true;
@@ -105,5 +108,6 @@ public class PXSceneManager : MonoSingleton<PXSceneManager>
 
         yield return new WaitForSeconds(1f);
         uiInterlude.SetActive(false);
+        SoundManager.Instance.PlayMenuMusic();
     }
 }

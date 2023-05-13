@@ -29,6 +29,7 @@ public class UIAtlaItem : ListView.ListViewItem
         typeText.text = info.define.TitleType.ToString();
         descriptionText.text = info.define.Description;
         affectText.text = info.GetDetailedInfo(info.level);
+        iconImage.sprite = info.sprite;
 
         for (int i = 0; i < levelItem.Count; i++)
         {

@@ -29,6 +29,7 @@ namespace Model
         protected override void OnAttack()
         {
             var weapon = weaponManager.WeaponConfig;
+            controller.animator.SetTrigger("attack");
             switch (weapon.ID)
             {
                 case 1://刀

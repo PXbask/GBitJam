@@ -21,6 +21,8 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     private const string SoundPath = "Sound/";
 
+    private const float PITCH_DEFAULT = 1.0f;
+
     private float mainVolume;
 
 	public float MainVolume
@@ -73,30 +75,44 @@ public class SoundManager : MonoSingleton<SoundManager>
         this.audioMixer.SetFloat(name, volume);
     }
 
-    internal void PlayMusic(string name)
+    internal void PlayMusic(string name, float pitch = 1, AudioSource source = null)
     {
+        if (source == null) source = musicAudioSource;
+
         AudioClip clip = Resloader.Load<AudioClip>(MusicPath + name);
         if (clip == null)
         {
             Debug.LogWarningFormat("PlayMusic:{0} not exist", name);
             return;
         }
-        if (musicAudioSource.isPlaying)
+        if (source.isPlaying)
         {
-            musicAudioSource.Stop();
+            source.Stop();
         }
-        musicAudioSource.clip = clip;
-        musicAudioSource.Play();
+        source.pitch = pitch;
+        source.clip = clip;
+        source.Play();
     }
 
-    internal void PlaySound(string name)
+    internal void PlaySound(string name, float pitch = 1, AudioSource source = null)
     {
+        if (source == null) source = soundAudioSource;
+
         AudioClip clip = Resloader.Load<AudioClip>(SoundPath + name);
         if (clip == null)
         {
             Debug.LogWarningFormat("PlaySound:{0} not exist", name);
             return;
         }
-        soundAudioSource.PlayOneShot(clip);
+        source.pitch = pitch;
+        source.PlayOneShot(clip);
     }
+
+    public void PlayBtnClickSound() => this.PlaySound("buttonclick", Random.Range(0.9f, 1.1f));
+
+    public void PlayEnemyShotGunSound() => this.PlaySound("shotgun", Random.Range(0.9f, 1.1f));
+
+    public void PlayPressMusic() => this.PlayMusic("press");
+
+    public void PlayMenuMusic() => this.PlayMusic("menu");
 }

@@ -19,6 +19,7 @@ namespace Model
         protected override void OnAttack()
         {
             var weapon = weaponManager.WeaponConfig;
+            (controller as EnemyController).SetHeadDir();
             switch (weapon.ID)
             {
                 case 1://刀

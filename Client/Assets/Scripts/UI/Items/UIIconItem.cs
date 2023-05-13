@@ -19,5 +19,6 @@ public class UIIconItem : MonoBehaviour
     public void SetInfo(TitleInfo info)
     {
         this.info = info;
+        icon.sprite = info.sprite;
     }
 }

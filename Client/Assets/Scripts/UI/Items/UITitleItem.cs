@@ -16,7 +16,7 @@ public class UITitleItem : MonoBehaviour,IPointerClickHandler
 {
     public UITitle title;
     public Image background;
-    public Image lftImage;
+    public Image iconImage;
     public Text nameText;
     public List<Image> levelItem = new List<Image>();
     public GameObject eqtag;
@@ -26,7 +26,7 @@ public class UITitleItem : MonoBehaviour,IPointerClickHandler
     public void SetInfo(TitleInfo info)
     {
         this.info = info;
-
+        iconImage.sprite = info.sprite;
         nameText.text = info.define.Name;
         for (int i = 0; i < levelItem.Count; i++)
         {

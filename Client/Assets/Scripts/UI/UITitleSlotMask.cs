@@ -43,7 +43,7 @@ public class UITitleSlotMask : MonoBehaviour,IPointerClickHandler
         float _width = SLOT_WIDTH * size + SLOT_STEP * (size - 1);
         float _height = SLOT_HEIGHT;
         rectTransform.sizeDelta = new Vector2(_width, _height);
-        image.color = Random.ColorHSV(0.5f, 1, 0.5f, 1, 1, 1, 1, 1);
+        image.color = Random.ColorHSV(0.5f, 1, 0.5f, 1, 1, 1, 0.5f, 0.5f);
         InitImage();
     }
 
@@ -60,6 +60,7 @@ public class UITitleSlotMask : MonoBehaviour,IPointerClickHandler
         childImage.rectTransform.localPosition = Center;
         childImage.rectTransform.sizeDelta = new Vector2(SLOT_WIDTH - 10, SLOT_HEIGHT - 10);
         childImage.color = Color.black;
+        childImage.sprite = info.sprite;
     }
 
     public void OnPointerClick(PointerEventData eventData)

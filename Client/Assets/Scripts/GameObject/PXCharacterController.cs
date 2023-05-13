@@ -15,11 +15,18 @@ using UnityEngine.UI;
 public class PXCharacterController : MonoBehaviour
 {
     public Creature charBase;
+
     public Rigidbody rb;
+
+    public Animator animator;
 
     public Vector3 headDir;
 
     protected Collider[] m_colliders;
+
+    private Vector3 m_lastPos;
+
+    protected AudioSource audioSource;
     private void Awake()
     {
         OnAwake();
@@ -27,10 +34,16 @@ public class PXCharacterController : MonoBehaviour
     protected virtual void OnAwake()
     {
         rb = GetComponentInChildren<Rigidbody>();
+
+        audioSource= GetComponentInChildren<AudioSource>();
     }
     protected virtual void Update()
     {
-        headDir = rb.velocity.z > 0 ? Vector3.forward : Vector3.back;
+        Vector3 offset = transform.position - m_lastPos;
+        if (Mathf.Abs(offset.z) <= 0.01f) return;
+        m_lastPos = transform.position;
+        headDir = offset.z > 0 ? Vector3.forward : Vector3.back;
+
     }
     public void ReceiveDamage(BattleContext context)
     {
@@ -67,6 +80,8 @@ public class PXCharacterController : MonoBehaviour
         Vector3 dir = GetBulletHeadDirection();
         BulletLogic bulletLogic = GameObjectManager.Instance.RiflePool.Get();
         bulletLogic.SetDetails(charBase, transform.position, dir.normalized, 18f, dir);
+
+        this.PlayEnemyRifleSound();
         Debug.Log("Rifle Attack");
     }
     public virtual void Melee_Attack()
@@ -84,7 +99,15 @@ public class PXCharacterController : MonoBehaviour
             BulletLogic bulletLogic = GameObjectManager.Instance.ShotGunPool.Get();
             bulletLogic.SetDetails(charBase, transform.position, ranDir.normalized, ranSpeed, ranDir);
         }
+
+        this.PlayShotGunSound();
         Debug.Log("ShotGun Attack");
     }
     #endregion
+
+    protected void PlaySound(string name, float pitch) => SoundManager.Instance.PlaySound(name, pitch, audioSource);
+
+    protected void PlayShotGunSound() => this.PlaySound("shotgun", UnityEngine.Random.Range(0.95f, 1.05f));
+
+    protected void PlayEnemyRifleSound() => this.PlaySound("enemyrifle", UnityEngine.Random.Range(0.95f, 1.05f));
 }

@@ -133,6 +133,7 @@
     <Compile Include="Assets\Scripts\UI\UIAtla.cs" />
     <Compile Include="Assets\Scripts\UI\MessageBox.cs" />
     <Compile Include="Assets\Scripts\GameObject\SceneLogic.cs" />
+    <Compile Include="Assets\Scripts\GameObject\Level\ExitTransporter.cs" />
     <Compile Include="Assets\Scripts\UI\Items\UIAtlaItem.cs" />
     <Compile Include="Assets\Scripts\Define\LevelDefine.cs" />
     <Compile Include="Assets\Scripts\GameObject\PlayerController.cs" />
@@ -182,7 +183,6 @@
     <Compile Include="Assets\Scripts\UI\Items\UIIconItem.cs" />
     <Compile Include="Assets\Scripts\Manager\TitleManager.cs" />
     <Compile Include="Assets\Scripts\Manager\InputManager.cs" />
-    <Compile Include="Assets\Scripts\GameObject\Level\ExitTransporter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\_LineStripShader.cginc" />

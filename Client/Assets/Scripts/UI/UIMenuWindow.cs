@@ -34,6 +34,8 @@ public class UIMenuWindow : UIWindow
     public void OnClickContinue()
     {
         Close();
+
+        SoundManager.Instance.PlayBtnClickSound();
     }
     public void OnClickStartGame()
     {
@@ -45,14 +47,20 @@ public class UIMenuWindow : UIWindow
             var info = PXSceneManager.Instance.GetScene(1);//Level01-1
             PXSceneManager.Instance.LoadScene(info, Consts.Loading.Default_Loading_Interval);
         }, null);
+
+        SoundManager.Instance.PlayBtnClickSound();
     }
     public void OnClickSetting()
     {
         UIManager.Instance.Show<UISetting>();
+
+        SoundManager.Instance.PlayBtnClickSound();
     }
     public void OnClickMakerList()
     {
+        //UnityEngine.SceneManagement.SceneManager.LoadScene("End");
 
+        SoundManager.Instance.PlayBtnClickSound();
     }
     public void OnClickQuit()
     {
@@ -62,5 +70,7 @@ public class UIMenuWindow : UIWindow
             PXSceneManager.Instance.LoadMainMenuScene();
             GameManager.Instance.Reset();
         }, null);
+
+        SoundManager.Instance.PlayBtnClickSound();
     }
 }

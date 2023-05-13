@@ -43,7 +43,7 @@ public class UITitle : UIWindow
     public UITabView tabview;
     [Header("右侧显示UI")]
     public GameObject rightcontent;
-    public RawImage titleimg;
+    public Image titleimg;
     public Text titletype;
     public Text titlename;
     public Text titledescri;
@@ -274,6 +274,7 @@ public class UITitle : UIWindow
         else
         {
             rightcontent.SetActive(true);
+            titleimg.sprite = SelectedItem.info.sprite;
             titletype.text = SelectedItem.info.define.TitleType.ToString();
             titlename.text = SelectedItem.info.define.Name.ToString();
             titledescri.text = SelectedItem.info.define.Description.ToString();
@@ -303,6 +304,8 @@ public class UITitle : UIWindow
     }
     public void OnClickEquipBtn()
     {
+        SoundManager.Instance.PlayBtnClickSound();
+
         if (!SelectedItem) return;
         if (SelectedItem.info.equiped) return;
         if (UserManager.Instance.isOverLoad)
@@ -328,6 +331,8 @@ public class UITitle : UIWindow
     }
     public void OnClickUnEquipBtn()
     {
+        SoundManager.Instance.PlayBtnClickSound();
+
         if (UserManager.Instance.isOverLoad)
         {
             UIManager.Instance.AddWarning("您已过载，无法卸下芯片");
@@ -339,6 +344,8 @@ public class UITitle : UIWindow
     }
     public void OnEquipedTitleChanged(int id)
     {
+        SoundManager.Instance.PlayBtnClickSound();
+
         SetTitleSlot();
         SetTitleContent(id);
         SetPlayerAttriInfo();
@@ -354,6 +361,8 @@ public class UITitle : UIWindow
     }
     public void OnClickUpgradeBtn()
     {
+        SoundManager.Instance.PlayBtnClickSound();
+
         if (!SelectedItem) return;
         SelectedItem.info.Upgrade();
         SetResourcesData();
@@ -364,6 +373,8 @@ public class UITitle : UIWindow
     }
     public void OnClickAltaBtn()
     {
+        SoundManager.Instance.PlayBtnClickSound();
+
         UIManager.Instance.Show<UIAtla>();
     }
     #region Apply

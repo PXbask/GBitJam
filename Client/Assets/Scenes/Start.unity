@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 77754955}
   - component: {fileID: 77754957}
   - component: {fileID: 77754956}
+  - component: {fileID: 77754958}
   m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
@@ -200,6 +201,14 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77754954}
   m_CullTransparentMesh: 1
+--- !u!81 &77754958
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77754954}
+  m_Enabled: 1
 --- !u!1 &270829954
 GameObject:
   m_ObjectHideFlags: 0
@@ -2101,7 +2110,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

@@ -29,17 +29,17 @@ namespace Model
         protected override void OnAttack()
         {
             var weapon = weaponManager.WeaponConfig;
-            controller.animator.SetTrigger("attack");
+            var pcontroller = controller as PlayerController;
             switch (weapon.ID)
             {
                 case 1://刀
-                    controller.Melee_Attack();
+                    pcontroller.Melee_AttackPerform();
                     break;
                 case 2://步枪
-                    controller.Rifle_Attack();
+                    pcontroller.Rifle_AttackPerform();
                     break;
                 case 3://霰弹枪
-                    controller.ShotGun_Attack();
+                    pcontroller.ShotGun_AttackPerform();
                     break;
                 default: break;
             }

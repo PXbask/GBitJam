@@ -112,6 +112,14 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     public void PlayEnemyShotGunSound() => this.PlaySound("shotgun", Random.Range(0.9f, 1.1f));
 
+    public void PlayOpenChestSound() => this.PlaySound("openchest", Random.Range(0.9f, 1.1f));
+
+    public void PlayGainItemSound() => this.PlaySound("gainitem", Random.Range(0.9f, 1.1f));
+
+    public void PlayLevelUpSound() => this.PlaySound("levelup", Random.Range(0.9f, 1.1f));
+
+    public void PlayGameOverSound() => this.PlaySound("gameover", Random.Range(0.9f, 1.1f));
+
     public void PlayPressMusic() => this.PlayMusic("press");
 
     public void PlayMenuMusic() => this.PlayMusic("menu");

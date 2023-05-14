@@ -20,16 +20,14 @@ namespace Model
         protected override void OnAttack()
         {
             var weapon = weaponManager.WeaponConfig;
+            var bcontroller = controller as BossController;
             switch (weapon.ID)
             {
                 case 1://刀
-                    controller.Melee_Attack();
+                    bcontroller.Melee_Attack();
                     break;
                 case 2://步枪
-                    controller.Rifle_Attack();
-                    break;
-                case 3://霰弹枪
-                    controller.ShotGun_Attack();
+                    bcontroller.ShotGun_AttackPerformance();
                     break;
                 default: break;
             }
@@ -48,7 +46,10 @@ namespace Model
         {
             base.OnDamage(damage, attacker);
             BossController owncontroller = controller as BossController;
-            attributes.curAttribute.HP -= damage * 10;
+
+            if (!owncontroller.activited) return;
+
+            attributes.curAttribute.HP -= damage * 2.5f;
 
             UserManager.Instance.TargetEnemy = this;
 

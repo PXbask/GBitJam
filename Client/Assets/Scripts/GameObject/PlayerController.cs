@@ -67,6 +67,14 @@ public class PlayerController : PXCharacterController, IVisibleinMap
         }
     }
 
+    [Header("Performance")]
+    public SpriteRenderer weaponRenderer;
+    [SerializeField] Sprite swordsprite;
+    [SerializeField] Sprite gunsprite;
+    [SerializeField] Sprite defaultsprite;
+
+    public bool userifleFlag = false;
+
     public void MainCameraMoveto(GameObject @object)
     {
         StartCoroutine(CameraMoveto(@object));
@@ -107,6 +115,8 @@ public class PlayerController : PXCharacterController, IVisibleinMap
         MiniMapManager.Instance.Register(this);
 
         animscale = animationObject.transform.localScale.x;
+
+        UserManager.Instance.OnPlayerWeaponConfigChanged += OnWeaponConfigChanged;
     }
     protected override void Update() { }
 
@@ -117,17 +127,7 @@ public class PlayerController : PXCharacterController, IVisibleinMap
     public override void Move()
     {
         movement.Move();
-        /** Handle Player's performance */
-        var xscale = movement.headDir.z > 0 ? -animscale : animscale;
-        animationObject.transform.localScale = new Vector3(xscale, animscale, animscale);
-
-        bool temp = movement.direction.sqrMagnitude >= 0.05f;
-        if (temp != isRun)
-        {
-            isRun = temp;
-            animator.SetBool("run", isRun);
-            animator.SetBool("idle", !isRun);
-        }
+        HandleAnim();
     }
 
     private Vector3 GetPosition() => bodyObject.transform.position;
@@ -165,6 +165,16 @@ public class PlayerController : PXCharacterController, IVisibleinMap
             });
         }
     }
+    public override void Rifle_Attack()
+    {
+        base.Rifle_Attack();
+    }
+
+    public override void ShotGun_Attack()
+    {
+        base.ShotGun_Attack();
+    }
+
     public override Vector3 GetBulletHeadDirection()
     {
         return movement.headDir;
@@ -186,4 +196,71 @@ public class PlayerController : PXCharacterController, IVisibleinMap
     public Transform GetTransform() { return transform; }
 
     public MapIconType GetIconType() { return MapIconType.Player; }
+
+
+    /** Handle Player's performance */
+    private void HandleAnim()
+    {
+        var xscale = movement.headDir.z > 0 ? -animscale : animscale;
+        animationObject.transform.localScale = new Vector3(xscale, animscale, animscale);
+
+        bool temp = movement.direction.sqrMagnitude >= 0.05f;
+        if (temp != isRun)
+        {
+            isRun = temp;
+            animator.SetBool("run", isRun);
+        }
+    }
+
+    private void PlayMeleeAnim()
+    {
+        animator.SetTrigger("sword");
+    }
+
+    private void PlayShotGunAnim()
+    {
+        animator.SetTrigger("shotgun");
+    }
+
+    public void Melee_AttackPerform()
+    {
+        PlayMeleeAnim();
+    }
+
+    public void Rifle_AttackPerform()
+    {
+        userifleFlag = true;
+        PlayShotGunAnim();
+    }
+
+    public void ShotGun_AttackPerform()
+    {
+        userifleFlag = false;
+        PlayShotGunAnim();
+    }
+
+
+
+    private void OnWeaponConfigChanged()
+    {
+        int? weaponid = (charBase as Player).weaponManager.WeaponConfig?.ID;
+        if (weaponid == null)
+        {
+            weaponRenderer.sprite = defaultsprite;
+            return;
+        }
+        if (weaponid == 1)
+        {
+            weaponRenderer.sprite = swordsprite;
+        }
+        else
+        {
+            weaponRenderer.sprite = gunsprite;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        UserManager.Instance.OnPlayerWeaponConfigChanged -= OnWeaponConfigChanged;
+    }
 }

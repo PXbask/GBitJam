@@ -50,6 +50,14 @@ public class BossController : PXCharacterController, IVisibleinMap, IInteractabl
 
     Boss boss;
 
+    [SerializeField] public GameObject animationObject;
+
+    Vector3 lastPos;
+
+    public float animscale;
+
+    private bool isRun = false;
+
     private bool normalAttackShutDown = false;
 
     private bool autoNav = false;
@@ -64,7 +72,7 @@ public class BossController : PXCharacterController, IVisibleinMap, IInteractabl
 
     private bool isStoped = false;
 
-    private bool activited = false;
+    public bool activited = false;
 
     private bool istalkd = false;
 
@@ -72,11 +80,15 @@ public class BossController : PXCharacterController, IVisibleinMap, IInteractabl
     {
         MiniMapManager.Instance.Register(this);
         SetTarget(UserManager.Instance.playerlogic);
+
+        animscale = animationObject.transform.localScale.x;
     }
 
     protected override void Update()
     {
         base.Update();
+        HandleAnim();
+
         if (!activited) return;
         UpdateAI();
     }
@@ -147,6 +159,7 @@ public class BossController : PXCharacterController, IVisibleinMap, IInteractabl
 
         isinSkill = true;
 
+        PlayBlinkAnim();
         float timer = 0.4f;
         while (timer > 0)
         {
@@ -492,5 +505,50 @@ public class BossController : PXCharacterController, IVisibleinMap, IInteractabl
     private void OnTriggerExit(Collider other)
     {
         OnSomeTriggerExit(other);
+    }
+
+    /** Handle Boss's Performance */
+    private void HandleAnim()
+    {
+        Vector3 offset = transform.position - lastPos;
+        lastPos= transform.position;
+
+        if(Mathf.Abs(offset.z) >= 0.01f)
+        {
+            var xscale = offset.z > 0 ? -animscale : animscale;
+            animationObject.transform.localScale = new Vector3(xscale, animscale, animscale);
+        }
+
+        bool temp = offset.sqrMagnitude >= 0.02f * 0.02f;
+        if (temp != isRun)
+        {
+            isRun = temp;
+            animator.SetBool("run", isRun);
+        }
+    }
+
+    private void PlayShotGunAnim()
+    {
+        animator.SetTrigger("shotgun");
+    }
+
+    private void PlayBlinkAnim()
+    {
+        animator.SetTrigger("blink");
+    }
+
+    private void PlayMeleeAnim()
+    {
+        animator.SetTrigger("sword");
+    }
+
+    public void Melee_AttackPerformance()
+    {
+
+    }
+
+    public void ShotGun_AttackPerformance()
+    {
+        PlayShotGunAnim();
     }
 }

@@ -24,6 +24,7 @@ namespace Manager
 
         public Player playerlogic;
         public GameObject playerObject => playerlogic.controller.gameObject;
+        public PlayerController playerController => playerlogic.controller as PlayerController;
         private float Hp;
         public float HP
         {

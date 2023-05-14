@@ -140,6 +140,7 @@
     <Compile Include="Assets\Map\Assets\PBS Materials Variety Pack\zzz\MaterialRandomizerScript.cs" />
     <Compile Include="Assets\Map\Assets\Airduct BMT\Scripts-BMT\Utilities\Geometry\Triangulator.cs" />
     <Compile Include="Assets\Scripts\Model\SaveData.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerAnimEvent.cs" />
     <Compile Include="Assets\Scripts\Manager\DialogueManager.cs" />
     <Compile Include="Assets\Scripts\UI\UIDialogue.cs" />
     <Compile Include="Assets\Scripts\Model\PXSceneInfo.cs" />
@@ -183,6 +184,7 @@
     <Compile Include="Assets\Scripts\UI\Items\UIIconItem.cs" />
     <Compile Include="Assets\Scripts\Manager\TitleManager.cs" />
     <Compile Include="Assets\Scripts\Manager\InputManager.cs" />
+    <Compile Include="Assets\Scripts\Player\BossAnimEvent.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Map\Assets\VolumetricLines\BuiltInRenderPipeline\Shaders\_LineStripShader.cginc" />

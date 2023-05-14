@@ -126,5 +126,5 @@ public class SoundManager : MonoSingleton<SoundManager>
 
     public void PlayBattleMusic() => this.PlayMusic("battle");
 
-    public void PlayGameEndMusic() => this.PlayMusic("menu");
+    public void PlayGameEndMusic() => this.PlayMusic("end");
 }

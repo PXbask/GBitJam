@@ -13,6 +13,14 @@ public class BossAnimEvent : MonoBehaviour
     [SerializeField] BossController bossController;
     public void Melee()
     {
+        if (bossController.headDir.z > 0)
+        {
+            bossController.animationObject.transform.localScale = new Vector3(-bossController.animscale, bossController.animscale, bossController.animscale);
+        }
+        else
+        {
+            bossController.animationObject.transform.localScale = new Vector3(bossController.animscale, bossController.animscale, bossController.animscale);
+        }
         bossController.Melee_Attack();
     }
 

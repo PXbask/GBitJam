@@ -59,7 +59,7 @@ public class UITitleSlotMask : MonoBehaviour,IPointerClickHandler
         // 设置Image组件的Sprite和其他属性
         childImage.rectTransform.localPosition = Center;
         childImage.rectTransform.sizeDelta = new Vector2(SLOT_WIDTH - 10, SLOT_HEIGHT - 10);
-        childImage.color = Color.black;
+        childImage.color = Color.white;
         childImage.sprite = info.sprite;
     }
 

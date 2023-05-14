@@ -29,6 +29,12 @@ public class UISkillBarItem : MonoBehaviour
             timer.gameObject.SetActive(true);
         }
         skillInfo= info;
+        if (info != null)
+        {
+            var titleinfo = TitleManager.Instance.GetTitleInfoByID(info.ID);
+            if (titleinfo != null)
+                bgImage.sprite = titleinfo.sprite;
+        }
     }
     private void Update()
     {

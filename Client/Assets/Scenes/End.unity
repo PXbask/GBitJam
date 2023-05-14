@@ -261,11 +261,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '
-
-    ^ AND _ YOU ^
-
-'
+  m_Text: "\n<size=114>^ AND _ YOU ^</size>\n <size=64>\u611F\u8C22\u60A8\u7684\u6E38\u73A9</size>\n"
 --- !u!222 &490213871
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -674,7 +670,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "<color=#00FFFF>\u6E38\u620F\u8BBE\u8BA1</color>\n\n\nSerious Bomb\n"
+  m_Text: "<color=#00FFFF>\u6E38\u620F\u8BBE\u8BA1</color>\n\n\nSeriousBomb\n"
 --- !u!222 &831312035
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -831,8 +827,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.15
-  m_Text: "<color=#00FFFF>\u5236\u4F5C\u4EBA\u5458</color>\n\nSerious Bomb\n\u4E0D\u8D1F\nAint-1\n\u53EC\u5524\u72D7\u72D7\u56DE\u6765\u7684\u971E\u6C34\u6BCD\n\u4E0D\u660E\u89C9\u5389\u7684\uFF08 
-    \u4E5B\u25E1\u4E5B\uFF09"
+  m_Text: "<color=#00FFFF>\u5236\u4F5C\u4EBA\u5458</color>\n\nSeriousBomb\n\u963F\u51C9\n\u6B27\u547C\nheasent\n\u4E0D\u660E\u89C9\u5389"
 --- !u!222 &1344628354
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -912,8 +907,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "<color=#00FFFF>\u7A0B\u5E8F&\u6D4B\u8BD5</color>\n\n\n\u4E0D\u660E\u89C9\u5389\u7684\uFF08 
-    \u4E5B\u25E1\u4E5B\uFF09\n"
+  m_Text: "<color=#00FFFF>\u7A0B\u5E8F&\u6D4B\u8BD5</color>\n\n\n\u4E0D\u660E\u89C9\u5389\n"
 --- !u!222 &1374132270
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1350,7 +1344,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "<color=#00FFFF>\u6E38\u620F\u7F8E\u672F</color>\n\n\n\u4E0D\u8D1F\n\n\u53EC\u5524\u72D7\u72D7\u56DE\u6765\u7684\u971E\u6C34\u6BCD\n"
+  m_Text: "<color=#00FFFF>\u6E38\u620F\u7F8E\u672F</color>\n\n\n\u963F\u51C9\n\nhensent\n"
 --- !u!222 &1572906914
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1430,7 +1424,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "<color=#00FFFF>\u6587\u6848\u8BBE\u8BA1&\u97F3\u6548</color>\n\n\nAint-1\n"
+  m_Text: "<color=#00FFFF>\u6587\u6848\u8BBE\u8BA1&\u97F3\u6548</color>\n\n\n\u6B27\u547C\n"
 --- !u!222 &1800878039
 CanvasRenderer:
   m_ObjectHideFlags: 0

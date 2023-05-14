@@ -117,9 +117,22 @@ public class PlayerController : PXCharacterController, IVisibleinMap
         animscale = animationObject.transform.localScale.x;
 
         UserManager.Instance.OnPlayerWeaponConfigChanged += OnWeaponConfigChanged;
+        UserManager.Instance.OnPlayerDead += OnPlayerDead;
+        UserManager.Instance.OnPlayerReborn += OnPlayerReborn;
 
         musicSource.Pause();
     }
+
+    private void OnPlayerReborn()
+    {
+        musicSource.volume = 1;
+    }
+
+    private void OnPlayerDead()
+    {
+        musicSource.volume = 0;
+    }
+
     protected override void Update() { }
 
     private void FixedUpdate()
@@ -156,7 +169,7 @@ public class PlayerController : PXCharacterController, IVisibleinMap
     public override void Melee_Attack()
     {
         base.Melee_Attack();
-        m_colliders = Physics.OverlapSphere(transform.position, charBase.weaponManager.WeaponConfig.define.Range, LayerMask.GetMask("Enemy"));
+        m_colliders = Physics.OverlapSphere(transform.position, charBase.weaponManager.WeaponConfig.define.Range * 1.5f, LayerMask.GetMask("Enemy"));
         foreach (var c in m_colliders)
         {
             var ctr = c.gameObject.GetComponent<PXCharacterController>();
@@ -190,7 +203,13 @@ public class PlayerController : PXCharacterController, IVisibleinMap
             if(hitInfo.transform.gameObject.CompareTag("Destroyable"))
                 Destroy(hitInfo.transform.gameObject);
 
-        return flag;
+        var hitColliders = Physics.OverlapSphere(transform.position, 2f, LayerMask.GetMask("Obstacle"));
+        Collider collider = hitColliders.FirstOrDefault();
+        if (collider == null) return false;
+
+        Destroy(collider.gameObject);
+
+        return true;
     }
 
     public string GetName() { return "Player"; }
@@ -267,5 +286,7 @@ public class PlayerController : PXCharacterController, IVisibleinMap
     private void OnDestroy()
     {
         UserManager.Instance.OnPlayerWeaponConfigChanged -= OnWeaponConfigChanged;
+        UserManager.Instance.OnPlayerDead -= OnPlayerDead;
+        UserManager.Instance.OnPlayerReborn -= OnPlayerReborn;
     }
 }

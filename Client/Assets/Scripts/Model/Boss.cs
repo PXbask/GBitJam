@@ -24,7 +24,7 @@ namespace Model
             switch (weapon.ID)
             {
                 case 1://刀
-                    bcontroller.Melee_Attack();
+                    bcontroller.Melee_AttackPerformance();
                     break;
                 case 2://步枪
                     bcontroller.ShotGun_AttackPerformance();
@@ -50,6 +50,7 @@ namespace Model
             if (!owncontroller.activited) return;
 
             attributes.curAttribute.HP -= damage * 2.5f;
+            owncontroller.OnHurt();
 
             UserManager.Instance.TargetEnemy = this;
 

@@ -21,6 +21,7 @@ namespace Manager
         public Action OnPlayerWeaponConfigChanged = null;
         public Action OnPlayerTargetChanged = null;
         public Action OnPlayerHurt = null;
+        public Action OnPlayerReborn = null;
 
         public Player playerlogic;
         public GameObject playerObject => playerlogic.controller.gameObject;
@@ -198,6 +199,8 @@ namespace Manager
             Load = 0;
             playerObject.transform.position = checkPoint;
 
+            OnPlayerReborn?.Invoke();
+
             InputManager.Activate();
         }
 
@@ -225,6 +228,7 @@ namespace Manager
             Level++;
             GetMaxParams();
             Exp = 0;
+            Load= 0;
             Debug.LogFormat("角色升级:当前等级:{0}", Level.ToString());
             SoundManager.Instance.PlayLevelUpSound();
         }

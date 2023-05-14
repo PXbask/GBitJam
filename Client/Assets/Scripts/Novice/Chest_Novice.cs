@@ -19,14 +19,22 @@ public class Chest_Novice : Chest
         outline.enabled = false;
         isOpened = true;
 
-        TitleManager.Instance.GainTitle(1);
-        TitleManager.Instance.GainTitle(2);
-        TitleManager.Instance.GainTitle(3);
+        StartCoroutine(Open());
 
         MiniMapManager.Instance.Remove(this);
         if(NoviceManager.Instance != null)
             NoviceManager.Instance.Step = NoviceManager.NoviceStep.GainedFirstTitleDialogue;
+    }
 
+    IEnumerator Open()
+    {
         SoundManager.Instance.PlayOpenChestSound();
+        TitleManager.Instance.GainTitle(1);
+        yield return new WaitForSecondsRealtime(0.3f);
+        TitleManager.Instance.GainTitle(2);
+        yield return new WaitForSecondsRealtime(0.3f);
+        TitleManager.Instance.GainTitle(3);
+        yield return new WaitForSecondsRealtime(0.3f);
+        TitleManager.Instance.GainTitle(80);
     }
 }

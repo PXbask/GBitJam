@@ -82,6 +82,8 @@ public class BossController : PXCharacterController, IVisibleinMap, IInteractabl
         SetTarget(UserManager.Instance.playerlogic);
 
         animscale = animationObject.transform.localScale.x;
+
+        musicSource.Pause();
     }
 
     protected override void Update()
@@ -365,6 +367,7 @@ public class BossController : PXCharacterController, IVisibleinMap, IInteractabl
 
     public override void Rifle_Attack()
     {
+        PlayEnemyRifleSound();
         Vector3 dir = GetBulletHeadDirection();
         BulletLogic bulletLogic = GameObjectManager.Instance.RiflePool.Get();
         bulletLogic.SetDetails(charBase, transform.position, dir.normalized, 10f, dir);
@@ -410,19 +413,21 @@ public class BossController : PXCharacterController, IVisibleinMap, IInteractabl
         isinFoucs= false;
 
         Vector3 dir = (destination - rb.position).normalized;
+        var timer = 1.25f;
 
-        while (Vector3.Distance(rb.position, destination) >= 0.5f)
+        while (Vector3.Distance(rb.position, destination) >= 0.5f && timer > 0)
         {
             transform.position = transform.position + dir * Time.fixedDeltaTime * movementSpeed * 2f;
+            timer -= Time.deltaTime;
             yield return null;
         }
 
         //TODO:Bullet
 
-        for (int i = 0; i < 8; i++)
+        for (int i = 0; i < 24; i++)
         {
             float ranSpeed = 6f;
-            Vector3 ranDir = Quaternion.AngleAxis(45 * i, Vector3.up) * headDir;
+            Vector3 ranDir = Quaternion.AngleAxis(15 * i, Vector3.up) * headDir;
             BulletLogic bulletLogic = GameObjectManager.Instance.ShotGunPool.Get();
             bulletLogic.SetDetails(charBase, transform.position, ranDir.normalized, ranSpeed, ranDir);
         }
@@ -524,6 +529,9 @@ public class BossController : PXCharacterController, IVisibleinMap, IInteractabl
         {
             isRun = temp;
             animator.SetBool("run", isRun);
+
+            if (isRun) musicSource.UnPause();
+            else musicSource.Pause();
         }
     }
 
@@ -544,11 +552,16 @@ public class BossController : PXCharacterController, IVisibleinMap, IInteractabl
 
     public void Melee_AttackPerformance()
     {
-
+        PlayMeleeAnim();
     }
 
     public void ShotGun_AttackPerformance()
     {
         PlayShotGunAnim();
+    }
+
+    internal void OnHurt()
+    {
+        animator.SetTrigger("hurt");
     }
 }

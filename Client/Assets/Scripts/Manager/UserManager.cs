@@ -226,6 +226,7 @@ namespace Manager
             GetMaxParams();
             Exp = 0;
             Debug.LogFormat("角色升级:当前等级:{0}", Level.ToString());
+            SoundManager.Instance.PlayLevelUpSound();
         }
         public void OnWeaponConfigChanged()
         {

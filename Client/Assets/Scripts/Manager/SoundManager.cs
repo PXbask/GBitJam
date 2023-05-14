@@ -123,4 +123,8 @@ public class SoundManager : MonoSingleton<SoundManager>
     public void PlayPressMusic() => this.PlayMusic("press");
 
     public void PlayMenuMusic() => this.PlayMusic("menu");
+
+    public void PlayBattleMusic() => this.PlayMusic("battle");
+
+    public void PlayGameEndMusic() => this.PlayMusic("menu");
 }

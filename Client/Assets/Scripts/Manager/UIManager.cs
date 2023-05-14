@@ -148,6 +148,7 @@ namespace Manager
         public void AddGainMessage(string str)
         {
             dynamicPanel?.AddGainMsg(str);
+            SoundManager.Instance.PlayGainItemSound();
         }
         public void AddInteractMessage(string str,Transform root)
         {

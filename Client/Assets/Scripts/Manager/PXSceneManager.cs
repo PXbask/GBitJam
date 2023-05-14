@@ -108,6 +108,6 @@ public class PXSceneManager : MonoSingleton<PXSceneManager>
 
         yield return new WaitForSeconds(1f);
         uiInterlude.SetActive(false);
-        SoundManager.Instance.PlayMenuMusic();
+        SoundManager.Instance.PlayBattleMusic();
     }
 }

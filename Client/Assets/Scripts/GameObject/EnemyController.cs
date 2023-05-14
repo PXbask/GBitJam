@@ -73,6 +73,10 @@ public sealed class EnemyController : PXCharacterController, IVisibleinMap
 
         agent = GetComponent<NavMeshAgent>();
         agent.speed= speed;
+
+        float ran = UnityEngine.Random.Range(0, 1f);
+        if (ran < 0.5f) this.PlayEnemyMoveMusic1();
+        else this.PlayEnemyMoveMusic2();
     }
     protected override void OnAwake()
     {

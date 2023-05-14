@@ -117,6 +117,8 @@ public class PlayerController : PXCharacterController, IVisibleinMap
         animscale = animationObject.transform.localScale.x;
 
         UserManager.Instance.OnPlayerWeaponConfigChanged += OnWeaponConfigChanged;
+
+        musicSource.Pause();
     }
     protected override void Update() { }
 
@@ -209,6 +211,9 @@ public class PlayerController : PXCharacterController, IVisibleinMap
         {
             isRun = temp;
             animator.SetBool("run", isRun);
+
+            if(isRun) musicSource.UnPause();
+            else musicSource.Pause();
         }
     }
 

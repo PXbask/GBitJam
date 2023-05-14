@@ -1189,6 +1189,8 @@ MonoBehaviour:
   rb: {fileID: 0}
   animator: {fileID: 1648244842}
   headDir: {x: 0, y: 0, z: 0}
+  soundSource: {fileID: 6612117569520445533}
+  musicSource: {fileID: 0}
   minVerticalDistance: 0.5
   movementSpeed: 2
   stopDistance: 3
@@ -1196,7 +1198,9 @@ MonoBehaviour:
   detectInterval: 0.2
   maintainDistance: 4
   animationObject: {fileID: 1648244840}
+  animscale: 0
   isinFoucs: 0
+  activited: 0
 --- !u!1 &6918366823141649651
 GameObject:
   m_ObjectHideFlags: 0

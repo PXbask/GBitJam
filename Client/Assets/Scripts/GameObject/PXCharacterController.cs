@@ -26,7 +26,9 @@ public class PXCharacterController : MonoBehaviour
 
     private Vector3 m_lastPos;
 
-    protected AudioSource audioSource;
+    [SerializeField] protected AudioSource soundSource;
+
+    [SerializeField] protected AudioSource musicSource;
     private void Awake()
     {
         OnAwake();
@@ -34,8 +36,6 @@ public class PXCharacterController : MonoBehaviour
     protected virtual void OnAwake()
     {
         rb = GetComponentInChildren<Rigidbody>();
-
-        audioSource= GetComponentInChildren<AudioSource>();
     }
     protected virtual void Update()
     {
@@ -86,6 +86,7 @@ public class PXCharacterController : MonoBehaviour
     }
     public virtual void Melee_Attack()
     {
+        this.PlaySwordSound();
         Debug.Log("Melee Attack");
     }
     public virtual void ShotGun_Attack()
@@ -105,9 +106,17 @@ public class PXCharacterController : MonoBehaviour
     }
     #endregion
 
-    protected void PlaySound(string name, float pitch) => SoundManager.Instance.PlaySound(name, pitch, audioSource);
+    protected void PlaySound(string name, float pitch) => SoundManager.Instance.PlaySound(name, pitch, soundSource);
+
+    protected void PlayMusic(string name, float pitch = 1) => SoundManager.Instance.PlayMusic(name, pitch, soundSource);
 
     protected void PlayShotGunSound() => this.PlaySound("shotgun", UnityEngine.Random.Range(0.95f, 1.05f));
 
     protected void PlayEnemyRifleSound() => this.PlaySound("enemyrifle", UnityEngine.Random.Range(0.95f, 1.05f));
+
+    protected void PlaySwordSound() => this.PlaySound("sword", UnityEngine.Random.Range(0.95f, 1.05f));
+
+    protected void PlayEnemyMoveMusic1() => this.PlayMusic("enemymove1");
+
+    protected void PlayEnemyMoveMusic2() => this.PlayMusic("enemymove2");
 }

@@ -144,7 +144,14 @@ public class UIMiniMap : MonoBehaviour
 
     internal void Remove(IVisibleinMap v)
     {
-        Destroy(IconMaps[v]);
-        IconMaps.Remove(v);
+        try
+        {
+            Destroy(IconMaps[v]);
+            IconMaps.Remove(v);
+        }
+        catch(Exception e)
+        {
+            Debug.Log(e);
+        }
     }
 }

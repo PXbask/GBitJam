@@ -39,6 +39,8 @@ public class Chest : TrapLogic, IVisibleinMap
     protected virtual void OpenChest()
     {
         if(isOpened) { return; }
+
+        SoundManager.Instance.PlayOpenChestSound();
         animat.Play();
         outline.enabled = false;
         isOpened= true;

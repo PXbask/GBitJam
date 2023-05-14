@@ -25,10 +25,16 @@ public class UISkillBar : MonoBehaviour
         var skills = SkillManager.Instance.skillTitles;
         for (int i = 0; i < skillImages.Count; i++)
         {
-            if(skills.Count > i)
+            if (skills.Count > i)
+            {
+                skillImages[i].gameObject.SetActive(true);
                 skillImages[i].SetInfo(skills[i]);
+            }
             else
+            {
                 skillImages[i].SetInfo(null);
+                skillImages[i].gameObject.SetActive(false);
+            }
         }
 
         var pass = SkillManager.Instance.passiveTitles;

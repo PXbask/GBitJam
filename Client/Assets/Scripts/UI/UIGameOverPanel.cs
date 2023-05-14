@@ -45,6 +45,7 @@ public class UIGameOverPanel : MonoBehaviour
                      .SetOptions(true)
                      .SetUpdate(true)
                      .OnComplete(() => {
+                         SoundManager.Instance.PlayGameOverSound();
                          waitingForRestart = true;
                      });
             });
